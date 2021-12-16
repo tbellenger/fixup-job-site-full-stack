@@ -2,7 +2,6 @@ const router = require("express").Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const { User } = require("../../models");
-//const { noExtendLeft } = require("sequelize/types/lib/operators");
 
 // get all users
 router.get(
