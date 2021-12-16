@@ -12,6 +12,8 @@ const session = require("express-session");
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
+require("./auth/auth");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -36,6 +38,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // turn on routes
 app.use(routes);
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({ error: err });
+});
 
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(() => {

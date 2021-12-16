@@ -19,6 +19,10 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     // other columns will go here
     password: {
       type: DataTypes.STRING,
