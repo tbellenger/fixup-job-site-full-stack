@@ -18,13 +18,6 @@ Category.init(
         len: [1]
       }
     },
-    job_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'job',
-        key: 'id'
-      }
-    }
   },
   {
     sequelize,
