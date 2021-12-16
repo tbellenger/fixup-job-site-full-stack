@@ -19,6 +19,18 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
     // other columns will go here
     password: {
       type: DataTypes.STRING,
@@ -26,6 +38,22 @@ User.init(
       validate: {
         len: [4],
       },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [4],
+      },
+    },
+    rating: {
+      type: DataTypes.INTEGER,
+    },
+    jobs_completed: {
+      type: DataTypes.INTEGER,
+    },
+    jobs_offered: {
+      type: DataTypes.INTEGER,
     },
   },
   {
