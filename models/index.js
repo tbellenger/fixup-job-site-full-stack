@@ -100,7 +100,7 @@ Tag.belongsToMany(Job, {
     as: 'jobtag',
     foreignKey: 'tag_id'
 });
-Job.belongsToMany(Location, {
+Job.hasOne(Location, {
     through: JobLocation,
     as: 'joblocation',
     foreignKey: 'job_id'

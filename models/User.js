@@ -39,13 +39,6 @@ User.init(
         len: [4],
       },
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [4],
-      },
-    },
     rating: {
       type: DataTypes.INTEGER,
     },
@@ -55,6 +48,10 @@ User.init(
     jobs_offered: {
       type: DataTypes.INTEGER,
     },
+    last_login: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    }
   },
   {
     hooks: {
