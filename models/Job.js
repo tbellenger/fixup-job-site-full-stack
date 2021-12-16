@@ -93,7 +93,7 @@ Job.init(
     },
     job_status: {
         type: DataTypes.ENUM('open', 'filled', 'complete')
-    }
+    },
     // interested: {
     //   type: DataTypes.BOOLEAN,
     // }

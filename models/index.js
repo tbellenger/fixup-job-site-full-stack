@@ -5,7 +5,9 @@ const Like = require('./Like');
 const Comment = require('./Comment');
 const Category = require('./Category');
 const Tag = require('./Tag');
-const JobTag = require('./JobTag')
+const JobTag = require('./JobTag');
+const Location = require('./Location');
+const JobLocation = require('./JobLocation')
 
 // create associations
 User.hasMany(Job, {
@@ -98,7 +100,18 @@ Tag.belongsToMany(Job, {
     as: 'jobtag',
     foreignKey: 'tag_id'
 });
+Job.belongsToMany(Location, {
+    through: JobLocation,
+    as: 'joblocation',
+    foreignKey: 'job_id'
+});
+
+Location.belongsToMany(Job, {
+    through: JobLocation,
+    as: 'joblocation',
+    foreignKey: 'location_id'
+});
 
 
 
-module.exports = { User, Job, Like, Comment, Category, Tag, JobTag };
+module.exports = { User, Job, Like, Comment, Category, Tag, JobTag, Location, JobLocation };
