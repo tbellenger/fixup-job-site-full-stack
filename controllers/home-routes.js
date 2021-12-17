@@ -6,13 +6,14 @@ const { Category } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
-    const categories = await Category.findAll();
-    const plainCats = categories.map((category) =>
+    const allCategories = await Category.findAll();
+    const categories = allCategories.map((category) =>
       category.get({ plain: true })
     );
+    console.log(categories);
     res.render("homepage"),
       {
-        plainCats,
+        categories: categories,
       };
   } catch (err) {
     res.status(500).json(err);
