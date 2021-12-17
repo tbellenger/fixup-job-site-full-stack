@@ -131,7 +131,7 @@ Job.belongsToMany(Location, {
   as: "joblocation",
   foreignKey: "location_id",
 });
-Location.hasMany(Job, {
+Location.belongsToMany(Job, {
   through: JobLocation,
   as: "joblocation",
   foreignKey: "location_id",
