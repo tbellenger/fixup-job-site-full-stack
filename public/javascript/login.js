@@ -21,20 +21,27 @@ function toggleSignupLogin() {
 }
 
 async function login() {
-  const response = await fetch("/login", {
+  event.preventDefault();
+  const email = usernameEl.value.trim();
+  const password = passwordEl.value.trim();
+  console.log("making login call " + email + " " + password);
+
+  const response = await fetch("/api/users/login", {
     method: "POST",
     headers: {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
     },
-    body: {
-      email: usernameEl.value().trim(),
-      password: passwordEl.value().trim(),
-    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
   });
   const json = await response.json();
+  console.log("login call response " + JSON.stringify(json));
   if (json) {
     if (json.token) {
-      localStorage.setItem("token", json.token);
+      localStorage.setItem("token", JSON.stringify(json.token));
+      window.location.replace(`/?auth_token=${json.token}`);
     }
   }
 }

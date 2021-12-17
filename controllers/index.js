@@ -5,11 +5,11 @@ const homeRoutes = require("./home-routes.js");
 const passport = require("passport");
 
 router.use("/", homeRoutes);
-// router.use(
-//   "/dashboard",
-//   passport.authenticate("jwt", { session: false }),
-//   dashboardRoutes
-// );
+router.use(
+  "/dashboard",
+  passport.authenticate("jwt", { session: false }),
+  dashboardRoutes
+);
 router.use("/api", apiRoutes);
 
 router.use((req, res) => {
