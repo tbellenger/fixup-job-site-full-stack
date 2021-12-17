@@ -9,30 +9,40 @@ class User extends Model {
   static score(body, models) {
     return models.UserRatings.create({
       user_id: body.user_id,
-      job_id: body.post_id
     }).then(() => {
-      return Job.findOne({
+      return User.findOne({
         where: {
-          id: body.post_id
+          id: body.post_id,
         },
         attributes: [
-          'id',
-          'title',
-          'description',
-          'salary',
-          'created_at',
-          [sequelize.literal('(SELECT COUNT(*) FROM like WHERE job.id = like.job_id)'), 'likes_count']
+          "id",
+          "username",
+          "email",
+          "rating",
+          "last_login",
+          [
+            sequelize.literal(
+              "(SELECT COUNT(*) FROM ratings WHERE user.id = ratings.user_id)"
+            ),
+            "ratings",
+          ],
         ],
         include: [
           {
-            model: models.Comment,
-            attributes: ['id', 'comment_text', 'job_id', 'user_id', 'created_at'],
+            model: models.Job,
+            attributes: [
+              "id",
+              "title",
+              "owner_id",
+              "employee_id",
+              "created_at",
+            ],
             include: {
               model: models.User,
-              attributes: ['username']
-            }
-          }
-        ]
+              attributes: ["username"],
+            },
+          },
+        ],
       });
     });
   }

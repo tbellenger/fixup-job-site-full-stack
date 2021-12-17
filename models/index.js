@@ -1,13 +1,14 @@
 // import all models
-const Job = require('./Job');
-const User = require('./User');
-const Like = require('./Like');
-const Comment = require('./Comment');
-const Category = require('./Category');
-const Tag = require('./Tag');
-const JobTag = require('./JobTag');
-const Location = require('./Location');
-const JobLocation = require('./JobLocation')
+const Job = require("./Job");
+const User = require("./User");
+const Like = require("./Like");
+const Comment = require("./Comment");
+const Category = require("./Category");
+const Tag = require("./Tag");
+const JobTag = require("./JobTag");
+const Location = require("./Location");
+const JobLocation = require("./JobLocation");
+const Ratings = require("./UserRatings");
 
 // create associations
 User.hasMany(Job, {
@@ -32,6 +33,18 @@ Job.belongsToMany(User, {
 User.belongsToMany(Job, {
   through: "Job_Applicant",
 });
+Job.belongsToMany(User, {
+  through: "Jobs_Completed",
+});
+User.belongsToMany(Job, {
+  through: "Jobs_Completed",
+});
+Job.belongsToMany(User, {
+  through: "Jobs_Offered",
+});
+User.belongsToMany(Job, {
+  through: "Jobs_Offered",
+});
 
 User.belongsToMany(Job, {
   through: Like,
@@ -43,6 +56,18 @@ Job.belongsToMany(User, {
   through: Like,
   as: "likes_count",
   foreignKey: "job_id",
+  onDelete: "SET NULL",
+});
+User.belongsToMany(User, {
+  through: Ratings,
+  as: "user_ratings",
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
+});
+User.belongsToMany(User, {
+  through: Like,
+  as: "user_ratings",
+  foreignKey: "user_id",
   onDelete: "SET NULL",
 });
 
@@ -99,12 +124,25 @@ Tag.belongsToMany(Job, {
 });
 
 Job.belongsToMany(Location, {
+  through: JobLocation,
+  as: "joblocation",
   foreignKey: "location_id",
 });
 Location.hasMany(Job, {
+  through: JobLocation,
+  as: "joblocation",
   foreignKey: "location_id",
 });
 
-
-
-module.exports = { User, Job, Like, Comment, Category, Tag, JobTag, Location, JobLocation };
+module.exports = {
+  User,
+  Job,
+  Like,
+  Comment,
+  Category,
+  Tag,
+  JobTag,
+  Location,
+  JobLocation,
+  Ratings,
+};
