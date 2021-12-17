@@ -12,6 +12,11 @@
     <header>
        <nav>
            {{!-- navigation here --}}
+           {{#unless loggedIn}}
+           <a href="/login">Login</a>
+           {{else}}
+           <button>Logout</button> 
+           {{/unless}}
         </nav>
         <h1 >
         
