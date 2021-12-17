@@ -45,6 +45,12 @@ app.use((err, req, res, next) => {
 });
 
 // turn on connection to db and server
+<<<<<<< HEAD
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });
+=======
+sequelize.sync({ force: true }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
+>>>>>>> 9e1b2aa9260402f1d36fe912e1fd0510f785640d
