@@ -4,7 +4,7 @@
   "description": "Berkely Coding Bootcamp Project 2",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js",
     "watch": "nodemon server.js",
     "seed": "node seeds/index.js"
@@ -18,8 +18,12 @@
     "express": "^4.17.1",
     "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.12.0-beta.2"
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "6.11.0"
   },
   "repository": {
     "type": "git",
@@ -30,6 +34,8 @@
   },
   "homepage": "https://github.com/tbellenger/coding-bc-project-2#readme",
   "devDependencies": {
-    "jest": "^27.4.4"
+    "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.4.4",
+    "prettier": "^2.5.1"
   }
 }
