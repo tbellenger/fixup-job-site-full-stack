@@ -51,15 +51,15 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true
-      }
+        isEmail: true,
+      },
     },
     // other columns will go here
     password: {
@@ -72,16 +72,11 @@ User.init(
     rating: {
       type: DataTypes.INTEGER,
     },
-    jobs_completed: {
-      type: DataTypes.INTEGER,
-    },
-    jobs_offered: {
-      type: DataTypes.INTEGER,
-    },
+    // no need to store jobs completed or offered as that can be counted in the database
     last_login: {
       type: DataTypes.DATEONLY,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     hooks: {

@@ -11,105 +11,98 @@ const JobLocation = require('./JobLocation')
 
 // create associations
 User.hasMany(Job, {
-  foreignKey: 'owner_id'
+  foreignKey: "owner_id",
 });
-
 Job.belongsTo(User, {
-  foreignKey: 'owner_id',
-  onDelete: 'SET NULL'
+  foreignKey: "owner_id",
+  onDelete: "SET NULL",
 });
 
 User.hasMany(Job, {
-  foreignKey: 'applicant_id'
+  foreignKey: "employee_id",
+});
+Job.belongsTo(User, {
+  foreignKey: "employee_id",
+  onDelete: "SET NULL",
 });
 
-Job.belongsTo(User, {
-  foreignKey: 'applicant_id',
-  onDelete: 'SET NULL'
+Job.belongsToMany(User, {
+  through: "Job_Applicant",
+});
+User.belongsToMany(Job, {
+  through: "Job_Applicant",
 });
 
 User.belongsToMany(Job, {
   through: Like,
-  as: 'likes_count',
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
+  as: "likes_count",
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
 });
-
 Job.belongsToMany(User, {
   through: Like,
-  as: 'likes_count',
-  foreignKey: 'job_id',
-  onDelete: 'SET NULL'
+  as: "likes_count",
+  foreignKey: "job_id",
+  onDelete: "SET NULL",
 });
 
 Like.belongsTo(User, {
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
+});
+User.hasMany(Like, {
+  foreignKey: "user_id",
 });
 
 Like.belongsTo(Job, {
-  foreignKey: 'job_id',
-  onDelete: 'SET NULL'
+  foreignKey: "job_id",
+  onDelete: "SET NULL",
 });
-
-User.hasMany(Like, {
-  foreignKey: 'user_id'
-});
-
 Job.hasMany(Like, {
-  foreignKey: 'job_id'
+  foreignKey: "job_id",
 });
 
 Comment.belongsTo(User, {
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
+});
+User.hasMany(Comment, {
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
 });
 
 Comment.belongsTo(Job, {
-  foreignKey: 'job_id',
-  onDelete: 'SET NULL'
+  foreignKey: "job_id",
+  onDelete: "SET NULL",
 });
-
-User.hasMany(Comment, {
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
-});
-
 Job.hasMany(Comment, {
-  foreignKey: 'job_id'
+  foreignKey: "job_id",
 });
-
 
 Category.hasMany(Job, {
-  foreignKey: 'category_id',
-  onDelete: 'SET NULL'
+  foreignKey: "category_id",
+  onDelete: "SET NULL",
 });
-
 Job.belongsTo(Category, {
-  foreignKey: 'category_id'
+  foreignKey: "category_id",
 });
 
 Job.belongsToMany(Tag, {
-    through: JobTag,
-    as: 'jobtag',
-    foreignKey: 'job_id'
+  through: JobTag,
+  as: "jobtag",
+  foreignKey: "job_id",
 });
-
 Tag.belongsToMany(Job, {
-    through: JobTag,
-    as: 'jobtag',
-    foreignKey: 'tag_id'
-});
-Job.hasOne(Location, {
-    through: JobLocation,
-    as: 'joblocation',
-    foreignKey: 'job_id'
+  through: JobTag,
+  as: "jobtag",
+  foreignKey: "tag_id",
 });
 
-Location.belongsToMany(Job, {
-    through: JobLocation,
-    as: 'joblocation',
-    foreignKey: 'location_id'
+Job.belongsToMany(Location, {
+  foreignKey: "location_id",
+});
+Location.hasMany(Job, {
+  foreignKey: "location_id",
 });
 
 
