@@ -12,15 +12,22 @@
     <header>
        <nav>
            {{!-- navigation here --}}
+           <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <img class="main-logo" src="../images/logo.jpg" alt="Logo" /><span id="title">FREELANCE JOB </span></a>
+                </div>
+                 <a class="navbar-item is-active is-size-5 has-text-weight-semibold"
+                            href="/">Home</a>
+                        <a class="navbar-item is-size-5 has-text-weight-semibold"
+                                    href="/dashboard/">Dashboard</a>
            {{#unless loggedIn}}
            <a href="/login">Login</a>
            {{else}}
            <button>Logout</button> 
            {{/unless}}
+        </div>
         </nav>
-        <h1 >
-        
-        </h1>
     </header>
 
 
