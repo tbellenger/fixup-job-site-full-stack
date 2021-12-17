@@ -2,8 +2,6 @@ const signupInsteadBtn = document.querySelector("#signup-instead");
 const loginInsteadBtn = document.querySelector("#login-instead");
 const loginBtn = document.querySelector("#login");
 const signupBtn = document.querySelector("#signup");
-const usernameEl = document.querySelector("#username-login");
-const passwordEl = document.querySelector("#password-login");
 
 signupInsteadBtn.addEventListener("click", toggleSignupLogin);
 loginInsteadBtn.addEventListener("click", toggleSignupLogin);
@@ -22,6 +20,8 @@ function toggleSignupLogin() {
 
 async function login() {
   event.preventDefault();
+  const usernameEl = document.querySelector("#username-login");
+  const passwordEl = document.querySelector("#password-login");
   const email = usernameEl.value.trim();
   const password = passwordEl.value.trim();
   console.log("making login call " + email + " " + password);
@@ -46,4 +46,28 @@ async function login() {
   }
 }
 
-function signup() {}
+async function signup() {
+  event.preventDefault();
+  const usernameEl = document.querySelector("#username-signup");
+  const passwordEl = document.querySelector("#password-signup");
+  const email = usernameEl.value.trim();
+  const password = passwordEl.value.trim();
+
+  const response = await fetch("/api/users/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  });
+  const json = await response.json();
+  if (json) {
+    if (json.token) {
+      localStorage.setItem("token", JSON.stringify(json.token));
+      window.location.replace(`/?auth_token=${json.token}`);
+    }
+  }
+}

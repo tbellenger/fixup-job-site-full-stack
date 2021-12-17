@@ -54,11 +54,19 @@ router.get(
 router.post(
   "/",
   passport.authenticate("signup", { session: false }),
-  async (req, res) => {
-    res.json({
-      message: "Signup successful",
-      user: req.user,
-    });
+  async (req, res, next) => {
+    try {
+      req.login(req.user, { session: false }, async (error) => {
+        if (error) return next(error);
+        const body = { id: req.user.id, email: req.user.email };
+        const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
+          expiresIn: "2h",
+        });
+        return res.json({ token });
+      });
+    } catch (err) {
+      return next(err);
+    }
   }
 );
 
