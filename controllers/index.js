@@ -1,14 +1,15 @@
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const homeRoutes = require("./home-routes.js");
-const dashboardRoutes = require("./dashboard-routes.js");
+//const dashboardRoutes = require("./dashboard-routes.js");
+const passport = require("passport");
 
 router.use("/", homeRoutes);
-router.use(
-  "/dashboard",
-  passport.authenticate("jwt", { session: false }),
-  dashboardRoutes
-);
+// router.use(
+//   "/dashboard",
+//   passport.authenticate("jwt", { session: false }),
+//   dashboardRoutes
+// );
 router.use("/api", apiRoutes);
 
 router.use((req, res) => {

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Job, User, Comment } = require("../models");
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   // res.render('dashboard', { loggedIn: true });
   try {
     const jobs = await Job.findAll({

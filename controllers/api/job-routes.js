@@ -3,7 +3,7 @@ const sequelize = require("../../config/connection");
 const { Job, User, Comment, Like, Category } = require("../../models");
 
 // get all users
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const job = await Job.findAll({
       attributes: [
@@ -40,7 +40,7 @@ router.get("/", (req, res) => {
   }
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const job = await Job.findOne({
       where: {
@@ -80,7 +80,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const job = await Job.create({
       title: req.body.title,
@@ -99,20 +99,20 @@ router.post("/", (req, res) => {
   }
 });
 
-router.put("/like", (req, res) => {
-  // custom static method created in models/Job.js
-  try {
-    const job = await Job.opinion(
-      { ...req.body, user_id: req.session.user_id },
-      { Like, Comment, User }
-    );
-    res.json(job);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.put("/like", async (req, res) => {
+//   // custom static method created in models/Job.js
+//   try {
+//     const job = await Job.opinion(
+//       { ...req.body, user_id: req.session.user_id },
+//       { Like, Comment, User }
+//     );
+//     res.json(job);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const job = await Job.update(
       {
@@ -138,7 +138,7 @@ router.put("/:id", (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const job = await Job.destroy({
       where: {
