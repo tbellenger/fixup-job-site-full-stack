@@ -80,7 +80,7 @@ User.init(
       },
     },
     rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(5, 2),
     },
     // no need to store jobs completed or offered as that can be counted in the database
     last_login: {
