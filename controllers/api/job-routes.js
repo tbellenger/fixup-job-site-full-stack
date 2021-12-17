@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
 const { Job, User, Comment, Like, Category } = require("../../models");
-const withAuth = require("../../utils/auth");
 
 // get all users
 router.get("/", (req, res) => {
@@ -81,7 +80,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.post("/", withAuth, (req, res) => {
+router.post("/", (req, res) => {
   try {
     const job = await Job.create({
       title: req.body.title,
@@ -100,7 +99,7 @@ router.post("/", withAuth, (req, res) => {
   }
 });
 
-router.put("/like", withAuth, (req, res) => {
+router.put("/like", (req, res) => {
   // custom static method created in models/Job.js
   try {
     const job = await Job.opinion(
@@ -113,7 +112,7 @@ router.put("/like", withAuth, (req, res) => {
   }
 });
 
-router.put("/:id", withAuth, (req, res) => {
+router.put("/:id", (req, res) => {
   try {
     const job = await Job.update(
       {
@@ -139,7 +138,7 @@ router.put("/:id", withAuth, (req, res) => {
   }
 });
 
-router.delete("/:id", withAuth, (req, res) => {
+router.delete("/:id", (req, res) => {
   try {
     const job = await Job.destroy({
       where: {
