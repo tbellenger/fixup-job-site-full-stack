@@ -7,39 +7,49 @@
 //     //rows will go here
 // })
 
-
 // module.exports = Object2;
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 // create our Post model
 class Job extends Model {
   static opinion(body, models) {
     return models.Like.create({
       user_id: body.user_id,
-      job_id: body.post_id
+      job_id: body.post_id,
     }).then(() => {
       return Job.findOne({
         where: {
-          id: body.post_id
+          id: body.post_id,
         },
         attributes: [
-          'id',
-          'title',
-          'description',
-          'salary',
-          'created_at',
-          [sequelize.literal('(SELECT COUNT(*) FROM like WHERE job.id = like.job_id)'), 'likes_count']
+          "id",
+          "title",
+          "description",
+          "salary",
+          "created_at",
+          [
+            sequelize.literal(
+              "(SELECT COUNT(*) FROM like WHERE job.id = like.job_id)"
+            ),
+            "likes_count",
+          ],
         ],
         include: [
           {
             model: models.Comment,
-            attributes: ['id', 'comment_text', 'job_id', 'user_id', 'created_at'],
+            attributes: [
+              "id",
+              "comment_text",
+              "job_id",
+              "user_id",
+              "created_at",
+            ],
             include: {
               model: models.User,
-              attributes: ['username']
-            }
-          }
-        ]
+              attributes: ["username"],
+            },
+          },
+        ],
       });
     });
   }
@@ -52,11 +62,11 @@ Job.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING,
@@ -73,26 +83,35 @@ Job.init(
     owner_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
-        key: 'id'
-      }
+        model: "user",
+        key: "id",
+      },
     },
-    applicant_id: {
+    // we can create a table to track applicants - there will be more than
+    employee_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
-        key: 'id'
-      }
+        model: "user",
+        key: "id",
+      },
     },
     category_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'category',
-        key: 'id'
-      }
+        model: "category",
+        key: "id",
+      },
+    },
+    // don't think we need a different table for the join. Just store id with job
+    location_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "location",
+        key: "id",
+      },
     },
     job_status: {
-        type: DataTypes.ENUM('open', 'filled', 'complete')
+      type: DataTypes.ENUM("open", "filled", "complete"),
     },
     // interested: {
     //   type: DataTypes.BOOLEAN,
@@ -102,7 +121,7 @@ Job.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'job'
+    modelName: "job",
   }
 );
 

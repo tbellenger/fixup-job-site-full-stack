@@ -42,12 +42,7 @@ User.init(
     rating: {
       type: DataTypes.INTEGER,
     },
-    jobs_completed: {
-      type: DataTypes.INTEGER,
-    },
-    jobs_offered: {
-      type: DataTypes.INTEGER,
-    },
+    // no need to store jobs completed or offered as that can be counted in the database
     last_login: {
       type: DataTypes.DATEONLY,
       allowNull: false,

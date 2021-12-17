@@ -7,25 +7,29 @@ const Category = require("./Category");
 const Tag = require("./Tag");
 const JobTag = require("./JobTag");
 const Location = require("./Location");
-const JobLocation = require("./JobLocation");
 
 // create associations
 User.hasMany(Job, {
   foreignKey: "owner_id",
 });
-
 Job.belongsTo(User, {
   foreignKey: "owner_id",
   onDelete: "SET NULL",
 });
 
 User.hasMany(Job, {
-  foreignKey: "applicant_id",
+  foreignKey: "employee_id",
+});
+Job.belongsTo(User, {
+  foreignKey: "employee_id",
+  onDelete: "SET NULL",
 });
 
-Job.belongsTo(User, {
-  foreignKey: "applicant_id",
-  onDelete: "SET NULL",
+Job.belongsToMany(User, {
+  through: "Job_Applicant",
+});
+User.belongsToMany(Job, {
+  through: "Job_Applicant",
 });
 
 User.belongsToMany(Job, {
