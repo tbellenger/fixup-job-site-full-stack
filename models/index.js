@@ -97,14 +97,10 @@ Tag.belongsToMany(Job, {
   foreignKey: "tag_id",
 });
 
-Job.hasOne(Location, {
-  through: JobLocation,
-  as: "joblocation",
-  foreignKey: "job_id",
+Job.belongsToMany(Location, {
+  foreignKey: "location_id",
 });
-Location.belongsToMany(Job, {
-  through: JobLocation,
-  as: "joblocation",
+Location.hasMany(Job, {
   foreignKey: "location_id",
 });
 
