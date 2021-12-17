@@ -1,0 +1,17 @@
+<div class="comments">
+  {{#each this}}
+    <section class="comment" id="{{id}}">
+      <div>
+        {{user.username}}
+        on
+        {{created_at}}
+      </div>
+      <div class="text">
+        {{comment_text}}
+        <a href="/comment/{{id}}">
+          edit or delete
+        </a>
+      </div>
+    </section>
+  {{/each}}
+</div>
