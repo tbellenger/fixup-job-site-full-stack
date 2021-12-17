@@ -8,11 +8,7 @@ const commentRoutes = require("./comment-routes");
 
 router.use("/users", userRoutes);
 // must have an account to see job postings
-router.use(
-  "/categories",
-  passport.authenticate("jwt", { session: false }),
-  categoryRoutes
-);
+router.use("/categories", categoryRoutes);
 router.use(
   "/jobs",
   passport.authenticate("jwt", { session: false }),
