@@ -1,26 +1,28 @@
 const { Model, DataTypes } = require("sequelize");
+
 const sequelize = require("../config/connection");
 
-class Like extends Model {}
+class JobLocation extends Model {}
 
-Like.init(
+JobLocation.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "user",
-        key: "id",
-      },
     },
     job_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "job",
+        key: "id",
+      },
+    },
+    location_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "location",
         key: "id",
       },
     },
@@ -30,8 +32,8 @@ Like.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "vote",
+    modelName: "job_tag",
   }
 );
 
-module.exports = Like;
+module.exports = JobLocation;
