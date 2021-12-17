@@ -8,7 +8,7 @@ const Tag = require("./Tag");
 const JobTag = require("./JobTag");
 const Location = require("./Location");
 const JobLocation = require("./JobLocation");
-const Ratings = require("./UserRatings");
+// const Ratings = require("./UserRatings");
 
 // create associations
 User.hasMany(Job, {
@@ -33,12 +33,14 @@ Job.belongsToMany(User, {
 User.belongsToMany(Job, {
   through: "Job_Applicant",
 });
+
 Job.belongsToMany(User, {
   through: "Jobs_Completed",
 });
 User.belongsToMany(Job, {
   through: "Jobs_Completed",
 });
+
 Job.belongsToMany(User, {
   through: "Jobs_Offered",
 });
@@ -58,18 +60,19 @@ Job.belongsToMany(User, {
   foreignKey: "job_id",
   onDelete: "SET NULL",
 });
-User.belongsToMany(User, {
-  through: Ratings,
-  as: "user_ratings",
-  foreignKey: "user_id",
-  onDelete: "SET NULL",
-});
-User.belongsToMany(User, {
-  through: Like,
-  as: "user_ratings",
-  foreignKey: "user_id",
-  onDelete: "SET NULL",
-});
+
+// User.hasMany(User, {
+//   through: Ratings,
+//   as: "user_ratings",
+//   foreignKey: "user_id",
+//   onDelete: "SET NULL",
+// });
+// User.belongsToMany(User, {
+//   through: Ratings,
+//   as: "user_ratings",
+//   foreignKey: "user_id",
+//   onDelete: "SET NULL",
+// });
 
 Like.belongsTo(User, {
   foreignKey: "user_id",
@@ -128,7 +131,7 @@ Job.belongsToMany(Location, {
   as: "joblocation",
   foreignKey: "location_id",
 });
-Location.hasMany(Job, {
+Location.belongsToMany(Job, {
   through: JobLocation,
   as: "joblocation",
   foreignKey: "location_id",
@@ -144,5 +147,5 @@ module.exports = {
   JobTag,
   Location,
   JobLocation,
-  Ratings,
+  // Ratings,
 };
