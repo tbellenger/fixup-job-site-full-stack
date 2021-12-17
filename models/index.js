@@ -38,7 +38,6 @@ User.belongsToMany(Job, {
   foreignKey: "user_id",
   onDelete: "SET NULL",
 });
-
 Job.belongsToMany(User, {
   through: Like,
   as: "likes_count",
@@ -50,16 +49,14 @@ Like.belongsTo(User, {
   foreignKey: "user_id",
   onDelete: "SET NULL",
 });
+User.hasMany(Like, {
+  foreignKey: "user_id",
+});
 
 Like.belongsTo(Job, {
   foreignKey: "job_id",
   onDelete: "SET NULL",
 });
-
-User.hasMany(Like, {
-  foreignKey: "user_id",
-});
-
 Job.hasMany(Like, {
   foreignKey: "job_id",
 });
@@ -68,17 +65,15 @@ Comment.belongsTo(User, {
   foreignKey: "user_id",
   onDelete: "SET NULL",
 });
-
-Comment.belongsTo(Job, {
-  foreignKey: "job_id",
-  onDelete: "SET NULL",
-});
-
 User.hasMany(Comment, {
   foreignKey: "user_id",
   onDelete: "SET NULL",
 });
 
+Comment.belongsTo(Job, {
+  foreignKey: "job_id",
+  onDelete: "SET NULL",
+});
 Job.hasMany(Comment, {
   foreignKey: "job_id",
 });
@@ -87,7 +82,6 @@ Category.hasMany(Job, {
   foreignKey: "category_id",
   onDelete: "SET NULL",
 });
-
 Job.belongsTo(Category, {
   foreignKey: "category_id",
 });
@@ -97,18 +91,17 @@ Job.belongsToMany(Tag, {
   as: "jobtag",
   foreignKey: "job_id",
 });
-
 Tag.belongsToMany(Job, {
   through: JobTag,
   as: "jobtag",
   foreignKey: "tag_id",
 });
+
 Job.hasOne(Location, {
   through: JobLocation,
   as: "joblocation",
   foreignKey: "job_id",
 });
-
 Location.belongsToMany(Job, {
   through: JobLocation,
   as: "joblocation",
@@ -124,5 +117,4 @@ module.exports = {
   Tag,
   JobTag,
   Location,
-  JobLocation,
 };
