@@ -6,6 +6,36 @@ class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
+  static score(body, models) {
+    return models.UserRatings.create({
+      user_id: body.user_id,
+      job_id: body.post_id
+    }).then(() => {
+      return Job.findOne({
+        where: {
+          id: body.post_id
+        },
+        attributes: [
+          'id',
+          'title',
+          'description',
+          'salary',
+          'created_at',
+          [sequelize.literal('(SELECT COUNT(*) FROM like WHERE job.id = like.job_id)'), 'likes_count']
+        ],
+        include: [
+          {
+            model: models.Comment,
+            attributes: ['id', 'comment_text', 'job_id', 'user_id', 'created_at'],
+            include: {
+              model: models.User,
+              attributes: ['username']
+            }
+          }
+        ]
+      });
+    });
+  }
 }
 
 User.init(
