@@ -1,4 +1,6 @@
 const arrayLinkEls = document.querySelectorAll("a");
+const loginBtn = document.querySelector("#login-button");
+const logoutBtn = document.querySelector("#logout-button");
 
 const auth_token = JSON.parse(localStorage.getItem("token"));
 if (auth_token) {
@@ -9,4 +11,16 @@ if (auth_token) {
       arrayLinkEls[i].href = arrayLinkEls[i].href + "?auth_token=" + auth_token;
     }
   }
+
+  loginBtn.classList.add("hide");
+  logoutBtn.classList.remove("hide");
+} else {
+  loginBtn.classList.remove("hide");
+  logoutBtn.classList.add("hide");
 }
+
+logoutBtn.addEventListener("click", () => {
+  event.preventDefault();
+  localStorage.removeItem("token");
+  location.replace("/");
+});

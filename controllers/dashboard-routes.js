@@ -10,8 +10,8 @@ router.get("/", async (req, res) => {
       },
       attributes: { exclude: ["updatedAt"] },
       include: [
-        { model: User, as: "owner", attribute: { exclude: ["password"] } },
-        { model: User, as: "employee", attribute: { exclude: ["password"] } },
+        { model: User, as: "owner", attributes: { exclude: ["password"] } },
+        { model: User, as: "employee", attributes: { exclude: ["password"] } },
         { model: Category },
         {
           model: Comment,

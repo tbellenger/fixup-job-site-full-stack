@@ -8,7 +8,7 @@ const dashboardRoutes = require("./dashboard-routes");
 router.use("/", homeRoutes);
 router.use(
   "/dashboard",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
   dashboardRoutes
 );
 router.use("/api", apiRoutes);

@@ -69,7 +69,6 @@ passport.use(
       ]),
     },
     async (token, done) => {
-      console.log("Attemp to check auth token");
       try {
         return done(null, token.user);
       } catch (err) {
