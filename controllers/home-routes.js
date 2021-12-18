@@ -12,11 +12,10 @@ router.get("/", async (req, res) => {
     const categories = allCategories.map((category) =>
       category.get({ plain: true })
     );
-    console.log(categories);
-    res.render("homepage"),
-      {
-        cats: categories,
-      };
+
+    res.render("homepage", {
+      categories: categories,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
