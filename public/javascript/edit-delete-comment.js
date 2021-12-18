@@ -9,7 +9,7 @@ async function deleteCommentHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/");
+    document.location.replace("/dashboard");
   } else {
     alert(response.statusText);
   }
@@ -36,7 +36,7 @@ async function editCommentHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/");
+    document.location.replace("/dashboard");
   } else {
     alert(response.statusText);
   }
