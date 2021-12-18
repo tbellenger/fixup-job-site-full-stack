@@ -31,7 +31,7 @@ router.get("/category/:id/jobs", async (req, res) => {
     });
     const jobs = allJobs.map((job) => job.get({ plain: true }));
 
-    res.render("jobs", {
+    res.render("category", {
       jobs: jobs,
     });
   } catch (err) {
