@@ -27,7 +27,7 @@ router.get("/category/:id/jobs", async (req, res) => {
       where: {
         category_id: req.params.id,
       },
-      attributes: { exclude: ["createdAt", "updatedAt"] },
+      attributes: { exclude: ["updatedAt"] },
     });
     const jobs = allJobs.map((job) => job.get({ plain: true }));
     console.log(jobs);
