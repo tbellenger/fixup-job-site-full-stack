@@ -129,7 +129,7 @@ Tag.belongsToMany(Job, {
 Job.belongsToMany(Location, {
   through: JobLocation,
   as: "joblocation",
-  foreignKey: "location_id",
+  foreignKey: "job_id",
 });
 Location.belongsToMany(Job, {
   through: JobLocation,
