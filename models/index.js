@@ -8,7 +8,7 @@ const Tag = require("./Tag");
 const JobTag = require("./JobTag");
 const Location = require("./Location");
 const JobLocation = require("./JobLocation");
-// const Ratings = require("./UserRatings");
+const Ratings = require("./UserRatings");
 
 // create associations
 User.hasMany(Job, {
@@ -147,5 +147,5 @@ module.exports = {
   JobTag,
   Location,
   JobLocation,
-  // Ratings,
+  Ratings,
 };
