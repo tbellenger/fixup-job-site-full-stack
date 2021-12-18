@@ -6,6 +6,46 @@ class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
+  static score(body, models) {
+    return models.UserRatings.create({
+      user_id: body.user_id,
+    }).then(() => {
+      return User.findOne({
+        where: {
+          id: body.post_id,
+        },
+        attributes: [
+          "id",
+          "username",
+          "email",
+          "rating",
+          "last_login",
+          [
+            sequelize.literal(
+              "(SELECT COUNT(*) FROM ratings WHERE user.id = ratings.user_id)"
+            ),
+            "ratings",
+          ],
+        ],
+        include: [
+          {
+            model: models.Job,
+            attributes: [
+              "id",
+              "title",
+              "owner_id",
+              "employee_id",
+              "created_at",
+            ],
+            include: {
+              model: models.User,
+              attributes: ["username"],
+            },
+          },
+        ],
+      });
+    });
+  }
 }
 
 User.init(
@@ -19,9 +59,17 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     // other columns will go here
     password: {
@@ -30,6 +78,14 @@ User.init(
       validate: {
         len: [4],
       },
+    },
+    rating: {
+      type: DataTypes.DECIMAL(5, 2),
+    },
+    // no need to store jobs completed or offered as that can be counted in the database
+    last_login: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
     },
   },
   {
