@@ -45,12 +45,12 @@ passport.use(
           return done(null, false, { message: "Unknown user" });
         }
 
-        const validate = await user.checkPassword(password);
+        const validate = user.checkPassword(password);
 
         if (!validate) {
           return done(null, false, { message: "Wrong password" });
         }
-        await user.update("last_login", new Date());
+        //await user.update("last_login", new Date()); // This is buggy!!!!
         return done(null, user, { message: "Logged in" });
       } catch (error) {
         return done(error);
@@ -63,15 +63,17 @@ passport.use(
   new JWTstrategy(
     {
       secretOrKey: process.env.JWT_SECRET,
-      jwtFromRequest: ExtractJWT.fromExtractors([
-        ExtractJWT.fromAuthHeaderAsBearerToken,
-        ExtractJWT.fromUrlQueryParameter,
-      ]),
+      //ExtractJWT.fromExtractors([
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), //,
+      //ExtractJWT.fromUrlQueryParameter(),
+      //]),
     },
     async (token, done) => {
+      console.log("Attemp to check auth token");
       try {
         return done(null, token.user);
       } catch (err) {
+        console.log(err);
         done(err);
       }
     }
