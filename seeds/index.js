@@ -6,6 +6,7 @@ const seedJobLocation = require("./job-location-seeds");
 const seedTag = require("./tag-seeds");
 const seedJobTags = require("./job-tag-seeds");
 const seedComments = require("./comments-seeds");
+const seedLike = require("./like-seeds");
 
 const sequelize = require("../config/connection");
 
@@ -34,6 +35,9 @@ const seedAll = async () => {
   console.log("--------------");
 
   await seedComments();
+  console.log("--------------");
+
+  await seedLike();
   console.log("--------------");
 
   process.exit(0);
