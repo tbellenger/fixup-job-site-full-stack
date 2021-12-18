@@ -12,25 +12,31 @@ const JobLocation = require("./JobLocation");
 
 // create associations
 User.hasMany(Job, {
+  as: "owner",
   foreignKey: "owner_id",
 });
 Job.belongsTo(User, {
+  as: "owner",
   foreignKey: "owner_id",
   onDelete: "SET NULL",
 });
 
 User.hasMany(Job, {
+  as: "employee",
   foreignKey: "employee_id",
 });
 Job.belongsTo(User, {
+  as: "employee",
   foreignKey: "employee_id",
   onDelete: "SET NULL",
 });
 
 Job.belongsToMany(User, {
+  as: "applicant",
   through: "Job_Applicant",
 });
 User.belongsToMany(Job, {
+  as: "applicant",
   through: "Job_Applicant",
 });
 
