@@ -8,7 +8,7 @@ const Tag = require("./Tag");
 const JobTag = require("./JobTag");
 const Location = require("./Location");
 const JobLocation = require("./JobLocation");
-// const Ratings = require("./UserRatings");
+const Ratings = require("./UserRatings");
 
 // create associations
 User.hasMany(Job, {
@@ -135,7 +135,7 @@ Tag.belongsToMany(Job, {
 Job.belongsToMany(Location, {
   through: JobLocation,
   as: "joblocation",
-  foreignKey: "location_id",
+  foreignKey: "job_id",
 });
 Location.belongsToMany(Job, {
   through: JobLocation,
@@ -153,5 +153,5 @@ module.exports = {
   JobTag,
   Location,
   JobLocation,
-  // Ratings,
+  Ratings,
 };
