@@ -6,14 +6,16 @@ const { Category } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
-    const allCategories = await Category.findAll();
+    const allCategories = await Category.findAll({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
     const categories = allCategories.map((category) =>
       category.get({ plain: true })
     );
     console.log(categories);
     res.render("homepage"),
       {
-        categories: categories,
+        cats: categories,
       };
   } catch (err) {
     res.status(500).json(err);

@@ -50,7 +50,7 @@ passport.use(
         if (!validate) {
           return done(null, false, { message: "Wrong password" });
         }
-
+        await user.update("last_login", new Date());
         return done(null, user, { message: "Logged in" });
       } catch (error) {
         return done(error);

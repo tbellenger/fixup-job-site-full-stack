@@ -1,6 +1,7 @@
 
-<div class="categories">
-{{#each categories as |category|}}
-{{category.id}}{{category.category_name}}
+<div class="categories" id="cats">
+    <h4>{{cats}}</h4>
+{{#each cats}}
+<div><a href="/category/{{id}}">{{category_name}}</a></div>
 {{/each}}
 </div>

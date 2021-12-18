@@ -24,7 +24,6 @@ async function login() {
   const passwordEl = document.querySelector("#password-login");
   const email = usernameEl.value.trim();
   const password = passwordEl.value.trim();
-  console.log("making login call " + email + " " + password);
 
   const response = await fetch("/api/users/login", {
     method: "POST",
@@ -37,7 +36,6 @@ async function login() {
     }),
   });
   const json = await response.json();
-  console.log("login call response " + JSON.stringify(json));
   if (json) {
     if (json.token) {
       localStorage.setItem("token", JSON.stringify(json.token));
