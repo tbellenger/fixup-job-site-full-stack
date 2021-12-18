@@ -13,7 +13,12 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await User.create({ email, password });
+        const user = await User.create({
+          email,
+          password,
+          username: email,
+          last_login: new Date(),
+        });
 
         return done(null, user);
       } catch (error) {
@@ -58,7 +63,10 @@ passport.use(
   new JWTstrategy(
     {
       secretOrKey: process.env.JWT_SECRET,
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJWT.fromExtractors([
+        ExtractJWT.fromAuthHeaderAsBearerToken,
+        ExtractJWT.fromUrlQueryParameter,
+      ]),
     },
     async (token, done) => {
       try {
