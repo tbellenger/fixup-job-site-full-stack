@@ -63,10 +63,10 @@ passport.use(
   new JWTstrategy(
     {
       secretOrKey: process.env.JWT_SECRET,
-      //ExtractJWT.fromExtractors([
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), //,
-      //ExtractJWT.fromUrlQueryParameter(),
-      //]),
+      jwtFromRequest: ExtractJWT.fromExtractors([
+        ExtractJWT.fromAuthHeaderAsBearerToken(),
+        ExtractJWT.fromUrlQueryParameter("auth_token"),
+      ]),
     },
     async (token, done) => {
       console.log("Attemp to check auth token");
