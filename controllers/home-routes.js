@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Category } = require("../models");
+const { Category, Job } = require("../models");
 
 // get all categories for homepage
 
@@ -15,6 +15,24 @@ router.get("/", async (req, res) => {
 
     res.render("homepage", {
       categories: categories,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/category/:id/jobs", async (req, res) => {
+  try {
+    const allJobs = await Job.findAll({
+      where: {
+        category_id: req.params.id,
+      },
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    const jobs = allJobs.map((job) => job.get({ plain: true }));
+
+    res.render("jobs", {
+      jobs: jobs,
     });
   } catch (err) {
     res.status(500).json(err);
