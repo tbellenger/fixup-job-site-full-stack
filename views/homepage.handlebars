@@ -1,5 +1,47 @@
-
-<div>
-
-
-</div>
+<!-- Image -->
+  <section class="hero ">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8 is-offset-2">
+            <figure class="image is-12by8">
+              <a href="/post/{{posts.0.0.id}}"><img src="../images/first-post.jpg" alt="circle"></a>
+            </figure>
+          </div>
+        </div>
+        <section class="section">
+          <div class="columns">
+            <div class="column is-8 is-offset-2">
+              <div class="content is-medium">
+                <h2 class="subtitle is-4">{{format_time posts.0.0.createdAt}}</h2>
+                <h1 class="title"><a href="/post/{{posts.0.0.id}}">{{posts.0.0.title}}</a></h1>
+                <h6>by {{posts.0.0.user.username}}</h6>
+                <p>{{posts.0.0.content}}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="is-divider"></div>
+      </div>
+    </div>
+  </section>
+<!-- Articles -->
+  <section class="hero ">
+    <div class="hero body-neg">
+      <div class="container">
+          <div class="column is-mobile">
+          {{#each posts as |post|}}
+          {{#if @first}}
+            <!-- Don't post 1st one because it goes up top -->
+            </div>
+          {{else}}
+             <div class="column">
+            {{> post-summary}}
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </section>
+  <script src='/js/index.js'></script>
+       
