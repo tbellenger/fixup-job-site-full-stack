@@ -1,20 +1,13 @@
 
 <article class="job">
-  <div class="columns">
-    <div class="column is-half is-offset-one-">
-    <p>{{title}} by {{user.username}} on {{created_at}}</p>
-    <br />
+  <div class="columns is-mobile">
+  <div class="column has-text-centered">
+    <p><a href="/dashboard/job/{{id}}">{{title}}</a> by {{owner.username}}</p>
     <p>{{description}}</p>
-    <br />
     <p>{{salary}}</p>
-    <br />
     <p>{{payment_method}}</p>
-    <br />
-    <p> opened by {{owner_id}}</p>
-    <br />
-    <p> in {{location_id}}</p>
-
-    <a href="/job/{{id}}">{{title}}</a>
+    <p> zip code: {{location_id}}</p>
+    <p>Category: <a href="/category/{{category_id}}/jobs">{{category.category_name}}</a></p>
   </div>
-  </div>
+ </div>
 </article>

@@ -1,3 +1,17 @@
 .hide {
   display: none;
 }
+
+button {
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+.column {
+  border: 1px solid gray;
+  margin: 5px;
+}

@@ -1,7 +1,48 @@
+
 <div class="categories">
-  <div class="columns is-mobile">
+  <div class="columns is-mobile has-text-centered">
+  <div class="column"><a href="/jobs">All Jobs</a></div>
 {{#each categories}}
 <div class="column"><a href="/category/{{id}}/jobs">{{category_name}}</a></div>
 {{/each}}
 </div>
 </div>
+<!-- Image -->
+  <section class="hero ">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8 is-offset-2">
+            <figure class="image is-12by8">
+              <img src="../images/hero.jpg" alt="group photo">
+            </figure>
+          </div>
+        </div>
+        <section class="section">
+          <div class="columns">
+            <div class="column is-8 is-offset-2">
+              <div class="content is-medium has-text-centered">
+                <h1>WELCOME TO OUR JOB HUNT</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="is-divider"></div>
+      </div>
+    </div>
+  </section>
+<!-- Articles -->
+  <section class="hero ">
+    <div class="hero body-neg">
+      <div class="container">
+          <div class="columns is-mobile">
+          {{#each jobs as |job|}}
+             <div class="column">
+            {{> job-info job}}
+            </div>
+    
+        {{/each}}
+      </div>
+    </div>
+  </section>
+       

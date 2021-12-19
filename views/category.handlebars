@@ -1,16 +1,10 @@
+
 <article class="job">
-  <div>
-    <ol>
-      {{#each jobs}}
-        <li>
-          <p>{{title}} on {{createdAt}}</p>
-          <p>{{description}}</p>
-          <p> pay is {{salary}}</p>
-          <p>payment method is {{payment_method}}</p>
-          <p> opened by {{owner.username}}</p>
-        </li>
+  <div class="columns">
+    <div class="column has-test-centered">
+      {{#each jobs as |job|}}
+    {{>job-info job}}
       {{/each}}
-    </ol>
-    <br />
+  </div>
   </div>
 </article>

@@ -1,21 +1,8 @@
+<div class="columns">
+    <div class="column">
 {{> job-info job}}
 
-
-{{#if loggedIn}}
-<form >
-  <div>
-    <textarea type="text" name="comment-body" ></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
-{{/if}}
-
 {{> comments job.comments}}
-
-
-{{#if loggedIn}}
+</div>
+</div>
 <script src="/javascript/comment.js"></script>
-{{/if}}
