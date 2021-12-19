@@ -1,19 +1,18 @@
-async function newFormHandler(event) {
+
+const submitFormHandler = async (event) =>{
     event.preventDefault();
   
-    const title = document.querySelector('input[name="title"]').value.trim();
-    const description = document.querySelector('input[name="description"]').value.trim();
-    const salary =  document.querySelector('input[name="salary"]').value.trim();
-    const job_location = document.querySelector('input[name="job-location"]').value.trim();
-    const payment_method = document.querySelector('input[name="payment-method"]').value.trim();
-    const category_name = document.querySelector('input[name="category-name"]').value.trim();
-   
+    const title = document.querySelector('.title-input').value.trim();
+    const description = document.querySelector('.decription-input').value.trim();
+    const salary =  document.querySelector('.salary-input').value.trim();
+    const job_location = document.querySelector('.location-input').value.trim();
+    const payment_method = document.querySelector('.payment-input').value.trim();
+    const category_name = document.querySelector('.category-input').value.trim();
+  
 
-    if(!username){
-      alert("Please login or signup to create post.")
-    } else{
-      if(title && category_name && description && salary && job_location && payment_method)
-    const response = await fetch(`/api/jobs`, {
+    if(title && category_name && description && salary && job_location && payment_method)
+
+    const response = await fetch(`/api/user`, {
       method: 'POST',
       body: JSON.stringify({
         title,
@@ -27,20 +26,17 @@ async function newFormHandler(event) {
         'Content-Type': 'application/json'
       }
     });
-  
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert(response.statusText);
-    }
-  }
-};
-
+  const json = await response.json();
+if (json.token) {
+        localStorage.setItem("token", JSON.stringify(json.token));
+        window.location.replace(`/?auth_token=${json.token}`);
+      }
+  } 
 
 //add event listeners
 document
     .querySelector(".submit-post")
-    .addEventListener("click", newFormHandler);
+    .addEventListener("click", submitFormHandler);
 
 
  

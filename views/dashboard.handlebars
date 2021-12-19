@@ -11,7 +11,7 @@
                                 <input
                                     type="text"
                                     placeholder="Job title"
-                                    class="input subject-input" required/>
+                                    class="input title-input" required/>
                             </div>
                         </div>
                         <div class="field">
@@ -28,7 +28,7 @@
                                 <label class="label">Description</label>
                                 <div class="control">
                                     <textarea
-                                        class="textarea content-input"
+                                        class="textarea description-input"
                                         placeholder="Job description"required
                                     ></textarea>
                                 </div>
@@ -46,7 +46,7 @@
                                 <input
                                     type="text"
                                     placeholder="Payment method"
-                                    class="input payment -input" required/>
+                                    class="input payment-input" required/>
                             </div>
                             <div class="control">
                             <label class="label">Job Location</label>
@@ -91,10 +91,9 @@
                                 {{#each jobs}}
                                     <tr>
                                         <td>{{this.id}}</td>
-                                        <td><a href="/category/{{this.id}}"
-                                            >{{this.title}}</a></td>
-                                        <td>{{this.category.category_name}}</td>
-                                        <td><a href="/user/{{this.owner.id}}">{{this.owner.username}}</a></td>
+                                        <td>{{title}}</td>
+                                        <td><a href="/category/{{category_id}}/jobs">{{category.category_name}}</a></td>
+                                        <td><a href="/user/{{user_id}}">{{this.owner.username}}</a></td>
                                         <td>{{this.createdAt}}</td>
                                         <td>{{this.job_status}}</td>
                                         <th>{{payment_method}}</th>
