@@ -27,6 +27,7 @@ router.get("/", async (req, res) => {
     console.log(jobs);
     res.render("dashboard", {
       jobs: jobs,
+      
     });
   } catch (err) {
     console.log(err);
