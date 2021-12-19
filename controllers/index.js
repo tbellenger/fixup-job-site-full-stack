@@ -9,7 +9,10 @@ const avatarRoutes = require("./avatar-routes");
 router.use("/", homeRoutes);
 router.use(
   "/dashboard",
-  passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
+  passport.authenticate("jwt", {
+    session: false,
+    failureRedirect: "/login?msg=unauthorized", // handle expired token
+  }),
   dashboardRoutes
 );
 router.use("/api", apiRoutes);
