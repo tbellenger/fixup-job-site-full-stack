@@ -44,7 +44,7 @@ router.get("/job/:id/edit", async (req, res) => {
   try {
     const dbJob = await Job.findOne({
       where: {
-        owner_id: req.user.id,
+        owner_id: req.user.id, // make sure this is the owner of the job
         id: req.params.id,
       },
       attributes: { exclude: ["updatedAt"] },
@@ -63,6 +63,13 @@ router.get("/job/:id/edit", async (req, res) => {
       ],
     });
 
+    if (!dbJob) {
+      // no job posting from this user with that job id found
+      return res
+        .status(404)
+        .json({ message: "No job posting from this user with that job id" });
+    }
+
     const allCategories = await Category.findAll();
     const categories = allCategories.map((category) =>
       category.get({ plain: true })
@@ -73,6 +80,46 @@ router.get("/job/:id/edit", async (req, res) => {
     res.render("edit-job", {
       job: job,
       categories: categories, // used to render the new job form category choices
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/job/:id", async (req, res) => {
+  try {
+    const dbJob = await Job.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: { exclude: ["updatedAt"] },
+      include: [
+        { model: User, as: "owner", attributes: { exclude: ["password"] } },
+        { model: User, as: "employee", attributes: { exclude: ["password"] } },
+        { model: Category },
+        {
+          model: Comment,
+          attributes: ["id", "comment_text", "job_id", "user_id"],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
+      ],
+    });
+
+    if (!dbJob) {
+      // no job posting with that job id found
+      return res
+        .status(404)
+        .json({ message: "No job posting with that job id" });
+    }
+
+    const job = dbJob.get({ plain: true });
+    console.log(job);
+    res.render("job", {
+      job: job,
     });
   } catch (err) {
     console.log(err);
