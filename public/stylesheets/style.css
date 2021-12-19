@@ -11,3 +11,7 @@ button {
   cursor: pointer;
   outline: inherit;
 }
+.column {
+  border: 1px solid lightgrey;
+  margin: 5px;
+}

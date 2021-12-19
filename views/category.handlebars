@@ -1,7 +1,10 @@
+
 <article class="job">
-  <div>
+  <div class="columns">
+    <div class="column">
       {{#each jobs as |job|}}
-{{>job-info job}}
+    {{>job-info job}}
       {{/each}}
+  </div>
   </div>
 </article>

@@ -1,10 +1,3 @@
-
-<div class="categories">
-  <div><a href="/jobs">All Jobs</a></div>
-{{#each categories}}
-<div><a href="/category/{{id}}/jobs">{{category_name}}</a></div>
-{{/each}}
-</div>
 <!-- Image -->
   <section class="hero ">
     <div class="hero-body">
@@ -12,18 +5,15 @@
         <div class="columns">
           <div class="column is-8 is-offset-2">
             <figure class="image is-12by8">
-              <a href="/category/{{jobs.0.0.id}}/jobs"><img src="../images/first-post.jpg" alt="circle">{{category_name}}</a>
+              <img src="../images/hero.jpg" alt="group photo">
             </figure>
           </div>
         </div>
         <section class="section">
           <div class="columns">
             <div class="column is-8 is-offset-2">
-              <div class="content is-medium">
-                <h2 class="subtitle is-4">{{posts.0.0.createdAt}}</h2>
-                <h1 class="title"><a href="/job/{{jobs.0.0.id}}">{{jobs.0.0.title}}</a></h1>
-                <h6>by {{jobss.0.0.user.username}}</h6>
-                <p>{{jobs.0.0.content}}</p>
+              <div class="content is-medium has-text-centered">
+                <h1>WELCOME TO OUR JOB HUNT</h1>
               </div>
             </div>
           </div>
@@ -33,21 +23,12 @@
     </div>
   </section>
 <!-- Articles -->
-  <section class="hero ">
-    <div class="hero body-neg">
-      <div class="container">
-          <div class="column is-mobile">
-          {{#each jobs as |job|}}
-          {{#if @first}}
-            <!-- Don't post 1st one because it goes up top -->
-            </div>
-          {{else}}
-             <div class="column">
-            {{> job-summary}}
-            </div>
-          {{/if}}
-        {{/each}}
-      </div>
-    </div>
-  </section>
+  <div class="categories">
+  <div class="columns is-flex has-text-centered">
+  <div class="column"><a href="/jobs">All Jobs</a></div>
+{{#each categories}}
+<div class="column"><a href="/category/{{id}}/jobs">{{category_name}}</a></div>
+{{/each}}
+</div>
+</div>
        

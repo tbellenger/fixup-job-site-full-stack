@@ -1,8 +1,10 @@
-<div>
+<div class="columns">
+    <div class="column">
     <div>User: {{>partial-user user}}</div>
     <div>Rating: {{user.rating}}</div>
     {{#if sameUser}}
     <div>Email: {{user.email}}</div>
     <div>Last Login: {{user.last_login}}</div>
     {{/if}}
+</div>
 </div>

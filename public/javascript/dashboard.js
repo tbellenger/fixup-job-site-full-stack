@@ -1,23 +1,24 @@
 const token = JSON.parse(localStorage.getItem("token"));
 
-async function newFormHandler(event) {
+async function newPostHandler(event) {
   event.preventDefault();
-
-  const title = document.querySelector('input[name="title"]').value.trim();
+  
+  const title = document.querySelector('.title-input').value.trim();
   const description = document
-    .querySelector('input[name="description"]')
+    .querySelector('.description-input')
     .value.trim();
-  const salary = document.querySelector('input[name="salary"]').value.trim();
-  const job_location = document
-    .querySelector('input[name="job-location"]')
+  const salary = document.querySelector('.salary-input').value.trim();
+  const zip_code = document
+    .querySelector('.location-input')
     .value.trim();
   const payment_method = document
-    .querySelector('input[name="payment-method"]')
+    .querySelector('.payment-input')
     .value.trim();
   const category_name = document
-    .querySelector('input[name="category-name"]')
+    .querySelector('.category-name')
     .value.trim();
-  const user_id = document.querySelector(".logged-in-user_id").innerHTML;
+    const username = document.querySelector('.username-input').value.trim();
+    
 
   if (!token) {
     alert("Please login or signup to create post.");
@@ -27,22 +28,27 @@ async function newFormHandler(event) {
       category_name &&
       description &&
       salary &&
-      job_location &&
-      payment_method
-    ) {
-      const response = await fetch(`/api/jobs`, {
+      zip_code &&
+      payment_method &&
+      username
+    )
+  {
+      const response = await fetch(`/api/jobs/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "bearer " + token,
+          Authorization: "bearer" + token,
         },
         body: JSON.stringify({
+  
           title,
           category_name,
           description,
           salary,
-          job_location,
+          zip_code,
           payment_method,
+          username,
+        
         }),
       });
 
@@ -82,7 +88,7 @@ const deletePostHandler = async (event) => {
 //add event listeners
 document
   .querySelector(".submit-post")
-  .addEventListener("click", newFormHandler);
+  .addEventListener("click", newPostHandler);
 
 const deleteButtons = document.querySelectorAll(".delete-job");
 deleteButtons.forEach((el) =>
