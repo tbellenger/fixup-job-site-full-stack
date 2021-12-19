@@ -78,6 +78,7 @@
                                     <th class="table-id">ID</th>
                                     <th class="table-title">Title</th>
                                     <th class="table-category">Category</th>
+                                    <th class="owner-name">Owner</th>
                                     <th class="emplyee-name">Employee</th>
                                     <th class="job-location">Job Satus</th>
                                     <th class="payment-method">Payment-method</th>
@@ -95,6 +96,7 @@
                                         <td><a href="/category/{{this.category.id}}"
                                             >{{this.category.category_name}}</a></td>
                                         <td>{{>partial-user this.owner}}</td>
+                                        <td>{{>partial-user this.employee}}</td>
                                         <td>{{this.job_status}}</td>
                                         <th>{{payment_method}}</th>
                                         <td><a href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
