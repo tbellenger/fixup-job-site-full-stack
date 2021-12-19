@@ -1,6 +1,6 @@
 const arrayLinkEls = document.querySelectorAll("a");
-const loginBtn = document.querySelector("#login-button");
-const logoutBtn = document.querySelector("#logout-button");
+const navLoginBtn = document.querySelector("#nav-login-button");
+const navLogoutBtn = document.querySelector("#nav-logout-button");
 
 const auth_token = JSON.parse(localStorage.getItem("token"));
 if (auth_token) {
@@ -12,16 +12,15 @@ if (auth_token) {
     }
   }
 
-  loginBtn.classList.add("hide");
-  logoutBtn.classList.remove("hide");
+  navLoginBtn.classList.add("hide");
+  navLogoutBtn.classList.remove("hide");
 } else {
-  loginBtn.classList.remove("hide");
-  logoutBtn.classList.add("hide");
+  navLoginBtn.classList.remove("hide");
+  navLogoutBtn.classList.add("hide");
 }
 
-logoutBtn.addEventListener("click", () => {
+navLogoutBtn.addEventListener("click", () => {
   event.preventDefault();
   localStorage.removeItem("token");
   location.replace("/");
 });
-
