@@ -55,16 +55,10 @@ router.post(
   "/",
   passport.authenticate("signup", { session: false }),
   async (req, res, next) => {
-    try {
-      req.login(req.user, { session: false }, async (error) => {
-        if (error) return next(error);
-        const token = sign(user);
-
-        return res.json({ token });
-      });
-    } catch (err) {
-      return next(err);
-    }
+    res.json({
+      message: "Signup successful",
+      user: req.user,
+    });
   }
 );
 
@@ -72,7 +66,6 @@ router.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
-        console.log("errorrorororor");
         console.log(err);
         console.log(user);
         console.log(info);

@@ -51,7 +51,7 @@ async function signup() {
   const email = usernameEl.value.trim();
   const password = passwordEl.value.trim();
 
-  const response = await fetch("/api/users/", {
+  const signup = await fetch("/api/users/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -61,11 +61,23 @@ async function signup() {
       password: password,
     }),
   });
-  const json = await response.json();
-  if (json) {
-    if (json.token) {
-      localStorage.setItem("token", JSON.stringify(json.token));
-      window.location.replace(`/?auth_token=${json.token}`);
+  if (signup.ok) {
+    const response = await fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    const json = await response.json();
+    if (json) {
+      if (json.token) {
+        localStorage.setItem("token", JSON.stringify(json.token));
+        window.location.replace(`/?auth_token=${json.token}`);
+      }
     }
   }
 }

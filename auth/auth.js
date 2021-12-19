@@ -13,15 +13,18 @@ passport.use(
     },
     async (email, password, done) => {
       try {
+        console.log("sign up in auth");
         const user = await User.create({
           email,
           password,
           username: email,
           last_login: new Date(),
         });
+        console.log(user);
 
         return done(null, user);
       } catch (error) {
+        console.log(error);
         done(error);
       }
     }
