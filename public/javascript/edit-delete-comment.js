@@ -12,7 +12,7 @@ async function deleteCommentHandler(event) {
   if (json) {
     if (json.token) {
       localStorage.setItem("token", JSON.stringify(json.token));
-      window.location.replace(`/?auth_token=${json.token}`);
+      window.location.replace(`/dashboard/?auth_token=${json.token}`);
     }
   } else {
     alert(response.statusText);
@@ -43,7 +43,7 @@ async function editCommentHandler(event) {
   if (json) {
     if (json.token) {
       localStorage.setItem("token", JSON.stringify(json.token));
-      window.location.replace(`/?auth_token=${json.token}`);
+      window.location.replace(`/dashboard/?auth_token=${json.token}`);
     }
   }
 }
