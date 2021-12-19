@@ -8,8 +8,12 @@ async function deleteCommentHandler(event) {
     method: "DELETE",
   });
 
-  if (response.ok) {
-    document.location.replace("/dashboard");
+  const json = await response.json();
+  if (json) {
+    if (json.token) {
+      localStorage.setItem("token", JSON.stringify(json.token));
+      window.location.replace(`/?auth_token=${json.token}`);
+    }
   } else {
     alert(response.statusText);
   }
@@ -35,10 +39,12 @@ async function editCommentHandler(event) {
     },
   });
 
-  if (response.ok) {
-    document.location.replace("/dashboard");
-  } else {
-    alert(response.statusText);
+  const json = await response.json();
+  if (json) {
+    if (json.token) {
+      localStorage.setItem("token", JSON.stringify(json.token));
+      window.location.replace(`/?auth_token=${json.token}`);
+    }
   }
 }
 
