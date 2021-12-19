@@ -8,7 +8,7 @@ async function newPostHandler(event) {
     .querySelector('.description-input')
     .value.trim();
   const salary = document.querySelector('.salary-input').value.trim();
-  const job_location = document
+  const zip_code = document
     .querySelector('.location-input')
     .value.trim();
   const payment_method = document
@@ -24,17 +24,16 @@ async function newPostHandler(event) {
     alert("Please login or signup to create post.");
   } else {
     if (
-      
       title &&
       category_name &&
       description &&
       salary &&
-      job_location &&
+      zip_code &&
       payment_method &&
       username
     )
   {
-      const response = await fetch(`/dashboard/job`, {
+      const response = await fetch(`/api/jobs/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +45,7 @@ async function newPostHandler(event) {
           category_name,
           description,
           salary,
-          job_location,
+          zip_code,
           payment_method,
           username,
         
@@ -69,7 +68,7 @@ const deletePostHandler = async (event) => {
   const deletePostId = event.target.getAttribute("data-id");
   console.log("called delete of " + deletePostId);
   if (deletePostId) {
-    const response = await fetch("/api/users/" + deletePostId, {
+    const response = await fetch("/api/jobs/" + deletePostId, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
