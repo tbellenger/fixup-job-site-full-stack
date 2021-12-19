@@ -1,7 +1,4 @@
 {{> job-info job}}
-
-
-{{#if loggedIn}}
 <form >
   <div>
     <textarea type="text" name="comment-body" ></textarea>
@@ -11,11 +8,5 @@
     <button type="submit">add comment</button>
   </div>
 </form>
-{{/if}}
-
 {{> comments job.comments}}
-
-
-{{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
-{{/if}}
+<script src="/javascript/edit-delete-comment.js"></script>
