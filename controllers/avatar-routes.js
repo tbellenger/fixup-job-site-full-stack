@@ -15,7 +15,7 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     res.setHeader("Content-Type", "image/png");
-    const buffer = identicon.generateSync({ id: 999999, size: 40 });
+    const buffer = identicon.generateSync({ id: "999999", size: 40 });
     res.end(buffer);
   } catch (err) {
     res.status(500).json(err);
