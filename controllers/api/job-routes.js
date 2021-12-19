@@ -100,18 +100,18 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.put("/like", async (req, res) => {
-//   // custom static method created in models/Job.js
-//   try {
-//     const job = await Job.opinion(
-//       { ...req.body, user_id: req.session.user_id },
-//       { Like, Comment, User }
-//     );
-//     res.json(job);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.put("/like", async (req, res) => {
+  // custom static method created in models/Job.js
+  try {
+    const job = await Job.opinion(
+      { ...req.body, user_id: req.session.user_id },
+      { Like, Comment, User }
+    );
+    res.json(job);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.put("/:id", async (req, res) => {
   try {
