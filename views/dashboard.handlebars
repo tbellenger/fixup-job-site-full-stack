@@ -4,27 +4,57 @@
             <div class="columns is-centered">
                 <div class="column">
                     <form class="box">
-                        <label class="label is-large" class="label">Post New Job Details <label>
+                        <label class="label is-large" class="label">Create New Job Post<label>
                         <div class="field">
-                            <label class="label">Job Title Information</label>
+                            <label class="label"> Title</label>
                             <div class="control">
                                 <input
                                     type="text"
-                                    placeholder="10 Ways on how to create a Blog Posts"
+                                    placeholder="Job title"
                                     class="input subject-input" required/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label"> Category_Name</label>
+                            <div class="control">
+                                <input
+                                    type="text"
+                                    placeholder="category-name"
+                                    class="input category-input" required/>
                             </div>
                         </div>
                         <div class="field-body">
                             <div class="field">
-                                <label class="label">Content</label>
+                                <label class="label">Description</label>
                                 <div class="control">
                                     <textarea
                                         class="textarea content-input"
-                                        placeholder="Job description goes here..."required
+                                        placeholder="Job description"required
                                     ></textarea>
                                 </div>
                             </div>
                         </div>
+                        <div class="control">
+                            <label class="label">Salary</label>
+                                <input
+                                    type="text"
+                                    placeholder="salary"
+                                    class="input salary-input" required/>
+                            </div>
+                            <div class="control">
+                            <label class="label">Payment method will be </label>
+                                <input
+                                    type="text"
+                                    placeholder="Payment method"
+                                    class="input payment -input" required/>
+                            </div>
+                            <div class="control">
+                            <label class="label">Job Location</label>
+                                <input
+                                    type="text"
+                                    placeholder="Job location"
+                                    class="input location-input" required/>
+                            </div>
                         <div class="field is-grouped is-grouped-right mt-3">
                             <button class="button is-success submit-post">Submit</button>
                         </div>
@@ -47,21 +77,27 @@
                                 <tr>
                                     <th class="table-id">ID</th>
                                     <th class="table-title">Title</th>
-                                    <th class="table-author">Name</th>
-                                    <th class="table-created">Created</th>
+                                    <th class="table-category">Category_Name</th>
+                                    <th class="emplyee-name">Employee</th>
+                                    <th class="payment-method">Created At</th>
+                                    <th class="job-location">Job Satus</th>
+                                    <th class="table-created">Payment-method</th>
                                     <th class="table-edit">Edit</th>
                                     <th class="table-delete">Delete</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                {{#each posts}}
+                                {{#each jobs}}
                                     <tr>
                                         <td>{{this.id}}</td>
-                                        <td><a  href="/post/{{this.id}}"
+                                        <td><a href="/category/{{this.id}}"
                                             >{{this.title}}</a></td>
-                                        <td>{{this.user.username}}</td>
+                                        <td>{{this.category.category_name}}</td>
+                                        <td><a href="/user/{{this.owner.id}}">{{this.owner.username}}</a></td>
                                         <td>{{this.createdAt}}</td>
+                                        <td>{{this.job_status}}</td>
+                                        <th>{{payment_method}}</th>
                                         <td><a
                                                 href="/edit/{{this.id}}"
                                             >Edit</a></td>
@@ -80,5 +116,3 @@
     </div>
 </section>
 <script src="/javascript/dashboard.js"></script>
-
-

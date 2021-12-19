@@ -24,3 +24,4 @@ logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("token");
   location.replace("/");
 });
+
