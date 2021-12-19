@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Category, Job } = require("../models");
+const { Category, Job, User } = require("../models");
 
 // get all categories for homepage
 
@@ -27,14 +27,44 @@ router.get("/category/:id/jobs", async (req, res) => {
       where: {
         category_id: req.params.id,
       },
-      attributes: { exclude: ["createdAt", "updatedAt"] },
+      attributes: { exclude: ["updatedAt"] },
+      include: [
+        { model: User, as: "owner", attribute: { exclude: ["password"] } },
+        { model: User, as: "employee", attribute: { exclude: ["password"] } },
+        { model: Category },
+      ],
     });
     const jobs = allJobs.map((job) => job.get({ plain: true }));
-
+    console.log(jobs);
     res.render("category", {
       jobs: jobs,
     });
   } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/jobs/:id", async (req, res) => {
+  try {
+    const allJob = await Job.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: { exclude: ["updatedAt"] },
+      include: [
+        { model: User, as: "owner", attribute: { exclude: ["password"] } },
+        { model: User, as: "employee", attribute: { exclude: ["password"] } },
+        { model: Category },
+      ],
+    });
+    const job = allJob.get({ plain: true });
+    console.log(job);
+    res.render("job", {
+      job: job,
+    });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

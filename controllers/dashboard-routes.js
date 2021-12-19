@@ -1,47 +1,33 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Job, User, Comment } = require("../models");
+const { Job, User, Comment, Category } = require("../models");
 
 router.get("/", async (req, res) => {
-  // res.render('dashboard', { loggedIn: true });
   try {
-    const jobs = await Job.findAll({
+    const allJobs = await Job.findAll({
       where: {
-        // use the ID from the session
         owner_id: req.user.id,
       },
-      attributes: [
-        "id",
-        "title",
-        "description",
-        "salary",
-        "category_id",
-        "created_at",
-      ],
+      attributes: { exclude: ["updatedAt"] },
       include: [
+        { model: User, as: "owner", attributes: { exclude: ["password"] } },
+        { model: User, as: "employee", attributes: { exclude: ["password"] } },
+        { model: Category },
         {
           model: Comment,
-          attributes: [
-            "id",
-            "comment_text",
-            "post_id",
-            "user_id",
-            "created_at",
-          ],
+          attributes: ["id", "comment_text", "job_id", "user_id"],
           include: {
             model: User,
             attributes: ["username"],
           },
         },
-        {
-          model: User,
-          attributes: ["username"],
-        },
       ],
     });
-    const displayJobs = jobs.map((job) => job.get({ plain: true }));
-    // serialize data before passing to template
-    res.render("dashboard", { displayJobs, loggedIn: true });
+    const jobs = allJobs.map((job) => job.get({ plain: true }));
+    console.log(jobs);
+    res.render("dashboard", {
+      jobs: jobs,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

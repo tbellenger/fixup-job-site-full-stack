@@ -14,17 +14,17 @@ router.get("/", async (req, res) => {
         "created_at",
         [
           sequelize.literal(
-            "(SELECT COUNT(*) FROM like WHERE job.id = like.job_id)"
+            "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
           ),
           "likes_count",
         ],
       ],
       include: [
         {
-          model: models.Comment,
+          model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id", "created_at"],
           include: {
-            model: models.User,
+            model: User,
             attributes: ["username"],
           },
         },
@@ -36,6 +36,7 @@ router.get("/", async (req, res) => {
     });
     res.json(job);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -54,14 +55,14 @@ router.get("/:id", async (req, res) => {
         "created_at",
         [
           sequelize.literal(
-            "(SELECT COUNT(*) FROM like WHERE job.id = like.job_id)"
+            "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
           ),
           "likes_count",
         ],
       ],
       include: [
         {
-          model: models.Comment,
+          model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id", "created_at"],
           include: {
             model: models.User,

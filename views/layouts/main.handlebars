@@ -25,11 +25,8 @@
                 </div>
                  <a class="navbar-item" href="/">Home</a>
                 <a class="navbar-item" href="/dashboard">Dashboard</a>
-           {{#unless loggedIn}}
-           <a class="navbar-item" href="/login">Login</a>
-           {{else}}
-           <button type="submit" class="logout-button">Logout</button> 
-           {{/unless}}
+           <a class="navbar-item" id="login-button" href="/login">Login</a>
+           <button type="submit" class="logout-button hide" id="logout-button">Logout</button> 
         </div>
         </nav>
     </header>
