@@ -32,7 +32,7 @@ JobLocation.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "job_tag",
+    modelName: "job_location",
   }
 );
 

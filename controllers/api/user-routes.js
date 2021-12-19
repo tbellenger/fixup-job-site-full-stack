@@ -58,10 +58,8 @@ router.post(
     try {
       req.login(req.user, { session: false }, async (error) => {
         if (error) return next(error);
-        const body = { id: req.user.id, email: req.user.email };
-        const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
-          expiresIn: "2h",
-        });
+        const token = sign(user);
+
         return res.json({ token });
       });
     } catch (err) {
@@ -74,16 +72,17 @@ router.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
+        console.log("errorrorororor");
+        console.log(err);
+        console.log(user);
+        console.log(info);
         const error = new Error("An error occurred");
         return next(error);
       }
       req.login(user, { session: false }, async (error) => {
         if (error) return next(error);
-        const body = { id: user.id, email: user.email };
-        const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
-          expiresIn: "2h",
-        });
-
+        const token = sign(user);
+        console.log(token);
         return res.json({ token });
       });
     } catch (err) {
@@ -91,6 +90,15 @@ router.post("/login", async (req, res, next) => {
     }
   })(req, res, next);
 });
+
+function sign(user) {
+  console.log("signing token");
+  const body = { id: user.id, email: user.email, username: user.username };
+  const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
+    expiresIn: "2h",
+  });
+  return token;
+}
 
 router.put(
   "/:id",

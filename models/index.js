@@ -8,29 +8,35 @@ const Tag = require("./Tag");
 const JobTag = require("./JobTag");
 const Location = require("./Location");
 const JobLocation = require("./JobLocation");
-// const Ratings = require("./UserRatings");
+const Ratings = require("./UserRatings");
 
 // create associations
 User.hasMany(Job, {
+  as: "owner",
   foreignKey: "owner_id",
 });
 Job.belongsTo(User, {
+  as: "owner",
   foreignKey: "owner_id",
   onDelete: "SET NULL",
 });
 
 User.hasMany(Job, {
+  as: "employee",
   foreignKey: "employee_id",
 });
 Job.belongsTo(User, {
+  as: "employee",
   foreignKey: "employee_id",
   onDelete: "SET NULL",
 });
 
 Job.belongsToMany(User, {
+  as: "applicant",
   through: "Job_Applicant",
 });
 User.belongsToMany(Job, {
+  as: "applicant",
   through: "Job_Applicant",
 });
 
@@ -129,7 +135,7 @@ Tag.belongsToMany(Job, {
 Job.belongsToMany(Location, {
   through: JobLocation,
   as: "joblocation",
-  foreignKey: "location_id",
+  foreignKey: "job_id",
 });
 Location.belongsToMany(Job, {
   through: JobLocation,
@@ -147,5 +153,5 @@ module.exports = {
   JobTag,
   Location,
   JobLocation,
-  // Ratings,
+  Ratings,
 };

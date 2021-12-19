@@ -5,38 +5,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page title here</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet"
+            href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"
+        />
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+            rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+       <link rel="stylesheet" href="/stylesheets/style.css">      
 </head>
 
 <body>
     <header>
        <nav>
            {{!-- navigation here --}}
-           {{#unless loggedIn}}
-           <a href="/login">Login</a>
-           {{else}}
-           <button>Logout</button> 
-           {{/unless}}
+           <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <img class="main-logo" src="../images/logo.jpg" alt="Logo" /><span id="title">TITLE OF OUR WEBSITE</span>
+                    </a>
+                </div>
+                 <a class="navbar-item" href="/">Home</a>
+                <a class="navbar-item" href="/dashboard">Dashboard</a>
+           <a class="navbar-item" id="login-button" href="/login">Login</a>
+           <button type="submit" class="logout-button hide" id="logout-button">Logout</button> 
+        </div>
         </nav>
-        <h1 >
-        
-        </h1>
     </header>
 
-
-
-    
     <main>
       {{{ body }}}
     </main>
 
-
-
-    <footer>
-
-    </footer>
-  
-
-</body>
-
+  <footer class="footer">
+            <div class="content has-text-centered">
+                <p> <strong>TITLE OF OUR WEBSITE</strong>
+                -
+                      <a href="https://github.com/tbellenger/coding-bc-project-2"
+                        target="_blank">Open Source</a>
+                    -Node packages, MySQL2, Sequelize, Express.js, Bootstrap, Bulma, Heroku, Handlebars.js, Express-session connect-session-sequelize, Object relational mapping.
+                </p>
+                <p id="fonts"><i class="fa fa-envelope"></i> <i class="fa fa-linkedin"></i> <i class="fa fa-twitter"></i> <i class="fa fa-github"></i></p>
+            </div>
+        </footer>
+        <script src="/javascript/main.js"></script>
+    </body>
 </html>
+
+    
