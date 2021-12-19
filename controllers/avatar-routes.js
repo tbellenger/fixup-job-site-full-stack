@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const identicon = require("identicon");
 
+// avatar/:id will serve a unique avatar image
 router.get("/:id", async (req, res) => {
   try {
     res.setHeader("Content-Type", "image/png");
