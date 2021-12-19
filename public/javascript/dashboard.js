@@ -1,3 +1,6 @@
+const token = JSON.parse(localStorage.getItem("token"));
+
+
 async function newFormHandler(event) {
     event.preventDefault();
   
@@ -10,12 +13,16 @@ async function newFormHandler(event) {
     const user_id = document.querySelector(".logged-in-user_id").innerHTML;
     
 
-    if(!username){
+    if(!token){
       alert("Please login or signup to create post.")
     } else{
       if(title && category_name && description && salary && job_location && payment_method)
     const response = await fetch(`/api/jobs`, {
       method: 'POST',
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization":"bearer " + token,
+      },
       body: JSON.stringify({
         title,
         category_name,
@@ -24,13 +31,10 @@ async function newFormHandler(event) {
         job_location,
         payment_method
       }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
     });
   
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace('/dashboard?auth_token='+token);
     } else {
       alert(response.statusText);
     }
@@ -45,10 +49,13 @@ const deletePostHandler = async (event) => {
     if (deletePostId) {
         const response = await fetch("/api/job/" + deletePostId, {
             method: "DELETE",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+              "Content-Type": "application/json",
+              "Authorization":"bearer " + token
+             },
         });
         if (response.ok) {
-            document.location.replace("/dashboard");
+            document.location.replace("/dashboard?auth_token=" + token);
         } else {
             alert(
                 "Failed to delete post. " +
