@@ -18,6 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// route image then generate the avatar
+// and save the file and return it
 // turn on routes
 app.use(routes);
 
