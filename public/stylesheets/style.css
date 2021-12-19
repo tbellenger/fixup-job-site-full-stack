@@ -12,6 +12,6 @@ button {
   outline: inherit;
 }
 .column {
-  border: 1px solid gray;
+  border: 1px solid lightgrey;
   margin: 5px;
 }
