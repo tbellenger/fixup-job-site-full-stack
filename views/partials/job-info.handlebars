@@ -1,15 +1,10 @@
 <article class="job">
   <div>
-    <p>{{title}} by {{owner.username}} on {{createdAt}}</p>
-    <br />
+    <p><a href="/dashboard/job/{{id}}">{{title}}</a> by {{owner.username}}</p>
     <p>{{description}}</p>
-    <br />
     <p>{{salary}}</p>
-    <br />
     <p>{{payment_method}}</p>
-    <br />
     <p> zip code: {{location_id}}</p>
-
-    <a href="/dashboard/job/{{id}}">{{title}}</a>
+    <p>Category: <a href="/category/{{category_id}}/jobs">{{category.category_name}}</a></p>
   </div>
-</article>
+</article></br>

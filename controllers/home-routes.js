@@ -69,6 +69,27 @@ router.get("/jobs/:id", async (req, res) => {
   }
 });
 
+router.get("/jobs", async (req, res) => {
+  try {
+    const allJobs = await Job.findAll({
+      attributes: { exclude: ["updatedAt"] },
+      include: [
+        { model: User, as: "owner", attribute: { exclude: ["password"] } },
+        { model: User, as: "employee", attribute: { exclude: ["password"] } },
+        { model: Category },
+      ],
+    });
+    const jobs = allJobs.map((job) => job.get({ plain: true }));
+    console.log(jobs);
+    res.render("jobs", {
+      jobs: jobs,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.get("/login", (req, res) => {
   res.render("login");
 });
