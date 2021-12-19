@@ -4,7 +4,7 @@
             <div class="columns is-centered">
                 <div class="column">
                     <form class="box">
-                        <label class="label is-large" class="label">Create New Job Post<label>
+                        <label class="label is-large" class="label">Post a New Job<label>
                         <div class="field">
                             <label class="label"> Title</label>
                             <div class="control">
@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label class="label"> Category_Name</label>
+                            <label class="label"> Category Name</label>
                             <div class="control">
                                 <input
                                     type="text"
@@ -77,11 +77,10 @@
                                 <tr>
                                     <th class="table-id">ID</th>
                                     <th class="table-title">Title</th>
-                                    <th class="table-category">Category_Name</th>
+                                    <th class="table-category">Category</th>
                                     <th class="emplyee-name">Employee</th>
-                                    <th class="payment-method">Created At</th>
                                     <th class="job-location">Job Satus</th>
-                                    <th class="table-created">Payment-method</th>
+                                    <th class="payment-method">Payment-method</th>
                                     <th class="table-edit">Edit</th>
                                     <th class="table-delete">Delete</th>
                                 </tr>
@@ -91,20 +90,15 @@
                                 {{#each jobs}}
                                     <tr>
                                         <td>{{this.id}}</td>
-                                        <td><a href="/category/{{this.id}}"
+                                        <td><a href="/dashboard/job/{{this.id}}/edit"
                                             >{{this.title}}</a></td>
-                                        <td>{{this.category.category_name}}</td>
-                                        <td><a href="/user/{{this.owner.id}}">{{this.owner.username}}</a></td>
-                                        <td>{{this.createdAt}}</td>
+                                        <td><a href="/category/{{this.category.id}}"
+                                            >{{this.category.category_name}}</a></td>
+                                        <td>{{>partial-user this.owner}}</td>
                                         <td>{{this.job_status}}</td>
                                         <th>{{payment_method}}</th>
-                                        <td><a
-                                                href="/edit/{{this.id}}"
-                                            >Edit</a></td>
-                                        <td><a
-                                                class="delete-post"
-                                                data-id="{{this.id}}"
-                                            >Delete</a></td>
+                                        <td><a href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
+                                        <td><button class="delete-job" data-id="{{this.id}}">Delete</button></td>
                                     </tr>
                                 {{/each}}
                             </tbody>
