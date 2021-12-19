@@ -3,6 +3,14 @@ const navLoginBtn = document.querySelector("#nav-login-button");
 const navLogoutBtn = document.querySelector("#nav-logout-button");
 
 const auth_token = JSON.parse(localStorage.getItem("token"));
+
+// handle expired token
+const params = new URLSearchParams(location.search);
+if (params.get("msg") && params.get("msg") === "unauthorized") {
+  auth_token = false;
+  localStorage.removeItem("token");
+}
+
 if (auth_token) {
   // we are logged in with a token
   // update all dashboard links with the auth_token added in URL
