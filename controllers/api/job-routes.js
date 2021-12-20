@@ -115,7 +115,7 @@ router.post("/", async (req, res) => {
       payment_method: req.body.payment_method,
       zip_code: req.body.zip_code,
       category_name: req.body.category_name,
-      category_id: req.category[0].id,
+      category_id: category[0].id,
       owner_id: req.user.id,
     });
     const location = await Location.findOrCreate({

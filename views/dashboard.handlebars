@@ -93,7 +93,12 @@
                                     <th class="table-title">Title</th>
                                     <th class="table-category">Category</th>
                                     <th class="owner-name">Owner</th>
+                                    {{#if employee}}
                                     <th class="employee-name">Employee</th>
+                                    {{/if}}
+                                    {{#unless employee}}
+                                    <th class="employee-name">Employee</th>
+                                    {{/unless}}
                                     <th class="job-location">Job Satus</th>
                                     <th class="payment-method">Payment-method</th>
                                     <th class="table-edit">Edit</th>
@@ -110,7 +115,12 @@
                                         <td><a href="/category/{{this.category_id}}/jobs"
                                             >{{this.category.category_name}}</a></td>
                                         <td>{{>partial-user this.owner}}</td>
+                                        {{#if employee}}
                                         <td>{{>partial-user this.employee}}</td>
+                                        {{/if}}
+                                        {{#unless employee}}
+                                        <td>no applicants yet</td>
+                                        {{/unless}}
                                         <td>{{this.job_status}}</td>
                                         <th>{{payment_method}}</th>
                                         <td><a href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
