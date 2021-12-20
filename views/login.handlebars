@@ -1,17 +1,39 @@
-<form id="login-form">
-  <div>
-    <label for="login">email</label>
-    <input type="text" id="username-login" />
+<div class="columns is-centered">
+
+
+    <form id="login-form">
+      <div class="field">
+        <label for="login">Email</label>
+        <div class="control"></div>
+        <input class="input is-normal input is-rounded"  type="email " id="username-login" placeholder="Email" />
+      </div>
+
+  <div class="field">
+    <label for="password-login">Password</label>
+    <div class="control"></div>
+    <input class="input is-normal input is-rounded" type="password" id="password-login" placeholder="Password" />
   </div>
-  <div>
-    <label for="password-login">password</label>
-    <input type="password" id="password-login" />
+
+
+
+</br>
+<div class="field">
+  <div class="control">
+    <button class="button is-centered is-rounded  ">login</button> <button class="button is-centered is-rounded">Sign-up</button>
   </div>
-  <div>
-    <button id="login">login</button>
-  </div>
-  <button id="signup-instead">Sign-up instead</button>
-</form>
+  </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -28,7 +50,10 @@
     <button id="signup">signup</button>
   </div>
   <button id="login-instead">Login instead</button>
+  </div>
 </form>
+
+
 
 
 <script src="/javascript/login.js"></script>
