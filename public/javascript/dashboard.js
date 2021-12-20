@@ -40,7 +40,7 @@ async function newPostHandler(event) {
           Authorization: "bearer" + token,
         },
         body: JSON.stringify({
-  
+          
           title,
           category_name,
           description,
@@ -51,9 +51,8 @@ async function newPostHandler(event) {
         
         }),
       });
-
-      if (response.ok) {
-        document.location.replace("/dashboard?auth_token=" + token);
+if (response.ok) {
+        window.location.replace("/dashboard?auth_token=" + token);
       } else {
         alert(response.statusText);
       }
