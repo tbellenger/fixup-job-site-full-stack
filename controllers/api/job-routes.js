@@ -78,7 +78,7 @@ router.get("/:id", async (req, res) => {
           model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id", "created_at"],
           include: {
-            model: models.User,
+            model: User,
             attributes: ["username"],
           },
         },
@@ -106,6 +106,7 @@ router.post("/", async (req, res) => {
       salary: req.body.salary,
       payment_method: req.body.payment_method,
       zip_code: req.body.zip_code,
+      category_name: req.body.category_name,
       owner_id: req.user.id,
     });
     router.post("/", async (req, res) => {
@@ -114,6 +115,17 @@ router.post("/", async (req, res) => {
           zip_code: req.body.zip_code,
         });
         res.json(location);
+      } catch (err) {
+        console.log(err.errors);
+        res.status(500).json(err);
+      }
+    });
+    router.post("/", async (req, res) => {
+      try {
+        const category = await Category.create({
+          category_name: req.body.category_name,
+        });
+        res.json(category);
       } catch (err) {
         console.log(err.errors);
         res.status(500).json(err);

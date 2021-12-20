@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
       zip_code: req.body.zip_code,
     });
     if (!location) {
-      res.status(404).json({ message: "No job with that ID" });
+      res.status(404).json({ message: "No location with that ID" });
       return;
     } else {
       res.json(location);

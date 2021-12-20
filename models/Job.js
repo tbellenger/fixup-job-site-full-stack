@@ -92,6 +92,10 @@ Job.init(
         key: "id",
       },
     },
+    // category_name: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
     zip_code: {
       type: DataTypes.INTEGER,
       allowNull: true,

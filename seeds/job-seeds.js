@@ -8,6 +8,7 @@ const jobdata = [
     salary: 10,
     payment_method: "cashapp, paypal",
     job_status: "open",
+    // category_name: "Yard work",
     category_id: 1,
   },
   {
@@ -17,6 +18,7 @@ const jobdata = [
     salary: 15,
     payment_method: "credit card",
     job_status: "open",
+    // category_name: "Painting",
     category_id: 2,
   },
   {
@@ -26,6 +28,7 @@ const jobdata = [
     salary: 20,
     payment_method: "cash, zelle",
     job_status: "open",
+    // category_name: "Cleanup",
     category_id: 5,
   },
   {
@@ -35,6 +38,7 @@ const jobdata = [
     salary: 12,
     payment_method: "cash, bitcoin",
     job_status: "open",
+    // category_name: "Handyman",
     category_id: 3,
   },
   {
@@ -44,6 +48,7 @@ const jobdata = [
     salary: 10,
     payment_method: "crypto",
     job_status: "open",
+    // category_name: "Yard work",
     category_id: 1,
   },
 ];

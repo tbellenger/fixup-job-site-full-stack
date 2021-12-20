@@ -14,9 +14,7 @@ async function newPostHandler(event) {
   const payment_method = document
     .querySelector("input[name=payment-input")
     .value.trim();
-  // const category_name = document
-  //   .querySelector('.category-name')
-  //   .value.trim();
+  const category_name = document.querySelector(".category-name").value.trim();
   // const username = document.querySelector(".username-input").value.trim();
 
   if (!token) {
@@ -24,7 +22,7 @@ async function newPostHandler(event) {
   } else {
     if (
       title &&
-      // category_name &&
+      category_name &&
       description &&
       salary &&
       zip_code &&
@@ -39,7 +37,7 @@ async function newPostHandler(event) {
         },
         body: JSON.stringify({
           title,
-          // category_name,
+          category_name,
           description,
           salary,
           zip_code,
