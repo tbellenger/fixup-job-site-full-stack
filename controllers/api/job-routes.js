@@ -106,19 +106,14 @@ router.post("/", async (req, res) => {
       salary: req.body.salary,
       payment_method: req.body.payment_method,
       zip_code: req.body.zip_code,
+      owner_id: req.user.id,
     });
     router.post("/", async (req, res) => {
       try {
         const location = await Location.create({
           zip_code: req.body.zip_code,
         });
-        if (!location) {
-          res.status(404).json({ message: "No job with that ID" });
-          return;
-        } else {
-          res.json(location);
-          console.log(location);
-        }
+        res.json(location);
       } catch (err) {
         console.log(err.errors);
         res.status(500).json(err);
