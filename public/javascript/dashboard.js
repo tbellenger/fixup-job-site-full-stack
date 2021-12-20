@@ -2,23 +2,20 @@ const token = JSON.parse(localStorage.getItem("token"));
 
 async function newPostHandler(event) {
   event.preventDefault();
-  
-  const title = document.querySelector('.title-input').value.trim();
+
+  const title = document.querySelector("input[name=job-title]").value.trim();
   const description = document
-    .querySelector('.description-input')
+    .querySelector("textarea[name=description-input")
     .value.trim();
-  const salary = document.querySelector('.salary-input').value.trim();
+  const salary = document.querySelector("input[name=salary-input").value.trim();
   const zip_code = document
-    .querySelector('.location-input')
+    .querySelector("input[name=location-input")
     .value.trim();
   const payment_method = document
-    .querySelector('.payment-input')
+    .querySelector("input[name=payment-input")
     .value.trim();
-  const category_name = document
-    .querySelector('.category-name')
-    .value.trim();
-    const username = document.querySelector('.username-input').value.trim();
-    
+  const category_name = document.querySelector(".category-name").value.trim();
+  // const username = document.querySelector(".username-input").value.trim();
 
   if (!token) {
     alert("Please login or signup to create post.");
@@ -29,31 +26,28 @@ async function newPostHandler(event) {
       description &&
       salary &&
       zip_code &&
-      payment_method &&
-      username
-    )
-  {
+      payment_method
+      // username
+    ) {
       const response = await fetch(`/api/jobs/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "bearer" + token,
+          Authorization: `bearer ${token}`,
         },
         body: JSON.stringify({
-  
           title,
           category_name,
           description,
           salary,
           zip_code,
           payment_method,
-          username,
-        
+          // username,
         }),
       });
-
+      console.log(token);
       if (response.ok) {
-        document.location.replace("/dashboard?auth_token=" + token);
+        document.location.replace(`/dashboard?auth_token=${token}`);
       } else {
         alert(response.statusText);
       }

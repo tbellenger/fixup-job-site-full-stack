@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 // create our Post model
 class Job extends Model {
   static opinion(body, models) {
@@ -91,6 +91,13 @@ Job.init(
         model: "category",
         key: "id",
       },
+    },
+    category_name: {
+      type: DataTypes.STRING,
+    },
+    zip_code: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     // don't think we need a different table for the join. Just store id with job
     location_id: {

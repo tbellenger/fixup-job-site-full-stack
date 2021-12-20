@@ -1,13 +1,15 @@
-
 <article class="job">
   <div class="columns is-flex">
-  <div class="column has-text-centered">
-    <p><a href="/dashboard/job/{{id}}">{{title}}</a> by {{owner.username}}</p>
-    <p>{{description}}</p>
-    <p>{{salary}}</p>
-    <p>{{payment_method}}</p>
-    <p> zip code: {{location_id}}</p>
-    <p>Category: <a href="/category/{{category_id}}/jobs">{{category.category_name}}</a></p>
+    <div class="column has-text-centered">
+      <p><a href="/dashboard/job/{{id}}">{{title}}</a> by {{owner.username}}</p>
+      <p>{{description}}</p>
+      <p>{{salary}}</p>
+      <p>{{payment_method}}</p>
+      <p> zip code: {{zip_code}}</p>
+      <p>Category:
+        <a
+          href="/category/{{category_id}}/jobs"
+        >{{category.category_name}}</a></p>
+    </div>
   </div>
- </div>
 </article>
