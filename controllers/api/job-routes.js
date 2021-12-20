@@ -100,13 +100,25 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    const category = await Category.findOrCreate({
+      where: {
+        category_name: req.body.category_name,
+      },
+      defaults: {
+        category_name: req.body.category_name,
+      },
+    });
+
+    console.log(category[0]);
+    console.log(category[1]);
+
     const job = await Job.create({
       title: req.body.title,
       description: req.body.description,
       salary: req.body.salary,
       payment_method: req.body.payment_method,
       zip_code: req.body.zip_code,
-      category_name: req.body.category_name,
+      category_id: category[0].id,
       owner_id: req.user.id,
     });
     const location = await Location.findOrCreate({
@@ -115,14 +127,6 @@ router.post("/", async (req, res) => {
       },
       defaults: {
         zip_code: req.body.zip_code,
-      },
-    });
-    const category = await Category.findOrCreate({
-      where: {
-        category_name: req.body.category_name,
-      },
-      defaults: {
-        category_name: req.body.category_name,
       },
     });
 
