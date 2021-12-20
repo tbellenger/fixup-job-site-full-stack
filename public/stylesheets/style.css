@@ -10,6 +10,7 @@ button {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  border-radius: 25px; 
 }
 .column {
   border: 1px solid lightgrey;
