@@ -109,29 +109,24 @@ router.post("/", async (req, res) => {
       category_name: req.body.category_name,
       owner_id: req.user.id,
     });
-    router.post("/", async (req, res) => {
-      try {
-        const location = await Location.create({
-          zip_code: req.body.zip_code,
-        });
-        res.json(location);
-      } catch (err) {
-        console.log(err.errors);
-        res.status(500).json(err);
-      }
+    const location = await Location.findOrCreate({
+      where: {
+        zip_code: req.body.zip_code,
+      },
+      defaults: {
+        zip_code: req.body.zip_code,
+      },
     });
-    router.post("/", async (req, res) => {
-      try {
-        const category = await Category.create({
-          category_name: req.body.category_name,
-        });
-        res.json(category);
-      } catch (err) {
-        console.log(err.errors);
-        res.status(500).json(err);
-      }
+    const category = await Category.findOrCreate({
+      where: {
+        category_name: req.body.category_name,
+      },
+      defaults: {
+        category_name: req.body.category_name,
+      },
     });
-    if (!job) {
+
+    if (!job || !location || !category) {
       res.status(404).json({ message: "No job with that ID" });
       return;
     } else {
@@ -139,7 +134,7 @@ router.post("/", async (req, res) => {
       console.log(job);
     }
   } catch (err) {
-    console.log(err.errors);
+    console.log(err);
     res.status(500).json(err);
   }
 });
