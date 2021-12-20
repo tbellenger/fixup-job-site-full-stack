@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { Category } = require("../../models");
+const { Location } = require("../../models");
 
 // get all users
 router.get("/", async (req, res) => {
   try {
-    const categories = await Category.findAll();
-    res.json(categories);
+    const locations = await Location.findAll();
+    res.json(locations);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -13,16 +13,16 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const category = Category.findOne({
+    const location = Location.findOne({
       where: {
         id: req.params.id,
       },
     });
-    if (!category) {
-      res.status(404).json({ message: "No category with that ID" });
+    if (!location) {
+      res.status(404).json({ message: "No location with that ID" });
       return;
     } else {
-      res.json(category);
+      res.json(location);
     }
   } catch (err) {
     res.status(500).json(err);
@@ -31,14 +31,14 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const category = await Category.create({
-      category_name: req.body.category_name,
+    const location = await Location.create({
+      zip_code: req.body.zip_code,
     });
-    if (!category) {
-      res.status(404).json({ message: "No category with that ID" });
+    if (!location) {
+      res.status(404).json({ message: "No job with that ID" });
       return;
     } else {
-      res.json(category);
+      res.json(location);
     }
   } catch (err) {
     console.log(err.errors);

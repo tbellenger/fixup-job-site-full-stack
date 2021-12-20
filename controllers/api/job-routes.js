@@ -1,6 +1,13 @@
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { Job, User, Comment, Like, Category } = require("../../models");
+const {
+  Job,
+  User,
+  Comment,
+  Like,
+  Category,
+  Location,
+} = require("../../models");
 
 // get all users
 router.get("/", async (req, res) => {
@@ -11,6 +18,7 @@ router.get("/", async (req, res) => {
         "title",
         "description",
         "salary",
+        "payment_method",
         "created_at",
         [
           sequelize.literal(
@@ -32,6 +40,10 @@ router.get("/", async (req, res) => {
           model: Category,
           attributes: ["category_name"],
         },
+        {
+          model: Location,
+          attributes: ["zip_code"],
+        },
       ],
     });
     res.json(job);
@@ -52,6 +64,7 @@ router.get("/:id", async (req, res) => {
         "title",
         "description",
         "salary",
+        "payment_method",
         "created_at",
         [
           sequelize.literal(
@@ -73,6 +86,10 @@ router.get("/:id", async (req, res) => {
           model: Category,
           attributes: ["category_name"],
         },
+        {
+          model: Location,
+          attributes: ["zip_code"],
+        },
       ],
     });
     res.json(job);
@@ -87,12 +104,17 @@ router.post("/", async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       salary: req.body.salary,
+      payment_method: req.body.payment_method,
+      zip_code: req.body.zip_code,
     });
     if (!job) {
       res.status(404).json({ message: "No job with that ID" });
       return;
     } else {
       res.json(job);
+      console.log(job);
+      res.json(joblocation);
+      console.log(joblocation);
     }
   } catch (err) {
     console.log(err.errors);
