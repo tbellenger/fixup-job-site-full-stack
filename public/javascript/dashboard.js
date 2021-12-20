@@ -49,7 +49,7 @@ async function newPostHandler(event) {
       });
       console.log(token);
       if (response.ok) {
-        document.location.replace(`/dashboard?auth_token= ${token}`);
+        document.location.replace(`/dashboard?auth_token=${token}`);
       } else {
         alert(response.statusText);
       }

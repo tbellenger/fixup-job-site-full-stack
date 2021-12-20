@@ -107,14 +107,29 @@ router.post("/", async (req, res) => {
       payment_method: req.body.payment_method,
       zip_code: req.body.zip_code,
     });
+    router.post("/", async (req, res) => {
+      try {
+        const location = await Location.create({
+          zip_code: req.body.zip_code,
+        });
+        if (!location) {
+          res.status(404).json({ message: "No job with that ID" });
+          return;
+        } else {
+          res.json(location);
+          console.log(location);
+        }
+      } catch (err) {
+        console.log(err.errors);
+        res.status(500).json(err);
+      }
+    });
     if (!job) {
       res.status(404).json({ message: "No job with that ID" });
       return;
     } else {
       res.json(job);
       console.log(job);
-      res.json(joblocation);
-      console.log(joblocation);
     }
   } catch (err) {
     console.log(err.errors);
