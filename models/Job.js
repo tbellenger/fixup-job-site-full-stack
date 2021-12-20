@@ -92,10 +92,9 @@ Job.init(
         key: "id",
       },
     },
-    // category_name: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
+    category_name: {
+      type: DataTypes.STRING,
+    },
     zip_code: {
       type: DataTypes.INTEGER,
       allowNull: true,

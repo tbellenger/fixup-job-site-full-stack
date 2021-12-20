@@ -125,7 +125,10 @@ router.post("/", async (req, res) => {
         category_name: req.body.category_name,
       },
     });
-
+    console.log(
+      "========================================================================" +
+        Category.category_id
+    );
     if (!job || !location || !category) {
       res.status(404).json({ message: "No job with that ID" });
       return;
