@@ -108,13 +108,16 @@ router.post("/", async (req, res) => {
         category_name: req.body.category_name,
       },
     });
+
+    console.log(category[0]);
+    console.log(category[1]);
+
     const job = await Job.create({
       title: req.body.title,
       description: req.body.description,
       salary: req.body.salary,
       payment_method: req.body.payment_method,
       zip_code: req.body.zip_code,
-      category_name: req.body.category_name,
       category_id: category[0].id,
       owner_id: req.user.id,
     });
@@ -126,10 +129,6 @@ router.post("/", async (req, res) => {
         zip_code: req.body.zip_code,
       },
     });
-    // console.log(
-    //   "========================================================================" +
-    //     Category.id
-    // );
     if (!job || !location || !category) {
       res.status(404).json({ message: "No job with that ID" });
       return;
