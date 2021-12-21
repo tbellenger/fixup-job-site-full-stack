@@ -1,4 +1,6 @@
+//require the express routes package
 const router = require("express").Router();
+//require the sequelize connection to manipulate all models
 const sequelize = require("../../config/connection");
 const {
   Job,
@@ -9,7 +11,7 @@ const {
   Location,
 } = require("../../models");
 
-// get all users
+// get all jobs
 router.get("/", async (req, res) => {
   try {
     const job = await Job.findAll({
@@ -27,6 +29,7 @@ router.get("/", async (req, res) => {
           "likes_count",
         ],
       ],
+      //include realted data assocaited with job model
       include: [
         {
           model: Comment,
@@ -52,7 +55,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the job by id
 router.get("/:id", async (req, res) => {
   try {
     const job = await Job.findOne({
@@ -97,7 +100,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the new job post 
 router.post("/", async (req, res) => {
   try {
     const category = await Category.findOrCreate({
@@ -142,7 +145,7 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//capture the likes actions
 router.put("/like", async (req, res) => {
   // custom static method created in models/Job.js
   try {
@@ -155,7 +158,7 @@ router.put("/like", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// get the job by id to update
 router.put("/:id", async (req, res) => {
   try {
     const job = await Job.update(
@@ -171,17 +174,19 @@ router.put("/:id", async (req, res) => {
         },
       }
     );
+    //if no id exist return error
     if (!job) {
       res.status(404).json({ message: "No job with that ID" });
       return;
     } else {
+      //return all job data
       res.json(job);
     }
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
+//get the job by id to delete
 router.delete("/:id", async (req, res) => {
   try {
     const job = await Job.destroy({
@@ -199,5 +204,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//export the job routes
 module.exports = router;

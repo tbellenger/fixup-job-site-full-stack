@@ -1,9 +1,10 @@
+//require the sequelize package to manipulate this object
 const { Model, DataTypes } = require("sequelize");
-
+//require the sequelize connection
 const sequelize = require("../config/connection.js");
-
+//declare the Tag model
 class Tag extends Model {}
-
+//create the Tag model table, columns and dataypes
 Tag.init(
   {
     // define columns
@@ -25,5 +26,5 @@ Tag.init(
     modelName: "tag",
   }
 );
-
+//exports the Tag model
 module.exports = Tag;

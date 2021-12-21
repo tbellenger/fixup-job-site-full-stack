@@ -1,34 +1,54 @@
+{{!--initiate the page section for login and signup--}}
+  <div class="container is-max-desktop">
+  <div class="notification is-info">
+  {{!--form inputs for login--}}
 <form id="login-form">
   <div>
-    <label for="login">email</label>
-    <input type="text" id="username-login" />
+    {{!--label and input for email--}}
+    <label for="login">Email</label>
+    <input class="input is-normal"  type="text" placeholder="Email input" id="username-login"/>
   </div>
   <div>
-    <label for="password-login">password</label>
-    <input type="password" id="password-login" />
+    {{!--label and input for password--}}
+    <label for="password-login">Password</label>
+    <input class="input is-normal" type="password" placeholder="**********"  id="password-login" />
   </div>
+<br>{{!--submit buttons link--}}
   <div>
-    <button id="login">login</button>
-  </div>
-  <button id="signup-instead">Sign-up instead</button>
+    <button class="button is-primary" id="login">Login</button>
+    <button class="button is-link" id="signup-instead">Sign-up instead</button>
+    </div>
 </form>
+</div>
+</div>
+{{!--form inputs for signup--}}
 
-
-
+<div class="container is-max-desktop">
+  <div class="notification is-info">
+    
 <form class="hide" id="signup-form">
+  {{!--label and input for username--}}
   <div>
-    <label for="username-signup">email</label>
-    <input type="text" id="username-signup" />
+    <label for="username-signup">Username</label>
+    <input class="input is-normal"  type="text" placeholder="Enter username" id="username-signup" />
   </div>
+  {{!--label and input for email--}}
+  <div>
+    <label for="email-signup">Email</label>
+    <input class="input is-normal"  type="email" placeholder="Email input" id="username-signup" />
+  </div>
+  {{!--label and input for password--}}
   <div>
     <label for="password-signup">password</label>
-    <input type="password" id="password-signup" />
+    <input class="input is-normal" type="password" id="password-signup" />
   </div>
+  <br>{{!--buttons link--}}
   <div>
-    <button id="signup">signup</button>
+    <button class="button is-primary" id="signup">Signup</button>
+    <button class="button is-link" id="login-instead">Login instead</button>
   </div>
-  <button id="login-instead">Login instead</button>
 </form>
-
-
+</div>
+</div>
+{{!--call the file routes function to generate this section--}}
 <script src="/javascript/login.js"></script>

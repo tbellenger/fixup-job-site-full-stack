@@ -1,6 +1,7 @@
+{{!--initiate page template for jobs categories--}}
 <section class="section">
 <div class="columns">
-
+{{!--group the job category into each column--}}
 {{#each jobs as |job|}}
 <div class="column">{{>job-info job}}</div>
 {{/each}}

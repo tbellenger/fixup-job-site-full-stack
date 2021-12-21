@@ -1,7 +1,8 @@
+/* hide the signup form while in login page template */
 .hide {
   display: none;
 }
-
+/* style the buttons */
 button {
   background-color: inherit;
   color: inherit;
@@ -11,7 +12,27 @@ button {
   cursor: pointer;
   outline: inherit;
 }
+/* style the column */
 .column {
   border: 1px solid lightgrey;
   margin: 5px;
+}
+/* style the label */
+label{
+  font-size: 22px;
+  font-weight: 600;
+}
+/* style the navigation section */
+.navigation{
+  padding: 15px;
+}
+/*style the title */
+#title{
+  font-weight: bolder;
+  font-size: 25px;
+}
+/* style the navigation bar link */
+#navbarMenu{
+  font-size: 22px;
+  font-weight: bolder;
 }

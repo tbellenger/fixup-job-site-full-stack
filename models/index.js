@@ -142,7 +142,7 @@ Location.belongsToMany(Job, {
   as: "joblocation",
   foreignKey: "location_id",
 });
-
+//exports all the models
 module.exports = {
   User,
   Job,

@@ -1,9 +1,10 @@
+//require the sequelize package to manipulate this object
 const { Model, DataTypes } = require('sequelize');
-
+//require the sequelize connection
 const sequelize = require('../config/connection.js');
-
+//declare the Location model
 class Location extends Model {}
-
+//declare the loaction table, column and datatypes
 Location.init(
   {
     // define columns
@@ -25,5 +26,5 @@ Location.init(
     modelName: 'location',
   }
 );
-
+//exports the Loaction model
 module.exports = Location;

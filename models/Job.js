@@ -1,4 +1,6 @@
+//require the sequelize package to manipulate this object
 const { Model, DataTypes } = require("sequelize");
+//require the sequelize connection
 const sequelize = require("../config/connection");
 // create our Post model
 class Job extends Model {
@@ -24,6 +26,7 @@ class Job extends Model {
             "likes_count",
           ],
         ],
+        //include all related data into job model
         include: [
           {
             model: models.Comment,
@@ -121,5 +124,5 @@ Job.init(
     modelName: "job",
   }
 );
-
+//export the Jonb model
 module.exports = Job;

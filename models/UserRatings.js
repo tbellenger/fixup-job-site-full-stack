@@ -1,9 +1,10 @@
+//require the sequelize package to manipulate model and dataypes
 const { Model, DataTypes } = require("sequelize");
-
+//require the sequelize connection
 const sequelize = require("../config/connection");
-
+//declare the ratings model
 class Ratings extends Model {}
-
+//create the Ratings table and columns and dataypes
 Ratings.init(
   {
     id: {
@@ -35,5 +36,5 @@ Ratings.init(
     modelName: "ratings",
   }
 );
-
+//export the Ratings model
 module.exports = Ratings;

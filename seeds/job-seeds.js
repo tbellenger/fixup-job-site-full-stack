@@ -1,5 +1,6 @@
+//require the Job models
 const { Job } = require("../models");
-
+//declare the job keys and values
 const jobdata = [
   {
     title: "Lawn mowing",
@@ -52,7 +53,7 @@ const jobdata = [
     category_id: 1,
   },
 ];
-
+//seed all the Jobs data 
 const seedJobs = () => Job.bulkCreate(jobdata);
-
+//then exports the seeded job data
 module.exports = seedJobs;

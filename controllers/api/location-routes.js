@@ -1,7 +1,9 @@
+//require the express routes package
 const router = require("express").Router();
+//require the Location models
 const { Location } = require("../../models");
 
-// get all users
+// get all users all location
 router.get("/", async (req, res) => {
   try {
     const locations = await Location.findAll();
@@ -10,7 +12,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get user loaction by id
 router.get("/:id", async (req, res) => {
   try {
     const location = Location.findOne({
@@ -28,7 +30,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get user post location
 router.post("/", async (req, res) => {
   try {
     const location = await Location.create({
@@ -45,5 +47,5 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//export the Loaction routes
 module.exports = router;

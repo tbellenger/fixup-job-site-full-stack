@@ -1,5 +1,6 @@
+//require the comment models
 const { Comment } = require("../models");
-
+//declare the comment keys and values
 const commentdata = [
   {
     comment_text: "great employer",
@@ -22,7 +23,7 @@ const commentdata = [
     job_id: 4,
   },
 ];
-
+//seed all the comments 
 const seedComments = () => Comment.bulkCreate(commentdata);
-
+//then export the seeded comments data
 module.exports = seedComments;

@@ -1,5 +1,6 @@
+//require the job location models
 const { JobLocation } = require("../models");
-
+//declare the job location key and value
 const JobLocationData = [
   {
     job_id: 1,
@@ -22,7 +23,7 @@ const JobLocationData = [
     location_id: 3,
   },
 ];
-
+//seed all job location data
 const seedJobLocation = () => JobLocation.bulkCreate(JobLocationData);
-
+//then export the seeded job location data
 module.exports = seedJobLocation;

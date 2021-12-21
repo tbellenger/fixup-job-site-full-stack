@@ -1,11 +1,14 @@
+{{!--page template to display all jobs categories and information--}}
 <article class="job">
   <div class="columns is-flex">
     <div class="column has-text-centered">
+      {{!--reference the dashboard file path to fetch some information from a user--}}
       <p><a href="/dashboard/job/{{id}}">{{title}}</a> by {{owner.username}}</p>
       <p>{{description}}</p>
       <p>{{salary}}</p>
       <p>{{payment_method}}</p>
       <p> zip code: {{zip_code}}</p>
+      {{!--reference the category file path to get the category information--}}
       <p>Category:
         <a
           href="/category/{{category_id}}/jobs"

@@ -1,4 +1,4 @@
-<!-- Image -->
+{{!-- Image for homepage template --}}
   <section class="hero ">
     <div class="hero-body">
       <div class="container">
@@ -9,6 +9,7 @@
             </figure>
           </div>
         </div>
+        {{!--A welcome title for the page--}}
         <section class="section">
           <div class="columns">
             <div class="column is-8 is-offset-2">
@@ -22,13 +23,15 @@
       </div>
     </div>
   </section>
-<!-- Articles -->
+{{!-- section of buttons links jobs data categories --}}
   <div class="categories">
+    <div class="container">
   <div class="columns is-flex has-text-centered">
   <div class="column"><a href="/jobs">All Jobs</a></div>
+  {{!--group each category that belongs to each other--}}
 {{#each categories}}
 <div class="column"><a href="/category/{{id}}/jobs">{{category_name}}</a></div>
 {{/each}}
 </div>
 </div>
-       
+</div>

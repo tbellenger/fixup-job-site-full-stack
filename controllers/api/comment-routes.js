@@ -1,7 +1,9 @@
+//require the express routes package
 const router = require("express").Router();
+//require the comment model
 const { Comment } = require("../../models");
 
-// get all users
+// get all comments
 router.get("/", async (req, res) => {
   try {
     const comments = await Comment.findAll();
@@ -10,7 +12,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the comment by id
 router.get("/:id", async (req, res) => {
   try {
     const comment = Comment.findOne({
@@ -28,7 +30,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the new comment post
 router.post("/", async (req, res) => {
   try {
     const comment = await Comment.create({
@@ -43,7 +45,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-
+//get the comment by id to edit
 router.put("/:id", async (req, res) => {
   try {
     const comment = await Comment.update(req.body, {
@@ -61,7 +63,7 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// get comment by id to delete
 router.delete("/:id", async (req, res) => {
   try {
     const comment = await Comment.destroy({
@@ -79,5 +81,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//export the Comment routes
 module.exports = router;

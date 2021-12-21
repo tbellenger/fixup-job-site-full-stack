@@ -1,7 +1,8 @@
+//require the express routes package
 const router = require("express").Router();
 const { Category } = require("../../models");
 
-// get all users
+// get all categories
 router.get("/", async (req, res) => {
   try {
     const categories = await Category.findAll();
@@ -10,7 +11,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get category by id
 router.get("/:id", async (req, res) => {
   try {
     const category = Category.findOne({
@@ -28,7 +29,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//create new category
 router.post("/", async (req, res) => {
   try {
     const category = await Category.create({
@@ -45,7 +46,7 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the category by id to delete
 router.delete("/:id", async (req, res) => {
   try {
     const category = await Category.destroy({
@@ -63,5 +64,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//export the category routes
 module.exports = router;
