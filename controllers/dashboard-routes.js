@@ -1,7 +1,10 @@
+//require the express routes package
 const router = require("express").Router();
+//require the sequelize connection
 const sequelize = require("../config/connection");
+//require all models assocaited with each other
 const { Job, User, Comment, Category } = require("../models");
-
+//get all jobs data
 router.get("/", async (req, res) => {
   try {
     const allJobs = await Job.findAll({
@@ -9,6 +12,7 @@ router.get("/", async (req, res) => {
         owner_id: req.user.id,
       },
       attributes: { exclude: ["updatedAt"] },
+      //include the models that are related to the job model
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
@@ -39,7 +43,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the job data by id to edit
 router.get("/job/:id/edit", async (req, res) => {
   try {
     const dbJob = await Job.findOne({
@@ -86,7 +90,7 @@ router.get("/job/:id/edit", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the job data by id
 router.get("/job/:id", async (req, res) => {
   try {
     const dbJob = await Job.findOne({
@@ -126,7 +130,7 @@ router.get("/job/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the user data by id
 router.get("/user/:id", async (req, res) => {
   try {
     const sameUser = parseInt(req.params.id) === req.user.id;
@@ -156,7 +160,7 @@ router.get("/user/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//export the job routes
 module.exports = router;
 
 

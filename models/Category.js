@@ -1,8 +1,10 @@
+//require the sequelize package to manipulate this object
 const { Model, DataTypes } = require("sequelize");
+//require the sequelize connection
 const sequelize = require("../config/connection");
-
+//declare the Category model
 class Category extends Model {}
-
+//declare the category table, columns and datypes
 Category.init(
   {
     id: {
@@ -26,5 +28,5 @@ Category.init(
     modelName: "category",
   }
 );
-
+//export the category model
 module.exports = Category;

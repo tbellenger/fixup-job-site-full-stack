@@ -1,3 +1,4 @@
+{{!--create the main page template--}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,22 +37,23 @@
             </div>
         </nav>
     </header>
-
+{{!--Content of the page goes here--}}
     <main>
       {{{ body }}}
     </main>
-
+{{!--footer section--}}
   <footer class="footer">
             <div class="content has-text-centered">
                 <p> <strong>TITLE OF OUR WEBSITE</strong>
                 -
                       <a href="https://github.com/tbellenger/coding-bc-project-2"
                         target="_blank">Open Source</a>
-                    -Node packages, MySQL2, Sequelize, Express.js, Bootstrap, Bulma, Heroku, Handlebars.js, Express-session connect-session-sequelize, Object relational mapping.
+                    -Node packages, MySQL2, Sequelize, Express.js,denticon, jsonwebtoken, passport, passport-jwt, Bulma, Heroku, Handlebars.
                 </p>
                 <p id="fonts"><i class="fa fa-envelope"></i> <i class="fa fa-linkedin"></i> <i class="fa fa-twitter"></i> <i class="fa fa-github"></i></p>
             </div>
         </footer>
+        {{!--call the file routes to generate this main page template--}}
         <script src="/javascript/main.js"></script>
     </body>
 </html>

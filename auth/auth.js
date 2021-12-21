@@ -1,9 +1,10 @@
+//require the passport package and JWTStargey package
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("../models/User");
 const JWTstrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
-
+//function to generate authentication token for a new user
 passport.use(
   "signup",
   new localStrategy(
@@ -30,7 +31,7 @@ passport.use(
     }
   )
 );
-
+//function for a login user authentication 
 passport.use(
   "login",
   new localStrategy(
@@ -61,7 +62,7 @@ passport.use(
     }
   )
 );
-
+//function to assign new authentication token and extract old token if expired
 passport.use(
   new JWTstrategy(
     {

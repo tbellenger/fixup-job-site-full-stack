@@ -1,51 +1,54 @@
-<!--initiate the page section for login and signup-->
+{{!--initiate the page section for login and signup--}}
   <div class="container is-max-desktop">
   <div class="notification is-info">
-  <!--form inputs for login-->
+  {{!--form inputs for login--}}
 <form id="login-form">
   <div>
+    {{!--label and input for email--}}
     <label for="login">Email</label>
-    <input class="input is-normal"  type="email" placeholder="Email input" id="username-login"/>
+    <input class="input is-normal"  type="text" placeholder="Email input" id="username-login"/>
   </div>
   <div>
+    {{!--label and input for password--}}
     <label for="password-login">Password</label>
     <input class="input is-normal" type="password" placeholder="**********"  id="password-login" />
   </div>
-<br>
+<br>{{!--submit buttons link--}}
   <div>
     <button class="button is-primary" id="login">Login</button>
-
     <button class="button is-link" id="signup-instead">Sign-up instead</button>
     </div>
 </form>
 </div>
 </div>
-<!--form inputs for signup-->
+{{!--form inputs for signup--}}
 
 <div class="container is-max-desktop">
   <div class="notification is-info">
     
 <form class="hide" id="signup-form">
+  {{!--label and input for username--}}
   <div>
     <label for="username-signup">Username</label>
     <input class="input is-normal"  type="text" placeholder="Enter username" id="username-signup" />
   </div>
+  {{!--label and input for email--}}
   <div>
-    <label for="username-signup">Email</label>
+    <label for="email-signup">Email</label>
     <input class="input is-normal"  type="email" placeholder="Email input" id="username-signup" />
   </div>
+  {{!--label and input for password--}}
   <div>
     <label for="password-signup">password</label>
     <input class="input is-normal" type="password" id="password-signup" />
   </div>
-  <br>
+  <br>{{!--buttons link--}}
   <div>
     <button class="button is-primary" id="signup">Signup</button>
-
-  <button class="button is-link" id="login-instead">Login instead</button>
+    <button class="button is-link" id="login-instead">Login instead</button>
   </div>
 </form>
 </div>
 </div>
-<!--call the function to generate this section-->
+{{!--call the file routes function to generate this section--}}
 <script src="/javascript/login.js"></script>

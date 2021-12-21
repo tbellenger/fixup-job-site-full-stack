@@ -1,58 +1,58 @@
+//declare the token 
 const token = JSON.parse(localStorage.getItem("token"));
-
+//function to caete a job post
 async function newPostHandler(event) {
   event.preventDefault();
-  
-  const title = document.querySelector('.title-input').value.trim();
+//declare all variables of inputs
+  const title = document.querySelector("input[name=job-title]").value.trim();
   const description = document
-    .querySelector('.description-input')
+    .querySelector("textarea[name=description-input")
     .value.trim();
-  const salary = document.querySelector('.salary-input').value.trim();
+  const salary = document.querySelector("input[name=salary-input").value.trim();
   const zip_code = document
-    .querySelector('.location-input')
+    .querySelector("input[name=location-input")
     .value.trim();
   const payment_method = document
-    .querySelector('.payment-input')
+    .querySelector("input[name=payment-input")
     .value.trim();
-  const category_name = document
-    .querySelector('.category-name')
-    .value.trim();
-    const username = document.querySelector('.username-input').value.trim();
-    
-
+  const category_name = document.querySelector(".category-name").value.trim();
+  // const username = document.querySelector(".username-input").value.trim();
+//if not a user bring them into login section
   if (!token) {
     alert("Please login or signup to create post.");
   } else {
+    //if user then ask them to input the data
     if (
       title &&
       category_name &&
       description &&
       salary &&
       zip_code &&
-      payment_method &&
-      username
-    )
-  {
+      payment_method
+      // username
+    ) {
+      //validate their inputs
       const response = await fetch(`/api/jobs/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "bearer" + token,
+          Authorization: `bearer ${token}`,
         },
+        //collect the inputs
         body: JSON.stringify({
-          
           title,
           category_name,
           description,
           salary,
           zip_code,
           payment_method,
-          username,
-        
+          // username,
         }),
       });
-if (response.ok) {
-        window.location.replace("/dashboard?auth_token=" + token);
+      console.log(token);
+      //assign them a new token
+      if (response.ok) {
+        document.location.replace(`/dashboard?auth_token=${token}`);
       } else {
         alert(response.statusText);
       }
@@ -63,7 +63,7 @@ if (response.ok) {
 //delete post from client to API
 const deletePostHandler = async (event) => {
   event.preventDefault();
-
+//declare the variables of id to be deleted
   const deletePostId = event.target.getAttribute("data-id");
   console.log("called delete of " + deletePostId);
   if (deletePostId) {
@@ -74,6 +74,7 @@ const deletePostHandler = async (event) => {
         Authorization: "bearer " + token,
       },
     });
+    //remove the token after deletion from the data
     if (response.ok) {
       document.location.replace("/dashboard?auth_token=" + token);
     } else {
@@ -84,7 +85,7 @@ const deletePostHandler = async (event) => {
   }
 };
 
-//add event listeners
+//add event listeners to take the actions
 document
   .querySelector(".submit-post")
   .addEventListener("click", newPostHandler);

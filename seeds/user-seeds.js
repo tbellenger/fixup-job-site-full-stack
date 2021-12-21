@@ -1,6 +1,8 @@
+//require the sequelize package connection
 const sequelize = require("../config/connection");
+//require the user models
 const { User } = require("../models");
-
+//declare the User models keys and values
 const userdata = [
   {
     username: "tarek",
@@ -27,7 +29,7 @@ const userdata = [
     last_login: new Date(),
   },
 ];
-
+//seed the user data all together 
 const seedUsers = () => User.bulkCreate(userdata, { individualHooks: true });
-
+//exports the users informations
 module.exports = seedUsers;

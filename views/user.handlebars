@@ -1,11 +1,11 @@
-<!--Initiate the user information section-->
+{{!--Initiate the user information section--}}
 <div class="columns">
     <div class="column">
-        <!--user avatar-->
+        {{!--user avatar--}}
     <div>User: {{>partial-user user}}</div>
-    <!--user ratings/likes-->
+    {{!--user ratings/likes--}}
     <div>Rating: {{user.rating}}</div>
-    <!--If loggedIn user include the email and login history-->
+    {{!--If loggedIn user include the email and login history--}}
     {{#if sameUser}}
     <div>Email: {{user.email}}</div>
     <div>Last Login: {{user.last_login}}</div>

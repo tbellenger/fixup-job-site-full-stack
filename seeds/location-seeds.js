@@ -1,5 +1,6 @@
+//require the location models
 const { Location } = require("../models");
-
+//declare the location key and value
 const locationdata = [
   {
     zip_code: 11298,
@@ -20,7 +21,7 @@ const locationdata = [
     zip_code: 02127,
   },
 ];
-
+//seed all the location data
 const seedLocation = () => Location.bulkCreate(locationdata);
-
+//exports the location data
 module.exports = seedLocation;

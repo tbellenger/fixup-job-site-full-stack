@@ -1,7 +1,8 @@
-
+{{!--initiate page template for each job category--}}
 <article class="job">
   <div class="columns">
     <div class="column">
+      {{!--get the category from all jobs record in the data--}}
       {{#each jobs as |job|}}
     {{>job-info job}}
       {{/each}}

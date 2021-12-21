@@ -1,12 +1,16 @@
+{{!--call the job information data--}}
 {{> job-info job}}
+{{!--section for commenting on a job posting--}}
 <form >
-  <div>
-    <textarea type="text" name="comment-body" ></textarea>
+  <div class="column">
+    <textarea class="textarea" type="text" name="comment-body" ></textarea>
   </div>
 
   <div>
-    <button type="submit">add comment</button>
+    <button class="button is-success" type="submit">Add comment</button>
   </div>
 </form>
+{{!--view the new and old comments here--}}
 {{> comments job.comments}}
+{{!--call the file functions to generate this page template--}}
 <script src="/javascript/edit-delete-comment.js"></script>

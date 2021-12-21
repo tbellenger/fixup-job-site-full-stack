@@ -1,9 +1,10 @@
+//require the sequelize package to manipulate this object
 const { Model, DataTypes } = require("sequelize");
-
+//require the sequelize connection
 const sequelize = require("../config/connection");
-
+//declare the JobLoaction model
 class JobLocation extends Model {}
-
+//declare the JobLocation table, columns and dataypes
 JobLocation.init(
   {
     id: {
@@ -35,5 +36,5 @@ JobLocation.init(
     modelName: "job_location",
   }
 );
-
+//export the JobLocation model
 module.exports = JobLocation;

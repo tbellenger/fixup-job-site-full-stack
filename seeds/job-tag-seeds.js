@@ -1,5 +1,6 @@
+//require the tag related to the job models
 const { JobTag } = require("../models");
-
+//declare the job tag keys and values 
 const jobTagData = [
   {
     job_id: 1,
@@ -22,7 +23,7 @@ const jobTagData = [
     tag_id: 5,
   },
 ];
-
+//seed all the tags together
 const seedJobTags = () => JobTag.bulkCreate(jobTagData);
-
+//then exports the tags data
 module.exports = seedJobTags;

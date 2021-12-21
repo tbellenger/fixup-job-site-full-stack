@@ -1,7 +1,10 @@
+//require the sequelize package to manipulate the model and datatypes
 const { Model, DataTypes } = require("sequelize");
+//require the sequelize connection
 const sequelize = require("../config/connection");
+//require the hashing of sensitive information
 const bcrypt = require("bcrypt");
-
+//declare the User model and condition to hash the password
 class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
@@ -27,6 +30,7 @@ class User extends Model {
             "ratings",
           ],
         ],
+        //include related data to the User model
         include: [
           {
             model: models.Job,
@@ -47,7 +51,7 @@ class User extends Model {
     });
   }
 }
-
+//declare the User table , cloumns and dataypes
 User.init(
   {
     // TABLE COLUMN DEFINITIONS GO HERE
@@ -88,6 +92,7 @@ User.init(
       allowNull: false,
     },
   },
+  // call the hash function before the user create the password
   {
     hooks: {
       async beforeCreate(newUserData) {
@@ -102,6 +107,7 @@ User.init(
         return updatedUserData;
       },
     },
+    //call the sequelize and actions to be taken in this model 
     sequelize,
     timestamps: false,
     freezeTableName: true,
@@ -109,5 +115,5 @@ User.init(
     modelName: "user",
   }
 );
-
+//exports the User model
 module.exports = User;
