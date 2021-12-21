@@ -6,8 +6,6 @@ const Comment = require("./Comment");
 const Category = require("./Category");
 const Tag = require("./Tag");
 const JobTag = require("./JobTag");
-const Location = require("./Location");
-const JobLocation = require("./JobLocation");
 const Ratings = require("./UserRatings");
 
 // create associations
@@ -132,16 +130,6 @@ Tag.belongsToMany(Job, {
   foreignKey: "tag_id",
 });
 
-Job.belongsToMany(Location, {
-  through: JobLocation,
-  as: "joblocation",
-  foreignKey: "job_id",
-});
-Location.belongsToMany(Job, {
-  through: JobLocation,
-  as: "joblocation",
-  foreignKey: "location_id",
-});
 //exports all the models
 module.exports = {
   User,
@@ -151,7 +139,5 @@ module.exports = {
   Category,
   Tag,
   JobTag,
-  Location,
-  JobLocation,
   Ratings,
 };

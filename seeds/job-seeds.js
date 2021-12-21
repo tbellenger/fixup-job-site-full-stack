@@ -11,6 +11,7 @@ const jobdata = [
     job_status: "open",
     // category_name: "Yard work",
     category_id: 1,
+    zip_code: 90210,
   },
   {
     title: "Painting",
@@ -21,6 +22,7 @@ const jobdata = [
     job_status: "open",
     // category_name: "Painting",
     category_id: 2,
+    zip_code: 90210,
   },
   {
     title: "Trash run",
@@ -31,6 +33,7 @@ const jobdata = [
     job_status: "open",
     // category_name: "Cleanup",
     category_id: 5,
+    zip_code: 90210,
   },
   {
     title: "Handyman",
@@ -41,6 +44,7 @@ const jobdata = [
     job_status: "open",
     // category_name: "Handyman",
     category_id: 3,
+    zip_code: 90210,
   },
   {
     title: "Wood chopping",
@@ -51,9 +55,10 @@ const jobdata = [
     job_status: "open",
     // category_name: "Yard work",
     category_id: 1,
+    zip_code: 90210,
   },
 ];
-//seed all the Jobs data 
+//seed all the Jobs data
 const seedJobs = () => Job.bulkCreate(jobdata);
 //then exports the seeded job data
 module.exports = seedJobs;

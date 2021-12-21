@@ -102,14 +102,6 @@ Job.init(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    // don't think we need a different table for the join. Just store id with job
-    location_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "location",
-        key: "id",
-      },
-    },
     job_status: {
       type: DataTypes.ENUM("open", "filled", "complete"),
     },

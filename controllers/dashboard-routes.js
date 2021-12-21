@@ -104,7 +104,7 @@ router.get("/job/:id", async (req, res) => {
         { model: Category },
         {
           model: Comment,
-          attributes: ["id", "comment_text", "job_id", "user_id"],
+          attributes: ["id", "comment_text", "job_id", "user_id", "created_at"],
           include: {
             model: User,
             attributes: ["username"],
@@ -121,7 +121,14 @@ router.get("/job/:id", async (req, res) => {
     }
 
     const job = dbJob.get({ plain: true });
+    for (let i = 0; i < job.comments.length; i++) {
+      if (job.comments[i].user_id == req.user.id) {
+        console.log("setting comment to editable");
+        job.comments[i].isEditable = true;
+      }
+    }
     console.log(job);
+
     res.render("job", {
       job: job,
     });
@@ -162,5 +169,3 @@ router.get("/user/:id", async (req, res) => {
 });
 //export the job routes
 module.exports = router;
-
-

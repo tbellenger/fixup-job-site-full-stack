@@ -2,14 +2,7 @@
 const router = require("express").Router();
 //require the sequelize connection to manipulate all models
 const sequelize = require("../../config/connection");
-const {
-  Job,
-  User,
-  Comment,
-  Like,
-  Category,
-  Location,
-} = require("../../models");
+const { Job, User, Comment, Like, Category } = require("../../models");
 
 // get all jobs
 router.get("/", async (req, res) => {
@@ -42,10 +35,6 @@ router.get("/", async (req, res) => {
         {
           model: Category,
           attributes: ["category_name"],
-        },
-        {
-          model: Location,
-          attributes: ["zip_code"],
         },
       ],
     });
@@ -89,10 +78,6 @@ router.get("/:id", async (req, res) => {
           model: Category,
           attributes: ["category_name"],
         },
-        {
-          model: Location,
-          attributes: ["zip_code"],
-        },
       ],
     });
     res.json(job);
@@ -100,7 +85,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//get the new job post 
+//get the new job post
 router.post("/", async (req, res) => {
   try {
     const category = await Category.findOrCreate({
@@ -124,15 +109,8 @@ router.post("/", async (req, res) => {
       category_id: category[0].id,
       owner_id: req.user.id,
     });
-    const location = await Location.findOrCreate({
-      where: {
-        zip_code: req.body.zip_code,
-      },
-      defaults: {
-        zip_code: req.body.zip_code,
-      },
-    });
-    if (!job || !location || !category) {
+
+    if (!job || !category) {
       res.status(404).json({ message: "No job with that ID" });
       return;
     } else {
@@ -167,10 +145,12 @@ router.put("/:id", async (req, res) => {
         description: req.body.description,
         salary: req.body.salary,
         category_id: req.body.category_id,
+        zip_code: req.body.zip_code,
       },
       {
         where: {
           id: req.params.id,
+          owner_id: req.user.id,
         },
       }
     );
@@ -192,6 +172,7 @@ router.delete("/:id", async (req, res) => {
     const job = await Job.destroy({
       where: {
         id: req.params.id,
+        owner_id: req.user.id,
       },
     });
     if (!job) {
