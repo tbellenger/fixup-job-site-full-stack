@@ -12,7 +12,7 @@
       </div>
       <div class="text">
         {{#if isEditable}}
-        <textarea name="comment-body-{{id}}">{{comment_text}}</textarea>
+        <div class="has-text-dark" name="comment-body-{{id}}">{{comment_text}}</div>
         <div>
           <button class="edit-comment-btn" data-id="{{id}}">Update</button>
           <button class="delete-comment-btn" data-id="{{id}}">Delete</button>
