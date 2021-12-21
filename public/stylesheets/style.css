@@ -14,7 +14,6 @@
 } */
 /* style the column */
 .column {
-  border: 1px solid lightgrey;
   margin: 5px;
 }
 /* style the label */
@@ -51,10 +50,6 @@ label{
  outline: none;
 }
 
-.is-rounded{
-  box-shadow: 4px 4px 4px 4px gray;
-  
-}
 #nav-logout-button{
   border: none;
   background: none;
