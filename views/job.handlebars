@@ -1,11 +1,9 @@
 {{!--initiate page template for job to be commented by any user--}}
 <div class="columns">
     <div class="column">
-{{!--call the job data from the local storage--}}
-{{> job-info job}}
-{{!--call the comments section to be parse into job--}}
-{{> comments job.comments}}
+        {{!--call the job data from the local storage--}}
+        {{>job-info job}}
+        {{!--call the comments section to be parse into job--}}
+        {{>comments job.comments}}
+    </div>
 </div>
-</div>
-{{!--call the file routes functions to generate this page template--}}
-<script src="/javascript/comment.js"></script>

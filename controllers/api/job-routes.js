@@ -100,7 +100,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//get the new job post 
+//get the new job post
 router.post("/", async (req, res) => {
   try {
     const category = await Category.findOrCreate({
@@ -167,10 +167,12 @@ router.put("/:id", async (req, res) => {
         description: req.body.description,
         salary: req.body.salary,
         category_id: req.body.category_id,
+        zip_code: req.body.zip_code,
       },
       {
         where: {
           id: req.params.id,
+          owner_id: req.user.id,
         },
       }
     );
