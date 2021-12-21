@@ -36,3 +36,7 @@ label{
   font-size: 22px;
   font-weight: bolder;
 }
+.is-rounded{
+  box-shadow: 4px 4px 4px 4px gray;
+  
+}

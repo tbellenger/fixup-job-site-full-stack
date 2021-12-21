@@ -1,14 +1,32 @@
 {{!--Initiate the user information section--}}
-<div class="columns">
-    <div class="column">
-        {{!--user avatar--}}
-    <div>User: {{>partial-user user}}</div>
-    {{!--user ratings/likes--}}
-    <div>Rating: {{user.rating}}</div>
-    {{!--If loggedIn user include the email and login history--}}
+<div class="container">
+    <div class="column is-4 is-offset-4">
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+          {{!--user avatar--}}
+        <figure class="image is-128x128">
+           <img class="is-rounded" src="/avatar/{{id}}" alt="Placeholder image">
+        </figure>
+      </div>
+      {{!--user information--}}
+      <div class="media-content">
+        <p class="title is-4">User: {{>partial-user user}}</p>
+        <p class="subtitle is-6"><a href="mailto:{{user.email}}">{{user.email}}</a></p>
+      </div>
+    </div>
+
+    <div class="content">
+        {{!--user ratings/likes--}}
+       <div>Rating: {{user.rating}}</div>
+        {{!--If loggedIn user include the email and login history--}}
     {{#if sameUser}}
     <div>Email: {{user.email}}</div>
     <div>Last Login: {{user.last_login}}</div>
     {{/if}}
+    </div>
+  </div>
+</div>
 </div>
 </div>
