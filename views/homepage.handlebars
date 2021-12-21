@@ -1,37 +1,39 @@
-{{!-- Image for homepage template --}}
-  <section class="hero ">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns">
-          <div class="column is-8 is-offset-2">
-            <figure class="image is-12by8">
-              <img src="../images/hero.jpg" alt="group photo">
-            </figure>
-          </div>
-        </div>
-        {{!--A welcome title for the page--}}
-        <section class="section">
-          <div class="columns">
-            <div class="column is-8 is-offset-2">
-              <div class="content is-medium has-text-centered">
-                <h1>WELCOME TO OUR JOB HUNT</h1>
-              </div>
-            </div>
-          </div>
-        </section>
-        <div class="is-divider"></div>
-      </div>
+<div class="buttons is-centered">
+
+  <p class="control">
+    <button class="button is-normal is-rounded is-primary is-inverted">
+ <a href="/jobs">All Jobs</a>   
+ </p>  
+ </button>
+
+      {{#each categories}}
+ <button class="button is-normal is-rounded is-primary is-inverted ">
+        <a href="/category/{{id}}/jobs">{{category_name}}</a>{{/each}}
+ </p>
+   </button>
     </div>
-  </section>
-{{!-- section of buttons links jobs data categories --}}
-  <div class="categories">
-    <div class="container">
-  <div class="columns is-flex has-text-centered">
-  <div class="column"><a href="/jobs">All Jobs</a></div>
-  {{!--group each category that belongs to each other--}}
-{{#each categories}}
-<div class="column"><a href="/category/{{id}}/jobs">{{category_name}}</a></div>
-{{/each}}
+
+  {{!-- </p>
+  <p class="control">
+    <button class="button is-normal">
+      Cancel button
+    </button>
+  </p>
+  <p class="control">
+    <button class="button is-normal">
+      Delete post
+    </button>
+  </p> --}}
 </div>
-</div>
-</div>
+
+<section class="hero is-primary is-large">
+  <div class="hero-body"> 
+
+    <p class="title">
+        <h1>"company slogan-- helping hands from local hands, etc"</h1>
+    </p>
+    <p class="subtitle">
+  
+    </p>
+  </div>
+</section>
