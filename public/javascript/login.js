@@ -49,8 +49,10 @@ async function login() {
 //function for a sign up action
 async function signup() {
   event.preventDefault();
+  const nameEl = document.querySelector("#name-signup");
   const usernameEl = document.querySelector("#username-signup");
   const passwordEl = document.querySelector("#password-signup");
+  const username = nameEl.value.trim();
   const email = usernameEl.value.trim();
   const password = passwordEl.value.trim();
 //call the method post 
@@ -61,6 +63,7 @@ async function signup() {
     },
     //collect the user informations
     body: JSON.stringify({
+      username: username,
       email: email,
       password: password,
     }),
@@ -74,6 +77,7 @@ async function signup() {
       },
       //then collect the data
       body: JSON.stringify({
+        username: username,
         email: email,
         password: password,
       }),

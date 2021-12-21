@@ -14,13 +14,13 @@
 } */
 /* style the column */
 .column {
-  border: 1px solid lightgrey;
   margin: 5px;
 }
 /* style the label */
 label{
   font-size: 22px;
   font-weight: 600;
+  color: white;
 }
 /* style the navigation section */
 .navigation{
@@ -50,7 +50,13 @@ label{
  outline: none;
 }
 
-.is-rounded{
-  box-shadow: 4px 4px 4px 4px gray;
+#nav-logout-button{
+  border: none;
+  background: none;
+  font-size: 22px;
+  font-weight:bold;
   
+}
+i{
+  color: #000;
 }

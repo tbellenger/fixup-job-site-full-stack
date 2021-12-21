@@ -90,7 +90,7 @@ router.post("/login", async (req, res, next) => {
 //get the new user data and assign token and session timeout
 function sign(user) {
   console.log("signing token");
-  const body = { id: user.id, email: user.email, username: user.username };
+  const body = { id: user.id, email: user.email, username: user.username};
   const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
     expiresIn: "2h",
   });

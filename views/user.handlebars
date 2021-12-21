@@ -1,4 +1,5 @@
 {{!--Initiate the user information section--}}
+<div class="hero-body">
 <div class="container">
     <div class="column is-4 is-offset-4">
 <div class="card">
@@ -7,9 +8,11 @@
       <div class="media-left">
           {{!--user avatar--}}
         <figure class="image is-128x128">
-           <img class="is-rounded" src="/avatar/{{id}}" alt="Placeholder image">
-        </figure>
+          
+          <img class="is-rounded" src="/avatar/{{id}}" alt="Placeholder image">
+          </figure>
       </div>
+      
       {{!--user information--}}
       <div class="media-content">
         <p class="title is-4">User: {{>partial-user user}}</p>
@@ -30,3 +33,6 @@
 </div>
 </div>
 </div>
+</div>
+
+ 
