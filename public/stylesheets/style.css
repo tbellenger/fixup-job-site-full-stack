@@ -29,10 +29,20 @@ label{
 /*style the title */
 #title{
   font-weight: bolder;
-  font-size: 25px;
+  font-size: 50px;
 }
 /* style the navigation bar link */
 #navbarMenu{
   font-size: 22px;
   font-weight: bolder;
 }
+
+.hero-body {
+  background-image: url(../images/drill1.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+
