@@ -50,7 +50,7 @@ label{
  outline: none;
 }
 
-
-
-
-
+.is-rounded{
+  box-shadow: 4px 4px 4px 4px gray;
+  
+}

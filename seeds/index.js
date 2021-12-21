@@ -2,8 +2,6 @@
 const seedUsers = require("./user-seeds");
 const seedJobs = require("./job-seeds");
 const seedCategory = require("./category-seeds");
-const seedLocation = require("./location-seeds");
-const seedJobLocation = require("./job-location-seeds");
 const seedTag = require("./tag-seeds");
 const seedJobTags = require("./job-tag-seeds");
 const seedComments = require("./comments-seeds");
@@ -20,16 +18,10 @@ const seedAll = async () => {
   await seedCategory();
   console.log("--------------");
 
-  await seedLocation();
-  console.log("--------------");
-
   await seedTag();
   console.log("--------------");
 
   await seedJobs();
-  console.log("--------------");
-
-  await seedJobLocation();
   console.log("--------------");
 
   await seedJobTags();

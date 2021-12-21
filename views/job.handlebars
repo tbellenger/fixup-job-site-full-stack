@@ -1,11 +1,35 @@
 {{!--initiate page template for job to be commented by any user--}}
 <div class="columns">
     <div class="column">
-{{!--call the job data from the local storage--}}
-{{> job-info job}}
-{{!--call the comments section to be parse into job--}}
-{{> comments job.comments}}
+        {{!--call the job data from the local storage--}}
+        {{>job-info job}}
+<form class="box">
+                        {{!--label an dinput for job title--}}
+                        <label class="label is-large" class="label">Add a comment<label>
+
+                        {{!--label and input for job description--}}
+                        <div class="field-body">
+                            <div class="field">
+                                <label class="label">Comment</label>
+                                <div class="control">
+                                    <textarea
+                                        class="textarea comment-input"
+                                        placeholder="Comment"
+                                        name="comment-input" required
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                            {{!--button to submit the inputs--}}
+                        <div class="field is-grouped is-grouped-right mt-3">
+                            <button class="button is-success submit-post" data-id={{job.id}}>Submit</a></button>
+                        </div>
+                    </form>
+
+        {{!--call the comments section to be parse into job--}}
+        {{#each job.comments as |comment|}}
+        {{>comments comment}}
+        {{/each}}
+    </div>
 </div>
-</div>
-{{!--call the file routes functions to generate this page template--}}
-<script src="/javascript/comment.js"></script>
+<script src="/javascript/edit-comment.js"></script>

@@ -122,7 +122,7 @@
                                 {{#each jobs}}
                                     <tr>
                                         <td>{{this.id}}</td>
-                                        <td><a href="/dashboard/job/{{this.id}}/edit"
+                                        <td><a href="/dashboard/job/{{this.id}}"
                                             >{{this.title}}</a></td>
                                         <td><a href="/category/{{this.category_id}}/jobs"
                                             >{{this.category.category_name}}</a></td>
@@ -130,10 +130,9 @@
                                         {{!--condition if the owner has an employee then view the employee name--}}
                                         {{#if employee}}
                                         <td>{{>partial-user this.employee}}</td>
-                                        {{/if}}
-                                        {{#unless employee}}
+                                        {{else}}
                                         <td>no applicants yet</td>
-                                        {{/unless}}
+                                        {{/if}}
                                         <td>{{this.job_status}}</td>
                                         <th>{{payment_method}}</th>
                                         <td><a href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
