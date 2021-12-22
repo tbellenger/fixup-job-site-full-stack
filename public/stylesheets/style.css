@@ -60,3 +60,9 @@ label{
 i{
   color: #000;
 }
+.comment{
+  font-size: 16px;
+}
+#job-info{
+  font-size: 25px;
+}
