@@ -9,16 +9,15 @@
       <p>{{payment_method}}</p>
       <p> zip code: {{zip_code}}</p>
       {{!reference the category file path to get the category information}}
+      {{#each jobimages as |image|}}
+        <div>
+            <img src="{{image.image_url}}">
+        </div>
+        {{/each}}
       <p>Category:
         <a
           href="/category/{{category_id}}/jobs"
         >{{category.category_name}}</a></p>
-    </div>
-    <div>
-      <form action="/action_page.php">
-        <input type="file" id="myFile" name="filename" />
-        <input type="submit" />
-      </form>
     </div>
   </div>
 </article>

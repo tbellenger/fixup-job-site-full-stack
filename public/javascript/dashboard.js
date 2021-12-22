@@ -1,5 +1,3 @@
-//declare the token
-const token = JSON.parse(localStorage.getItem("token"));
 //function to caete a job post
 async function newPostHandler(event) {
   event.preventDefault();
@@ -16,10 +14,11 @@ async function newPostHandler(event) {
     .querySelector("input[name=payment-input")
     .value.trim();
   const category_name = document.querySelector(".category-name").value.trim();
-  const job_image = document.querySelector("#myFile").value;
+  const job_image = document.querySelector('input[type="file"]');
+  console.log(job_image);
   // const username = document.querySelector(".username-input").value.trim();
   //if not a user bring them into login section
-  if (!token) {
+  if (!auth_token) {
     alert("Please login or signup to create post.");
   } else {
     //if user then ask them to input the data
@@ -29,8 +28,7 @@ async function newPostHandler(event) {
       description &&
       salary &&
       zip_code &&
-      payment_method &&
-      job_image
+      payment_method
       // username
     ) {
       //validate their inputs
@@ -38,7 +36,7 @@ async function newPostHandler(event) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `bearer ${token}`,
+          Authorization: `bearer ${auth_token}`,
         },
         //collect the inputs
         body: JSON.stringify({
@@ -48,14 +46,28 @@ async function newPostHandler(event) {
           salary,
           zip_code,
           payment_method,
-          job_image,
           // username,
         }),
       });
-      console.log(token);
-      //assign them a new token
+
       if (response.ok) {
-        document.location.replace(`/dashboard?auth_token=${token}`);
+        json = await response.json();
+        console.log(json);
+        const formData = new FormData();
+        formData.append("file", job_image.files[0]);
+        const img_response = await fetch(`api/jobs/${json.id}/image`, {
+          method: "POST",
+          headers: {
+            Authorization: "bearer " + auth_token,
+          },
+          body: formData,
+        });
+        if (img_response.ok) {
+          console.log("image upload success");
+          //document.location.replace(`/dashboard?auth_token=${token}`);
+        } else {
+          console.log("image upload failed");
+        }
       } else {
         alert(response.statusText);
       }
