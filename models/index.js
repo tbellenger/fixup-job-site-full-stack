@@ -7,6 +7,8 @@ const Category = require("./Category");
 const Tag = require("./Tag");
 const JobTag = require("./JobTag");
 const Ratings = require("./UserRatings");
+const sequelize = require("../config/connection");
+const JobApplicant = sequelize.define("Job_Applicant");
 
 // create associations
 User.hasMany(Job, {
@@ -31,11 +33,11 @@ Job.belongsTo(User, {
 
 Job.belongsToMany(User, {
   as: "applicant",
-  through: "Job_Applicant",
+  through: JobApplicant,
 });
 User.belongsToMany(Job, {
   as: "applicant",
-  through: "Job_Applicant",
+  through: JobApplicant,
 });
 
 Job.belongsToMany(User, {
@@ -140,4 +142,5 @@ module.exports = {
   Tag,
   JobTag,
   Ratings,
+  JobApplicant,
 };

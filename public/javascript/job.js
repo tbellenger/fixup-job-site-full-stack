@@ -91,3 +91,26 @@ async function newCommentHandler(event) {
 document
   .querySelector(".submit-post")
   .addEventListener("click", newCommentHandler);
+
+async function applyToJob() {
+  try {
+    const response = await fetch(`/api/jobs/${id}/apply`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${auth_token}`,
+      },
+    });
+    if (response.ok) {
+    } else {
+      alert(response.statusText);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const applyBtn = document.querySelector("#apply-to-job-btn");
+if (applyBtn) {
+  applyBtn.addEventListener("click", applyToJob);
+}
