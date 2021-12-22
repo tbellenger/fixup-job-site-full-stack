@@ -70,13 +70,13 @@
                                     name="location-input" required/>
                             </div>
                             <div class="control">
-                            {{!-- <label class="label">Name</label>
+                            <label class="label">Job Status</label>
                                 <input
                                     type="text"
-                                    placeholder="Your name"
-                                    class="input username-input" required/>
-                            </div> --}}
-                            <p>{{owner.username}}</p>
+                                    placeholder="job status"
+                                    class="input status-input" name="status-input" required/>
+                            </div> 
+                            <p>{{username}}</p>
                             {{!--button to submit the inputs--}}
                         <div class="field is-grouped is-grouped-right mt-3">
                             <button class="button is-success submit-post">Submit</a></button>
@@ -111,7 +111,7 @@
                                     {{#unless employee}}
                                     <th class="employee-name">Employee</th>
                                     {{/unless}}
-                                    <th class="job-location">Job Satus</th>
+                                    <th class="job-status">Job Satus</th>
                                     <th class="payment-method">Payment-method</th>
                                     <th class="table-edit">Edit</th>
                                     <th class="table-delete">Delete</th>
@@ -133,7 +133,7 @@
                                         {{else}}
                                         <td>no applicants yet</td>
                                         {{/if}}
-                                        <td>{{this.job_status}}</td>
+                                        <td>{{job_status}}</td>
                                         <th>{{payment_method}}</th>
                                         <td><a href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
                                         <td><button class="delete-job" data-id="{{this.id}}">Delete</button></td>

@@ -15,6 +15,9 @@ async function newPostHandler(event) {
   const payment_method = document
     .querySelector("input[name=payment-input")
     .value.trim();
+    const job_status = document
+    .querySelector("input[name=status-input")
+    .value.trim();
   const category_name = document.querySelector(".category-name").value.trim();
   // const username = document.querySelector(".username-input").value.trim();
 //if not a user bring them into login section
@@ -28,8 +31,9 @@ async function newPostHandler(event) {
       description &&
       salary &&
       zip_code &&
-      payment_method
-      // username
+      payment_method &&
+      job_status 
+      
     ) {
       //validate their inputs
       const response = await fetch(`/api/jobs/`, {
@@ -46,6 +50,7 @@ async function newPostHandler(event) {
           salary,
           zip_code,
           payment_method,
+          job_status,
           // username,
         }),
       });

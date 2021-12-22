@@ -69,5 +69,8 @@ i{
 .box{
   
     overflow-x: auto;
-
+}
+#search-bar{
+  width: 30%;
+ 
 }
