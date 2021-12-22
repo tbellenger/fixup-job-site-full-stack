@@ -71,3 +71,13 @@ i{
     overflow-x: auto;
 
 }
+
+.card {
+  width: 280px;
+  border-radius: 20px;
+}
+
+#apply-to-job-btn {
+  background-color: darkgrey;
+  color: black;
+}
