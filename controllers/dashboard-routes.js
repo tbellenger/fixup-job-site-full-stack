@@ -119,9 +119,6 @@ router.get("/job/:id", async (req, res) => {
             attributes: ["username"],
           },
         },
-        {
-          model: JobTag,
-        },
       ],
     });
 
