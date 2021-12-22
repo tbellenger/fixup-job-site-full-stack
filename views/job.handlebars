@@ -1,13 +1,16 @@
 {{!--initiate page template for job to be commented by any user--}}
-<div class="columns">
-    <div class="column">
+
+<div class="container">
+        <div class="columns is-centered">
         {{!--call the job data from the local storage--}}
-        {{>job-info job}}
-<form class="box">
+       <form class="box">
                         {{!--label an dinput for job title--}}
-                        <label class="label is-large" class="label">Add a comment<label>
+                     <div class="article has-background-light" id="job-info">{{>job-info job}}
+                     </form>
+                    <label class="label is-large" class="label">Add a comment<label>
 
                         {{!--label and input for job description--}}
+                        
                         <div class="field-body">
                             <div class="field">
                                 <label class="label">Comment</label>
@@ -28,8 +31,11 @@
 
         {{!--call the comments section to be parse into job--}}
         {{#each job.comments as |comment|}}
-        {{>comments comment}}
+        
+      <div class="column has-text-dark">{{>comments comment}}</div>
+      
         {{/each}}
     </div>
 </div>
+
 <script src="/javascript/edit-comment.js"></script>
