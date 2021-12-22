@@ -1,64 +1,92 @@
-{{!--create the main page template--}}
-<!DOCTYPE html>
-<html lang="en">
+{{!create the main page template}}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page title here</title>
-  <script async src="https://cse.google.com/cse.js?cx=037d348e43af69a67"></script>
-  <link rel="stylesheet"
-            href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"
-        />
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
-            rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
-       <link rel="stylesheet" href="/stylesheets/style.css">      
-</head>
+<html lang="en-Us">
 
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page title here</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script async src="https://cse.google.com/cse.js?cx=037d348e43af69a67"></script>
+
+  </head>
+
+  <body>
     <header>
-       <nav class="navigation" role="navigation" aria-label="main navigation">
-           {{!-- navigation here --}}
-           <div class="navbar">
-           <div class="container">
-                <div class="navbar-brand">
-                    <a class="navbar-item" href="/">
-                      <span id="title">fixUP</span>
-                    </a>
-                   <span class="navbar-burger burger" data-target="navbarMenu">
-                 <span></span>
+        <div class="gcse-search"></div>
+      <nav class="navigation" role="navigation" aria-label="main navigation">
+        {{! navigation here }}
+        <div class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <span id="title">fixUP</span>
+              </a>
+              <span class="navbar-burger burger" data-target="navbarMenu">
                 <span></span>
                 <span></span>
-               </span>
-               </div>
-                   <div id="navbarMenu" class="navbar-menu">
-                    <div class="navbar-end">
-                      <a class="navbar-item is-active" href="/">Home</a>
-                        <a class="navbar-item" href="/dashboard">Dashboard</a>
-                        <a class="navbar-item is-size-5 has-text-weight-semibold" id="nav-login-button" href="/login">Login</a>
-                       <button type="submit" class="is-size-5 has-text-weight-semibold logout-button hide" id="nav-logout-button">Logout</button> 
-                       
-                     </div>
-                    </div>
-                </div>
+                <span></span>
+              </span>
             </div>
-        </nav>
-    </header>
-{{!--Content of the page goes here--}}
-    <main>
-      {{{ body }}}
-    </main>
-{{!--footer section--}}
-  <footer class="footer">
-            <div class="content has-text-centered">
-                <p>In collaboration with Tom Bellenger, Tarek Youssef, Kate Hamilton and Alma Braun <br> @UC Berkeley Bootcamp 2021</p>
-                <p id="fonts"><i class="fa fa-envelope"></i> <i class="fa fa-linkedin"></i> <i class="fa fa-twitter"></i> <i class="fa fa-github"></i></p>
-            </div>
-        </footer>
-        {{!--call the file routes to generate this main page template--}}
-        <script src="/javascript/main.js"></script>
-    
-    </body>
-</html>
+            <div id="navbarMenu" class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item is-active" href="/">Home</a>
+                <a class="navbar-item" href="/dashboard">Dashboard</a>
+                <a class="navbar-item is-size-5 has-text-weight-semibold"
+                  id="nav-login-button"
+                  href="/login"
+                >Login</a>
+                <button
+                  type="submit"
+                  class="is-size-5 has-text-weight-semibold logout-button hide"
+                  id="nav-logout-button"
+                >Logout</button>
 
-    
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    {{!Content of the page goes here}}
+    <main>
+      {{{body}}}
+    </main>
+    {{!footer section}}
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>In collaboration with Tom Bellenger, Tarek Youssef, Kate Hamilton and
+          Alma Braun
+          <br />
+          @UC Berkeley Bootcamp 2021</p>
+        <p id="fonts"><i class="fa fa-envelope"></i>
+          <i class="fa fa-linkedin"></i>
+          <i class="fa fa-twitter"></i>
+          <i class="fa fa-github"></i></p>
+      </div>
+    </footer>
+    {{!call the file routes to generate this main page template}}
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    ></script>
+    <script src="/javascript/main.js"></script>
+  </body>
+</html>
