@@ -66,3 +66,8 @@ i{
 #job-info{
   font-size: 25px;
 }
+.box{
+  
+    overflow-x: auto;
+
+}
