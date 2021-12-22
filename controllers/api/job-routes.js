@@ -2,7 +2,15 @@
 const router = require("express").Router();
 //require the sequelize connection to manipulate all models
 const sequelize = require("../../config/connection");
-const { Job, User, Comment, Like, Category } = require("../../models");
+const path = require("path");
+const {
+  Job,
+  User,
+  Comment,
+  Like,
+  Category,
+  Jobimage,
+} = require("../../models");
 
 // get all jobs
 router.get("/", async (req, res) => {
@@ -35,6 +43,10 @@ router.get("/", async (req, res) => {
         {
           model: Category,
           attributes: ["category_name"],
+        },
+        {
+          model: Jobimage,
+          attributes: ["image_url"],
         },
       ],
     });
@@ -78,6 +90,10 @@ router.get("/:id", async (req, res) => {
           model: Category,
           attributes: ["category_name"],
         },
+        {
+          model: Jobimage,
+          attributes: ["image_url"],
+        },
       ],
     });
     res.json(job);
@@ -109,7 +125,6 @@ router.post("/", async (req, res) => {
       category_id: category[0].id,
       owner_id: req.user.id,
     });
-
     if (!job || !category) {
       res.status(404).json({ message: "No job with that ID" });
       return;
@@ -117,6 +132,17 @@ router.post("/", async (req, res) => {
       res.json(job);
       console.log(job);
       console.log(category);
+    }
+    const jobimage = await Jobimage.findOne({
+      where: {
+        image_url: path.join(
+          __dirname,
+          `resources/static/assets/uploads/${jobimage}`
+        ),
+      },
+    });
+    if (jobimage) {
+      res.json(jobimage);
     }
   } catch (err) {
     console.log(err);

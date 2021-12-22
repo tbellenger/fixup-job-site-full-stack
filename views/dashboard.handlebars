@@ -76,7 +76,14 @@
                                     placeholder="Your name"
                                     class="input username-input" required/>
                             </div> --}}
+                                <div>
+                                    <form action="/" method="post">
+                                    <input type="file" id="myFile" name="filename" />
+                                    <input type="submit" />
+                                     </form>
+                                </div>
                             <p>{{owner.username}}</p>
+
                             {{!--button to submit the inputs--}}
                         <div class="field is-grouped is-grouped-right mt-3">
                             <button class="button is-success submit-post">Submit</a></button>

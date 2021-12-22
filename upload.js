@@ -40,4 +40,4 @@ const uploadFile = (fileName) => {
   });
 };
 
-uploadFile(path.join(__dirname, "public/images"));
+uploadFile(path.join(__dirname, "resources/static/assets/uploads"));

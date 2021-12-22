@@ -1,9 +1,9 @@
-//declare the token 
+//declare the token
 const token = JSON.parse(localStorage.getItem("token"));
 //function to caete a job post
 async function newPostHandler(event) {
   event.preventDefault();
-//declare all variables of inputs
+  //declare all variables of inputs
   const title = document.querySelector("input[name=job-title]").value.trim();
   const description = document
     .querySelector("textarea[name=description-input")
@@ -16,8 +16,9 @@ async function newPostHandler(event) {
     .querySelector("input[name=payment-input")
     .value.trim();
   const category_name = document.querySelector(".category-name").value.trim();
+  const job_image = document.querySelector("#myFile").value;
   // const username = document.querySelector(".username-input").value.trim();
-//if not a user bring them into login section
+  //if not a user bring them into login section
   if (!token) {
     alert("Please login or signup to create post.");
   } else {
@@ -28,7 +29,8 @@ async function newPostHandler(event) {
       description &&
       salary &&
       zip_code &&
-      payment_method
+      payment_method &&
+      job_image
       // username
     ) {
       //validate their inputs
@@ -46,6 +48,7 @@ async function newPostHandler(event) {
           salary,
           zip_code,
           payment_method,
+          job_image,
           // username,
         }),
       });
@@ -63,7 +66,7 @@ async function newPostHandler(event) {
 //delete post from client to API
 const deletePostHandler = async (event) => {
   event.preventDefault();
-//declare the variables of id to be deleted
+  //declare the variables of id to be deleted
   const deletePostId = event.target.getAttribute("data-id");
   console.log("called delete of " + deletePostId);
   if (deletePostId) {
