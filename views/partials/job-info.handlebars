@@ -3,6 +3,10 @@
   <div class="columns is-flex">
     <div class="column has-text-centered">
       {{!reference the dashboard file path to fetch some information from a user}}
+      <button type="button" id="thumbsup">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        Like
+      </button>
       <p><a href="/dashboard/job/{{id}}">{{title}}</a>
         by
         <a href="/dashboard/user/{{id}}">{{owner.username}}</a></p>
