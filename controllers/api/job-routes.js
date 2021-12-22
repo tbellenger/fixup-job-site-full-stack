@@ -2,7 +2,14 @@
 const router = require("express").Router();
 //require the sequelize connection to manipulate all models
 const sequelize = require("../../config/connection");
-const { Job, User, Comment, Like, Category } = require("../../models");
+const {
+  Job,
+  User,
+  Comment,
+  Like,
+  Category,
+  JobApplicant,
+} = require("../../models");
 
 // get all jobs
 router.get("/", async (req, res) => {
@@ -78,6 +85,14 @@ router.get("/:id", async (req, res) => {
           model: Category,
           attributes: ["category_name"],
         },
+        {
+          model: JobApplicant,
+          attributes: ["jobId", "userId"],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
       ],
     });
     res.json(job);
@@ -118,6 +133,24 @@ router.post("/", async (req, res) => {
       console.log(job);
       console.log(category);
     }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+// handle application to a job
+router.post("/:id/apply", async (req, res) => {
+  try {
+    // should check if the job is open for applications first
+
+    // create a job applicant
+    const application = await JobApplicant.create({
+      jobId: parseInt(req.params.id),
+      userId: req.user.id,
+    });
+
+    res.json(application);
+    console.log(application);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
