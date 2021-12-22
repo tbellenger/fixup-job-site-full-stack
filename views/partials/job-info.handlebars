@@ -1,17 +1,19 @@
+{{!--page template to display all jobs categories and information--}}
 <article class="job">
-  <div>
-    <p>{{title}} by {{user.username}} on {{created_at}}</p>
-    <br />
-    <p>{{description}}</p>
-    <br />
-    <p>{{salary}}</p>
-    <br />
-    <p>{{payment_method}}</p>
-    <br />
-    <p> opened by {{owner_id}}</p>
-    <br />
-    <p> in {{location_id}}</p>
-
-    <a href="/job/{{id}}">{{title}}</a>
+  <div class="columns is-flex">
+    <div class="column has-text-centered">
+      {{!--reference the dashboard file path to fetch some information from a user--}}
+      <p><a href="/dashboard/job/{{id}}">{{title}}</a> by {{owner.username}}</p>
+      <p>{{description}}</p>
+      <p>{{salary}}</p>
+      <p>{{payment_method}}</p>
+      <p> zip code: {{zip_code}}</p>
+      {{!--reference the category file path to get the category information--}}
+      <p>Category:
+        <a
+          href="/category/{{category_id}}/jobs"
+        >{{category.category_name}}</a></p>
+      <button id="apply-to-job-btn" class="button is-success" data-id={{id}}>Apply!</button>
+    </div>
   </div>
 </article>

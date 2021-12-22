@@ -1,8 +1,10 @@
+//require the sequelize package to manipulate this object
 const { Model, DataTypes } = require("sequelize");
+//require the sequelize connection
 const sequelize = require("../config/connection");
-
+//declare the like model
 class Like extends Model {}
-
+//declare the Like table, columns and dataypes
 Like.init(
   {
     id: {
@@ -33,5 +35,5 @@ Like.init(
     modelName: "vote",
   }
 );
-
+//export the Like model
 module.exports = Like;

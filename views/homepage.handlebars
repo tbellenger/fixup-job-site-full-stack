@@ -1,53 +1,39 @@
+<div class="buttons is-centered">
 
-<div class="categories">
-{{#each categories}}
-<div><a href="/category/{{id}}/jobs">{{category_name}}</a></div>
-{{/each}}
+  <p class="control">
+    <button class="button is-normal is-rounded is-primary is-inverted">
+ <a class="button has-text-dark is-rounded" href="/jobs">All Jobs</a>   
+ </p>  
+ </button>
+
+      {{#each categories}}
+ <button class="button is-normal is-rounded is-primary is-inverted ">
+        <a class="button is-rounded has-text-dark" href="/category/{{id}}/jobs">{{category_name}}</a>{{/each}}
+ </p>
+   </button>
+    </div>
+
+  {{!-- </p>
+  <p class="control">
+    <button class="button is-normal">
+      Cancel button
+    </button>
+  </p>
+  <p class="control">
+    <button class="button is-normal">
+      Delete post
+    </button>
+  </p> --}}
 </div>
-<!-- Image -->
-  <section class="hero ">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns">
-          <div class="column is-8 is-offset-2">
-            <figure class="image is-12by8">
-              <a href="/category/{{jobs.0.0.id}}/jobs"><img src="../images/first-post.jpg" alt="circle">{{category_name}}</a>
-            </figure>
-          </div>
-        </div>
-        <section class="section">
-          <div class="columns">
-            <div class="column is-8 is-offset-2">
-              <div class="content is-medium">
-                <h2 class="subtitle is-4">{{posts.0.0.createdAt}}</h2>
-                <h1 class="title"><a href="/job/{{jobs.0.0.id}}">{{jobs.0.0.title}}</a></h1>
-                <h6>by {{jobss.0.0.user.username}}</h6>
-                <p>{{jobs.0.0.content}}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <div class="is-divider"></div>
-      </div>
-    </div>
-  </section>
-<!-- Articles -->
-  <section class="hero ">
-    <div class="hero body-neg">
-      <div class="container">
-          <div class="column is-mobile">
-          {{#each jobs as |job|}}
-          {{#if @first}}
-            <!-- Don't post 1st one because it goes up top -->
-            </div>
-          {{else}}
-             <div class="column">
-            {{> job-summary}}
-            </div>
-          {{/if}}
-        {{/each}}
-      </div>
-    </div>
-  </section>
-  <script src='/javascript/index.js'></script>
-       
+
+<section class="hero is-primary is-large">
+  <div class="hero-body"> 
+
+    <p class="title">
+        <h1>"company slogan-- helping hands from local hands, etc"</h1>
+    </p>
+    <p class="subtitle">
+  
+    </p>
+  </div>
+</section>

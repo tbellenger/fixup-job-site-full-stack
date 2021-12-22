@@ -1,0 +1,78 @@
+<form class="box">
+  {{!--label an dinput for job title--}}
+  <label class="label is-large" class="label">Edit Job<label>
+  <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+          <input
+              value="{{job.title}}"
+              type="text"
+              placeholder="Job title"
+              class="input title-input"
+              name="job-title" required/>
+      </div>
+  </div>
+  {{!--label and input for category name--}}
+  <div class="field">
+      <label class="label"> Category Name</label>
+      <div class="control">
+          <input
+              value="{{job.category.category_name}}"
+              type="text"
+              placeholder="category-name"
+              class="input category-name"
+              required/>
+      </div>
+  </div>
+  {{!--label and input for job description--}}
+  <div class="field-body">
+      <div class="field">
+          <label class="label">Description</label>
+          <div class="control">
+              <textarea
+                  class="textarea description-input"
+                  placeholder="Job description"
+                  name="description-input" required
+              >{{job.description}}</textarea>
+          </div>
+      </div>
+  </div>
+  {{!--label and input for salary--}}
+  <div class="control">
+      <label class="label">Salary</label>
+          <input
+              value="{{job.salary}}"
+              type="number"
+              placeholder="salary"
+              class="input salary-input"
+              name='salary-input' required/>
+    </div>
+    {{!--label and input for payment method--}}
+    <div class="control">
+      <label class="label">Payment method will be </label>
+      <input
+            value="{{job.payment_method}}"
+            type="text"
+            placeholder="Payment method"
+            class="input payment-input"
+            name="payment-input" required/>
+    </div>
+    {{!--label and input for job location--}}
+      <div class="control">
+        <label class="label">Job Location</label>
+        <input
+                value="{{job.zip_code}}"
+                type="number"
+                placeholder="Job location"
+                class="input location-input"
+                name="location-input" required/>
+      </div>
+    <div class="control">
+    {{!--button to submit the inputs--}}
+  <div class="field is-grouped is-grouped-right mt-3">
+      <button class="button is-success submit-post" data-id="{{job.id}}">Update</button>
+  </div>
+</form>
+<script src="/javascript/edit-job.js"></script>
+
+

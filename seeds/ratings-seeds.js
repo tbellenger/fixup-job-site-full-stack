@@ -1,5 +1,6 @@
+//require the ratings models
 const { Ratings } = require("../models");
-
+//declare the ratings keys and values
 const ratingsdata = [
   {
     owner_id: 2,
@@ -18,7 +19,7 @@ const ratingsdata = [
     employee_id: 4,
   },
 ];
-
+//seed all ratings data
 const seedRatings = () => Ratings.bulkCreate(ratingsdata);
-
+//exports the ratings data
 module.exports = seedRatings;

@@ -1,5 +1,6 @@
+//require the like models
 const { Like } = require("../models");
-
+//declare the like keys and values
 const likedata = [
   {
     user_id: 2,

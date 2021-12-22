@@ -1,6 +1,10 @@
+//require the express routes package
 const router = require("express").Router();
+//require the passport package
 const passport = require("passport");
+//require the authentication token
 const jwt = require("jsonwebtoken");
+//require the User model
 const { User } = require("../../models");
 
 // no route to get all users on purpose
@@ -22,7 +26,7 @@ router.get(
     }
   }
 );
-
+//get user by id to authentication process
 router.get(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -55,24 +59,17 @@ router.post(
   "/",
   passport.authenticate("signup", { session: false }),
   async (req, res, next) => {
-    try {
-      req.login(req.user, { session: false }, async (error) => {
-        if (error) return next(error);
-        const token = sign(user);
-
-        return res.json({ token });
-      });
-    } catch (err) {
-      return next(err);
-    }
+    res.json({
+      message: "Signup successful",
+      user: req.user,
+    });
   }
 );
-
+//get the user data from a login session
 router.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
-        console.log("errorrorororor");
         console.log(err);
         console.log(user);
         console.log(info);
@@ -90,16 +87,16 @@ router.post("/login", async (req, res, next) => {
     }
   })(req, res, next);
 });
-
+//get the new user data and assign token and session timeout
 function sign(user) {
   console.log("signing token");
-  const body = { id: user.id, email: user.email, username: user.username };
+  const body = { id: user.id, email: user.email, username: user.username};
   const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
     expiresIn: "2h",
   });
   return token;
 }
-
+//assign token by id 
 router.put(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -126,7 +123,7 @@ router.put(
     }
   }
 );
-
+//delete user by id
 router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -152,5 +149,5 @@ router.delete(
     }
   }
 );
-
+//export the token routes 
 module.exports = router;

@@ -1,7 +1,9 @@
+//require the express routes package
 const router = require("express").Router();
+//require the comment model
 const { Comment } = require("../../models");
 
-// get all users
+// get all comments
 router.get("/", async (req, res) => {
   try {
     const comments = await Comment.findAll();
@@ -10,7 +12,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the comment by id
 router.get("/:id", async (req, res) => {
   try {
     const comment = Comment.findOne({
@@ -28,22 +30,25 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get the new comment post
 router.post("/", async (req, res) => {
   try {
+    console.log(req.body.comment_text);
+    console.log(req.user.id);
+    console.log(req.body.job_id);
     const comment = await Comment.create({
-        comment_text: req.body.comment_text,
-        user_id: req.session.user_id,
-        job_id: req.body.job_id
+      comment_text: req.body.comment_text,
+      user_id: req.user.id,
+      job_id: req.body.job_id,
     });
-    res.json( comment);
+    res.json(comment);
   } catch (err) {
     console.log(err.errors);
     res.status(500).json(err);
   }
 });
 
-
+//get the comment by id to edit
 router.put("/:id", async (req, res) => {
   try {
     const comment = await Comment.update(req.body, {
@@ -61,7 +66,7 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// get comment by id to delete
 router.delete("/:id", async (req, res) => {
   try {
     const comment = await Comment.destroy({
@@ -79,5 +84,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//export the Comment routes
 module.exports = router;

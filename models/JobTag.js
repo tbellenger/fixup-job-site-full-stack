@@ -1,9 +1,10 @@
+//require the sequelize package to manipulate this object
 const { Model, DataTypes } = require('sequelize');
-
+//require the sequelize connection
 const sequelize = require('../config/connection');
-
+//declare the Jbtag model
 class JobTag extends Model {}
-
+//declare the JobTag table, columns and datatypes
 JobTag.init(
   {
     id: {
@@ -35,5 +36,5 @@ JobTag.init(
     modelName: 'job_tag',
   }
 );
-
+//export the JobTag model
 module.exports = JobTag;

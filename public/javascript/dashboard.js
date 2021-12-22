@@ -1,74 +1,96 @@
-async function newFormHandler(event) {
-    event.preventDefault();
-  
-    const title = document.querySelector('input[name="title"]').value.trim();
-    const description = document.querySelector('input[name="description"]').value.trim();
-    const salary =  document.querySelector('input[name="salary"]').value.trim();
-    const job_location = document.querySelector('input[name="job-location"]').value.trim();
-    const payment_method = document.querySelector('input[name="payment-method"]').value.trim();
-    const category_name = document.querySelector('input[name="category-name"]').value.trim();
-    const user_id = document.querySelector(".logged-in-user_id").innerHTML;
-    
-
-    if(!username){
-      alert("Please login or signup to create post.")
-    } else{
-      if(title && category_name && description && salary && job_location && payment_method)
-    const response = await fetch(`/api/jobs`, {
-      method: 'POST',
-      body: JSON.stringify({
-        title,
-        category_name,
-        description, 
-        salary,
-        job_location,
-        payment_method
-      }),
-      headers: {
-        'Content-Type': 'application/json'
+//declare the token 
+const token = JSON.parse(localStorage.getItem("token"));
+//function to caete a job post
+async function newPostHandler(event) {
+  event.preventDefault();
+//declare all variables of inputs
+  const title = document.querySelector("input[name=job-title]").value.trim();
+  const description = document
+    .querySelector("textarea[name=description-input")
+    .value.trim();
+  const salary = document.querySelector("input[name=salary-input").value.trim();
+  const zip_code = document
+    .querySelector("input[name=location-input")
+    .value.trim();
+  const payment_method = document
+    .querySelector("input[name=payment-input")
+    .value.trim();
+  const category_name = document.querySelector(".category-name").value.trim();
+  // const username = document.querySelector(".username-input").value.trim();
+//if not a user bring them into login section
+  if (!token) {
+    alert("Please login or signup to create post.");
+  } else {
+    //if user then ask them to input the data
+    if (
+      title &&
+      category_name &&
+      description &&
+      salary &&
+      zip_code &&
+      payment_method
+      // username
+    ) {
+      //validate their inputs
+      const response = await fetch(`/api/jobs/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `bearer ${token}`,
+        },
+        //collect the inputs
+        body: JSON.stringify({
+          title,
+          category_name,
+          description,
+          salary,
+          zip_code,
+          payment_method,
+          // username,
+        }),
+      });
+      console.log(token);
+      //assign them a new token
+      if (response.ok) {
+        document.location.replace(`/dashboard?auth_token=${token}`);
+      } else {
+        alert(response.statusText);
       }
+    }
+  }
+}
+
+//delete post from client to API
+const deletePostHandler = async (event) => {
+  event.preventDefault();
+//declare the variables of id to be deleted
+  const deletePostId = event.target.getAttribute("data-id");
+  console.log("called delete of " + deletePostId);
+  if (deletePostId) {
+    const response = await fetch("/api/jobs/" + deletePostId, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + token,
+      },
     });
-  
+    //remove the token after deletion from the data
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace("/dashboard?auth_token=" + token);
     } else {
-      alert(response.statusText);
+      alert(
+        "Failed to delete post. " + response.status + ": " + response.statusText
+      );
     }
   }
 };
 
-//delete post from client to API
-const deletePostHandler = async (event) => {
-    event.preventDefault();
-
-    const deletePostId = event.target.getAttribute("data-id");
-    if (deletePostId) {
-        const response = await fetch("/api/job/" + deletePostId, {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-        });
-        if (response.ok) {
-            document.location.replace("/dashboard");
-        } else {
-            alert(
-                "Failed to delete post. " +
-                    response.status +
-                    ": " +
-                    response.statusText
-            );
-        }
-    }
-};
-
-//add event listeners
+//add event listeners to take the actions
 document
-    .querySelector(".submit-post")
-    .addEventListener("click", submitPostHandler);
+  .querySelector(".submit-post")
+  .addEventListener("click", newPostHandler);
 
-const deleteButtons = document.querySelectorAll(".delete-post");
+const deleteButtons = document.querySelectorAll(".delete-job");
 deleteButtons.forEach((el) =>
-    el.addEventListener("click", (event) => deletePostHandler(event))
+  el.addEventListener("click", (event) => deletePostHandler(event))
 );
-
- 
-  

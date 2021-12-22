@@ -6,9 +6,9 @@ const Comment = require("./Comment");
 const Category = require("./Category");
 const Tag = require("./Tag");
 const JobTag = require("./JobTag");
-const Location = require("./Location");
-const JobLocation = require("./JobLocation");
 const Ratings = require("./UserRatings");
+const sequelize = require("../config/connection");
+const JobApplicant = sequelize.define("Job_Applicant");
 
 // create associations
 User.hasMany(Job, {
@@ -33,11 +33,11 @@ Job.belongsTo(User, {
 
 Job.belongsToMany(User, {
   as: "applicant",
-  through: "Job_Applicant",
+  through: JobApplicant,
 });
 User.belongsToMany(Job, {
   as: "applicant",
-  through: "Job_Applicant",
+  through: JobApplicant,
 });
 
 Job.belongsToMany(User, {
@@ -132,17 +132,7 @@ Tag.belongsToMany(Job, {
   foreignKey: "tag_id",
 });
 
-Job.belongsToMany(Location, {
-  through: JobLocation,
-  as: "joblocation",
-  foreignKey: "job_id",
-});
-Location.belongsToMany(Job, {
-  through: JobLocation,
-  as: "joblocation",
-  foreignKey: "location_id",
-});
-
+//exports all the models
 module.exports = {
   User,
   Job,
@@ -151,7 +141,6 @@ module.exports = {
   Category,
   Tag,
   JobTag,
-  Location,
-  JobLocation,
   Ratings,
+  JobApplicant,
 };

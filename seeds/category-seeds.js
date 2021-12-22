@@ -1,5 +1,6 @@
+//require the category job models
 const { Category } = require("../models");
-
+//declare the category key and value
 const categorydata = [
   {
     category_name: "Yard work",
@@ -20,7 +21,7 @@ const categorydata = [
     category_name: "Plumbing",
   },
 ];
-
+//seed all the category data
 const seedCategory = () => Category.bulkCreate(categorydata);
-
+//then exports all seeded category data
 module.exports = seedCategory;

@@ -1,34 +1,67 @@
-<form id="login-form">
-  <div>
-    <label for="login">email</label>
-    <input type="text" id="username-login" />
+{{!--initiate the page section for login and signup--}}
+  <!--this the login page template-->
+<section class="hero has-background-grey-lighter is-medium">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-5-widescreen">
+                    
+  {{!--form inputs for login--}}
+  <form id="login-form">
+    <label for="username">Username</label>
+  <div class="control has-icons-left">
+    {{!--label and input for email--}}
+    {{!--<label for="login">Email</label>--}}
+    <input class="input is-normal"  type="text" placeholder="e.g. sample123@gmail.com" id="username-login" required/>
+    <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
   </div>
-  <div>
-    <label for="password-login">password</label>
-    <input type="password" id="password-login" />
+
+    {{!--label and input for password--}}
+    <label for="password-login">Password</label>
+    <div class="control has-icons-left">
+    <input class="input is-normal" type="password" placeholder="**********"  id="password-login" />
+    <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
   </div>
+<br>{{!--submit buttons link--}}
   <div>
-    <button id="login">login</button>
-  </div>
-  <button id="signup-instead">Sign-up instead</button>
+    <button class="button is-primary" id="login">Login</button>
+    <button class="button is-link" id="signup-instead">Sign-up instead</button>
+    </div>
 </form>
+{{!--form inputs for signup--}}
 
-
-
-<form class="hide" id="signup-form">
-  <div>
-    <label for="username-signup">email</label>
-    <input type="text" id="username-signup" />
+<!--template page for the sign section -->
+    <form class="hide" id="signup-form">
+  {{!--label and input for username--}}
+  <label for="username-signup">Username</label>
+  <div class="control has-icons-left">
+    <input class="input is-normal"  type="text" placeholder="e.g Helen Tan" id="name-signup" />
+    <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
   </div>
-  <div>
-    <label for="password-signup">password</label>
-    <input type="password" id="password-signup" />
+  {{!--label and input for email--}}
+  <label for="email-signup">Email</label>
+  <div class="control has-icons-left">
+    
+    <input class="input is-normal"  type="email" placeholder="e.g. sample123@gmail.com" id="username-signup" />
+     <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
   </div>
-  <div>
-    <button id="signup">signup</button>
+  {{!--label and input for password--}}
+   <label for="password-signup">password</label>
+  <div class="control has-icons-left">
+   
+    <input class="input is-normal" type="password" id="password-signup" />
+    <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
   </div>
-  <button id="login-instead">Login instead</button>
+  <br>{{!--buttons link--}}
+  <div>
+    <button class="button is-primary" id="signup">Signup</button>
+    <button class="button is-link" id="login-instead">Login instead</button>
+  </div>
 </form>
-
-
+</div>
+</div>
+</div>
+</div>
+</section>
+{{!--call the file routes function to generate this section--}}
 <script src="/javascript/login.js"></script>

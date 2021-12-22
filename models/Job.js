@@ -1,5 +1,7 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+//require the sequelize package to manipulate this object
+const { Model, DataTypes } = require("sequelize");
+//require the sequelize connection
+const sequelize = require("../config/connection");
 // create our Post model
 class Job extends Model {
   static opinion(body, models) {
@@ -24,6 +26,7 @@ class Job extends Model {
             "likes_count",
           ],
         ],
+        //include all related data into job model
         include: [
           {
             model: models.Comment,
@@ -92,13 +95,12 @@ Job.init(
         key: "id",
       },
     },
-    // don't think we need a different table for the join. Just store id with job
-    location_id: {
+    category_name: {
+      type: DataTypes.STRING,
+    },
+    zip_code: {
       type: DataTypes.INTEGER,
-      references: {
-        model: "location",
-        key: "id",
-      },
+      allowNull: true,
     },
     job_status: {
       type: DataTypes.ENUM("open", "filled", "complete"),
@@ -114,5 +116,5 @@ Job.init(
     modelName: "job",
   }
 );
-
+//export the Jonb model
 module.exports = Job;
