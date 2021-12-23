@@ -34,6 +34,7 @@ router.get(
     try {
       exclude = ["password"];
       if (req.params.id !== req.user.id) {
+        
         exclude.push("email");
         exclude.push("last_login");
       }

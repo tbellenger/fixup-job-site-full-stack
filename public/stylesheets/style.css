@@ -2,16 +2,6 @@
 .hide {
   display: none;
 }
-/* style the buttons */
-/* button {
-  background-color: inherit;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-} */
 /* style the column */
 .column {
   margin: 5px;
@@ -21,6 +11,14 @@ label {
   font-size: 22px;
   font-weight: 600;
   color: white;
+}
+.label{
+  color: #000;
+  font-size: 20px;
+  
+}
+form input{
+  margin: 10px;
 }
 /* style the navigation section */
 .navigation {
@@ -45,7 +43,7 @@ label {
 
 .button {
   font-weight: bolder;
-  background-color: white;
+  font-size: 18px;
   outline: none;
 }
 
@@ -74,7 +72,7 @@ i {
 }
 
 #apply-to-job-btn {
-  background-color: darkgrey;
+  background-color: rgb(187, 192, 189);
   color: black;
 }
 
@@ -89,4 +87,38 @@ i {
 
 .category-card-container > .card{ 
   margin: 20px;
+}
+#form {
+  background-color: #1484c5;
+  width: 30%;
+  height: 100px;
+  border-radius: 5px;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  padding: 20px;
+}
+
+#form input {
+  all: unset;
+  font: 16px system-ui;
+  height: 52%;
+  width: 100%;
+  padding: 6px 10px;
+  background-color: azure;
+  color: #000;
+}
+
+::placeholder {
+  color: #000;
+  opacity:1; 
+}
+
+#form button {
+  all: unset;
+  cursor: pointer;
+  width: 43px;
+  height: 43px;
+  color: #000;
+  background-color: azure;
 }
