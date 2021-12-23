@@ -101,10 +101,8 @@
                             <thead>
                                 {{!--user post information columns of data--}}
                                 <tr>
-                                    <th class="table-id">ID</th>
                                     <th class="table-title">Title</th>
                                     <th class="table-category">Category</th>
-                                    <th class="owner-name">Owner</th>
                                     {{!--condition to assign or parse the user if falls as an employee--}}
                                     {{#if employee}}
                                     <th class="employee-name">Employee</th>
@@ -113,7 +111,6 @@
                                     <th class="employee-name">Employee</th>
                                     {{/unless}}
                                     <th class="job-status">Job Satus</th>
-                                    <th class="payment-method">Payment-method</th>
                                     <th class="table-edit">Edit</th>
                                     <th class="table-delete">Delete</th>
                                 </tr>
@@ -122,12 +119,10 @@
                             <tbody>
                                 {{#each jobs}}
                                     <tr>
-                                        <td>{{this.id}}</td>
                                         <td><a href="/dashboard/job/{{this.id}}"
                                             >{{this.title}}</a></td>
                                         <td><a href="/category/{{this.category_id}}/jobs"
                                             >{{this.category.category_name}}</a></td>
-                                        <td>{{>partial-user this.owner}}</td>
                                         {{!--condition if the owner has an employee then view the employee name--}}
                                         {{#if employee}}
                                         <td>{{>partial-user this.employee}}</td>
@@ -139,7 +134,6 @@
                                             {{/unless}}
                                         {{/if}}
                                         <td>{{job_status}}</td>
-                                        <th>{{payment_method}}</th>
                                         <td><a href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
                                         <td><button class="delete-job" data-id="{{this.id}}">Delete</button></td>
                         
