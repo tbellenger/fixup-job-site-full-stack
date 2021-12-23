@@ -4,7 +4,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 //require all models assocaited with each other
 
-const { Job, User, Comment, Category, Jobimage, JobApplicant, JobTag } = require("../models");
+const { Job, User, Comment, Category, Jobimage, JobTag } = require("../models");
 
 //get all jobs data
 router.get("/", async (req, res) => {
@@ -59,6 +59,7 @@ router.get("/job/:id/edit", async (req, res) => {
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
+        { model: User, as: "applicant", attributes: { exclude: ["password"] } },
         { model: Category },
         { model: Jobimage },
         {
@@ -95,6 +96,40 @@ router.get("/job/:id/edit", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get("/job/:id/applicants", async (req, res) => {
+  try {
+    const dbJob = await Job.findOne({
+      where: {
+        owner_id: req.user.id, // make sure this is the owner of the job
+        id: req.params.id,
+      },
+      attributes: { exclude: ["updatedAt"] },
+      include: [
+        { model: User, as: "owner", attributes: { exclude: ["password"] } },
+        { model: User, as: "employee", attributes: { exclude: ["password"] } },
+        { model: User, as: "applicant", attributes: { exclude: ["password"] } },
+      ],
+    });
+
+    if (!dbJob) {
+      // no job posting from this user with that job id found
+      return res
+        .status(404)
+        .json({ message: "No job posting from this user with that job id" });
+    }
+
+    const job = dbJob.get({ plain: true });
+    console.log(job);
+    res.render("applicants", {
+      job: job,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 //get the job data by id
 router.get("/job/:id", async (req, res) => {
   try {

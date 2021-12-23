@@ -93,8 +93,10 @@ document
   .addEventListener("click", newCommentHandler);
 
 async function applyToJob() {
+  event.preventDefault();
+
   try {
-    const response = await fetch(`/api/jobs/${id}/apply`, {
+    const response = await fetch(`/api/jobs/${event.target.dataset.id}/apply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
