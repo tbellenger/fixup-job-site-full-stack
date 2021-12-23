@@ -130,7 +130,11 @@
                                         {{#if employee}}
                                         <td>{{>partial-user this.employee}}</td>
                                         {{else}}
-                                        <td>no applicants yet</td>
+                                            {{#unless applicant.length}}
+                                            <td>no applicants yet</td>
+                                            {{else}}
+                                            <td><a href="/dashboard/job/{{this.id}}/applicants">Select applicant</a></td>
+                                            {{/unless}}
                                         {{/if}}
                                         <td>{{this.job_status}}</td>
                                         <th>{{payment_method}}</th>
