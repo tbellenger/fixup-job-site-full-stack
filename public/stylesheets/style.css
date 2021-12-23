@@ -17,9 +17,7 @@ label {
   font-size: 20px;
   
 }
-form input{
-  margin: 10px;
-}
+
 /* style the navigation section */
 .navigation {
   padding: 15px;
@@ -50,14 +48,11 @@ form input{
 #nav-logout-button {
   border: none;
   background: none;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: bold;
 }
 i {
   color: #000;
-}
-.comment {
-  font-size: 16px;
 }
 #job-info {
   font-size: 25px;
@@ -67,13 +62,14 @@ i {
 }
 
 .card {
-  width: 280px;
+  width: 320px;
   border-radius: 20px;
 }
 
 #apply-to-job-btn {
-  background-color: rgb(187, 192, 189);
-  color: black;
+  background-color: rgb(65, 156, 101);
+  color: rgb(247, 241, 241);
+  font-size: medium;
 }
 
 #file-input {
@@ -121,4 +117,50 @@ i {
   height: 43px;
   color: #000;
   background-color: azure;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    background-color: linen;
+    
+}
+.grid-item {
+  text-align: center;
+  padding: 20px;
+
+}
+.card-header-title{
+  padding: 15px;
+  text-align: center;
+}
+#hero-container{
+    background-image: url(../images/Tools.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+textarea{
+  margin-top: 5px;
+}
+#comment-box{
+  background: none;
+}
+#textarea{
+  margin-top: 15%;
+}
+@media screen and (max-width:575px){
+  .grid-container{
+    display: block;
+    justify-content: center;
+  }
+  .grid-item{
+    margin-left: 10%;
+  }
+  #form{
+    width: 100%;
+  }
+  .button{
+   width: 100%;
+   margin: 10px;
+  }
 }
