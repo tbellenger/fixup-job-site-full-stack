@@ -69,7 +69,7 @@ Job.belongsToMany(User, {
 });
 
 User.hasOne(Ratings, {
-  through: Ratings,
+  // through: Ratings,
   as: "user_ratings",
   foreignKey: "user_id",
   onDelete: "SET NULL",

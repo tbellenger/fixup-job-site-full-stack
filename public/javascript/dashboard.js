@@ -114,8 +114,3 @@ const avg = (arr) => {
   console.log(average);
   return average;
 };
-
-// const arr1 = [1, 2, 4, 1, 8];
-// const arr2 = [7, 3, 6, 7, 10];
-// avg(arr1);
-// avg(arr2);

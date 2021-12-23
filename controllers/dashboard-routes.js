@@ -175,8 +175,15 @@ router.get("/user/:id", async (req, res) => {
     } else {
       console.log(
         "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" +
-          dbUser.user_ratings.rating
+          typeof dbUser.user_ratings
       );
+      // const ratingarr = Object.values(dbUser.user_ratings[rating]);
+      const ratingarr = Object.keys(dbUser.user_ratings).map((rating) => [
+        Number(rating),
+        dbUser.user_ratings[rating],
+      ]);
+      console.log("this is the array " + ratingarr);
+
       const user = dbUser.get({ plain: true });
       return res.render("user", {
         user: user,
