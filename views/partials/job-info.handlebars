@@ -1,4 +1,47 @@
 {{!page template to display all jobs categories and information}}
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+    Job offer!
+  </header>
+  <div class="card-content">
+    <div class="content">
+        {{#each jobimages as |image|}}
+        <div>
+            <img src="{{image.image_url}}">
+        </div>
+        {{/each}}
+        <p><a href="/dashboard/job/{{id}}">{{title}}</a>
+     posted by
+     <a href="/dashboard/user/{{id}}">{{owner.username}}</a></p>
+    </p>
+      <p>Description: {{description}}</p>
+      <p>Salary: {{salary}}</p>
+      <p>Job Status: {{job_status}}</p>
+      <p>Payment method: {{payment_method}}</p>
+      <p> zip code: {{zip_code}}</p>
+      {{!reference the category file path to get the category information}}
+     <p>Category:
+        <a
+          href="/category/{{category_id}}/jobs"
+        >{{category.category_name}}</a></p>   
+    </div>
+  </div>
+
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item"><button type="button" id="thumbsup">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        Like
+      </button></a>
+    <a href="#" class="card-footer-item"><button
+        id="apply-to-job-btn"
+        class="button is-success"
+        data-id={{id}}
+      >Apply!</button></a>
+  </footer>
+</div>
+
+{{!--
 <article class="job">
   <div class="columns is-flex">
     <div class="column has-text-centered">
@@ -35,4 +78,4 @@
       >Apply!</button>
     </div>
   </div>
-</article>
+</article--}}
