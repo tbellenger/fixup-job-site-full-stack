@@ -31,7 +31,7 @@ passport.use(
     }
   )
 );
-//function for a login user authentication 
+//function for a login user authentication
 passport.use(
   "login",
   new localStrategy(
@@ -54,7 +54,7 @@ passport.use(
         if (!validate) {
           return done(null, false, { message: "Wrong password" });
         }
-        //await user.update("last_login", new Date()); // This is buggy!!!!
+        await user.update({ last_login: new Date() });
         return done(null, user, { message: "Logged in" });
       } catch (error) {
         return done(error);

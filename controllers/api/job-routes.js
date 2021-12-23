@@ -12,7 +12,6 @@ const {
   Comment,
   Like,
   Category,
-  JobApplicant,
   Jobimage,
 } = require("../../models");
 
@@ -102,14 +101,6 @@ router.get("/:id", async (req, res) => {
         {
           model: Jobimage,
           attributes: ["image_url"],
-        },
-        {
-          model: JobApplicant,
-          attributes: ["jobId", "userId"],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
         },
       ],
     });
@@ -242,21 +233,12 @@ router.put("/like", async (req, res) => {
 // get the job by id to update
 router.put("/:id", async (req, res) => {
   try {
-    const job = await Job.update(
-      {
-        title: req.body.title,
-        description: req.body.description,
-        salary: req.body.salary,
-        category_id: req.body.category_id,
-        zip_code: req.body.zip_code,
+    const job = await Job.update(req.body, {
+      where: {
+        id: req.params.id,
+        owner_id: req.user.id,
       },
-      {
-        where: {
-          id: req.params.id,
-          owner_id: req.user.id,
-        },
-      }
-    );
+    });
     //if no id exist return error
     if (!job) {
       res.status(404).json({ message: "No job with that ID" });

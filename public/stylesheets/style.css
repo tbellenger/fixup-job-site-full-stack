@@ -68,6 +68,25 @@ i {
   overflow-x: auto;
 }
 
+.card {
+  width: 280px;
+  border-radius: 20px;
+}
+
+#apply-to-job-btn {
+  background-color: darkgrey;
+  color: black;
+}
+
 #file-input {
   color: black;
+}
+
+.category-card-container{
+  display: flex;
+  justify-content: center;
+}
+
+.category-card-container > .card{ 
+  margin: 20px;
 }

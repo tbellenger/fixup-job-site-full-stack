@@ -74,7 +74,7 @@
                                 <input
                                 accept="image/png, image/jpeg"
                                     type="file"
-                                    name="file" id="file-input" />
+                                    name="file" id="file-input" /><img id="spinner" class="hide" src="/images/spinner.gif" width="20px" height="20px"/>
                             </div>
                             {{!--button to submit the inputs--}}
                         <div class="field is-grouped is-grouped-right mt-3">
@@ -130,7 +130,11 @@
                                         {{#if employee}}
                                         <td>{{>partial-user this.employee}}</td>
                                         {{else}}
-                                        <td>no applicants yet</td>
+                                            {{#unless applicant.length}}
+                                            <td>no applicants yet</td>
+                                            {{else}}
+                                            <td><a href="/dashboard/job/{{this.id}}/applicants">Select applicant</a></td>
+                                            {{/unless}}
                                         {{/if}}
                                         <td>{{this.job_status}}</td>
                                         <th>{{payment_method}}</th>

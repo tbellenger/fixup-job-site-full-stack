@@ -1,0 +1,7 @@
+{{#each job.applicant as |applicant|}}
+<div>Name:{{applicant.username}}</div>
+<div>Email:{{applicant.email}}</div>
+<div>Rating:{{applicant.rating}}</div>
+<div><button class="select-applicant-btn" data-job="{{applicant.Job_Applicant.jobId}}" data-applicant="{{applicant.id}}">Select Applicant</button></div>
+{{/each}}
+<script src="/javascript/applicant.js"></script>
