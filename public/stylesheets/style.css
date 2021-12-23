@@ -56,8 +56,8 @@ form input{
 i {
   color: #000;
 }
-.comment {
-  font-size: 16px;
+.comment input {
+ width: 100%;
 }
 #job-info {
   font-size: 25px;
@@ -121,4 +121,9 @@ i {
   height: 43px;
   color: #000;
   background-color: azure;
+}
+#jobs-section{
+  width: 200px;
+  background-color: blanchedalmond;
+  margin: 10px;
 }
