@@ -6,7 +6,6 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 //require the User model
 const { User, Ratings } = require("../../models");
-const sequelize = require("../../config/connection");
 // no route to get all users on purpose
 // router.get("/", async (req, res) => {
 //   try {
