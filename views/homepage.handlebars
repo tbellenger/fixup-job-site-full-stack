@@ -16,12 +16,14 @@
 </div>
 {{!--hero section--}}
 <section class="hero is-primary is-large">
-  <div class="hero-body"> 
-    <form id="form" role="search">
+  <div class="hero-body">
+    
+<form role="search" id="form">
   <input type="search" id="query" name="q"
    placeholder="Search..."
    aria-label="Search through site content">
-   <button type="submit">Search
+  <button>
+ <i class="fa fa-search"></i>
   </button>
 </form>
     <p class="title"></p>
@@ -33,8 +35,8 @@
  <script>
       const f = document.getElementById('form');
       const q = document.getElementById('query');
-      const google = 'https://www.google.com/search?q=site%3A+';
-      const site = 'fixup-job.heroku.com';
+      const google = 'https://www.google.com/search?q=site%FixUP+';
+      const site = 'https://fixup-job.herokuapp.com/';
 
       function submitted(event) {
         event.preventDefault();
