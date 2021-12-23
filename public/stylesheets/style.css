@@ -20,7 +20,10 @@
 label {
   font-size: 22px;
   font-weight: 600;
-  color: white;
+ color: white;
+}
+.label{
+  color: #000;
 }
 /* style the navigation section */
 .navigation {
@@ -45,7 +48,7 @@ label {
 
 .button {
   font-weight: bolder;
-  background-color: white;
+  
   outline: none;
 }
 
@@ -70,4 +73,31 @@ i {
 
 #file-input {
   color: black;
+}
+#form {
+  background-color: #1ca1c2;
+  width: 500px;
+  height: 100px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+#form input {
+  all: unset;
+  font: 16px system-ui;
+  color: rgb(5, 5, 5);
+  height: 45%;
+  width: 100%;
+  padding: 6px 8px;
+  background-color: rgb(241, 234, 234);
+}
+::placeholder {
+  color: rgb(5, 5, 5);
+  opacity: 1; 
+}
+#form button {
+   color: #000;
+   height: 65%;
 }
