@@ -69,9 +69,9 @@ async function newPostHandler(event) {
         });
         if (img_response.ok) {
           console.log("image upload success");
-          //document.location.replace(`/dashboard?auth_token=${token}`);
+          document.location.replace(`/dashboard?auth_token=${auth_token}`);
         } else {
-          console.log("image upload failed");
+          alert("image upload failed");
         }
       } else {
         alert(response.statusText);
@@ -91,12 +91,12 @@ const deletePostHandler = async (event) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer " + token,
+        Authorization: "bearer " + auth_token,
       },
     });
     //remove the token after deletion from the data
     if (response.ok) {
-      document.location.replace("/dashboard?auth_token=" + token);
+      document.location.replace("/dashboard?auth_token=" + auth_token);
     } else {
       alert(
         "Failed to delete post. " + response.status + ": " + response.statusText
@@ -111,6 +111,4 @@ document
   .addEventListener("click", newPostHandler);
 
 const deleteButtons = document.querySelectorAll(".delete-job");
-deleteButtons.forEach((el) =>
-  el.addEventListener("click", (event) => deletePostHandler(event))
-);
+deleteButtons.forEach((el) => el.addEventListener("click", deletePostHandler));
