@@ -13,9 +13,9 @@ async function newPostHandler(event) {
   const payment_method = document
     .querySelector("input[name=payment-input")
     .value.trim();
-    //const job_status = document
-    //.querySelector("input[name=status-input")
-   // .value.trim();
+  //const job_status = document
+  //.querySelector("input[name=status-input")
+  // .value.trim();
   const category_name = document.querySelector(".category-name").value.trim();
   const job_image = document.querySelector('input[type="file"]');
   console.log(job_image);
@@ -31,8 +31,7 @@ async function newPostHandler(event) {
       description &&
       salary &&
       zip_code &&
-      payment_method 
-      
+      payment_method
     ) {
       //validate their inputs
       const response = await fetch(`/api/jobs/`, {
@@ -49,7 +48,7 @@ async function newPostHandler(event) {
           salary,
           zip_code,
           payment_method,
-         
+
           // username,
         }),
       });
@@ -121,4 +120,8 @@ const job_image = document.querySelector('input[type="file"]');
 job_image.addEventListener("change", () => {
   // hide the spinner
   document.querySelector("#spinner").classList.add("hide");
+  if (job_image.files[0].size > 3 * 1024 * 1024) {
+    alert("File is too big");
+    job_image.value = "";
+  }
 });
