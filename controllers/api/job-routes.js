@@ -11,6 +11,7 @@ const {
   Comment,
   Like,
   Category,
+JobApplicant,
   Jobimage,
 } = require("../../models");
 
@@ -100,6 +101,13 @@ router.get("/:id", async (req, res) => {
         {
           model: Jobimage,
           attributes: ["image_url"],
+        },{
+          model: JobApplicant,
+          attributes: ["jobId", "userId"],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
         },
       ],
     });
@@ -162,11 +170,31 @@ router.post("/:id/image", async (req, res) => {
       res.status(500).json({ message: "Server error" });
     }
     res.json(jobimage);
+      } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+// handle application to a job
+router.post("/:id/apply", async (req, res) => {
+  try {
+    // should check if the job is open for applications first
+
+    // create a job applicant
+    const application = await JobApplicant.create({
+      jobId: parseInt(req.params.id),
+      userId: req.user.id,
+    });
+
+    res.json(application);
+    console.log(application);
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
+
 
 const uploadFile = (filename, data) => {
   // data received from the client
