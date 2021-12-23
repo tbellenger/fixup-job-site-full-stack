@@ -4,6 +4,7 @@ const routes = require("./controllers");
 const sequelize = require("./config/connection");
 const path = require("path");
 const exphbs = require("express-handlebars");
+const fileUpload = require("express-fileupload");
 // require the authentication token
 require("./auth/auth");
 // initiate the application that run by express
@@ -16,6 +17,14 @@ const hbs = exphbs.create({ helpers });
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 //call back function to garner datas
+app.use(
+  fileUpload({
+    limits: { fileSize: 3 * 1024 * 1024 }, // 3MB file size limit
+    abortOnLimit: true,
+    safeFileNames: true,
+    preserveExtension: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));

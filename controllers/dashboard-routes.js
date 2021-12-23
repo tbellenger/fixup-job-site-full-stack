@@ -3,7 +3,9 @@ const router = require("express").Router();
 //require the sequelize connection
 const sequelize = require("../config/connection");
 //require all models assocaited with each other
-const { Job, User, Comment, Category } = require("../models");
+
+const { Job, User, Comment, Category, Jobimage, JobApplicant, JobTag } = require("../models");
+
 //get all jobs data
 router.get("/", async (req, res) => {
   try {
@@ -16,7 +18,9 @@ router.get("/", async (req, res) => {
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
+        { model: User, as: "applicant", attributes: { exclude: ["password"] } },
         { model: Category },
+        { model: Jobimage },
         {
           model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id"],
@@ -56,6 +60,7 @@ router.get("/job/:id/edit", async (req, res) => {
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
         { model: Category },
+        { model: Jobimage },
         {
           model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id"],
@@ -101,7 +106,9 @@ router.get("/job/:id", async (req, res) => {
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
+        { model: User, as: "applicant", attributes: { exclude: ["password"] } },
         { model: Category },
+        { model: Jobimage },
         {
           model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id", "created_at"],
