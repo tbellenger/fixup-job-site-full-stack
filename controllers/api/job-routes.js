@@ -149,6 +149,7 @@ router.post("/", async (req, res) => {
 
 router.post("/:id/image", async (req, res) => {
   try {
+    const uniqueFilename = req.user.id + "-" + req.params.id + "-" + Date().now;
     console.log("image upload route");
     // upload to s3
     const compressed = await sharp(req.files.file.data)
@@ -156,13 +157,13 @@ router.post("/:id/image", async (req, res) => {
       .webp()
       .withMetadata()
       .toBuffer();
-    uploadFile(req.user.id + "-" + req.params.id + ".webp", compressed);
+    uploadFile(uniqueFilename + ".webp", compressed);
     // create the DB entry associated with job id
     const jobimage = await Jobimage.create({
       job_id: req.params.id,
       image_url:
         "https://ucbstore.s3.us-west-1.amazonaws.com/" +
-        encodeURIComponent(req.user.id + "-" + req.params.id + ".webp"),
+        encodeURIComponent(uniqueFilename + ".webp"),
     });
     if (!jobimage) {
       res.status(500).json({ message: "Server error" });
