@@ -13,6 +13,7 @@ const {
   Like,
   Category,
   Jobimage,
+  JobApplicant,
 } = require("../../models");
 
 const s3 = new AWS.S3({
@@ -179,9 +180,15 @@ router.post("/:id/apply", async (req, res) => {
     // should check if the job is open for applications first
 
     // create a job applicant
-    const application = await JobApplicant.create({
-      jobId: parseInt(req.params.id),
-      userId: req.user.id,
+    const application = await JobApplicant.findOrCreate({
+      where: {
+        jobId: parseInt(req.params.id),
+        userId: req.user.id,
+      },
+      defaults: {
+        jobId: parseInt(req.params.id),
+        userId: req.user.id,
+      },
     });
 
     res.json(application);
