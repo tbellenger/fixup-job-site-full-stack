@@ -3,7 +3,7 @@ const router = require("express").Router();
 //require the sequelize connection
 const sequelize = require("../config/connection");
 //require all Models that associated with each other
-const { Category, Job, User } = require("../models");
+const { Category, Job, User, Jobimage } = require("../models");
 
 // get all categories for homepage
 
@@ -35,6 +35,7 @@ router.get("/category/:id/jobs", async (req, res) => {
       include: [
         { model: User, as: "owner", attribute: { exclude: ["password"] } },
         { model: User, as: "employee", attribute: { exclude: ["password"] } },
+        { model: Jobimage },
         { model: Category },
       ],
     });
@@ -95,7 +96,7 @@ router.get("/jobs", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//get the login page 
+//get the login page
 router.get("/login", (req, res) => {
   res.render("login");
 });
