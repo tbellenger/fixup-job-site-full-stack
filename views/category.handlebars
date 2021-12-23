@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="category-card-container">
    {{#each jobs as |job|}}
 <div class="card">
   <div class="card-image">
@@ -26,10 +26,12 @@
     </div>
     <div class="content">
 
-       {{!-- {{#each jobs as |job|}} --}}
-    {{!-- {{>job-info job}} --}}
+   <p>{{job.description}}</p>
+      <p><b>Salary:</b> {{job.salary}}</p>
+      <p><b>payment preference:</b> {{job.payment_method}}</p>
+      <p> <b>zip code:</b> {{job.zip_code}}</p>
     
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      {{!-- <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time> --}}
     </div>
   </div>
 </div>
