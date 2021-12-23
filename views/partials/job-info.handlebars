@@ -1,19 +1,37 @@
-{{!--page template to display all jobs categories and information--}}
+{{!page template to display all jobs categories and information}}
 <article class="job">
   <div class="columns is-flex">
     <div class="column has-text-centered">
-      {{!--reference the dashboard file path to fetch some information from a user--}}
-      <p><a href="/dashboard/job/{{id}}">{{title}}</a> by {{owner.username}}</p>
+      {{!reference the dashboard file path to fetch some information from a user}}
+
+      <button type="button" id="thumbsup">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        Like
+      </button>
+      <p><a href="/dashboard/job/{{id}}">{{title}}</a>
+        by
+        <a href="/dashboard/user/{{id}}">{{owner.username}}</a></p>
       <p>{{description}}</p>
       <p>{{salary}}</p>
       <p>{{payment_method}}</p>
       <p> zip code: {{zip_code}}</p>
-      {{!--reference the category file path to get the category information--}}
+      {{!reference the category file path to get the category information}}
+
+      {{#each jobimages as |image|}}
+        <div>
+            <img src="{{image.image_url}}">
+        </div>
+        {{/each}}
+
       <p>Category:
         <a
           href="/category/{{category_id}}/jobs"
         >{{category.category_name}}</a></p>
-      <button id="apply-to-job-btn" class="button is-success" data-id={{id}}>Apply!</button>
+      <button
+        id="apply-to-job-btn"
+        class="button is-success"
+        data-id={{id}}
+      >Apply!</button>
     </div>
   </div>
 </article>
