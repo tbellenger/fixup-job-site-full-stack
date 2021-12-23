@@ -186,7 +186,7 @@ router.post("/:id/apply", async (req, res) => {
         jobId: parseInt(req.params.id),
         userId: req.user.id,
       },
-      default: {
+      defaults: {
         jobId: parseInt(req.params.id),
         userId: req.user.id,
       },
