@@ -9,10 +9,10 @@
     </div>
     <div>
       {{!--section of comment being called by id--}}
-      <div class="has-text-dark"
+      <textarea class="has-text-dark"
         type="text"
         name="comment-body"
-      >{{comment.comment_text}}</div>
+      >{{comment.comment_text}}</textarea>
       {{!--buttons--}}
       <button type="button" id="edit-comment-btn{{comment.id}}">Edit comment</button>
       <button type="button" id="delete-comment-btn{{comment.id}}">Delete comment</button>

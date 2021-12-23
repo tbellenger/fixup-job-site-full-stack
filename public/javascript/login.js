@@ -64,12 +64,13 @@ async function signup() {
     //collect the user informations
     body: JSON.stringify({
       username: username,
-      email: email,
-      password: password,
+      email:email,
+      password: password
     }),
   });
+
   //condition to store the user data info
-  if (signup.ok) {
+ if (signup.ok) {
     const response = await fetch("/api/users/login", {
       method: "POST",
       headers: {
@@ -82,6 +83,7 @@ async function signup() {
         password: password,
       }),
     });
+  
     //and store/save it into the local storage
     const json = await response.json();
     if (json) {

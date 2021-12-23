@@ -7,32 +7,33 @@
                     {{!--input form for the job post data--}}
                     <form class="box">
                         {{!--label an dinput for job title--}}
-                        <label class="label is-large" class="label">Post a New Job<label>
                         <div class="field">
-                            <label class="label"> Title</label>
-                            <div class="control">
+                             <h1>Post a New Job<h1>
+                               <label class="label"> Title</label><br>
+                              <div class="control">
+                               
                                 <input
                                     type="text"
                                     placeholder="Job title"
-                                    class="input title-input"
+                                    class="input is-large title-input"
                                     name="job-title" required/>
                             </div>
                         </div>
                         {{!--label and input for category name--}}
                         <div class="field">
-                            <label class="label"> Category Name</label>
+                            <label class="label"> Category Name</label><br>
                             <div class="control">
                                 <input
                                     type="text"
                                     placeholder="category-name"
-                                    class="input category-name"
+                                    class="input is-large category-name"
                                     required/>
                             </div>
                         </div>
                         {{!--label and input for job description--}}
                         <div class="field-body">
                             <div class="field">
-                                <label class="label">Description</label>
+                                <label class="label">Description</label><br>
                                 <div class="control">
                                     <textarea
                                         class="textarea description-input"
@@ -44,38 +45,39 @@
                         </div>
                         {{!--label and input for salary--}}
                         <div class="control">
-                            <label class="label">Salary</label>
+                            <label class="label">Salary</label><br>
                                 <input
                                     type="number"
                                     placeholder="salary"
-                                    class="input salary-input"
+                                    class="input is-large salary-input"
                                     name='salary-input' required/>
                             </div>
                             {{!--label and input for payment method--}}
                             <div class="control">
-                            <label class="label">Payment method will be </label>
+                            <label class="label">Payment method will be </label><br><br>
                                 <input
                                     type="text"
                                     placeholder="Payment method"
-                                    class="input payment-input"
+                                    class="input is-large payment-input"
                                     name="payment-input" required/>
                             </div>
                             {{!--label and input for job location--}}
                             <div class="control">
-                            <label class="label">Job Location</label>
+                            <label class="label">Job Location</label><br><br>
                                 <input
                                     type="number"
                                     placeholder="Job location"
-                                    class="input location-input"
+                                    class="input is-large location-input"
                                     name="location-input" required/>
                             </div>
                             <div class="control">
-                            <label class="label">Image</label>
+                            <label class="label">Image</label><br><br>
                                 <input
                                 accept="image/png, image/jpeg"
                                     type="file"
-                                    name="file" id="file-input" /><img id="spinner" class="hide" src="/images/spinner.gif" width="20px" height="20px"/>
+                                    name="file" id="file-input" /><img id="spinner" class="hide" src="/images/spinner.gif" width="30px" height="30px"/>
                             </div>
+                           
                             {{!--button to submit the inputs--}}
                         <div class="field is-grouped is-grouped-right mt-3">
                             <button class="button is-success submit-post">Submit</a></button>
@@ -110,7 +112,7 @@
                                     {{#unless employee}}
                                     <th class="employee-name">Employee</th>
                                     {{/unless}}
-                                    <th class="job-location">Job Satus</th>
+                                    <th class="job-status">Job Satus</th>
                                     <th class="payment-method">Payment-method</th>
                                     <th class="table-edit">Edit</th>
                                     <th class="table-delete">Delete</th>
@@ -136,7 +138,7 @@
                                             <td><a href="/dashboard/job/{{this.id}}/applicants">Select applicant</a></td>
                                             {{/unless}}
                                         {{/if}}
-                                        <td>{{this.job_status}}</td>
+                                        <td>{{job_status}}</td>
                                         <th>{{payment_method}}</th>
                                         <td><a href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
                                         <td><button class="delete-job" data-id="{{this.id}}">Delete</button></td>
