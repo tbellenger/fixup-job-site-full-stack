@@ -17,22 +17,22 @@
   margin: 5px;
 }
 /* style the label */
-label{
+label {
   font-size: 22px;
   font-weight: 600;
   color: white;
 }
 /* style the navigation section */
-.navigation{
+.navigation {
   padding: 15px;
 }
 /*style the title */
-#title{
+#title {
   font-weight: bolder;
   font-size: 50px;
 }
 /* style the navigation bar link */
-#navbarMenu{
+#navbarMenu {
   font-size: 22px;
   font-weight: bolder;
 }
@@ -41,33 +41,33 @@ label{
   background-image: url(../images/drill1.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
-.button{
- font-weight: bolder;
- background-color: white;
- outline: none;
+.button {
+  font-weight: bolder;
+  background-color: white;
+  outline: none;
 }
-#nav-logout-button{
+
+#nav-logout-button {
   border: none;
   background: none;
-
+  font-size: 22px;
+  font-weight: bold;
 }
-i{
+i {
   color: #000;
 }
-.comment{
+.comment {
   font-size: 16px;
 }
-#job-info{
+#job-info {
   font-size: 25px;
 }
-.box{
-  
-    overflow-x: auto;
+.box {
+  overflow-x: auto;
 }
 
- 
-
-
+#file-input {
+  color: black;
+}
