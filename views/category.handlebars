@@ -4,14 +4,13 @@
 <div class="card">
   <div class="card-image">
     <figure class="image is-4by3">
-      {{#each job.jobimages as |image|}}
+      {{#each job.jobimages as |images|}}
         <div>
-            <img src="{{image.image_url}}" alt="job image">
-        </div>
-        {{/each}}
-      
+            <img src="{{image.image_url}}">
+      </div>
+       {{/each}}
     </figure>
-  </div>
+    </div>
   <div class="card-content">
     <div class="media">
       <div class="media-left">
@@ -20,12 +19,11 @@
         </figure>
       </div>
       <div class="media-content">
-        <p class="title is-4">{{job.owner.username}}</p>
+        <p class="title is-4">{{owner.username}}</p>
         <p class="subtitle is-6">@johnsmith</p>
       </div>
     </div>
     <div class="content">
-
    <p>{{job.description}}</p>
       <p><b>Salary:</b> {{job.salary}}</p>
       <p><b>payment preference:</b> {{job.payment_method}}</p>

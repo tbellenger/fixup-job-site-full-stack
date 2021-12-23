@@ -69,8 +69,9 @@ i {
 }
 
 #apply-to-job-btn {
-  background-color: rgb(187, 192, 189);
-  color: black;
+  background-color: rgb(65, 156, 101);
+  color: rgb(247, 241, 241);
+  font-size: medium;
 }
 
 #file-input {
