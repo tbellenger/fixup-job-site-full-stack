@@ -2,6 +2,7 @@
 const router = require("express").Router();
 //require the sequelize connection to manipulate all models
 const sequelize = require("../../config/connection");
+const sharp = require("sharp");
 const AWS = require("aws-sdk");
 require("dotenv").config();
 
@@ -11,7 +12,7 @@ const {
   Comment,
   Like,
   Category,
-JobApplicant,
+  JobApplicant,
   Jobimage,
 } = require("../../models");
 
@@ -101,7 +102,8 @@ router.get("/:id", async (req, res) => {
         {
           model: Jobimage,
           attributes: ["image_url"],
-        },{
+        },
+        {
           model: JobApplicant,
           attributes: ["jobId", "userId"],
           include: {
@@ -158,19 +160,24 @@ router.post("/:id/image", async (req, res) => {
   try {
     console.log("image upload route");
     // upload to s3
-    uploadFile(req.files.file.name, req.files.file.data);
+    const compressed = await sharp(req.files.file.data)
+      .resize({ width: 400, withoutEnlargement: true })
+      .webp()
+      .withMetadata()
+      .toBuffer();
+    uploadFile(req.files.file.name + ".webp", compressed);
     // create the DB entry associated with job id
     const jobimage = await Jobimage.create({
       job_id: req.params.id,
       image_url:
         "https://ucbstore.s3.us-west-1.amazonaws.com/" +
-        encodeURIComponent(req.files.file.name),
+        encodeURIComponent(req.files.file.name + ".webp"),
     });
     if (!jobimage) {
       res.status(500).json({ message: "Server error" });
     }
     res.json(jobimage);
-      } catch (err) {
+  } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
@@ -188,13 +195,11 @@ router.post("/:id/apply", async (req, res) => {
 
     res.json(application);
     console.log(application);
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
-
 
 const uploadFile = (filename, data) => {
   // data received from the client

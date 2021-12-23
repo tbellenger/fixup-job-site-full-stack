@@ -17,7 +17,14 @@ const hbs = exphbs.create({ helpers });
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 //call back function to garner datas
-app.use(fileUpload());
+app.use(
+  fileUpload({
+    limits: { fileSize: 3 * 1024 * 1024 }, // 3MB file size limit
+    abortOnLimit: true,
+    safeFileNames: true,
+    preserveExtension: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
