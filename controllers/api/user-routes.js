@@ -5,10 +5,27 @@ const passport = require("passport");
 //require the authentication token
 const jwt = require("jsonwebtoken");
 //require the User model
-const { User } = require("../../models");
-
+const { User, Ratings } = require("../../models");
+const sequelize = require("../../config/connection");
 // no route to get all users on purpose
-
+// router.get("/", async (req, res) => {
+//   try {
+//     const user = await User.findAll({
+//       attributes: ["id", "username", "email"],
+//       include: [
+//         {
+//           model: Ratings,
+//           as: "user_ratings",
+//           attributes: ["rating"],
+//         },
+//       ],
+//     });
+//     res.json(user);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 router.get(
   "/me",
   passport.authenticate("jwt", { session: false }),
@@ -90,13 +107,13 @@ router.post("/login", async (req, res, next) => {
 //get the new user data and assign token and session timeout
 function sign(user) {
   console.log("signing token");
-  const body = { id: user.id, email: user.email, username: user.username};
+  const body = { id: user.id, email: user.email, username: user.username };
   const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
     expiresIn: "2h",
   });
   return token;
 }
-//assign token by id 
+//assign token by id
 router.put(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -149,5 +166,5 @@ router.delete(
     }
   }
 );
-//export the token routes 
+//export the token routes
 module.exports = router;

@@ -22,7 +22,7 @@
 
     <div class="content">
         {{!--user ratings/likes--}}
-       <div>Rating: {{user.rating}}</div>
+       <div>Rating: {{ user.user_ratings.rating}}</div>
         {{!--If loggedIn user include the email and login history--}}
     {{#if sameUser}}
     <div>Email: {{user.email}}</div>

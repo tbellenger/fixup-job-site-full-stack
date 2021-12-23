@@ -3,20 +3,20 @@ const { Ratings } = require("../models");
 //declare the ratings keys and values
 const ratingsdata = [
   {
-    owner_id: 2,
-    employee_id: 1,
+    user_id: 1,
+    rating: 1,
   },
   {
-    ownrer_id: 1,
-    employee_id: 3,
+    user_id: 2,
+    rating: 2,
   },
   {
-    owner_id: 1,
-    employee_id: 4,
+    user_id: 3,
+    rating: 4.2,
   },
   {
-    owner_id: 3,
-    employee_id: 4,
+    user_id: 4,
+    rating: 4.9,
   },
 ];
 //seed all ratings data

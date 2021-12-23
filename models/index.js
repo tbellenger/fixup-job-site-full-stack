@@ -68,17 +68,18 @@ Job.belongsToMany(User, {
   onDelete: "SET NULL",
 });
 
-// User.hasMany(User, {
-//   through: Ratings,
-//   as: "user_ratings",
-//   foreignKey: "user_id",
-//   onDelete: "SET NULL",
-// });
-// User.belongsToMany(User, {
-//   through: Ratings,
-//   as: "user_ratings",
-//   foreignKey: "user_id",
-//   onDelete: "SET NULL",
+User.hasOne(Ratings, {
+  through: Ratings,
+  as: "user_ratings",
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
+});
+Ratings.belongsTo(User);
+// {
+// through: Ratings,
+// as: "user_ratings",
+// foreignKey: "ratings_id",
+// onDelete: "SET NULL",
 // });
 
 Like.belongsTo(User, {

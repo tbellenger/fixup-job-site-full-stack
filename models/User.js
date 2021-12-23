@@ -15,7 +15,7 @@ class User extends Model {
     }).then(() => {
       return User.findOne({
         where: {
-          id: body.post_id,
+          id: body.user_id,
         },
         attributes: [
           "id",
@@ -83,8 +83,12 @@ User.init(
         len: [4],
       },
     },
-    rating: {
-      type: DataTypes.DECIMAL(1, 1),
+    user_rating: {
+      type: DataTypes.DECIMAL,
+      // references: {
+      //   model: "ratings",
+      //   key: "id",
+      // },
     },
     // no need to store jobs completed or offered as that can be counted in the database
     last_login: {
@@ -107,7 +111,7 @@ User.init(
         return updatedUserData;
       },
     },
-    //call the sequelize and actions to be taken in this model 
+    //call the sequelize and actions to be taken in this model
     sequelize,
     timestamps: false,
     freezeTableName: true,

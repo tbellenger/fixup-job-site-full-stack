@@ -7,7 +7,7 @@ const userdata = [
   {
     username: "tarek",
     email: "tarek@gmail.com",
-    password: "password123",
+    password: "1111",
     last_login: new Date(),
   },
   {
@@ -29,7 +29,7 @@ const userdata = [
     last_login: new Date(),
   },
 ];
-//seed the user data all together 
+//seed the user data all together
 const seedUsers = () => User.bulkCreate(userdata, { individualHooks: true });
 //exports the users informations
 module.exports = seedUsers;

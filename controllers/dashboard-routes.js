@@ -3,9 +3,15 @@ const router = require("express").Router();
 //require the sequelize connection
 const sequelize = require("../config/connection");
 //require all models assocaited with each other
-
-const { Job, User, Comment, Category, Jobimage, JobApplicant, JobTag } = require("../models");
-
+const {
+  Job,
+  User,
+  Comment,
+  Category,
+  Ratings,
+  JobApplicant,
+  JobTag,
+} = require("../models");
 //get all jobs data
 router.get("/", async (req, res) => {
   try {
@@ -20,7 +26,6 @@ router.get("/", async (req, res) => {
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
         { model: User, as: "applicant", attributes: { exclude: ["password"] } },
         { model: Category },
-        { model: Jobimage },
         {
           model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id"],
@@ -60,7 +65,6 @@ router.get("/job/:id/edit", async (req, res) => {
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
         { model: Category },
-        { model: Jobimage },
         {
           model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id"],
@@ -108,7 +112,6 @@ router.get("/job/:id", async (req, res) => {
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
         { model: User, as: "applicant", attributes: { exclude: ["password"] } },
         { model: Category },
-        { model: Jobimage },
         {
           model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id", "created_at"],
@@ -154,15 +157,26 @@ router.get("/user/:id", async (req, res) => {
       exclude.push("last_login");
     }
     const dbUser = await User.findOne({
-      attributes: { exclude: exclude },
       where: {
         id: req.params.id,
       },
+      attributes: { exclude: exclude },
+      include: [
+        {
+          model: Ratings,
+          as: "user_ratings",
+          attributes: ["id", "user_id", "rating"],
+        },
+      ],
     });
     if (!dbUser) {
       res.status(404).json({ message: "No user with that ID" });
       return;
     } else {
+      console.log(
+        "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" +
+          dbUser.user_ratings.rating
+      );
       const user = dbUser.get({ plain: true });
       return res.render("user", {
         user: user,

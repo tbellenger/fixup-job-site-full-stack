@@ -6,6 +6,7 @@ const seedTag = require("./tag-seeds");
 const seedJobTags = require("./job-tag-seeds");
 const seedComments = require("./comments-seeds");
 const seedLike = require("./like-seeds");
+const seedRatings = require("./ratings-seeds");
 //require the sequelize connection
 const sequelize = require("../config/connection");
 //function to seed all the data from the local storage
@@ -31,6 +32,9 @@ const seedAll = async () => {
   console.log("--------------");
 
   await seedLike();
+  console.log("--------------");
+
+  await seedRatings();
   console.log("--------------");
 
   process.exit(0);
