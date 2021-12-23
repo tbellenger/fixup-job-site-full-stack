@@ -3,6 +3,7 @@
   <div class="columns is-flex">
     <div class="column has-text-centered">
       {{!reference the dashboard file path to fetch some information from a user}}
+
       <button type="button" id="thumbsup">
         <span class="glyphicon glyphicon-thumbs-up"></span>
         Like
@@ -15,6 +16,13 @@
       <p>{{payment_method}}</p>
       <p> zip code: {{zip_code}}</p>
       {{!reference the category file path to get the category information}}
+
+      {{#each jobimages as |image|}}
+        <div>
+            <img src="{{image.image_url}}">
+        </div>
+        {{/each}}
+
       <p>Category:
         <a
           href="/category/{{category_id}}/jobs"
