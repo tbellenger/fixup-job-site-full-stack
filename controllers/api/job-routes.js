@@ -150,7 +150,8 @@ router.post("/", async (req, res) => {
 
 router.post("/:id/image", async (req, res) => {
   try {
-    const uniqueFilename = req.user.id + "-" + req.params.id + "-" + Date().now;
+    const uniqueFilename =
+      req.user.id + "-" + req.params.id + "-" + new Date().getTime();
     console.log("image upload route");
     // upload to s3
     const compressed = await sharp(req.files.file.data)
