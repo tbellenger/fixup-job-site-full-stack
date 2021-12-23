@@ -17,9 +17,7 @@ label {
   font-size: 20px;
   
 }
-form input{
-  margin: 10px;
-}
+
 /* style the navigation section */
 .navigation {
   padding: 15px;
@@ -165,5 +163,4 @@ textarea{
    width: 100%;
    margin: 10px;
   }
-
 }
