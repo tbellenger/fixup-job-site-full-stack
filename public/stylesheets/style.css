@@ -50,14 +50,11 @@ form input{
 #nav-logout-button {
   border: none;
   background: none;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: bold;
 }
 i {
   color: #000;
-}
-.comment input {
- width: 100%;
 }
 #job-info {
   font-size: 25px;
@@ -127,6 +124,7 @@ i {
     grid-template-columns: auto auto auto;
     padding: 10px;
     background-color: linen;
+    
 }
 .grid-item {
   text-align: center;
@@ -141,4 +139,30 @@ i {
     background-image: url(../images/Tools.png);
     background-repeat: no-repeat;
     background-size: cover;
+}
+textarea{
+  margin-top: 5px;
+}
+#comment-box{
+  background: none;
+}
+#textarea{
+  margin-top: 15%;
+}
+@media screen and (max-width:575px){
+  .grid-container{
+    display: block;
+    justify-content: center;
+  }
+  .grid-item{
+    margin-left: 10%;
+  }
+  #form{
+    width: 100%;
+  }
+  .button{
+   width: 100%;
+   margin: 10px;
+  }
+
 }

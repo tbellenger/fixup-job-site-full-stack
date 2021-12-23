@@ -1,29 +1,26 @@
 {{!--initiate page template for job to be commented by any user--}}
-
 <div class="container">
-        <div class="columns is-centered">
+<div class="grid-container">
+       <div class="grid-item" id="job">
+             {{>job-info job}}
+             </div>
         {{!--call the job data from the local storage--}}
-       <form class="box">
+       <form class="box" id="comment-box">
                         {{!--label an dinput for job title--}}
-                     <div class="article has-background-light" id="job-info">{{>job-info job}}
-                     </form>
-                     <form>
-                    <label class="label is-large" class="label">Add a comment<label>
-
+                        <label class="label is-large">Add a comment</label>
                         {{!--label and input for job description--}}
-                        
                         <div class="field-body">
                             <div class="field">
-                                <label class="label">Comment</label>
                                 <div class="control">
                                     <textarea
-                                        class="textarea comment-input"
+                                        class="textarea comment-input" id="textarea"
                                         placeholder="Comment"
                                         name="comment-input" required
                                     ></textarea>
                                 </div>
                             </div>
-                        </div>
+                          </div>
+                          <br><br>
                             {{!--button to submit the inputs--}}
                         <div class="field is-grouped is-grouped-right mt-3">
                             <button class="button is-success submit-post" data-id={{job.id}}>Submit</a></button>
@@ -33,11 +30,10 @@
         {{!--call the comments section to be parse into job--}}
         {{#each job.comments as |comment|}}
         
-      <div class="column has-text-dark">{{>comments comment}}</div>
+        <div class="column">{{>comments comment}}</div>
       
         {{/each}}
     </div>
 </div>
-
 <script src="/javascript/job.js"></script>
 <script src="/javascript/like-job.js"></script>
