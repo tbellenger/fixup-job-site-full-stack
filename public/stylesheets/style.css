@@ -126,14 +126,19 @@ i {
     display: grid;
     grid-template-columns: auto auto auto;
     padding: 10px;
-  
+    background-color: linen;
 }
 .grid-item {
   text-align: center;
   padding: 20px;
- 
+
 }
 .card-header-title{
   padding: 15px;
   text-align: center;
+}
+#hero-container{
+    background-image: url(../images/Tools.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }

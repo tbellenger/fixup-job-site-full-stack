@@ -1,11 +1,10 @@
 {{!--initiate page template for jobs categories--}}
-<div class="hero-body">
+<div id="hero-container">
 <div class="container">
 <div class="grid-container">
  {{!--group the job category into each column--}}
     {{#each jobs as |job|}}
    <div class="grid-item">{{>job-info job}}</div>
     {{/each}}
-   </div> 
-</div>
+ </div> 
 </div>
