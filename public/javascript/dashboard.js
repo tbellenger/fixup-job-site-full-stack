@@ -111,3 +111,14 @@ document
 
 const deleteButtons = document.querySelectorAll(".delete-job");
 deleteButtons.forEach((el) => el.addEventListener("click", deletePostHandler));
+
+const fileBtn = document.querySelector("#file-input");
+fileBtn.addEventListener("click", () => {
+  //add spinner to show waiting
+  document.querySelector("#spinner").classList.remove("hide");
+});
+const job_image = document.querySelector('input[type="file"]');
+job_image.addEventListener("change", () => {
+  // hide the spinner
+  document.querySelector("#spinner").classList.add("hide");
+});

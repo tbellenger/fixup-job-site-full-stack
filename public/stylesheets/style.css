@@ -75,37 +75,11 @@ i {
   color: black;
 }
 
-#form {
-  background-color: #1484c5;
-  width: 30%;
-  height: 100px;
-  border-radius: 5px;
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  padding: 20px;
+.category-card-container{
+  display: flex;
+  justify-content: center;
 }
 
-#form input {
-  all: unset;
-  font: 16px system-ui;
-  height: 52%;
-  width: 100%;
-  padding: 6px 10px;
-  background-color: azure;
-  color: #000;
-}
-
-::placeholder {
-  color: #000;
-  opacity:1; 
-}
-
-#form button {
-  all: unset;
-  cursor: pointer;
-  width: 43px;
-  height: 43px;
-  color: #000;
-  background-color: azure;
+.category-card-container > .card{ 
+  margin: 20px;
 }
