@@ -25,7 +25,7 @@ async function login() {
   const passwordEl = document.querySelector("#password-login");
   const email = usernameEl.value.trim();
   const password = passwordEl.value.trim();
-//declare the post method to get the users
+  //declare the post method to get the users
   const response = await fetch("/api/users/login", {
     method: "POST",
     headers: {
@@ -42,7 +42,7 @@ async function login() {
   if (json) {
     if (json.token) {
       localStorage.setItem("token", JSON.stringify(json.token));
-      window.location.replace(`/?auth_token=${json.token}`);
+      location.replace(`/dashboard?auth_token=${json.token}`);
     }
   }
 }
@@ -55,7 +55,7 @@ async function signup() {
   const username = nameEl.value.trim();
   const email = usernameEl.value.trim();
   const password = passwordEl.value.trim();
-//call the method post 
+  //call the method post
   const signup = await fetch("/api/users/", {
     method: "POST",
     headers: {
@@ -64,13 +64,13 @@ async function signup() {
     //collect the user informations
     body: JSON.stringify({
       username: username,
-      email:email,
-      password: password
+      email: email,
+      password: password,
     }),
   });
 
   //condition to store the user data info
- if (signup.ok) {
+  if (signup.ok) {
     const response = await fetch("/api/users/login", {
       method: "POST",
       headers: {
@@ -83,13 +83,13 @@ async function signup() {
         password: password,
       }),
     });
-  
+
     //and store/save it into the local storage
     const json = await response.json();
     if (json) {
       if (json.token) {
         localStorage.setItem("token", JSON.stringify(json.token));
-        window.location.replace(`/?auth_token=${json.token}`);
+        location.replace(`/dashboard?auth_token=${json.token}`);
       }
     }
   }
