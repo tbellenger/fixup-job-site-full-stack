@@ -84,6 +84,7 @@ router.get("/jobs", async (req, res) => {
       { model: User, as: "owner", attribute: { exclude: ["password"] } },
       { model: User, as: "employee", attribute: { exclude: ["password"] } },
       { model: Category },
+      { model: Jobimage },
     ],
   };
   console.log(req.query);
