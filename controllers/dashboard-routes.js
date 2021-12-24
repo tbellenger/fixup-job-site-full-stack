@@ -173,18 +173,39 @@ router.get("/user/:id", async (req, res) => {
       res.status(404).json({ message: "No user with that ID" });
       return;
     } else {
+      const user = dbUser.get({ plain: true });
       console.log(
         "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" +
-          typeof dbUser.user_ratings
+          typeof user.user_ratings +
+          user.user_ratings["rating"]
       );
-      // const ratingarr = Object.values(dbUser.user_ratings[rating]);
-      const ratingarr = Object.keys(dbUser.user_ratings).map((rating) => [
-        Number(rating),
-        dbUser.user_ratings[rating],
-      ]);
-      console.log("this is the array " + ratingarr);
+      // const ratingarr = Object.values(dbUser.user_ratings);
+      // const ratingarr = Object.keys(user.user_ratings).map((rating) => [
+      //   Number(rating),
+      //   user.user_ratings[rating],
+      // ]);
+      // const pick = (obj, arr) =>
+      //   arr.reduce(
+      //     (acc, record) => (record in obj && (acc[record] = obj[record]), acc),
+      //     {}
+      //   );
+      // const result = pick(user.user_ratings, ["x", "rating"]);
+      // console.log(result);
+      const myData = [user.user_ratings];
 
-      const user = dbUser.get({ plain: true });
+      const keys = ["rating"];
+
+      const result = myData.reduce((r, e, i, a) => {
+        keys.forEach((k) => (r[k] = (r[k] || 0) + parseInt(e[k])));
+        if (!a[i + 1])
+          Object.keys(e)
+            .filter((k) => typeof e[k] == "string")
+            .forEach((k) => (r[k] /= myData.length));
+        return r;
+      }, {});
+
+      console.log(result);
+      // console.log("this is the array " + ratingarr + "id " + user.id);
       return res.render("user", {
         user: user,
         sameUser: sameUser,

@@ -16,7 +16,15 @@ const ratingsdata = [
   },
   {
     user_id: 4,
-    rating: 4.9,
+    rating: 2,
+  },
+  {
+    user_id: 4,
+    rating: 4,
+  },
+  {
+    user_id: 4,
+    rating: 5,
   },
 ];
 //seed all ratings data

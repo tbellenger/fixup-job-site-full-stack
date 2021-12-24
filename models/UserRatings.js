@@ -21,7 +21,7 @@ Ratings.init(
       },
     },
     rating: {
-      type: DataTypes.DECIMAL(3, 2),
+      type: DataTypes.DECIMAL(2, 1),
     },
   },
   {
