@@ -1,6 +1,8 @@
 <div class="card">
   <div class="media-content">
-    <p class="card-header-title is-4">{{title}}</p>
+    <div class="card-header">
+      <p class="card-header-title is-4"><a href="/dashboard/job/{{id}}">{{title}}</a></p>
+    </div>
   </div>
   <div class="card-image">
     <figure class="image is-4by4">
@@ -23,7 +25,7 @@
         </figure>
       </div>
       <div class="media-content">
-        <p class="title is-4">{{owner.username}}</p>
+        <p class="title is-4"><a href="/dashboard/user/{{owner.id}}">{{owner.username}}</a></p>
         <p class="subtitle is-6">{{owner.email}}</p>
       </div>
     </div>
