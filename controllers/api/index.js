@@ -6,10 +6,12 @@ const userRoutes = require("./user-routes");
 const categoryRoutes = require("./category-routes");
 const jobRoutes = require("./job-routes");
 const commentRoutes = require("./comment-routes");
+const ratingRoutes = require("./ratings-routes");
 //render all routes
 router.use("/users", userRoutes);
 // must have an account to see job postings
 router.use("/categories", categoryRoutes);
+// router.use("/ratings", ratingRoutes);
 router.use(
   "/jobs",
   passport.authenticate("jwt", { session: false }),
