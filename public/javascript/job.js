@@ -88,13 +88,17 @@ async function newCommentHandler(event) {
   }
 }
 
-document
-  .querySelector(".submit-post")
-  .addEventListener("click", newCommentHandler);
+const commentEl = document.querySelector(".submit-post");
+if (commentEl) {
+  commentEl.addEventListener("click", newCommentHandler);
+}
 
 async function applyToJob() {
   event.preventDefault();
-
+  if (!auth_token) {
+    location.replace("/login");
+    return;
+  }
   try {
     const response = await fetch(`/api/jobs/${event.target.dataset.id}/apply`, {
       method: "POST",
@@ -112,7 +116,7 @@ async function applyToJob() {
   }
 }
 
-const applyBtn = document.querySelector("#apply-to-job-btn");
-if (applyBtn) {
-  applyBtn.addEventListener("click", applyToJob);
-}
+const applyBtn = document.querySelectorAll(".apply-to-job-btn");
+applyBtn.forEach((item) => {
+  item.addEventListener("click", applyToJob);
+});
