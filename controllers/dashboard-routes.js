@@ -177,8 +177,32 @@ router.get("/user/:id", async (req, res) => {
       console.log(
         "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" +
           typeof user.user_ratings +
-          user.user_ratings["rating"]
+          user.user_ratings +
+          user.user_ratings[0].rating +
+          user.user_ratings[1].rating +
+          user.user_ratings[2].rating
       );
+      for (let i = 0; i < user.user_ratings.length; i++) {
+        console.log(
+          user.user_ratings[i].rating + typeof user.user_ratings[i].rating
+        );
+        const total1 = [];
+        const arr = total1.push(user.user_ratings[i].rating);
+        console.log(total1);
+        let sum = function (array) {
+          let total = 0;
+          for (let j = 0; j < array.length; j++) {
+            total += array[j];
+          }
+          return total;
+        };
+        let mean = function (array) {
+          let arraySum = sum(array);
+          return arraySum / array.length;
+        };
+        const meant = mean(arr);
+        console.log(meant);
+      }
       // const ratingarr = Object.values(dbUser.user_ratings);
       // const ratingarr = Object.keys(user.user_ratings).map((rating) => [
       //   Number(rating),
@@ -191,21 +215,21 @@ router.get("/user/:id", async (req, res) => {
       //   );
       // const result = pick(user.user_ratings, ["x", "rating"]);
       // console.log(result);
-      const myData = [user.user_ratings];
+      // const myData = [user.user_ratings];
 
-      const keys = ["rating"];
+      // const keys = ["rating"];
 
-      const result = myData.reduce((r, e, i, a) => {
-        keys.forEach((k) => (r[k] = (r[k] || 0) + parseInt(e[k])));
-        if (!a[i + 1])
-          Object.keys(e)
-            .filter((k) => typeof e[k] == "string")
-            .forEach((k) => (r[k] /= myData.length));
-        return r;
-      }, {});
+      // const result = myData.reduce((r, e, i, a) => {
+      //   keys.forEach((k) => (r[k] = (r[k] || 0) + parseInt(e[k])));
+      //   if (!a[i + 1])
+      //     Object.keys(e)
+      //       .filter((k) => typeof e[k] == "string")
+      //       .forEach((k) => (r[k] /= myData.length));
+      //   return r;
+      // }, {});
 
-      console.log(result);
-      // console.log("this is the array " + ratingarr + "id " + user.id);
+      // console.log(result);
+      // // console.log("this is the array " + ratingarr + "id " + user.id);
       return res.render("user", {
         user: user,
         sameUser: sameUser,
