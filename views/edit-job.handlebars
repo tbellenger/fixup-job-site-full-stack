@@ -14,16 +14,15 @@
   </div>
   {{!--label and input for category name--}}
   <div class="field">
-      <label class="label"> Category Name</label>
-      <div class="control">
-          <input
-              value="{{job.category.category_name}}"
-              type="text"
-              placeholder="category-name"
-              class="input category-name"
-              required/>
-      </div>
-  </div>
+    <label class="label">Category Name</label><br>
+    <div class="control">
+        <select name="category-name" id="category-name" required>
+            {{#each categories as |category|}}
+            <option value="{{category.category_name}}">{{category.category_name}}</option>
+            {{/each}}
+        </select>
+    </div>
+</div>
   {{!--label and input for job description--}}
   <div class="field-body">
       <div class="field">

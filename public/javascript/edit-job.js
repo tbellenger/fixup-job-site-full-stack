@@ -1,5 +1,3 @@
-//declare the token
-const token = JSON.parse(localStorage.getItem("token"));
 //function to caete a job post
 async function editJobHandler(event) {
   event.preventDefault();
@@ -16,10 +14,10 @@ async function editJobHandler(event) {
   const payment_method = document
     .querySelector("input[name=payment-input")
     .value.trim();
-  const category_name = document.querySelector(".category-name").value.trim();
+  const category_name = document.querySelector("#category-name").value.trim();
   // const username = document.querySelector(".username-input").value.trim();
   //if not a user bring them into login section
-  if (!token) {
+  if (!auth_token) {
     alert("Please login or signup to create post.");
   } else {
     //if user then ask them to input the data
@@ -32,12 +30,13 @@ async function editJobHandler(event) {
       payment_method
     ) {
       //validate their inputs
+      console.log(category_name);
       const jobId = event.target.dataset.id;
       const response = await fetch(`/api/jobs/${jobId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `bearer ${token}`,
+          Authorization: `bearer ${auth_token}`,
         },
         //collect the inputs
         body: JSON.stringify({
@@ -49,10 +48,11 @@ async function editJobHandler(event) {
           payment_method,
         }),
       });
-      console.log(token);
       //assign them a new token
       if (response.ok) {
-        document.location.replace(`/dashboard?auth_token=${token}`);
+        const json = await response.json();
+        console.log(json);
+        //document.location.replace(`/dashboard?auth_token=${auth_token}`);
       } else {
         alert(response.statusText);
       }
