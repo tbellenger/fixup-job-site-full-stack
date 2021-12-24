@@ -174,35 +174,44 @@ router.get("/user/:id", async (req, res) => {
       return;
     } else {
       const user = dbUser.get({ plain: true });
-      console.log(
-        "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" +
-          typeof user.user_ratings +
-          user.user_ratings +
-          user.user_ratings[0].rating +
-          user.user_ratings[1].rating +
-          user.user_ratings[2].rating
-      );
+      // console.log(
+      //   "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" +
+      //     typeof user.user_ratings +
+      //     user.user_ratings +
+      //     user.user_ratings[0].rating +
+      //     user.user_ratings[1].rating +
+      //     user.user_ratings[2].rating
+      // );
+      const total1 = [];
       for (let i = 0; i < user.user_ratings.length; i++) {
         console.log(
           user.user_ratings[i].rating + typeof user.user_ratings[i].rating
         );
-        const total1 = [];
+
         const arr = total1.push(user.user_ratings[i].rating);
         console.log(total1);
-        let sum = function (array) {
-          let total = 0;
-          for (let j = 0; j < array.length; j++) {
-            total += array[j];
-          }
-          return total;
+        const avg = (arr) => {
+          const sum = arr.reduce((acc, cur) => acc + cur);
+          const average = sum / arr.length;
+          // console.log(average);
+          return average;
         };
-        let mean = function (array) {
-          let arraySum = sum(array);
-          return arraySum / array.length;
-        };
-        const meant = mean(arr);
-        console.log(meant);
+        console.log(avg(total1).toFixed(1));
+        // let sum = function (array) {
+        //   let total = 0;
+        //   for (let j = 0; j < array.length; j++) {
+        //     total += array[j];
+        //   }
+        //   return total;
+        // };
+        // let mean = function (array) {
+        //   let arraySum = sum(array);
+        //   return arraySum / array.length;
+        // };
+        // const meant = mean(arr);
+        // console.log("here" + meant);
       }
+
       // const ratingarr = Object.values(dbUser.user_ratings);
       // const ratingarr = Object.keys(user.user_ratings).map((rating) => [
       //   Number(rating),
