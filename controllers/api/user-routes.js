@@ -34,7 +34,6 @@ router.get(
     try {
       exclude = ["password"];
       if (req.params.id !== req.user.id) {
-        
         exclude.push("email");
         exclude.push("last_login");
       }
@@ -91,13 +90,13 @@ router.post("/login", async (req, res, next) => {
 //get the new user data and assign token and session timeout
 function sign(user) {
   console.log("signing token");
-  const body = { id: user.id, email: user.email, username: user.username};
+  const body = { id: user.id, email: user.email, username: user.username };
   const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
     expiresIn: "2h",
   });
   return token;
 }
-//assign token by id 
+//assign token by id
 router.put(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -150,5 +149,5 @@ router.delete(
     }
   }
 );
-//export the token routes 
+//export the token routes
 module.exports = router;
