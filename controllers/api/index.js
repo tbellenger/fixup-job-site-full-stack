@@ -11,7 +11,7 @@ const ratingRoutes = require("./ratings-routes");
 router.use("/users", userRoutes);
 // must have an account to see job postings
 router.use("/categories", categoryRoutes);
-// router.use("/ratings", ratingRoutes);
+router.use("/ratings", ratingRoutes);
 router.use(
   "/jobs",
   passport.authenticate("jwt", { session: false }),
