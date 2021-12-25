@@ -83,13 +83,13 @@ User.init(
         len: [4],
       },
     },
-    user_rating: {
-      type: DataTypes.DECIMAL,
-      // references: {
-      //   model: "ratings",
-      //   key: "id",
-      // },
-    },
+    // user_rating: {
+    //   type: DataTypes.DECIMAL,
+    //   // references: {
+    //   //   model: "ratings",
+    //   //   key: "id",
+    //   // },
+    // },
     // no need to store jobs completed or offered as that can be counted in the database
     last_login: {
       type: DataTypes.DATEONLY,
