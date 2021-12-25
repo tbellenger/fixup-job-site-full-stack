@@ -21,13 +21,13 @@
                         </div>
                         {{!--label and input for category name--}}
                         <div class="field">
-                            <label class="label"> Category Name</label><br>
+                            <label class="label">Category Name</label><br>
                             <div class="control">
-                                <input
-                                    type="text"
-                                    placeholder="category-name"
-                                    class="input is-large category-name"
-                                    required/>
+                                <select name="category-name" id="category-name" required>
+                                    {{#each categories as |category|}}
+                                    <option value="{{category.category_name}}">{{category.category_name}}</option>
+                                    {{/each}}
+                                </select>
                             </div>
                         </div>
                         {{!--label and input for job description--}}
@@ -102,7 +102,6 @@
                                 {{!--user post information columns of data--}}
                                 <tr>
                                     <th class="table-title">Title</th>
-                                    <th class="table-category">Category</th>
                                     {{!--condition to assign or parse the user if falls as an employee--}}
                                     {{#if employee}}
                                     <th class="employee-name">Employee</th>
@@ -121,8 +120,6 @@
                                     <tr>
                                         <td><a href="/dashboard/job/{{this.id}}"
                                             >{{this.title}}</a></td>
-                                        <td><a href="/category/{{this.category_id}}/jobs"
-                                            >{{this.category.category_name}}</a></td>
                                         {{!--condition if the owner has an employee then view the employee name--}}
                                         {{#if employee}}
                                         <td>{{>partial-user this.employee}}</td>

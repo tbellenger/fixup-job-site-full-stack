@@ -16,7 +16,7 @@ async function newPostHandler(event) {
   //const job_status = document
   //.querySelector("input[name=status-input")
   // .value.trim();
-  const category_name = document.querySelector(".category-name").value.trim();
+  const category_name = document.querySelector("#category-name").value.trim();
   const job_image = document.querySelector('input[type="file"]');
   console.log(job_image);
   // const username = document.querySelector(".username-input").value.trim();
@@ -56,20 +56,25 @@ async function newPostHandler(event) {
       if (response.ok) {
         json = await response.json();
         console.log(json);
-        const formData = new FormData();
-        formData.append("file", job_image.files[0]);
-        const img_response = await fetch(`api/jobs/${json.id}/image`, {
-          method: "POST",
-          headers: {
-            Authorization: "bearer " + auth_token,
-          },
-          body: formData,
-        });
-        if (img_response.ok) {
-          console.log("image upload success");
-          document.location.replace(`/dashboard?auth_token=${auth_token}`);
+        if (job_image.files.length > 0) {
+          const formData = new FormData();
+          formData.append("file", job_image.files[0]);
+          const img_response = await fetch(`api/jobs/${json.id}/image`, {
+            method: "POST",
+            headers: {
+              Authorization: "bearer " + auth_token,
+            },
+            body: formData,
+          });
+          if (img_response.ok) {
+            console.log("image upload success");
+            document.location.replace(`/dashboard?auth_token=${auth_token}`);
+          } else {
+            alert("image upload failed");
+          }
         } else {
-          alert("image upload failed");
+          console.log("no image to upload");
+          location.replace(`/dashboard?auth_token=${auth_token}`);
         }
       } else {
         alert(response.statusText);

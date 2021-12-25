@@ -1,38 +1,7 @@
 
 <div class="category-card-container">
    {{#each jobs as |job|}}
-<div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      {{#each job.jobimages as |image|}}
-        <div>
-            <img src="{{image.image_url}}">
-      </div>
-       {{/each}}
-    </figure>
-    </div>
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="/avatar/{{id}}" alt="avatar image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4">{{owner.username}}</p>
-        <p class="subtitle is-6">@johnsmith</p>
-      </div>
-    </div>
-    <div class="content">
-   <p>{{job.description}}</p>
-      <p><b>Salary:</b> {{job.salary}}</p>
-      <p><b>payment preference:</b> {{job.payment_method}}</p>
-      <p> <b>zip code:</b> {{job.zip_code}}</p>
-    
-      {{!-- <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time> --}}
-    </div>
-  </div>
-</div>
+{{>job-info job}}
   {{/each}}
 </div>
 

@@ -4,6 +4,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 //require all Models that associated with each other
 const { Category, Job, User, Jobimage } = require("../models");
+const { Op } = require("sequelize");
 
 // get all categories for homepage
 
@@ -77,15 +78,32 @@ router.get("/jobs/:id", async (req, res) => {
 });
 //get all the jobs data
 router.get("/jobs", async (req, res) => {
+  const queryOptions = {
+    attributes: { exclude: ["updatedAt"] },
+    include: [
+      { model: User, as: "owner", attribute: { exclude: ["password"] } },
+      { model: User, as: "employee", attribute: { exclude: ["password"] } },
+      { model: Category },
+      { model: Jobimage },
+    ],
+  };
+  console.log(req.query);
+  if (req.query.q) {
+    console.log(req.query.q);
+    // request includes search terms
+    queryOptions.where = {
+      [Op.or]: {
+        title: {
+          [Op.substring]: req.query.q,
+        },
+        description: {
+          [Op.substring]: req.query.q,
+        },
+      },
+    };
+  }
   try {
-    const allJobs = await Job.findAll({
-      attributes: { exclude: ["updatedAt"] },
-      include: [
-        { model: User, as: "owner", attribute: { exclude: ["password"] } },
-        { model: User, as: "employee", attribute: { exclude: ["password"] } },
-        { model: Category },
-      ],
-    });
+    const allJobs = await Job.findAll(queryOptions);
     const jobs = allJobs.map((job) => job.get({ plain: true }));
     console.log(jobs);
     res.render("jobs", {
@@ -96,6 +114,7 @@ router.get("/jobs", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 //get the login page
 router.get("/login", (req, res) => {
   res.render("login");

@@ -11,14 +11,15 @@ passport.use(
     {
       usernameField: "email",
       passwordField: "password",
+      passReqToCallback: true,
     },
-    async (email, password, done) => {
+    async (req, email, password, done) => {
       try {
         console.log("sign up in auth");
         const user = await User.create({
           email,
           password,
-          username: email,
+          username: req.body.username,
           last_login: new Date(),
         });
         console.log(user);
