@@ -175,28 +175,28 @@ router.get("/user/:id", async (req, res) => {
     } else {
       const user = dbUser.get({ plain: true });
 
-      // const total1 = [];
-      // for (let i = 0; i < user.user_ratings.length; i++) {
-      //   console.log(
-      //     user.user_ratings[i].rating + typeof user.user_ratings[i].rating
-      //   );
+      const total1 = [];
+      for (let i = 0; i < user.user_ratings.length; i++) {
+        console.log(
+          user.user_ratings[i].rating + typeof user.user_ratings[i].rating
+        );
 
-      //   total1.push(user.user_ratings[i].rating);
-      //   console.log(total1);
-      //   const avg = (arr) => {
-      //     const sum = arr.reduce((acc, cur) => acc + cur);
-      //     const average = sum / arr.length;
-      //     // console.log(average);
-      //     return average;
-      //   };
-      //   const userAverage = avg(total1).toFixed(1);
-      //   console.log(userAverage + typeof userAverage);
-      return res.render("user", {
-        user: user,
-        sameUser: sameUser,
-        // userAverage: userAverage,
-      });
-      // }
+        total1.push(user.user_ratings[i].rating);
+        // console.log(total1);
+        const avg = (arr) => {
+          const sum = arr.reduce((acc, cur) => acc + cur);
+          const average = sum / arr.length;
+          // console.log(average);
+          return average;
+        };
+        const userAverage = avg(total1).toFixed(1);
+        console.log(userAverage + typeof userAverage);
+        return res.render("user", {
+          user: user,
+          sameUser: sameUser,
+          userAverage: userAverage,
+        });
+      }
 
       // return res.render("user", {
       //   user: user,
