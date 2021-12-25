@@ -61,7 +61,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-router.post("/", async (req, res) => {
+router.post("/:id", async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
@@ -77,7 +77,7 @@ router.post("/", async (req, res) => {
     });
     const rating = await Ratings.create({
       where: {
-        user_id: req.body.user_id,
+        user_id: User.id,
       },
 
       rating: req.body.rating,
@@ -86,24 +86,29 @@ router.post("/", async (req, res) => {
       res.status(404).json({ message: "No rating with that ID" });
       return;
     } else {
-      res.json(rating);
-      const total1 = [];
-      for (let i = 0; i < user.user_ratings.length; i++) {
-        console.log(
-          user.user_ratings[i].rating + typeof user.user_ratings[i].rating
-        );
+      //   console.log(user.user_ratings);
 
-        total1.push(user.user_ratings[i].rating);
-        console.log(total1);
-        const avg = (arr) => {
-          const sum = arr.reduce((acc, cur) => acc + cur);
-          const average = sum / arr.length;
-          // console.log(average);
-          return average;
-        };
-        const userAverage = avg(total1).toFixed(1);
-        console.log(userAverage + typeof userAverage);
-      }
+      res.json(rating);
+      console.log(rating + typeof rating);
+      const newRating = user.user_ratings.push(rating);
+      console.log(newRating + typeof newRating);
+      //   const total1 = [];
+      //   total1.push(rating);
+      //   console.log(total1);
+      //   for (let i = 0; i < user_ratings.length; i++) {
+      //     console.log(user_ratings[i].rating + typeof user_ratings[i].rating);
+
+      //     total1.push(user_ratings[i].rating);
+      //     console.log(total1);
+      //     const avg = (arr) => {
+      //       const sum = arr.reduce((acc, cur) => acc + cur);
+      //       const average = sum / arr.length;
+      //       // console.log(average);
+      //       return average;
+      //     };
+      //     const userAverage = avg(total1).toFixed(1);
+      //     console.log(userAverage + typeof userAverage);
+      //   }
     }
   } catch (err) {
     console.log(err.errors);
