@@ -21,13 +21,13 @@
                         </div>
                         {{!--label and input for category name--}}
                         <div class="field">
-                            <label class="label"> Category Name</label><br>
+                            <label class="label">Category Name</label><br>
                             <div class="control">
-                                <input
-                                    type="text"
-                                    placeholder="category-name"
-                                    class="input is-large category-name"
-                                    required/>
+                                <select name="category-name" id="category-name" required>
+                                    {{#each categories as |category|}}
+                                    <option value="{{category.category_name}}">{{category.category_name}}</option>
+                                    {{/each}}
+                                </select>
                             </div>
                         </div>
                         {{!--label and input for job description--}}
