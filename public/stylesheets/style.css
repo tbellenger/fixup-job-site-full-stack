@@ -12,10 +12,9 @@ label {
   font-weight: 600;
   color: white;
 }
-.label{
+.label {
   color: #000;
   font-size: 20px;
-  
 }
 
 /* style the navigation section */
@@ -76,12 +75,12 @@ i {
   color: black;
 }
 
-.category-card-container{
+.category-card-container {
   display: flex;
   justify-content: center;
 }
 
-.category-card-container > .card{ 
+.category-card-container > .card {
   margin: 20px;
 }
 #form {
@@ -89,9 +88,9 @@ i {
   width: 30%;
   height: 100px;
   border-radius: 5px;
-  display:flex;
-  flex-direction:row;
-  align-items:center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: 20px;
 }
 
@@ -107,7 +106,7 @@ i {
 
 ::placeholder {
   color: #000;
-  opacity:1; 
+  opacity: 1;
 }
 
 #form button {
@@ -118,49 +117,44 @@ i {
   color: #000;
   background-color: azure;
 }
-.grid-container{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px;
-    background-color: linen;
-    
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  background-color: linen;
 }
 .grid-item {
   text-align: center;
   padding: 20px;
-
 }
-.card-header-title{
+.card-header-title {
   padding: 15px;
   text-align: center;
 }
-#hero-container{
-    background-image: url(../images/Tools.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+#hero-container {
+  background-image: url(../images/Tools.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-textarea{
+textarea {
   margin-top: 5px;
 }
-#comment-box{
+#comment-box {
   background: none;
 }
-#textarea{
-  margin-top: 15%;
-}
-@media screen and (max-width:575px){
-  .grid-container{
+@media screen and (max-width: 575px) {
+  .grid-container {
     display: block;
     justify-content: center;
   }
-  .grid-item{
+  .grid-item {
     margin-left: 10%;
   }
-  #form{
+  #form {
     width: 100%;
   }
-  .button{
-   width: 100%;
-   margin: 10px;
+  .button {
+    width: 100%;
+    margin: 10px;
   }
 }
