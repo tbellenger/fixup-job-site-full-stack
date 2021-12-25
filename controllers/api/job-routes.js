@@ -242,17 +242,18 @@ router.put("/like", async (req, res) => {
 // get the job by id to update
 router.put("/:id", async (req, res) => {
   try {
-    const category = await Category.findOrCreate({
-      where: {
-        category_name: req.body.category_name,
-      },
-      defaults: {
-        category_name: req.body.category_name,
-      },
-    });
+    if (req.body.category_name) {
+      const category = await Category.findOrCreate({
+        where: {
+          category_name: req.body.category_name,
+        },
+        defaults: {
+          category_name: req.body.category_name,
+        },
+      });
 
-    req.body.category_id = category[0].id;
-
+      req.body.category_id = category[0].id;
+    }
     const job = await Job.update(req.body, {
       where: {
         id: req.params.id,
