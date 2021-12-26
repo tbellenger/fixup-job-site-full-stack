@@ -232,13 +232,6 @@ router.get("/user/:id", async (req, res) => {
         };
         userAverage = avg(total1).toFixed(1);
         // console.log(userAverage);
-
-        // return userAverage;
-        // return res.render("user", {
-        //   user: user,
-        //   sameUser: sameUser,
-        //   userAverage: userAverage,
-        // });
       }
 
       return res.render("user", {

@@ -1,18 +1,3 @@
-// var url = encodeURIComponent(window.location.href);
-
-// const id = window.location.toString().split("/").pop().split("?")[0][
-//   window.location.toString().split("/").pop().split("?").length - 1
-// ];
-// console.log(id);
-// const id = window.location.toString().split("/").pop().split("?")[
-//   window.location.toString().split("/").pop().split("?").length - 1
-// ];
-// console.log(id);
-// function getURL() {
-//   console.log("The URL of this page is: " + window.location.href);
-// }
-// getURL();
-
 async function submitRatings(event) {
   event.preventDefault();
   //declare all variables of inputs
@@ -24,10 +9,7 @@ async function submitRatings(event) {
   } else if (rating < 0) {
     rating = 0;
   }
-  console.log(rating);
 
-  //   let url = window.location.toString();
-  //   console.log(url);
   //if not a user bring them into login section
   if (!auth_token) {
     alert("Please login or signup to create post.");
