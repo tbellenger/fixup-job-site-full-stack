@@ -1,24 +1,23 @@
 {{!--page template for the dashboard where user can create job posting--}}
-
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column">
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-12">
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification">
                     {{!--input form for the job post data--}}
                     <form class="box">
                         {{!--label an dinput for job title--}}
                         <div class="field">
                              <h1>Post a New Job<h1>
-                               <label class="label"> Title</label><br>
+                               <label class="label"> Title</label><br><br>
                               <div class="control">
-                               
-                                <input
+                               <input
                                     type="text"
                                     placeholder="Job title"
                                     class="input is-large title-input"
                                     name="job-title" required/>
                             </div>
-                        </div>
+                        </div><br>
                         {{!--label and input for category name--}}
                         <div class="field">
                             <div class="control">
@@ -29,11 +28,11 @@
                                     {{/each}}
                                 </select>
                             </div>
-                        </div>
+                        </div><br>
                         {{!--label and input for job description--}}
                         <div class="field-body">
                             <div class="field">
-                                <label class="label">Description</label><br>
+                                <label class="label">Description</label><br><br>
                                 <div class="control">
                                     <textarea
                                         class="textarea description-input"
@@ -42,16 +41,16 @@
                                     ></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
                         {{!--label and input for salary--}}
                         <div class="control">
-                            <label class="label">Salary</label><br>
+                            <label class="label">Salary</label><br><br>
                                 <input
                                     type="number"
                                     placeholder="salary"
                                     class="input is-large salary-input"
                                     name='salary-input' required/>
-                            </div>
+                            </div><br>
                             {{!--label and input for payment method--}}
                             <div class="control">
                             <label class="label">Payment method will be </label><br><br>
@@ -60,7 +59,7 @@
                                     placeholder="Payment method"
                                     class="input is-large payment-input"
                                     name="payment-input" required/>
-                            </div>
+                            </div><br>
                             {{!--label and input for job location--}}
                             <div class="control">
                             <label class="label">Job Location</label><br><br>
@@ -69,7 +68,7 @@
                                     placeholder="Job location"
                                     class="input is-large location-input"
                                     name="location-input" required/>
-                            </div>
+                            </div><br>
                             <div class="control">
                             <label class="label">Image</label><br><br>
                                 <input
@@ -83,17 +82,12 @@
                             <button class="button is-success submit-post">Submit</a></button>
                         </div>
                     </form>
+                    </article>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
+            
 {{!--section table to display the post history of a certain user--}}
-<section class="hero has-background-grey-lighter hug">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column">
+ <div class="tile is-parent">
+        <article class="tile is-child notification">
                     <form class="box">
                         <table
                             class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
@@ -142,8 +136,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+</div>
 {{!--call the file function to generate this page template--}}
 <script src="/javascript/dashboard.js"></script>
