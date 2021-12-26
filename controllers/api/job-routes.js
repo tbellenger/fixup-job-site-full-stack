@@ -251,9 +251,10 @@ router.put("/:id", async (req, res) => {
           category_name: req.body.category_name,
         },
       });
+
+
       req.body.category_id = category[0].id;
     }
-
     const job = await Job.update(req.body, {
       where: {
         id: req.params.id,
