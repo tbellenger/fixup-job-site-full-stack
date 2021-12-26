@@ -33,5 +33,31 @@
 </div>
 </div>
 </div>
+       
+    <div class="container">
+        {{!--call the job data from the local storage--}}
+       
+       <form id="comment-box">
+            <h3>Chat Thread</h3>
+            <textarea
+                class="textarea comment-input" id="textarea"
+                placeholder="Comment"
+                name="comment-input" required
+            ></textarea ><br>
+                {{!--button to submit the inputs--}}
+            <div>
+                <button class="button is-success submit-post" data-id={{job.id}}>Send</a></button>
+            </div>
+        </form>
+    
+        {{!--call the comments section to be parse into job--}}
+        <div>
+         <p class="title is-4">{{>partial-user user}}</p>
+        {{>comments comment}}
+        </div>
+        </div>
+</div>
 
- 
+
+
+   
