@@ -1,5 +1,5 @@
 {{!--page template for the dashboard where user can create job posting--}}
-<section class="hero has-background-grey-lighter">
+
     <div class="hero-body">
         <div class="container">
             <div class="columns is-centered">
@@ -21,8 +21,8 @@
                         </div>
                         {{!--label and input for category name--}}
                         <div class="field">
-                            <label class="label">Category Name</label><br>
                             <div class="control">
+                                <label class="label">Category Name</label>
                                 <select name="category-name" id="category-name" required>
                                     {{#each categories as |category|}}
                                     <option value="{{category.category_name}}">{{category.category_name}}</option>

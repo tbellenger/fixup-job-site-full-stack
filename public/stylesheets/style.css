@@ -1,3 +1,6 @@
+:root p{
+  font-size: 18px;
+}
 /* hide the signup form while in login page template */
 .hide {
   display: none;
