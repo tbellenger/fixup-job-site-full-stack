@@ -131,11 +131,6 @@ i {
   padding: 15px;
   text-align: center;
 }
-#hero-container {
-  background-image: url(../images/Tools.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 textarea {
   margin-top: 5px;
 }
