@@ -174,11 +174,7 @@ router.get("/user/:id", async (req, res) => {
       return;
     } else {
       const user = dbUser.get({ plain: true });
-<<<<<<< HEAD
-      let userAverage;
-=======
       let userAverage = 0;
->>>>>>> 04a7308997688300dd720123ed2c4cde516a6076
       const total1 = [];
       for (let i = 0; i < user.user_ratings.length; i++) {
         // console.log("this is the lenght" + user.user_ratings.length);
