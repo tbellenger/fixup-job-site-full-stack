@@ -12,8 +12,8 @@ const {
   Comment,
   Like,
   Category,
-  JobApplicant,
   Jobimage,
+  JobApplicant,
 } = require("../../models");
 
 const s3 = new AWS.S3({
@@ -103,14 +103,6 @@ router.get("/:id", async (req, res) => {
           model: Jobimage,
           attributes: ["image_url"],
         },
-        {
-          model: JobApplicant,
-          attributes: ["jobId", "userId"],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
       ],
     });
     res.json(job);
@@ -158,6 +150,8 @@ router.post("/", async (req, res) => {
 
 router.post("/:id/image", async (req, res) => {
   try {
+    const uniqueFilename =
+      req.user.id + "-" + req.params.id + "-" + new Date().getTime();
     console.log("image upload route");
     // upload to s3
     const compressed = await sharp(req.files.file.data)
@@ -165,13 +159,13 @@ router.post("/:id/image", async (req, res) => {
       .webp()
       .withMetadata()
       .toBuffer();
-    uploadFile(req.files.file.name + ".webp", compressed);
+    uploadFile(uniqueFilename + ".webp", compressed);
     // create the DB entry associated with job id
     const jobimage = await Jobimage.create({
       job_id: req.params.id,
       image_url:
         "https://ucbstore.s3.us-west-1.amazonaws.com/" +
-        encodeURIComponent(req.files.file.name + ".webp"),
+        encodeURIComponent(uniqueFilename + ".webp"),
     });
     if (!jobimage) {
       res.status(500).json({ message: "Server error" });
@@ -188,9 +182,15 @@ router.post("/:id/apply", async (req, res) => {
     // should check if the job is open for applications first
 
     // create a job applicant
-    const application = await JobApplicant.create({
-      jobId: parseInt(req.params.id),
-      userId: req.user.id,
+    const application = await JobApplicant.findOrCreate({
+      where: {
+        jobId: parseInt(req.params.id),
+        userId: req.user.id,
+      },
+      defaults: {
+        jobId: parseInt(req.params.id),
+        userId: req.user.id,
+      },
     });
 
     res.json(application);
@@ -242,27 +242,47 @@ router.put("/like", async (req, res) => {
 // get the job by id to update
 router.put("/:id", async (req, res) => {
   try {
-    const job = await Job.update(
-      {
-        title: req.body.title,
-        description: req.body.description,
-        salary: req.body.salary,
-        category_id: req.body.category_id,
-        zip_code: req.body.zip_code,
-      },
-      {
+    if (req.body.category_name) {
+      const category = await Category.findOrCreate({
         where: {
-          id: req.params.id,
-          owner_id: req.user.id,
+          category_name: req.body.category_name,
         },
-      }
-    );
+        defaults: {
+          category_name: req.body.category_name,
+        },
+      });
+
+
+      req.body.category_id = category[0].id;
+    }
+    const job = await Job.update(req.body, {
+      where: {
+        id: req.params.id,
+        owner_id: req.user.id,
+      },
+    });
     //if no id exist return error
     if (!job) {
       res.status(404).json({ message: "No job with that ID" });
       return;
     } else {
       //return all job data
+      if (req.body.employee_id) {
+        // the employee id updated
+        // send email
+        const employee = await User.findOne({
+          where: {
+            id: req.body.employee_id,
+          },
+        });
+        if (employee) {
+          console.log(employee);
+          console.log(employee.email);
+          require("../../config/emailer").emailApplicationSuccess(
+            employee.email
+          );
+        }
+      }
       res.json(job);
     }
   } catch (err) {

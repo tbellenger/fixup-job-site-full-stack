@@ -2,16 +2,6 @@
 .hide {
   display: none;
 }
-/* style the buttons */
-/* button {
-  background-color: inherit;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-} */
 /* style the column */
 .column {
   margin: 5px;
@@ -22,6 +12,11 @@ label {
   font-weight: 600;
   color: white;
 }
+.label {
+  color: #000;
+  font-size: 20px;
+}
+
 /* style the navigation section */
 .navigation {
   padding: 15px;
@@ -45,21 +40,18 @@ label {
 
 .button {
   font-weight: bolder;
-  background-color: white;
+  font-size: 18px;
   outline: none;
 }
 
 #nav-logout-button {
   border: none;
   background: none;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: bold;
 }
 i {
   color: #000;
-}
-.comment {
-  font-size: 16px;
 }
 #job-info {
   font-size: 25px;
@@ -68,6 +60,96 @@ i {
   overflow-x: auto;
 }
 
+.card {
+  width: 320px;
+  border-radius: 20px;
+}
+
+#apply-to-job-btn {
+  background-color: rgb(65, 156, 101);
+  color: rgb(247, 241, 241);
+  font-size: medium;
+}
+
 #file-input {
   color: black;
+}
+
+.category-card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.category-card-container > .card {
+  margin: 20px;
+}
+#form {
+  background-color: #1484c5;
+  width: 30%;
+  height: 100px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+
+#form input {
+  all: unset;
+  font: 16px system-ui;
+  height: 52%;
+  width: 100%;
+  padding: 6px 10px;
+  background-color: azure;
+  color: #000;
+}
+
+::placeholder {
+  color: #000;
+  opacity: 1;
+}
+
+#form button {
+  all: unset;
+  cursor: pointer;
+  width: 43px;
+  height: 43px;
+  color: #000;
+  background-color: azure;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  background-color: linen;
+}
+.grid-item {
+  text-align: center;
+  padding: 20px;
+}
+.card-header-title {
+  padding: 15px;
+  text-align: center;
+}
+textarea {
+  margin-top: 5px;
+}
+#comment-box {
+  background: none;
+}
+@media screen and (max-width: 575px) {
+  .grid-container {
+    display: block;
+    justify-content: center;
+  }
+  .grid-item {
+    margin-left: 10%;
+  }
+  #form {
+    width: 100%;
+  }
+  .button {
+    width: 100%;
+    margin: 10px;
+  }
 }

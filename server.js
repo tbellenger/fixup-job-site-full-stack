@@ -16,6 +16,16 @@ const helpers = require("./utils/helpers");
 const hbs = exphbs.create({ helpers });
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
+// force heroku SSL
+if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+  app.use((req, res, next) => {
+    if (req.header("x-forwarded-proto") !== "https") {
+      res.redirect(`https://${req.header("host")}${req.url}`);
+    } else {
+      next();
+    }
+  });
+}
 //call back function to garner datas
 app.use(
   fileUpload({

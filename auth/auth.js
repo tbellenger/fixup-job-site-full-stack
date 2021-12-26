@@ -11,14 +11,15 @@ passport.use(
     {
       usernameField: "email",
       passwordField: "password",
+      passReqToCallback: true,
     },
-    async (email, password, done) => {
+    async (req, email, password, done) => {
       try {
         console.log("sign up in auth");
         const user = await User.create({
           email,
           password,
-          username: email,
+          username: req.body.username,
           last_login: new Date(),
         });
         console.log(user);
@@ -31,7 +32,7 @@ passport.use(
     }
   )
 );
-//function for a login user authentication 
+//function for a login user authentication
 passport.use(
   "login",
   new localStrategy(
@@ -54,7 +55,7 @@ passport.use(
         if (!validate) {
           return done(null, false, { message: "Wrong password" });
         }
-        //await user.update("last_login", new Date()); // This is buggy!!!!
+        await user.update({ last_login: new Date() });
         return done(null, user, { message: "Logged in" });
       } catch (error) {
         return done(error);

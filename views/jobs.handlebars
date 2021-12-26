@@ -1,11 +1,12 @@
 {{!--initiate page template for jobs categories--}}
-<section class="section">
-    <div class="columns">
-        {{!--group the job category into each column--}}
-        {{#each jobs as |job|}}
-        <div class="column">
-            {{>job-info job}}
-        </div>
-        {{/each}}
-    </div>
-</section>
+<div id="hero-container">
+<div class="container">
+<div class="grid-container">
+ {{!--group the job category into each column--}}
+    {{#each jobs as |job|}}
+   <div class="grid-item">{{>job-info job}}</div>
+    {{/each}}
+ </div> 
+</div>
+<script src="/javascript/job.js"></script>
+<script src="/javascript/like-job.js"></script>

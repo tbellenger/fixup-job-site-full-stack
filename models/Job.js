@@ -104,6 +104,7 @@ Job.init(
     },
     job_status: {
       type: DataTypes.ENUM("open", "filled", "complete"),
+      defaultValue: "open",
     },
     // interested: {
     //   type: DataTypes.BOOLEAN,

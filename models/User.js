@@ -103,13 +103,13 @@ User.init(
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-      async beforeUpdate(updatedUserData) {
-        updatedUserData.password = await bcrypt.hash(
-          updatedUserData.password,
-          10
-        );
-        return updatedUserData;
-      },
+      // async beforeUpdate(updatedUserData) {
+      //   updatedUserData.password = await bcrypt.hash(
+      //     updatedUserData.password,
+      //     10
+      //   );
+      //   return updatedUserData;
+      // },
     },
     //call the sequelize and actions to be taken in this model
     sequelize,

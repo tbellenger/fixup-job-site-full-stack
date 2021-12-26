@@ -13,7 +13,10 @@ async function newPostHandler(event) {
   const payment_method = document
     .querySelector("input[name=payment-input")
     .value.trim();
-  const category_name = document.querySelector(".category-name").value.trim();
+  //const job_status = document
+  //.querySelector("input[name=status-input")
+  // .value.trim();
+  const category_name = document.querySelector("#category-name").value.trim();
   const job_image = document.querySelector('input[type="file"]');
   console.log(job_image);
   // const username = document.querySelector(".username-input").value.trim();
@@ -29,7 +32,6 @@ async function newPostHandler(event) {
       salary &&
       zip_code &&
       payment_method
-      // username
     ) {
       //validate their inputs
       const response = await fetch(`/api/jobs/`, {
@@ -46,6 +48,7 @@ async function newPostHandler(event) {
           salary,
           zip_code,
           payment_method,
+
           // username,
         }),
       });
@@ -53,20 +56,25 @@ async function newPostHandler(event) {
       if (response.ok) {
         json = await response.json();
         console.log(json);
-        const formData = new FormData();
-        formData.append("file", job_image.files[0]);
-        const img_response = await fetch(`api/jobs/${json.id}/image`, {
-          method: "POST",
-          headers: {
-            Authorization: "bearer " + auth_token,
-          },
-          body: formData,
-        });
-        if (img_response.ok) {
-          console.log("image upload success");
-          document.location.replace(`/dashboard?auth_token=${auth_token}`);
+        if (job_image.files.length > 0) {
+          const formData = new FormData();
+          formData.append("file", job_image.files[0]);
+          const img_response = await fetch(`api/jobs/${json.id}/image`, {
+            method: "POST",
+            headers: {
+              Authorization: "bearer " + auth_token,
+            },
+            body: formData,
+          });
+          if (img_response.ok) {
+            console.log("image upload success");
+            document.location.replace(`/dashboard?auth_token=${auth_token}`);
+          } else {
+            alert("image upload failed");
+          }
         } else {
-          alert("image upload failed");
+          console.log("no image to upload");
+          location.replace(`/dashboard?auth_token=${auth_token}`);
         }
       } else {
         alert(response.statusText);
@@ -107,3 +115,18 @@ document
 
 const deleteButtons = document.querySelectorAll(".delete-job");
 deleteButtons.forEach((el) => el.addEventListener("click", deletePostHandler));
+
+const fileBtn = document.querySelector("#file-input");
+fileBtn.addEventListener("click", () => {
+  //add spinner to show waiting
+  document.querySelector("#spinner").classList.remove("hide");
+});
+const job_image = document.querySelector('input[type="file"]');
+job_image.addEventListener("change", () => {
+  // hide the spinner
+  document.querySelector("#spinner").classList.add("hide");
+  if (job_image.files[0].size > 3 * 1024 * 1024) {
+    alert("File is too big");
+    job_image.value = "";
+  }
+});
