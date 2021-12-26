@@ -4,7 +4,16 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 //require all models assocaited with each other
 
-const { Job, User, Comment, Category, Jobimage, JobTag } = require("../models");
+const {
+  Job,
+  User,
+  Comment,
+  Category,
+  Ratings,
+  JobApplicant,
+  JobTag,
+  Jobimage,
+} = require("../models");
 
 //get all jobs data
 router.get("/", async (req, res) => {
@@ -19,8 +28,8 @@ router.get("/", async (req, res) => {
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
         { model: User, as: "applicant", attributes: { exclude: ["password"] } },
-        { model: Category },
         { model: Jobimage },
+        { model: Category },
         {
           model: Comment,
           attributes: ["id", "comment_text", "job_id", "user_id"],
@@ -109,6 +118,7 @@ router.get("/job/:id/applicants", async (req, res) => {
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
         { model: User, as: "applicant", attributes: { exclude: ["password"] } },
+        { model: Jobimage },
       ],
     });
 
@@ -189,19 +199,52 @@ router.get("/user/:id", async (req, res) => {
       exclude.push("last_login");
     }
     const dbUser = await User.findOne({
-      attributes: { exclude: exclude },
       where: {
         id: req.params.id,
       },
+      attributes: { exclude: exclude },
+      include: [
+        {
+          model: Ratings,
+          as: "user_ratings",
+          attributes: ["id", "user_id", "rating"],
+        },
+      ],
     });
     if (!dbUser) {
       res.status(404).json({ message: "No user with that ID" });
       return;
     } else {
       const user = dbUser.get({ plain: true });
+      let userAverage = 0;
+      const total1 = [];
+      for (let i = 0; i < user.user_ratings.length; i++) {
+        // console.log("this is the lenght" + user.user_ratings.length);
+        // console.log(user.user_ratings[i].rating);
+
+        total1.push(user.user_ratings[i].rating);
+        // console.log(total1);
+        const avg = (arr) => {
+          const sum = arr.reduce((acc, cur) => acc + cur);
+          const average = sum / arr.length;
+          // console.log(average);
+          return average;
+        };
+        userAverage = avg(total1).toFixed(1);
+        // console.log(userAverage);
+
+        // return userAverage;
+        // return res.render("user", {
+        //   user: user,
+        //   sameUser: sameUser,
+        //   userAverage: userAverage,
+        // });
+      }
+
       return res.render("user", {
         user: user,
         sameUser: sameUser,
+        userAverage: userAverage,
       });
     }
   } catch (err) {

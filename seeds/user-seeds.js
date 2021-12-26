@@ -7,7 +7,7 @@ const userdata = [
   {
     username: "tarek",
     email: "tarek@gmail.com",
-    password: "password123",
+    password: "1111",
     last_login: new Date(),
   },
   {

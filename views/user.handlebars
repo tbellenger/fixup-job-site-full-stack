@@ -15,13 +15,30 @@
       {{!--user information--}}
       <div class="media-content">
         <p class="title is-4">User: {{>partial-user user}}</p>
+        <div>
+          <form id="rating-form">
+            {{!-- <p>rate</p> --}}
+           {{!-- <select id="ratings-select">
+              <option value ="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select> --}}
+            {{!-- <input type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}"> --}}
+              <label class="label">Rating</label>
+                   <input type="number" placeholder="rating out of 5"  id="ratings-select"
+                   class="input rating-input" name='rating-input' required/>
+                  <button type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}" >Submit</a></button>
+          </form>
+        </div>
         <p class="subtitle is-6"><a href="mailto:{{user.email}}">{{user.email}}</a></p>
       </div>
     </div>
 
     <div class="content">
         {{!--user ratings/likes--}}
-       <div>Rating: {{user.rating}}</div>
+       <div>Rating: {{ userAverage}}</div>
         {{!--If loggedIn user include the email and login history--}}
     {{#if sameUser}}
     <div>Email: {{user.email}}</div>
@@ -33,5 +50,6 @@
 </div>
 </div>
 </div>
+<script src="/javascript/ratings.js"></script>
 
  
