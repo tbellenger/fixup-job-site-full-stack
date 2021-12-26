@@ -252,6 +252,7 @@ router.put("/:id", async (req, res) => {
         },
       });
 
+
       req.body.category_id = category[0].id;
     }
     const job = await Job.update(req.body, {
@@ -266,6 +267,22 @@ router.put("/:id", async (req, res) => {
       return;
     } else {
       //return all job data
+      if (req.body.employee_id) {
+        // the employee id updated
+        // send email
+        const employee = await User.findOne({
+          where: {
+            id: req.body.employee_id,
+          },
+        });
+        if (employee) {
+          console.log(employee);
+          console.log(employee.email);
+          require("../../config/emailer").emailApplicationSuccess(
+            employee.email
+          );
+        }
+      }
       res.json(job);
     }
   } catch (err) {
