@@ -107,10 +107,3 @@ document
 
 const deleteButtons = document.querySelectorAll(".delete-job");
 deleteButtons.forEach((el) => el.addEventListener("click", deletePostHandler));
-
-const avg = (arr) => {
-  const sum = arr.reduce((acc, cur) => acc + cur);
-  const average = sum / arr.length;
-  console.log(average);
-  return average;
-};

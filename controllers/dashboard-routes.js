@@ -178,7 +178,7 @@ router.get("/user/:id", async (req, res) => {
       const total1 = [];
       for (let i = 0; i < user.user_ratings.length; i++) {
         // console.log("this is the lenght" + user.user_ratings.length);
-        console.log(user.user_ratings[i].rating);
+        // console.log(user.user_ratings[i].rating);
 
         total1.push(user.user_ratings[i].rating);
         // console.log(total1);
@@ -189,7 +189,7 @@ router.get("/user/:id", async (req, res) => {
           return average;
         };
         userAverage = avg(total1).toFixed(1);
-        console.log(userAverage);
+        // console.log(userAverage);
 
         // return userAverage;
         // return res.render("user", {
