@@ -18,7 +18,13 @@ async function submitRatings(event) {
   //declare all variables of inputs
   const userId = event.target.dataset.user;
   console.log(userId);
-  const rating = document.querySelector("#ratings-select").value;
+  let rating = document.querySelector("#ratings-select").value;
+  if (rating > 5) {
+    rating = 5;
+  } else if (rating < 0) {
+    rating = 0;
+  }
+  console.log(rating);
 
   //   let url = window.location.toString();
   //   console.log(url);
