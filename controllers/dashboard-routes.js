@@ -174,7 +174,7 @@ router.get("/user/:id", async (req, res) => {
       return;
     } else {
       const user = dbUser.get({ plain: true });
-
+      let userAverage;
       const total1 = [];
       for (let i = 0; i < user.user_ratings.length; i++) {
         // console.log("this is the lenght" + user.user_ratings.length);
@@ -188,7 +188,7 @@ router.get("/user/:id", async (req, res) => {
           // console.log(average);
           return average;
         };
-        const userAverage = avg(total1).toFixed(1);
+        userAverage = avg(total1).toFixed(1);
         console.log(userAverage);
 
         // return userAverage;
@@ -202,7 +202,7 @@ router.get("/user/:id", async (req, res) => {
       return res.render("user", {
         user: user,
         sameUser: sameUser,
-        // userAverage: userAverage,
+        userAverage: userAverage,
       });
     }
   } catch (err) {
