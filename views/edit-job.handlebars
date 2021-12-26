@@ -1,9 +1,10 @@
 <form class="box">
   {{!--label an dinput for job title--}}
-  <label class="label is-large" class="label">Edit Job<label>
   <div class="field">
+  <label class="label is-large" class="label">Edit Job<label>
       <label class="label">Title</label>
       <div class="control">
+            
           <input
               value="{{job.title}}"
               type="text"
@@ -12,6 +13,7 @@
               name="job-title" required/>
       </div>
   </div>
+  
   {{!--label and input for category name--}}
   <div class="field">
     <label class="label">Category Name</label><br>
