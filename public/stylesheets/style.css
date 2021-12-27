@@ -27,10 +27,10 @@ label {
   font-size: 50px;
 }
 /* style the navigation bar link */
-#navbarMenu {
+/* #navbarMenu {
   font-size: 22px;
   font-weight: bolder;
-}
+} */
 
 .hero-body {
   background-image: url(../images/drill1.jpeg);
@@ -38,18 +38,18 @@ label {
   background-size: cover;
 }
 
-.button {
+/* .button {
   font-weight: bolder;
   font-size: 18px;
   outline: none;
-}
+} */
 
-#nav-logout-button {
+/* #nav-logout-button {
   border: none;
   background: none;
   font-size: 25px;
   font-weight: bold;
-}
+} */
 i {
   color: #000;
 }
