@@ -9,6 +9,10 @@
   background-size: cover;
 }
 
+.job-image {
+  max-width: 400px;
+}
+
 i {
   color: #000;
 }
