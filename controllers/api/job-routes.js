@@ -252,8 +252,8 @@ router.put("/:id", async (req, res) => {
         },
       });
 
-
       req.body.category_id = category[0].id;
+      console.log(req.body.category_id);
     }
     const job = await Job.update(req.body, {
       where: {
@@ -286,6 +286,7 @@ router.put("/:id", async (req, res) => {
       res.json(job);
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
