@@ -27,6 +27,11 @@ router.get("/", async (req, res) => {
 //get the category by id from category data and job data
 router.get("/category/:id/jobs", async (req, res) => {
   try {
+    const category = await Category.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
     const allJobs = await Job.findAll({
       where: {
         category_id: req.params.id,
@@ -43,8 +48,9 @@ router.get("/category/:id/jobs", async (req, res) => {
     //get the categories data and view it on the page
     const jobs = allJobs.map((job) => job.get({ plain: true }));
     console.log(jobs);
-    res.render("category", {
+    res.render("jobs", {
       jobs: jobs,
+      category: category.category_name + " Jobs",
     });
   } catch (err) {
     console.log(err);
@@ -78,6 +84,7 @@ router.get("/jobs/:id", async (req, res) => {
 });
 //get all the jobs data
 router.get("/jobs", async (req, res) => {
+  let category = "All Jobs";
   const queryOptions = {
     attributes: { exclude: ["updatedAt"] },
     include: [
@@ -90,6 +97,7 @@ router.get("/jobs", async (req, res) => {
   console.log(req.query);
   if (req.query.q) {
     console.log(req.query.q);
+    category = 'Search: "' + req.query.q + '"';
     // request includes search terms
     queryOptions.where = {
       [Op.or]: {
@@ -108,6 +116,7 @@ router.get("/jobs", async (req, res) => {
     console.log(jobs);
     res.render("jobs", {
       jobs: jobs,
+      category: category,
     });
   } catch (err) {
     console.log(err);

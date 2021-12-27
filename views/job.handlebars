@@ -1,10 +1,8 @@
 {{!--initiate page template for job to be commented by any user--}}
-<div class="columns">
-    <div class="column is-12">
-        <div class="container">
-            <div id="job">
-                {{>job-info job}}
-            </div>
+<div class="container is-fluid">
+    <div class="columns">
+        <div class="column is-12">
+            {{>job-info job}}
             {{!--call the job data from the local storage--}}
             <form id="box">
                 <span class="is-size-4">Add a comment</span>
@@ -32,5 +30,6 @@
         </div>
     </div>
 </div>
+
 <script src="/javascript/job.js"></script>
 <script src="/javascript/like-job.js"></script>
