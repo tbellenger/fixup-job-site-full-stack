@@ -1,30 +1,36 @@
 {{!--initiate page template for job to be commented by any user--}}
-<div class="container">
-       <div id="job">
-             {{>job-info job}}
-        </div>
-        {{!--call the job data from the local storage--}}
-       <form id="comment-box">
-            <h3>Add a comment</h3>
-            <textarea
-                class="textarea comment-input" id="textarea"
-                placeholder="Comment"
-                name="comment-input" required
-            ></textarea >
-                {{!--button to submit the inputs--}}
-            <div>
-                <button class="button is-success submit-post" data-id={{job.id}}>Submit</a></button>
+<div class="columns">
+    <div class="column is-12">
+        <div class="container">
+            <div id="job">
+                {{>job-info job}}
             </div>
-        </form>
-
-        {{!--call the comments section to be parse into job--}}
-        <div>
-        {{#each job.comments as |comment|}}
-        
-        {{>comments comment}}
-      
-        {{/each}}
+            {{!--call the job data from the local storage--}}
+            <form id="box">
+                <span class="is-size-4">Add a comment</span>
+                <div class="field">
+                    <div class="control">
+                        <textarea
+                        class="textarea comment-input" id="textarea"
+                        placeholder="Comment"
+                        name="comment-input" required
+                    ></textarea >
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary submit-post" data-id={{job.id}}>Submit</a></button>
+                    </div>
+                </div>
+            </form>
+            {{!--call the comments section to be parse into job--}}
+            <div>
+            {{#each job.comments as |comment|}}
+                {{>comments comment}}
+            {{/each}}
+            </div>
         </div>
+    </div>
 </div>
 <script src="/javascript/job.js"></script>
 <script src="/javascript/like-job.js"></script>
