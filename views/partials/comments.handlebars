@@ -2,8 +2,24 @@
 <div class="columns">
   <div class="column">
     <section class="comment notification" id="{{id}}">
-      <div>
-        <a href="/dashboard/user/{{user.id}}">{{user.username}}</a> on {{format_date created_at}}
+      <div class="media">
+        <div class="media-left">
+          <figure class="image">
+            <img src="/avatar/{{user.id}}" alt="avatar image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p>
+            <a href="/dashboard/user/{{user.id}}">
+              <strong>{{user.username}}</strong>
+            </a>
+            <small>
+              {{user.email}}
+            </small>
+            <br>
+            <small>{{format_date created_at}}</small>
+          </p>
+        </div>
       </div>
       <div>
         {{#if isEditable}}
