@@ -35,17 +35,15 @@
         </p>
       </div>
     </div>
+    {{#if jobimages}}
     <div class="card-image">
       <figure class="image">
-      {{#if jobimages}}
       {{#each jobimages as |image|}}   
         <img class="job-image" src="{{image.image_url}}">
       {{/each}}
-      {{else}}
-        <img class="job-image" src="/images/android-chrome-192x192.png">
-      {{/if}}
       </figure>
     </div>
+    {{/if}}
     <footer class="card-footer">
       <button type="card-footer-item button" id="thumbsup">
         <span class="glyphicon glyphicon-thumbs-up"></span>
