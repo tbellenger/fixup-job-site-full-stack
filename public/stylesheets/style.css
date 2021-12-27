@@ -3,11 +3,11 @@
   display: none;
 }
 /* style the column */
-.column {
+/* .column {
   margin: 5px;
-}
+} */
 /* style the label */
-label {
+/* label {
   font-size: 22px;
   font-weight: 600;
   color: white;
@@ -15,22 +15,22 @@ label {
 .label {
   color: #000;
   font-size: 20px;
-}
+} */
 
 /* style the navigation section */
-.navigation {
+/* .navigation {
   padding: 15px;
-}
+} */
 /*style the title */
 #title {
   font-weight: bolder;
   font-size: 50px;
 }
 /* style the navigation bar link */
-#navbarMenu {
+/* #navbarMenu {
   font-size: 22px;
   font-weight: bolder;
-}
+} */
 
 .hero-body {
   background-image: url(../images/drill1.jpeg);
@@ -38,18 +38,18 @@ label {
   background-size: cover;
 }
 
-.button {
+/* .button {
   font-weight: bolder;
   font-size: 18px;
   outline: none;
-}
+} */
 
-#nav-logout-button {
+/* #nav-logout-button {
   border: none;
   background: none;
   font-size: 25px;
   font-weight: bold;
-}
+} */
 i {
   color: #000;
 }
@@ -71,9 +71,9 @@ i {
   font-size: medium;
 }
 
-#file-input {
+/* #file-input {
   color: black;
-}
+} */
 
 .category-card-container {
   display: flex;
