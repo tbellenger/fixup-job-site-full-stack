@@ -3,6 +3,10 @@
   display: none;
 }
 
+.navbar-form {
+  margin: 0;
+}
+
 .hero-body {
   background-image: url(../images/drill1.jpeg);
   background-repeat: no-repeat;

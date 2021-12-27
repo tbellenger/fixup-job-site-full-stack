@@ -45,11 +45,48 @@ router.get("/", async (req, res) => {
     const categories = allCategories.map((category) =>
       category.get({ plain: true })
     );
+
+    const allAppliedJobs = await Job.findAll({
+      include: [
+        { model: User, as: "owner" },
+        {
+          model: User,
+          as: "applicant",
+          where: {
+            id: req.user.id,
+          },
+        },
+      ],
+    });
+    let appliedJobs = [];
+    if (allAppliedJobs) {
+      appliedJobs = allAppliedJobs.map((app) => app.get({ plain: true }));
+    }
+
+    const allSelectedJobs = await Job.findAll({
+      include: [
+        { model: User, as: "owner" },
+        {
+          model: User,
+          as: "employee",
+          where: {
+            id: req.user.id,
+          },
+        },
+      ],
+    });
+    let selectedJobs = [];
+    if (allSelectedJobs) {
+      selectedJobs = allSelectedJobs.map((app) => app.get({ plain: true }));
+    }
+
     const jobs = allJobs.map((job) => job.get({ plain: true }));
     console.log(jobs);
     res.render("dashboard", {
       jobs: jobs,
       categories: categories, // used to render the new job form category choices
+      applied: appliedJobs,
+      selected: selectedJobs,
     });
   } catch (err) {
     console.log(err);
