@@ -1,10 +1,10 @@
 {{!--page template for the dashboard where user can create job posting--}}
-<div class="tile notification">
-    <div class="tile is-parent">
-        <article class="tile is-child">
+<div class="tile notification is-ancestor is-12">
+    <div class="tile is-parent is-6">
+        <article class="tile is-child box">
             {{!--input form for the job post data--}}
             <span class="is-size-4">Post a New Job</span>
-            <form class="box">
+            <form>
                 {{!--label an dinput for job title--}}
                 <div class="field">
                     <label class="label">Job Title</label>
@@ -45,18 +45,17 @@
                 <div class="field">
                     <label class="label">Pay</label>
                     <div class="control">
-                    <input
-                            type="number"
-                            placeholder="pay"
-                            class="input salary-input"
-
-                            name='salary-input' required/>
+                        <input
+                                type="number"
+                                placeholder="pay"
+                                class="input salary-input"
+                                name='salary-input' required/>
                     </div>
                 </div>
                     {{!--label and input for payment method--}}
                 <div class="field">
+                    <label class="label">Payment method will be </label>
                     <div class="control">
-                        <label class="label">Payment method will be </label>
                         <input
                                 type="text"
                                 placeholder="Payment method"
@@ -66,8 +65,8 @@
                 </div>
                     {{!--label and input for job location--}}
                 <div class="field">
+                    <label class="label">Job Location</label>
                     <div class="control">
-                        <label class="label">Job Location</label>
                         <input
                                 type="number"
                                 placeholder="Job location"
@@ -76,8 +75,8 @@
                     </div>
                 </div>
                 <div class="field">
+                    <label class="label">Image</label>
                     <div class="control">
-                        <label class="label">Image</label>
                         <div class="file has-name">
                             <label class="file-label">
                                 <input id="file-input" class="file-input" type="file" name="file" type="image/png, image/jpeg">
@@ -102,57 +101,133 @@
             </form>
         </article>
     </div>
-    
     {{!--section table to display the post history of a certain user--}}
-    <div class="tile is-parent">
-        <article class="tile is-child ">
-            <span class="is-size-4">Your Posted Jobs</span>
-            <form class="box">
-                <table
-                    class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
-                >
-                    <thead>
-                    {{!--user post information columns of data--}}
-                        <tr>
-                            <th class="table-title">Title</th>
-                            {{!--condition to assign or parse the user if falls as an employee--}}
-                            {{#if employee}}
-                            <th class="employee-name">Employee</th>
-                            {{/if}}
-                            {{#unless employee}}
-                            <th class="employee-name">Employee</th>
-                            {{/unless}}
-                            <th class="job-status">Job Satus</th>
-                            <th class="table-edit">Edit</th>
-                            <th class="table-delete">Delete</th>
-                        </tr>
-                    </thead>
-                    {{!--rows of data object key value goes here--}}
-                    <tbody>
-                    {{#each jobs}}
-                        <tr>
-                            <td><a href="/dashboard/job/{{this.id}}"
-                                >{{this.title}}</a></td>
-                            {{!--condition if the owner has an employee then view the employee name--}}
-                            {{#if employee}}
-                            <td>{{>partial-user this.employee}}</td>
-                            {{else}}
-                                {{#unless applicant.length}}
-                            <td>no applicants yet</td>
-                                {{else}}
-                            <td><a href="/dashboard/job/{{this.id}}/applicants">Select applicant</a></td>
+    <div class="tile is-vertical">
+        <div class="tile is-parent is-12">
+            <article class="tile is-child box">
+                <span class="is-size-4">Your Posted Jobs</span>
+                <form>
+                    <table
+                        class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                    >
+                        <thead>
+                        {{!--user post information columns of data--}}
+                            <tr>
+                                <th class="table-title">Title</th>
+                                {{!--condition to assign or parse the user if falls as an employee--}}
+                                {{#if employee}}
+                                <th class="employee-name">Employee</th>
+                                {{/if}}
+                                {{#unless employee}}
+                                <th class="employee-name">Employee</th>
                                 {{/unless}}
-                            {{/if}}
-                            <td>{{job_status}}</td>
-                            <td><a class="button is-primary" href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
-                            <td><button class="delete-job button is-primary" data-id="{{this.id}}">Delete</button></td>
-                        </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
-            </form>
+                                <th class="job-status">Job Satus</th>
+                                <th class="table-edit">Edit</th>
+                                <th class="table-delete">Delete</th>
+                            </tr>
+                        </thead>
+                        {{!--rows of data object key value goes here--}}
+                        <tbody>
+                        {{#each jobs}}
+                            <tr>
+                                <td><a href="/dashboard/job/{{this.id}}"
+                                    >{{this.title}}</a></td>
+                                {{!--condition if the owner has an employee then view the employee name--}}
+                                {{#if employee}}
+                                <td>{{>partial-user this.employee}}</td>
+                                {{else}}
+                                    {{#unless applicant.length}}
+                                <td>no applicants yet</td>
+                                    {{else}}
+                                <td><a href="/dashboard/job/{{this.id}}/applicants">Select applicant</a></td>
+                                    {{/unless}}
+                                {{/if}}
+                                <td>{{job_status}}</td>
+                                <td><a class="button is-primary" href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
+                                <td><button class="delete-job button is-primary" data-id="{{this.id}}">Delete</button></td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </form>
+            </article>
+        </div>
+        {{!-- This will hold the jobs that the user is applied --}}
+        <div class="tile is-parent is-12">
+            <article class="tile is-child box">
+                <span class="is-size-4">Jobs You Applied</span>
+                <form>
+                    <table
+                        class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                    >
+                        <thead>
+                        {{!--user post information columns of data--}}
+                            <tr>
+                                <th class="table-title">Title</th>
+                            </tr>
+                        </thead>
+                        {{!--rows of data object key value goes here--}}
+                        <tbody>
+                            <tr>
+                                <td>The job name you aaplied</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </article>
+        </div>
+
+        {{!-- This will hold the jobs that the user is selected to work on --}}
+        <div class="tile is-parent is-12">
+            <article class="tile is-child box">
+                <span class="is-size-4">Jobs You Are Selected</span>
+                <form>
+                    <table
+                        class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                    >
+                        <thead>
+                        {{!--user post information columns of data--}}
+                            <tr>
+                                <th class="table-title">Title</th>
+                            </tr>
+                        </thead>
+                        {{!--rows of data object key value goes here--}}
+                        <tbody>
+                            <tr>
+                                <td>The job name you are selected</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </article>
+        </div>
+
+        {{!-- This will hold the jobs that the user completed --}}
+        <div class="tile is-parent is-12">
+            <article class="tile is-child box">
+                <span class="is-size-4">Jobs You Completed</span>
+                <form>
+                    <table
+                        class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                    >
+                        <thead>
+                        {{!--user post information columns of data--}}
+                            <tr>
+                                <th class="table-title">Title</th>
+                            </tr>
+                        </thead>
+                        {{!--rows of data object key value goes here--}}
+                        <tbody>
+                            <tr>
+                                <td>The job name you completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </article>
         </div>
     </div>
 </div>
+
 {{!--call the file function to generate this page template--}}
 <script src="/javascript/dashboard.js"></script>
