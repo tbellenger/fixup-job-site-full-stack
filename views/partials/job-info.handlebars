@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-      <p class="card-header-title "><a href="/dashboard/job/{{id}}">{{title}}</a></p>
+      <p class="card-header-title"><a class="is-size-4" href="/dashboard/job/{{id}}">{{title}}</a></p>
     </div>
     
     <div class="card-content">
@@ -39,10 +39,10 @@
       <figure class="image">
       {{#if jobimages}}
       {{#each jobimages as |image|}}   
-        <img style="max-width:400px" src="{{image.image_url}}">
+        <img class="job-image" src="{{image.image_url}}">
       {{/each}}
       {{else}}
-        <img style="max-width:400px" src="/images/android-chrome-192x192.png">
+        <img class="job-image" src="/images/android-chrome-192x192.png">
       {{/if}}
       </figure>
     </div>
