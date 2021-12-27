@@ -3,9 +3,9 @@
   display: none;
 }
 /* style the column */
-.column {
+/* .column {
   margin: 5px;
-}
+} */
 /* style the label */
 label {
   font-size: 22px;
@@ -18,9 +18,9 @@ label {
 }
 
 /* style the navigation section */
-.navigation {
+/* .navigation {
   padding: 15px;
-}
+} */
 /*style the title */
 #title {
   font-weight: bolder;
@@ -71,9 +71,9 @@ i {
   font-size: medium;
 }
 
-#file-input {
+/* #file-input {
   color: black;
-}
+} */
 
 .category-card-container {
   display: flex;
