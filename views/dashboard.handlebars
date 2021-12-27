@@ -132,7 +132,11 @@
                                     >{{this.title}}</a></td>
                                 {{!--condition if the owner has an employee then view the employee name--}}
                                 {{#if employee}}
-                                <td>{{>partial-user this.employee}}</td>
+                                <td>
+                                    <a href="/dashboard/user/{{employee.id}}">
+                                        <strong>{{employee.username}}</strong>
+                                    </a>
+                                </td>
                                 {{else}}
                                     {{#unless applicant.length}}
                                 <td>no applicants yet</td>
@@ -162,13 +166,25 @@
                         {{!--user post information columns of data--}}
                             <tr>
                                 <th class="table-title">Title</th>
+                                <th class="table-title">Owner</th>
+                                <th class="table-title">Status</th>
                             </tr>
                         </thead>
                         {{!--rows of data object key value goes here--}}
                         <tbody>
+                            {{#each applied}}
                             <tr>
-                                <td>The job name you aaplied</td>
+                                <td>
+                                    <a href="/dashboard/job/{{id}}">{{title}}</a>
+                                </td>
+                                <td>
+                                    <a href="/dashboard/user/{{owner.id}}">
+                                        <strong>{{owner.username}}</strong>
+                                    </a>
+                                </td>
+                                <td>{{job_status}}</td>
                             </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </form>
@@ -187,13 +203,25 @@
                         {{!--user post information columns of data--}}
                             <tr>
                                 <th class="table-title">Title</th>
+                                <th class="table-title">Owner</th>
+                                <th class="table-title">Status</th>
                             </tr>
                         </thead>
                         {{!--rows of data object key value goes here--}}
                         <tbody>
+                            {{#each selected}}
                             <tr>
-                                <td>The job name you are selected</td>
+                                <td>
+                                    <a href="/dashboard/job/{{id}}">{{title}}</a>
+                                </td>
+                                <td>
+                                    <a href="/dashboard/user/{{owner.id}}">
+                                        <strong>{{owner.username}}</strong>
+                                    </a>
+                                </td>
+                                <td>{{job_status}}</td>
                             </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </form>
