@@ -1,33 +1,50 @@
 {{!initiate page template for the comments section}}
-<div class="comments">
-  <div class="columns">
-    <div class="column">
-      {{!condition to get each userinformation when making a comments on a post}}
-
-      <section class="comment" id="{{id}}">
-        <div>
-          {{user.username}}
-          on
-          {{format_date created_at}}
+<div class="columns">
+  <div class="column">
+    <section class="comment notification" id="{{id}}">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image">
+            <img src="/avatar/{{user.id}}" alt="avatar image">
+          </figure>
         </div>
-        <div class="text">
-          {{#if isEditable}}
+        <div class="media-content">
+          <p>
+            <a href="/dashboard/user/{{user.id}}">
+              <strong>{{user.username}}</strong>
+            </a>
+            <small>
+              {{user.email}}
+            </small>
+            <br>
+            <small>{{format_date created_at}}</small>
+          </p>
+        </div>
+      </div>
+      <div>
+        {{#if isEditable}}
+        <div class="field">
+          <div class="control">
             <textarea
-              class="textarea has-text-dark"
-              name="comment-body-{{id}}"
-            >{{comment_text}}</textarea>
-            <div>
-              <button class="edit-comment-btn" data-id="{{id}}">Update</button>
-              <button
-                class="delete-comment-btn"
-                data-id="{{id}}"
-              >Delete</button>
-            </div>
-          {{else}}
-            {{comment_text}}
-          {{/if}}
+            class="textarea has-text-dark"
+            name="comment-body-{{id}}"
+          >{{comment_text}}</textarea>
+          </div>
         </div>
-      </section>
-    </div>
+        <div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary edit-comment-btn" data-id="{{id}}">Update</button>
+              <button class="button is-primary delete-comment-btn" data-id="{{id}}">Delete</button>
+            </div>
+          </div>
+        </div>
+        {{else}}
+          <div class="is-italic">
+            {{comment_text}}
+          </div>
+        {{/if}}
+      </div>
+    </section>
   </div>
 </div>

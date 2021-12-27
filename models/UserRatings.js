@@ -13,19 +13,15 @@ Ratings.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    owner_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
         key: "id",
       },
     },
-    employee_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "user",
-        key: "id",
-      },
+    rating: {
+      type: DataTypes.DECIMAL(2, 1),
     },
   },
   {

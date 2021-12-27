@@ -1,39 +1,35 @@
 {{!--initiate page template for job to be commented by any user--}}
-<div class="container">
-<div class="grid-container">
-       <div class="grid-item" id="job">
-             {{>job-info job}}
-             </div>
-        {{!--call the job data from the local storage--}}
-       <form class="box" id="comment-box">
-                        {{!--label an dinput for job title--}}
-                        <label class="label is-large">Add a comment</label>
-                        {{!--label and input for job description--}}
-                        <div class="field-body">
-                            <div class="field">
-                                <div class="control">
-                                    <textarea
-                                        class="textarea comment-input" id="textarea"
-                                        placeholder="Comment"
-                                        name="comment-input" required
-                                    ></textarea>
-                                </div>
-                            </div>
-                          </div>
-                          <br><br>
-                            {{!--button to submit the inputs--}}
-                        <div class="field is-grouped is-grouped-right mt-3">
-                            <button class="button is-success submit-post" data-id={{job.id}}>Submit</a></button>
-                        </div>
-                    </form>
-
-        {{!--call the comments section to be parse into job--}}
-        {{#each job.comments as |comment|}}
-        
-        <div class="column">{{>comments comment}}</div>
-      
-        {{/each}}
+<div class="container is-fluid">
+    <div class="columns">
+        <div class="column is-12">
+            {{>job-info job}}
+            {{!--call the job data from the local storage--}}
+            <form id="box">
+                <span class="is-size-4">Add a comment</span>
+                <div class="field">
+                    <div class="control">
+                        <textarea
+                        class="textarea comment-input" id="textarea"
+                        placeholder="Comment"
+                        name="comment-input" required
+                    ></textarea >
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary submit-post" data-id={{job.id}}>Submit</a></button>
+                    </div>
+                </div>
+            </form>
+            {{!--call the comments section to be parse into job--}}
+            <div>
+            {{#each job.comments as |comment|}}
+                {{>comments comment}}
+            {{/each}}
+            </div>
+        </div>
     </div>
 </div>
+
 <script src="/javascript/job.js"></script>
 <script src="/javascript/like-job.js"></script>
