@@ -52,7 +52,7 @@ async function editJobHandler(event) {
       if (response.ok) {
         const json = await response.json();
         console.log(json);
-        //document.location.replace(`/dashboard?auth_token=${auth_token}`);
+        location.replace(`/dashboard?auth_token=${auth_token}`);
       } else {
         alert(response.statusText);
       }

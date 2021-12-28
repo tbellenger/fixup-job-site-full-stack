@@ -14,7 +14,7 @@
       
       {{!--user information--}}
       <div class="media-content">
-        <p class="title is-4">User: {{>partial-user user}}</p>
+        <p class="title is-4">User: <a href="/dashboard/user/{{user.id}}"><p>{{user.username}}</p></a></p>
         <div>
           <form id="rating-form">
             {{!-- <p>rate</p> --}}
