@@ -25,3 +25,9 @@ i {
   color: #000;
   opacity: 1;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1rem;
+}

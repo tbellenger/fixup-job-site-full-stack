@@ -1,8 +1,8 @@
 <div class="container notification">
    <span class="is-size-3 has-text-weight-bold">{{category}}</span>
-   <div class="columns is-multiline">
+   <div class="grid-container">
       {{#each jobs as |job|}}  
-      <div class="column is-half">
+      <div class="grid-item">
          {{>job-info job}}
       </div>
       {{/each}}
