@@ -17,6 +17,12 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="/stylesheets/style.css" />
 
   </head>
@@ -26,36 +32,52 @@
       <nav class="navigation" role="navigation" aria-label="main navigation">
         {{! navigation here }}
         <div class="navbar is-spaced">
-            <div class="navbar-brand">
-              <a class="navbar-item is-size-1 has-text-weight-bold" href="/">
-                fixUP
-              </a>
-              <span class="navbar-burger" data-target="navbarMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </div>
-            <div id="navbarMenu" class="navbar-menu">
-              <div class="navbar-end" style="align-items:center">
-                <div class="navbar-item">
-                  <form action="/jobs" class="navbar-form">
-                    <div class="field">
-                      <div class="control" style="display:flex; align-items:center" >
-                        <input type="text" name="q" placeholder="Search..." />
-                      <button class="button is-white" type="submit"><i class="fa fa-search"></i></button>
-                      </div>
+          <div class="navbar-brand">
+            <a class="navbar-item is-size-1 has-text-weight-bold" href="/">
+              fixUP
+            </a>
+            <span class="navbar-burger" data-target="navbarMenu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end" style="align-items:center">
+              <div class="navbar-item">
+                <form action="/jobs" class="navbar-form">
+                  <div class="field">
+                    <div
+                      class="control"
+                      style="display:flex; align-items:center"
+                    >
+                      <input type="text" name="q" placeholder="Search..." />
+                      <button class="button is-white" type="submit"><i
+                          class="fa fa-search"
+                        ></i></button>
                     </div>
-                  </form>
-                </div>
-                <a class="navbar-item button is-white" href="/">Home</a>
-                <a class="navbar-item button is-white" href="/dashboard">Dashboard</a>
-                <a class="navbar-item button is-white" id="nav-login-button" href="/login">Login</a>
-                <div class="navbar-item">
-                  <button class="button is-white" type="submit"  id="nav-logout-button">Logout</button>
-                </div>
+                  </div>
+                </form>
+              </div>
+              <a class="navbar-item button is-white" href="/">Home</a>
+              <a
+                class="navbar-item button is-white"
+                href="/dashboard"
+              >Dashboard</a>
+              <a
+                class="navbar-item button is-white"
+                id="nav-login-button"
+                href="/login"
+              >Login</a>
+              <div class="navbar-item">
+                <button
+                  class="button is-white"
+                  type="submit"
+                  id="nav-logout-button"
+                >Logout</button>
               </div>
             </div>
+          </div>
         </div>
       </nav>
     </header>
@@ -82,12 +104,16 @@
       <div id="modal-content" class="modal-content">
         <!-- Any other Bulma elements you want -->
       </div>
-      <button id="modal-close" class="modal-close is-large" aria-label="close"></button>
+      <button
+        id="modal-close"
+        class="modal-close is-large"
+        aria-label="close"
+      ></button>
     </div>
     {{!call the file routes to generate this main page template}}
-    {{!-- <script
+    {{! <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-    ></script> --}}
+    ></script> }}
     <script src="/javascript/main.js"></script>
   </body>
 </html>

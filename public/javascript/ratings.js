@@ -1,9 +1,70 @@
+let userAverageDiv = document.querySelector("#useraverage");
+let userAverageEl = document.querySelector("#useraveragep").innerText;
+// let userAverageDivPEl = document.querySelector("#useraveragedivp");
+
+function getStars(rating) {
+  rating = Math.round(rating * 2) / 2;
+  let output = [];
+
+  for (var i = rating; i >= 1; i--)
+    output.push(
+      '<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+    );
+
+  if (i == 0.5)
+    output.push(
+      '<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+    );
+
+  for (let i = 5 - rating; i >= 1; i--)
+    output.push(
+      '<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+    );
+
+  return output.join("");
+}
+document.getElementById("stars").innerHTML = getStars(userAverageEl);
+const container = document.querySelector(".rating");
+const items = container.querySelectorAll(".rating-item");
+container.onclick = (e) => {
+  const elClass = e.target.classList;
+  // change the rating if the user clicks on a different star
+  if (!elClass.contains("active")) {
+    items.forEach(
+      // reset the active class on the star
+      (item) => item.classList.remove("active")
+    );
+    let rating = e.target.getAttribute("data-rate");
+    console.log(e.target.getAttribute("data-rate"));
+    elClass.add("active"); // add active class to the clicked star
+  }
+};
+// console.log(items.event.target.value);
+// let rating = items.forEach((item) => console.log(item.value));
+// console.log(rating);
+// userAverageDivPEl.style.display = "none";
+// var userAverageText = userAverageEl.innerText;
+// console.log(userAverageText);
+// var userAverageNum = Number(userAverageText);
+// console.log(userAverageNum);
+
+// if (userAverageEl === 0.5) {
+//   userAverageDiv.innerHTML = '<i class="fas fa-star-half"></i>';
+// }
+// items.forEach((item) => console.log(items[item].value));
+
 async function submitRatings(event) {
   event.preventDefault();
   //declare all variables of inputs
   const userId = event.target.dataset.user;
-  console.log(userId);
-  let rating = document.querySelector("#ratings-select").value;
+  // console.log(userId);
+  // let rating = document.querySelector("#ratings-select").value;
+  // let rating = items.forEach(
+  //   // reset the active class on the star
+  //   (item) => console.log(item.value)
+  // );
+  let rating = item.getAttribute("data-rate");
+  console.log(rating);
   if (rating > 5) {
     rating = 5;
   } else if (rating < 0) {

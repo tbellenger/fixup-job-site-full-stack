@@ -27,8 +27,15 @@
             </select> --}}
             {{!-- <input type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}"> --}}
               <label class="label">Rating</label>
-                   <input type="number" placeholder="rating out of 5"  id="ratings-select"
-                   class="input rating-input" name='rating-input' required/>
+                   {{!-- <input type="number" placeholder="rating out of 5"  id="ratings-select"
+                   class="input rating-input" name='rating-input' required/> --}}
+                   <ul class="rating" id="ratings-select">
+<li class="rating-item" data-rate="1" value="1"></li>
+<li class="rating-item active" data-rate="2" value="2"></li>
+<li class="rating-item" data-rate="3" value="3"></li>
+<li class="rating-item" data-rate="4" value="4"></li>
+<li class="rating-item" data-rate="5" value="5"></li>
+</ul>
                   <button type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}" >Submit</a></button>
           </form>
         </div>
@@ -38,7 +45,8 @@
 
     <div class="content">
         {{!--user ratings/likes--}}
-       <div>Rating: {{ userAverage}}</div>
+       <div id="useraverage">Rating:<span id=stars></span>
+       </div id='useraveragedivp'> <p id="useraveragep"> {{ userAverage}}</p></div></div>
         {{!--If loggedIn user include the email and login history--}}
     {{#if sameUser}}
     <div>Email: {{user.email}}</div>
