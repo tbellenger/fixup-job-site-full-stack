@@ -26,6 +26,7 @@ i {
   opacity: 1;
 }
 
+
 #useraveragedivp {
   visibility: hidden;
   display: none;
@@ -66,4 +67,10 @@ i {
 /* make until the hovered (the rest) empty */
 .rating-item:hover ~ .rating-item::before {
   content: "\2606";
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1rem;
 }
