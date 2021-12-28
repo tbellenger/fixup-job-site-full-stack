@@ -23,81 +23,45 @@ function getStars(rating) {
 
   return output.join("");
 }
+
 document.getElementById("stars").innerHTML = getStars(userAverageEl);
-const container = document.querySelector(".rating");
-const items = container.querySelectorAll(".rating-item");
-container.onclick = (e) => {
-  const elClass = e.target.classList;
+
+const starRatingContainer = document.querySelector(".rating");
+const starRatingItem = document.querySelectorAll(".rating-item");
+starRatingContainer.onclick = async (e) => {
   // change the rating if the user clicks on a different star
-  if (!elClass.contains("active")) {
-    items.forEach(
-      // reset the active class on the star
-      (item) => item.classList.remove("active")
-    );
-    let rating = e.target.getAttribute("data-rate");
-    console.log(e.target.getAttribute("data-rate"));
-    elClass.add("active"); // add active class to the clicked star
+  // moves active class to the star that was selected.
+  // then sends the update to the server
+  if (!e.target.classList.contains("active")) {
+    // remove active class from all the star items then
+    // add it back on the selected one
+    starRatingItem.forEach((item) => item.classList.remove("active"));
+    e.target.classList.add("active"); // add active class to the clicked star
   }
-};
-// console.log(items.event.target.value);
-// let rating = items.forEach((item) => console.log(item.value));
-// console.log(rating);
-// userAverageDivPEl.style.display = "none";
-// var userAverageText = userAverageEl.innerText;
-// console.log(userAverageText);
-// var userAverageNum = Number(userAverageText);
-// console.log(userAverageNum);
-
-// if (userAverageEl === 0.5) {
-//   userAverageDiv.innerHTML = '<i class="fas fa-star-half"></i>';
-// }
-// items.forEach((item) => console.log(items[item].value));
-
-async function submitRatings(event) {
-  event.preventDefault();
-  //declare all variables of inputs
-  const userId = event.target.dataset.user;
-  // console.log(userId);
-  // let rating = document.querySelector("#ratings-select").value;
-  // let rating = items.forEach(
-  //   // reset the active class on the star
-  //   (item) => console.log(item.value)
-  // );
-  let rating = item.getAttribute("data-rate");
-  console.log(rating);
-  if (rating > 5) {
-    rating = 5;
-  } else if (rating < 0) {
-    rating = 0;
-  }
-
-  //if not a user bring them into login section
   if (!auth_token) {
     alert("Please login or signup to create post.");
   } else {
-    if (rating) {
-      //validate their inputs
-      const response = await fetch(`/api/ratings`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "bearer " + auth_token,
-        },
-        //collect the inputs
-        body: JSON.stringify({
-          user_id: userId,
-          rating: rating,
-        }),
-      });
-      //assign them a nth_token
-      if (response.ok) {
-        // location.reload();
-        location.replace(`/dashboard/user/${userId}?auth_token=` + auth_token);
-      } else {
-        alert(response.statusText);
-      }
+    //validate their inputs
+    const response = await fetch(`/api/ratings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + auth_token,
+      },
+      //collect the inputs
+      body: JSON.stringify({
+        user_id: parseInt(starRatingContainer.dataset.id),
+        rating: parseInt(e.target.dataset.rate),
+      }),
+    });
+
+    if (response.ok) {
+      location.replace(
+        `/dashboard/user/${starRatingContainer.dataset.id}?auth_token=` +
+          auth_token
+      );
+    } else {
+      alert(response.statusText);
     }
   }
-}
-
-document.querySelector(".rating-btn").addEventListener("click", submitRatings);
+};
