@@ -34,6 +34,14 @@ navLogoutBtn.addEventListener("click", () => {
   location.replace("/");
 });
 
+function showModalMessage(message) {
+  document.querySelector("#modal").classList.add("is-active");
+  document.querySelector("#modal-close").addEventListener("click", () => {
+    document.querySelector("#modal").classList.remove("is-active");
+  });
+  document.querySelector("#modal-content").innerHTML = message;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Get all"navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(
