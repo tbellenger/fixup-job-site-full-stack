@@ -58,3 +58,4 @@ async function submitRatings(event) {
 }
 
 document.querySelector(".rating-btn").addEventListener("click", submitRatings);
+

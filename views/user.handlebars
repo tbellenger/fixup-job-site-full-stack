@@ -1,42 +1,30 @@
 {{!--Initiate the user information section--}}
 <div class="hero-body">
-<div class="container">
-    <div class="column is-4 is-offset-4">
-<div class="card">
-  <div class="card-content">
-    <div class="media">
+  <div class="column is-4 is-offset-5">
+    <div class="card">
+     <div class="card-content">
+      <div class="media">
       <div class="media-left">
           {{!--user avatar--}}
         <figure class="image is-128x128">
           <img class="is-rounded" src="/avatar/{{id}}" alt="Placeholder image">
           </figure>
       </div>
-      
       {{!--user information--}}
       <div class="media-content">
         <p class="title is-4">User: {{>partial-user user}}</p>
         <div>
           <form id="rating-form">
-            {{!-- <p>rate</p> --}}
-           {{!-- <select id="ratings-select">
-              <option value ="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select> --}}
-            {{!-- <input type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}"> --}}
               <label class="label">Rating</label>
                    <input type="number" placeholder="rating out of 5"  id="ratings-select"
-                   class="input rating-input" name='rating-input' required/>
+                   class="input rating-input" name='rating-input' required/><br><br>
                   <button type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}" >Submit</a></button>
           </form>
         </div>
         <p class="subtitle is-6"><a href="mailto:{{user.email}}">{{user.email}}</a></p>
       </div>
-    </div>
-
-    <div class="content">
+      </div>
+     <div class="content">
         {{!--user ratings/likes--}}
        <div>Rating: {{ userAverage}}</div>
         {{!--If loggedIn user include the email and login history--}}
@@ -46,10 +34,29 @@
     {{/if}}
     </div>
   </div>
+  </div>
+</div>
+<button class="button" onclick="myFunction()">Chat with us!</button>
+</div>
+
+<div class="columns" id="chatbot">
+ <div class="column">
+<div class="main"> 
+  <div class="user-area">
+    <img src="/images/user.png">
+  </div>
+  <div class="chatarea-main">
+    <div class="chatarea-outer"></div>
+  </div>
+  <div class="chatbot-area">
+      <img src="/images/chatbot.png">
+    </div>
+<button id="mic"><i class="fa fa-microphone"></i></button>
 </div>
 </div>
 </div>
-</div>
+
+<script src="/javascript/chatbot.js"></script>
 <script src="/javascript/ratings.js"></script>
 
  

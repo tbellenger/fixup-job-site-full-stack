@@ -2,35 +2,13 @@
 .hide {
   display: none;
 }
-/* style the column */
-/* .column {
-  margin: 5px;
-} */
-/* style the label */
-/* label {
-  font-size: 22px;
-  font-weight: 600;
-  color: white;
-}
-.label {
-  color: #000;
-  font-size: 20px;
-} */
 
-/* style the navigation section */
-/* .navigation {
-  padding: 15px;
-} */
+
 /*style the title */
 #title {
   font-weight: bolder;
   font-size: 50px;
 }
-/* style the navigation bar link */
-/* #navbarMenu {
-  font-size: 22px;
-  font-weight: bolder;
-} */
 
 .hero-body {
   background-image: url(../images/drill1.jpeg);
@@ -38,18 +16,6 @@
   background-size: cover;
 }
 
-/* .button {
-  font-weight: bolder;
-  font-size: 18px;
-  outline: none;
-} */
-
-/* #nav-logout-button {
-  border: none;
-  background: none;
-  font-size: 25px;
-  font-weight: bold;
-} */
 i {
   color: #000;
 }
@@ -70,10 +36,6 @@ i {
   color: rgb(247, 241, 241);
   font-size: medium;
 }
-
-/* #file-input {
-  color: black;
-} */
 
 .category-card-container {
   display: flex;
@@ -153,3 +115,108 @@ textarea {
     margin: 10px;
   }
 }
+.button{
+  float: right;
+ }
+
+#chatbot{
+  background-color: rgb(235, 243, 243);
+  width: 100%;
+  padding: 15px;
+  display: none;
+  overflow: auto;
+}
+.main {
+  width: 100%;
+  float: left;
+  margin-top: 60px;
+  padding: 30px 0;
+}
+.main button {
+  background: #ff3b3b;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #666;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.main button:focus{outline: none;}
+.container {
+  width: 85%;
+  margin: 0 auto;
+}
+.user-area, .chatbot-area {
+  width: 20%;
+  height: calc(100vh - 60px);
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 80px;
+  z-index: 9999;
+}
+.chatbot-area {
+  float: right;
+  right: 80px;
+  left: auto;
+}
+.user-area img, .chatbot-area img {
+  width: 100%;
+  height: 100%;
+}
+.user-area img{left: 0;}
+.chatarea-main {
+  width: 42%;
+  margin: 0 auto;
+}
+.chatarea-outer {
+  width: 100%;
+  float: left;
+}
+.chatbot-area .chatarea-main{float: left;}
+.chatarea.user {
+  float: right;
+  width: 40%;
+  padding: 20px 0;
+}
+
+.chatarea-inner {
+  float: left;
+  width: 60%;
+  padding: 10px;
+  color: #fff;
+  position: relative;
+  margin: 5px 0;
+}
+.chatarea-inner.user{
+  background: #6522A4;
+}
+.chatarea-inner.chatbot{
+  background: #466EB6;
+  float: right;
+}
+.chatarea-inner.user:before {
+  content: '';
+  position: absolute;
+  border-right: 20px solid #6522A4;
+  border-top: 20px solid transparent;
+  border-bottom: 0px solid transparent;
+  bottom: 0;
+  left: -20px;
+}
+.chatarea-inner.chatbot:before {
+  content: '';
+  position: absolute;
+  border-left: 20px solid #466EB6;
+  border-top: 20px solid transparent;
+  border-bottom: 0px solid transparent;
+  bottom: 0;
+  right: -20px;
+}
+
+.chatbot-area .chatarea-inner{float: left;}
