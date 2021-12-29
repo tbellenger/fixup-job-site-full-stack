@@ -8,6 +8,7 @@ const Tag = require("./Tag");
 const JobTag = require("./JobTag");
 const Ratings = require("./UserRatings");
 const Jobimage = require("./Jobimage");
+const DM = require("./Dm")
 const sequelize = require("../config/connection");
 const JobApplicant = sequelize.define("Job_Applicant");
 
@@ -142,6 +143,12 @@ Jobimage.belongsTo(Job, {
   foreignKey: "job_id",
   onDelete: "cascade",
 });
+DM.belongsTo(User, {
+  foreignKey: "sender_id",
+});
+User.hasMany(DM, {
+  foreignKey: "recepient_id",
+})
 
 //exports all the models
 module.exports = {
@@ -155,4 +162,5 @@ module.exports = {
   Ratings,
   Jobimage,
   JobApplicant,
+  DM,
 };

@@ -53,6 +53,31 @@
     </div>
   </div>
 </div>
+
+{{!--initiate page template for chatroom--}}
+<article class="article" id="chatroom">
+       <div id="user">
+             {{user.username}}
+        </div>
+  
+       <form id="comment-box">
+            <h3>Chat with the employer/employee</h3>
+            <textarea
+                class="textarea message-input" id="textarea"
+                placeholder="Send a message..."
+                name="message-input" required></textarea><br>
+                {{!--button to submit the inputs--}}
+            <div>
+                <button class="button is-success reply-msg" data-id={{user.id}}>Send</a></button>
+            </div>
+        </form>
+  <div>
+    {{#each user.dms as |dm|}}
+        {{>dms dm}}
+      {{/each}}
+  </div>
+  </article>
+  <script src="/javascript/dm.js"></script>
 <script src="/javascript/ratings.js"></script>
 
  

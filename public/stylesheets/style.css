@@ -74,3 +74,12 @@ i {
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1rem;
 }
+#job{
+  margin: 0 auto;
+ }
+ article{
+  width: 50%;
+  margin: 0 auto;
+  background-color: lightblue;
+  padding: 15px;
+}
