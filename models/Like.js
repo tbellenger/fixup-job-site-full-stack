@@ -11,9 +11,11 @@ Like.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: "user",
         key: "id",
@@ -21,6 +23,7 @@ Like.init(
     },
     job_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: "job",
         key: "id",
