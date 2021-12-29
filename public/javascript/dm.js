@@ -94,4 +94,5 @@ async function deleteThreadHandler(event) {
   if (replyEl) {
     replyEl.addEventListener("click", newThreadHandler);
   }
+
   
