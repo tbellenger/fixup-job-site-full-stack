@@ -7,24 +7,7 @@ const jwt = require("jsonwebtoken");
 //require the User model
 const { User, Ratings } = require("../../models");
 // no route to get all users on purpose
-router.get("/", async (req, res) => {
-  try {
-    const user = await User.findAll({
-      attributes: ["id", "username", "email"],
-      include: [
-        {
-          model: Ratings,
-          as: "user_ratings",
-          attributes: ["rating"],
-        },
-      ],
-    });
-    res.json(user);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+
 router.get(
   "/me",
   passport.authenticate("jwt", { session: false }),

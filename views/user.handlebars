@@ -1,54 +1,57 @@
 {{!--Initiate the user information section--}}
 <div class="hero-body">
-<div class="container">
+  <div class="container">
     <div class="column is-4 is-offset-4">
-<div class="card">
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-          {{!--user avatar--}}
-        <figure class="image is-128x128">
-          <img class="is-rounded" src="/avatar/{{id}}" alt="Placeholder image">
-          </figure>
-      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              {{!--user avatar--}}
+              <figure class="image is-128x128">
+                <img class="is-rounded" src="/avatar/{{id}}" alt="Placeholder image">
+              </figure>
+            </div>
       
-      {{!--user information--}}
-      <div class="media-content">
-        <p class="title is-4">User: <a href="/dashboard/user/{{user.id}}"><p>{{user.username}}</p></a></p>
-        <div>
-          <form id="rating-form">
-            {{!-- <p>rate</p> --}}
-           {{!-- <select id="ratings-select">
-              <option value ="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select> --}}
-            {{!-- <input type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}"> --}}
-              <label class="label">Rating</label>
-                   <input type="number" placeholder="rating out of 5"  id="ratings-select"
-                   class="input rating-input" name='rating-input' required/>
-                  <button type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}" >Submit</a></button>
-          </form>
-        </div>
-        <p class="subtitle is-6"><a href="mailto:{{user.email}}">{{user.email}}</a></p>
-      </div>
-    </div>
+            {{!--user information--}}
+            <div class="media-content">
+              <p class="title is-4">User: 
+                <a href="/dashboard/user/{{user.id}}">
+                  <p>{{user.username}}</p>
+                </a>
+              </p>
+              <div>
+                <label class="label">Rating</label>
+                <ul class="rating" id="ratings-select" data-id="{{user.id}}">
+                  <li class="rating-item" data-rate="1"></li>
+                  <li class="rating-item active" data-rate="2"></li>
+                  <li class="rating-item" data-rate="3"></li>
+                  <li class="rating-item" data-rate="4"></li>
+                  <li class="rating-item" data-rate="5"></li>
+                </ul>
+              </div>
+              <p class="subtitle is-6">
+                <a href="mailto:{{user.email}}">{{user.email}}</a>
+              </p>
+            </div>
+          </div>
 
-    <div class="content">
-        {{!--user ratings/likes--}}
-       <div>Rating: {{ userAverage}}</div>
-        {{!--If loggedIn user include the email and login history--}}
-    {{#if sameUser}}
-    <div>Email: {{user.email}}</div>
-    <div>Last Login: {{user.last_login}}</div>
-    {{/if}}
+          <div class="content">
+            <div id="useraverage">Rating:
+              <span id="stars"></span>
+            </div>
+            <div id='useraveragedivp'> 
+              <p id="useraveragep">{{userAverage}}</p>
+            </div>
+          </div>
+          {{!--If loggedIn user include the email and login history--}}
+          {{#if sameUser}}
+          <div>Email: {{user.email}}</div>
+          <div>Last Login: {{user.last_login}}</div>
+          {{/if}}
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
-</div>
 </div>
 <script src="/javascript/ratings.js"></script>
 

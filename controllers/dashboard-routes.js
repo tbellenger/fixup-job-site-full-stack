@@ -254,6 +254,7 @@ router.get("/user/:id", async (req, res) => {
     } else {
       const user = dbUser.get({ plain: true });
       let userAverage = 0;
+      let userAverage1 = 0;
       const total1 = [];
       for (let i = 0; i < user.user_ratings.length; i++) {
         // console.log("this is the lenght" + user.user_ratings.length);
@@ -269,19 +270,17 @@ router.get("/user/:id", async (req, res) => {
         };
         userAverage = avg(total1).toFixed(1);
         // console.log(userAverage);
-
-        // return userAverage;
-        // return res.render("user", {
-        //   user: user,
-        //   sameUser: sameUser,
-        //   userAverage: userAverage,
-        // });
       }
+      function roundHalf(num) {
+        return Math.round(num * 2) / 2;
+      }
+      userAverage1 = roundHalf(userAverage);
+      // console.log(userAverage1);
 
       return res.render("user", {
         user: user,
         sameUser: sameUser,
-        userAverage: userAverage,
+        userAverage: userAverage1,
       });
     }
   } catch (err) {
