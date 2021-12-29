@@ -60,7 +60,7 @@ Clone the application from GitHub with:
 git clone [clone link from GitHub]
 From the root folder, install the dependencies with:
 
-npm install
+npm i
 Run the app with:
 
 node server.js

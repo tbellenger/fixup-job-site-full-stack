@@ -1,4 +1,10 @@
 /* hide the signup form while in login page template */
+* {
+  font-family: "Optima";
+}
+
+
+
 .hide {
   display: none;
 }
@@ -11,6 +17,10 @@
   background-image: url(../images/drill1.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.navbar-item {
+  font-size: 25px
 }
 
 .job-image {
@@ -30,4 +40,17 @@ i {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1rem;
+}
+
+.box {
+  background-color: rgb(225, 226, 228)
+}
+/* 
+#background {
+  background-color:grey
+
+} */
+
+.submit-post {
+  background-color:black
 }
