@@ -43,6 +43,7 @@ router.post("/", async (req, res) => {
       sender_id: req.user.id,
       recepient_id: req.body.recepient_id,
     });
+    
     res.json(dm);
   } catch (err) {
     console.log(err.errors);

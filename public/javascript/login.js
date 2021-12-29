@@ -39,6 +39,7 @@ async function login() {
   });
   //save/store the user information into the local storage
   const json = await response.json();
+  
   if (json) {
     if (json.token) {
       localStorage.setItem("token", JSON.stringify(json.token));

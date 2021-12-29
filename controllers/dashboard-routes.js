@@ -13,6 +13,7 @@ const {
   JobApplicant,
   JobTag,
   Jobimage,
+
 } = require("../models");
 
 //get all jobs data
@@ -252,6 +253,7 @@ router.get("/user/:id", async (req, res) => {
       res.status(404).json({ message: "No user with that ID" });
       return;
     } else {
+
       const user = dbUser.get({ plain: true });
       let userAverage = 0;
       let userAverage1 = 0;
@@ -288,5 +290,7 @@ router.get("/user/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 //export the job routes
 module.exports = router;
