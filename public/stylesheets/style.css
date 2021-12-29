@@ -83,3 +83,6 @@ i {
   background-color: rgb(244, 249, 250);
   padding: 15px;
 }
+.job-description{
+  max-height: 200px;
+}
