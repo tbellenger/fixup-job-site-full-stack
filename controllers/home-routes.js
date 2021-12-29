@@ -4,7 +4,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 //require all Models that associated with each other
 const { Category, Job, User, Jobimage } = require("../models");
-const { Op } = require("sequelize");
+const { Op, literal } = require("sequelize");
 
 // get all categories for homepage
 
@@ -36,7 +36,13 @@ router.get("/category/:id/jobs", async (req, res) => {
       where: {
         category_id: req.params.id,
       },
-      attributes: { exclude: ["updatedAt"] },
+      attributes: {
+        exclude: ["updatedAt"],
+        include: [
+          literal("CONCAT(SUBSTRING(description,1,40),'...') as description"),
+        ],
+      },
+
       //include all models that associated with category model
       include: [
         { model: User, as: "owner", attribute: { exclude: ["password"] } },
@@ -57,36 +63,17 @@ router.get("/category/:id/jobs", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//get the job by id
-router.get("/jobs/:id", async (req, res) => {
-  try {
-    const allJob = await Job.findOne({
-      where: {
-        id: req.params.id,
-      },
-      attributes: { exclude: ["updatedAt"] },
-      //include the models related to the job model
-      include: [
-        { model: User, as: "owner", attribute: { exclude: ["password"] } },
-        { model: User, as: "employee", attribute: { exclude: ["password"] } },
-        { model: Category },
-      ],
-    });
-    const job = allJob.get({ plain: true });
-    console.log(job);
-    res.render("job", {
-      job: job,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+
 //get all the jobs data
 router.get("/jobs", async (req, res) => {
   let category = "All Jobs";
   const queryOptions = {
-    attributes: { exclude: ["updatedAt"] },
+    attributes: {
+      exclude: ["updatedAt"],
+      include: [
+        literal("CONCAT(SUBSTRING(description,1,40),'...') as description"),
+      ],
+    },
     include: [
       { model: User, as: "owner", attribute: { exclude: ["password"] } },
       { model: User, as: "employee", attribute: { exclude: ["password"] } },
