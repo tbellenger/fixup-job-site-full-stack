@@ -114,26 +114,27 @@ textarea {
     width: 100%;
     margin: 10px;
   }
+  .popup{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+   
+  }
+  .popup .popuptext{
+    width: 100%;
+    left: 0px;
+    display: grid;
+    grid-template: auto auto;
+    justify-content: flex-start;
+   }
+   span img{
+     display: none;
+   }
+  
 }
-.button{
-  float: right;
- }
 
-#chatbot{
-  background-color: rgb(235, 243, 243);
-  width: 100%;
-  padding: 15px;
-  display: none;
-  overflow: auto;
-}
-.main {
-  width: 100%;
-  float: left;
-  margin-top: 60px;
-  padding: 30px 0;
-}
-.main button {
-  background: #ff3b3b;
+#mic {
+  background: #19d1e9;
   padding: 15px;
   border-radius: 50%;
   box-shadow: 0 0 10px #666;
@@ -145,11 +146,8 @@ textarea {
   cursor: pointer;
 }
 
-.main button:focus{outline: none;}
-.container {
-  width: 85%;
-  margin: 0 auto;
-}
+#mic:focus{outline: none;}
+
 .user-area, .chatbot-area {
   width: 20%;
   height: calc(100vh - 60px);
@@ -165,13 +163,8 @@ textarea {
   right: 80px;
   left: auto;
 }
-.user-area img, .chatbot-area img {
-  width: 100%;
-  height: 100%;
-}
-.user-area img{left: 0;}
-.chatarea-main {
-  width: 42%;
+.chatarea-main{
+  width: 50%;
   margin: 0 auto;
 }
 .chatarea-outer {
@@ -220,3 +213,59 @@ textarea {
 }
 
 .chatbot-area .chatarea-inner{float: left;}
+
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 100vh;
+  background-color: rgb(243, 236, 236);
+  color: rgb(3, 3, 3);
+  text-align: center;
+  border-radius: 6px;
+  padding: 12px 12px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  
+  
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}

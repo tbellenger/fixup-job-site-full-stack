@@ -2,10 +2,11 @@ let mic = document.getElementById("mic");
 let chatareamain = document.querySelector('.chatarea-main');
 let chatareaouter = document.querySelector('.chatarea-outer');
 
-let intro = ["Hello, I am Chitti", "Hi, I am a Robo", "Hello, My name is Chitti"];
+let intro = ["Hello, I am Tarek", "Hi, I am a Robo", "Hello, My name is Tom"];
 let help = ["How may i assist you?","How can i help you?","What i can do for you?"];
-let greetings = ["i am good you little piece of love", "i am fine, what about you", "don't want to talk", "i am good"];
-let hobbies = ["i love to talk with humans", "i like to make friends like you", "i like cooking"];
+let greetings = ["i am good you little piece of love", "i am fine, what about you", "i am good"];
+let information = ["Please click the all jobs button to see jobs posting", "Please click the category button to see job information", "Click the dashboard to create posting", "Please sign in to access the page", "Please login first"];
+let answers = ["Click the name and key in your rating number", "Direct message the owner through email","Comment on the job posting", "Confirmation email would be sent to your inbox"]
 let thank = ["Most welcome","Not an issue","Its my pleasure","Mention not"];
 let closing = ['Ok bye-bye','As you wish, bye take-care','Bye-bye, see you soon..']
 
@@ -28,7 +29,7 @@ function showchatbotmsg(chatbotmsg){
 
 function chatbotvoice(message){
     const speech = new SpeechSynthesisUtterance();
-    speech.text = "This is test message";
+    speech.text = "Sorry, we don't have that information";
     if(message.includes('who are you')){
         let finalresult = intro[Math.floor(Math.random() * intro.length)];
         speech.text = finalresult;
@@ -41,12 +42,12 @@ function chatbotvoice(message){
         let finalresult = greetings[Math.floor(Math.random() * greetings.length)];
         speech.text = finalresult;
     }
-    if(message.includes('tell me something about you' || 'tell me something about your hobbies')){
-        let finalresult = hobbies[Math.floor(Math.random() * hobbies.length)];
+    if(message.includes('how to apply' || 'how to create' || 'how to contact')){
+        let finalresult = information[Math.floor(Math.random() * information.length)];
         speech.text = finalresult;
     }
-    if(message.includes('pizza')){
-        let finalresult = pizzas[Math.floor(Math.random() * pizzas.length)];
+    if(message.includes('how to rate employer' || 'how to apply job' || 'how to check if I am hired')){
+        let finalresult = answers[Math.floor(Math.random() * answers.length)];
         speech.text = finalresult;
     }
     if(message.includes('thank you' || 'thank you so much')){
@@ -72,16 +73,14 @@ recognition.onresult=function(e){
 recognition.onend=function(){
     mic.style.background="#ff3b3b";
 }
+
 mic.addEventListener("click", function(){
     mic.style.background='#39c81f';
     recognition.start();
     console.log("Activated");
 })
-function myFunction() {
-    let chatroom = document.getElementById("chatbot");
-    if (chatroom.style.display === "none") {
-      chatroom.style.display = "block";
-    } else {
-      chatroom.style.display = "none";
-    }
+
+  function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
   }
