@@ -34,11 +34,16 @@ container.onclick = (e) => {
       // reset the active class on the star
       (item) => item.classList.remove("active")
     );
-    let rating = e.target.getAttribute("data-rate");
+    let rating = e.target.dataset.rate;
+    console.log(rating);
+    container.dataset.rate = rating;
+    let userId = e.target.dataset.user;
+    container.dataset.user = userId;
     console.log(e.target.getAttribute("data-rate"));
     elClass.add("active"); // add active class to the clicked star
   }
 };
+
 // console.log(items.event.target.value);
 // let rating = items.forEach((item) => console.log(item.value));
 // console.log(rating);
@@ -57,13 +62,13 @@ async function submitRatings(event) {
   event.preventDefault();
   //declare all variables of inputs
   const userId = event.target.dataset.user;
-  // console.log(userId);
+  console.log(userId);
   // let rating = document.querySelector("#ratings-select").value;
   // let rating = items.forEach(
   //   // reset the active class on the star
   //   (item) => console.log(item.value)
   // );
-  let rating = item.getAttribute("data-rate");
+  const rating = event.target.dataset.rate;
   console.log(rating);
   if (rating > 5) {
     rating = 5;
@@ -91,8 +96,8 @@ async function submitRatings(event) {
       });
       //assign them a nth_token
       if (response.ok) {
-        // location.reload();
-        location.replace(`/dashboard/user/${userId}?auth_token=` + auth_token);
+        location.reload();
+        // location.replace(`/dashboard/user/${userId}?auth_token=` + auth_token);
       } else {
         alert(response.statusText);
       }
@@ -100,4 +105,5 @@ async function submitRatings(event) {
   }
 }
 
-document.querySelector(".rating-btn").addEventListener("click", submitRatings);
+// document.querySelector(".rating-btn").addEventListener("click", submitRatings);
+container.addEventListener("click", submitRatings);

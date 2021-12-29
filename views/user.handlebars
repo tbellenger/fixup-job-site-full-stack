@@ -26,17 +26,17 @@
               <option value="5">5</option>
             </select> --}}
             {{!-- <input type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}"> --}}
-              <label class="label">Rating</label>
+              <label class="label"  >Rating</label>
                    {{!-- <input type="number" placeholder="rating out of 5"  id="ratings-select"
                    class="input rating-input" name='rating-input' required/> --}}
-                   <ul class="rating" id="ratings-select">
+                   <ul class="rating" id="ratings-select" data-user="{{user.id}}">
 <li class="rating-item" data-rate="1" value="1"></li>
 <li class="rating-item active" data-rate="2" value="2"></li>
 <li class="rating-item" data-rate="3" value="3"></li>
 <li class="rating-item" data-rate="4" value="4"></li>
 <li class="rating-item" data-rate="5" value="5"></li>
 </ul>
-                  <button type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}" >Submit</a></button>
+                  {{!-- <button type="submit" value="Submit"  class="rating-btn" data-user="{{user.id}}" >Submit</a></button> --}}
           </form>
         </div>
         <p class="subtitle is-6"><a href="mailto:{{user.email}}">{{user.email}}</a></p>
