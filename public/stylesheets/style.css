@@ -6,7 +6,9 @@
 .navbar-form {
   margin: 0;
 }
-
+.navbar-form input {
+  padding: 6px;
+}
 .hero-body {
   background-image: url(../images/drill1.jpeg);
   background-repeat: no-repeat;
@@ -85,4 +87,14 @@ i {
 }
 .job-description{
   max-height: 200px;
+}
+@media screen and (max-width: 575px){
+  .navbar-form input{ 
+    width: 100%;
+    border-radius: 8px;
+    padding: 6px;
+  }
+  .navbar-item{
+    display: block;
+  }
 }

@@ -26,6 +26,7 @@ async function login() {
   const email = usernameEl.value.trim();
   const password = passwordEl.value.trim();
   //declare the post method to get the users
+  
   const response = await fetch("/api/users/login", {
     method: "POST",
     headers: {
@@ -37,16 +38,16 @@ async function login() {
       password: password,
     }),
   });
-  //save/store the user information into the local storage
+//save/store the user information into the local storage
   const json = await response.json();
-  
   if (json) {
     if (json.token) {
       localStorage.setItem("token", JSON.stringify(json.token));
       location.replace(`/dashboard?auth_token=${json.token}`);
     }
   }
-}
+} 
+
 //function for a sign up action
 async function signup() {
   event.preventDefault();
