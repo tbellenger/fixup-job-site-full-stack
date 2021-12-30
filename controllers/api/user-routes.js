@@ -91,7 +91,7 @@ function sign(user) {
   console.log("signing token");
   const body = { id: user.id, email: user.email, username: user.username };
   const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
-    expiresIn: "2h",
+    expiresIn: "72h",
   });
   return token;
 }
