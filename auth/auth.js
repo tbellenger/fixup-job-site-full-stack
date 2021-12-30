@@ -27,7 +27,7 @@ passport.use(
         return done(null, user);
       } catch (error) {
         console.log(error);
-        done(error);
+        done(null, false, { message: "User exists" });
       }
     }
   )
