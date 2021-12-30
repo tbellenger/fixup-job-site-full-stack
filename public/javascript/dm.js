@@ -77,12 +77,12 @@ async function deleteThreadHandler(event) {
           body: JSON.stringify({
             dm_text: dm,
             sender_id: event.target.dataset.sender_id,
-            recepient_id: event.target.dataset.recepient_id,
+            recepient_id: event.target.dataset.id,
           }),
         });
         //assign them a nth_token
         if (response.ok) {
-            location.reload(dm);
+            location.reload();
 
         } else {
           alert(response.statusText);

@@ -86,6 +86,7 @@ router.post("/login", async (req, res, next) => {
     }
   })(req, res, next);
 });
+
 //get the new user data and assign token and session timeout
 function sign(user) {
   console.log("signing token");
@@ -95,6 +96,7 @@ function sign(user) {
   });
   return token;
 }
+
 //assign token by id
 router.put(
   "/:id",

@@ -45,9 +45,8 @@ async function login() {
       localStorage.setItem("token", JSON.stringify(json.token));
       location.replace(`/dashboard?auth_token=${json.token}`);
     }
-  }
-} 
-
+  } 
+}
 //function for a sign up action
 async function signup() {
   event.preventDefault();
