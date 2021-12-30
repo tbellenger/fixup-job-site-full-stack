@@ -13,7 +13,7 @@ const {
   JobApplicant,
   JobTag,
   Jobimage,
-
+   DM,
 } = require("../models");
 
 //get all jobs data
@@ -94,6 +94,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 //get the job data by id to edit
 router.get("/job/:id/edit", async (req, res) => {
   try {
@@ -290,6 +291,63 @@ router.get("/user/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//create dm endpoints
+router.post("/", async (req, res) => {
+  try {
+      const dbDmData = await DM.create({
+          dm_text: req.body.dm_text,
+          sender_id: req.body.sender_id,
+          recepient_id: req.body.recepient_id,
+      });
+
+      const dm = dbDmData.get({ plain: true });
+     for (let i = 0; i < dm.dms.length; i++) {
+      if (dm.dms[i].user_id == req.user.id) {
+        console.log("setting comment to editable");
+        dm.dms[i].isEditable = true;
+      }
+    }
+    console.log(dm);
+    res.render("dms", {
+      dm: dm,
+    });
+
+  } catch (err) {
+      console.log(err);
+      return res.status(500).json(err);
+  }
+});
+
+  router.get("/", async (req, res)=>{
+       try{
+         const dbDmData = await DM.findAll({
+           where: {
+             id: req.params.id
+           },
+           attributes: ['id', 'dm_text', 'sender_id', 'recepient_id'],
+             include: [
+             {
+              model: User,
+             attributes: ['id', 'username']
+             }
+            ]
+          });
+          const dm = await dbDmData.get({plain: true});
+          console.log(dm);
+          if(dm){
+        res.render("dms", {
+          dm_text: req.body.dm_text,
+          sender_id: req.body.sender_id,
+          recepient_id: req.body.recepient_id,
+        });
+      } else {
+        res.redirect('/');
+      }
+    } catch(err){
+      res.status(500).json(err);
+    }
+  });
 
 
 //export the job routes

@@ -88,6 +88,10 @@ i {
 .job-description{
   max-height: 200px;
 }
+#chatroom{
+  display: none;
+}
+
 @media screen and (max-width: 575px){
   .navbar-form input{ 
     width: 100%;
