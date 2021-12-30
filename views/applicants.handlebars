@@ -1,14 +1,20 @@
 <div class="container">
-    <div class="columns is-multiline">
-        {{#each job.applicant as |applicant|}}
-        <div class="column is-4">
-            <div>Name:{{applicant.username}}</div>
-            <div>Email:{{applicant.email}}</div>
-            <div>Rating:{{applicant.rating}}</div>
-            <div><button class="select-applicant-btn button is-primary" data-job="{{applicant.Job_Applicant.jobId}}" data-applicant="{{applicant.id}}">Select Applicant</button></div>
-        </div>
-        {{/each}}
-    </div>
+  <div class="columns is-multiline">
+    {{#each job.applicant as |applicant|}}
+      <div class="column is-4">
+        <div>Name:<a
+            href="/dashboard/user/{{applicant.id}}"
+          >{{applicant.username}}</a></div>
+        <div>Email:{{applicant.email}}</div>
+        <div>Rating: {{userAverage}}</div>
+        <div><button
+            class="select-applicant-btn button is-primary"
+            data-job="{{applicant.Job_Applicant.jobId}}"
+            data-applicant="{{applicant.id}}"
+          >Select Applicant</button></div>
+      </div>
+    {{/each}}
+  </div>
 </div>
 
 <script src="/javascript/applicant.js"></script>
