@@ -93,7 +93,7 @@ if (commentEl) {
   commentEl.addEventListener("click", newCommentHandler);
 }
 
-async function applyToJob() {
+async function applyToJob(event) {
   event.preventDefault();
   if (!auth_token) {
     location.replace("/login");
@@ -108,6 +108,8 @@ async function applyToJob() {
       },
     });
     if (response.ok) {
+      event.target.innerText = "Applied";
+      event.target.setAttribute("disabled", "");
     } else {
       alert(response.statusText);
     }

@@ -52,6 +52,11 @@
       <button
         class="card-footer-item button is-primary apply-to-job-btn"
         data-id={{id}}
-      >Apply!</button>
+        {{#if isUserApplicant}}
+          disabled>Applied
+        {{else}}
+          >Apply!
+        {{/if}}
+      </button>
   </footer>
 </div>

@@ -216,6 +216,14 @@ router.get("/job/:id", async (req, res) => {
         job.comments[i].isEditable = true;
       }
     }
+
+    for (let i = 0; i < job.applicant.length; i++) {
+      if (job.applicant[i].id == req.user.id) {
+        // this job has been applied to by this user
+        job.isUserApplicant = true;
+      }
+    }
+
     console.log(job);
 
     res.render("job", {

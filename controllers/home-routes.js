@@ -77,6 +77,7 @@ router.get("/jobs", async (req, res) => {
     include: [
       { model: User, as: "owner", attribute: { exclude: ["password"] } },
       { model: User, as: "employee", attribute: { exclude: ["password"] } },
+      { model: User, as: "applicant", attribute: { exclude: ["password"] } },
       { model: Category },
       { model: Jobimage },
     ],
