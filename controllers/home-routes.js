@@ -35,6 +35,7 @@ router.get("/category/:id/jobs", async (req, res) => {
     const allJobs = await Job.findAll({
       where: {
         category_id: req.params.id,
+        job_status: "open",
       },
       attributes: {
         exclude: ["updatedAt"],
@@ -42,10 +43,15 @@ router.get("/category/:id/jobs", async (req, res) => {
           literal("CONCAT(SUBSTRING(description,1,40),'...') as description"),
         ],
       },
+      order: [["created_at", "DESC"]],
 
       //include all models that associated with category model
       include: [
-        { model: User, as: "owner", attribute: { exclude: ["password"] } },
+        {
+          model: User,
+          as: "owner",
+          attribute: { exclude: ["password", "email"] },
+        },
         { model: User, as: "employee", attribute: { exclude: ["password"] } },
         { model: Jobimage },
         { model: Category },
@@ -68,6 +74,9 @@ router.get("/category/:id/jobs", async (req, res) => {
 router.get("/jobs", async (req, res) => {
   let category = "All Jobs";
   const queryOptions = {
+    where: {
+      job_status: "open",
+    },
     attributes: {
       exclude: ["updatedAt"],
       include: [
@@ -81,25 +90,17 @@ router.get("/jobs", async (req, res) => {
         ],
       ],
     },
+    order: [["created_at", "DESC"]],
     include: [
-      { model: User, as: "owner", attribute: { exclude: ["password"] } },
+      {
+        model: User,
+        as: "owner",
+        attribute: { exclude: ["password", "email"] },
+      },
       { model: User, as: "employee", attribute: { exclude: ["password"] } },
       { model: User, as: "applicant", attribute: { exclude: ["password"] } },
       { model: Category },
       { model: Jobimage },
-      // {
-      //   model: Like,
-      //   as: "votes",
-      //   attribute: {
-      //     include: literal(
-      //       "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id) as likes_count"
-      //     ),
-      //   },
-      // },
-
-      // literal(
-      //   "(SELECT COUNT(*) FROM like WHERE job.id = like.job_id) as likes_count"
-      // ),
     ],
   };
   console.log(req.query);
@@ -121,12 +122,7 @@ router.get("/jobs", async (req, res) => {
   try {
     const allJobs = await Job.findAll(queryOptions);
     const jobs = allJobs.map((job) => job.get({ plain: true }));
-    // const eachJob = jobs.forEach((job) => {
-    //   job.likes_count;
-    // });
 
-    // console.log(jobs[0].votes.length);
-    // console.log(jobs.votes.length);
     res.render("jobs", {
       jobs: jobs,
       category: category,
