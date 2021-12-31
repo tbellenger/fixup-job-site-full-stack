@@ -261,6 +261,7 @@ router.get("/user/:id", async (req, res) => {
         { model: User, as: "from" },
         { model: User, as: "to" },
       ],
+      order: [["created_at", "DESC"]],
     });
     console.log(dbDirectMessages);
     const dmArray = dbDirectMessages.map((dm) => dm.get({ plain: true }));
