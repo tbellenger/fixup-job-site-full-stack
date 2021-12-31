@@ -1,4 +1,5 @@
 {{!--page template for the dashboard where user can create job posting--}}
+
 <div class="tile is-12 notification">
     <div class="tile is-parent is-5">
         <div class="tile is-child box">
@@ -103,6 +104,15 @@
     {{!--section table to display the post history of a certain user--}}
     <div class="tile is-7">
         <div class="tile is-parent is-vertical is-12">
+            {{#each unreads as |unread|}}
+            <div class="notification is-warning">
+                <button class="delete"></button>
+                You have unread messages from 
+                <a href="/dashboard/user/{{unread.from_id}}">
+                    {{unread.from.username}}
+                </a>
+            </div>
+            {{/each}}
             <div class="tile is-child box">
                 <span class="is-size-4">Your Posted Jobs</span>
                 <div class="table-container">
@@ -231,19 +241,32 @@
                     {{!--user post information columns of data--}}
                         <tr>
                             <th class="table-title">Title</th>
+                            <th class="table-title">Owner</th>
+                            <th class="table-title">Status</th>
                         </tr>
                     </thead>
                     {{!--rows of data object key value goes here--}}
                     <tbody>
+                        {{#each completed}}
                         <tr>
-                            <td>The job name you completed</td>
+                            <td>
+                                <a href="/dashboard/job/{{id}}">{{title}}</a>
+                            </td>
+                            <td>
+                                <a href="/dashboard/user/{{owner.id}}">
+                                    <strong>{{owner.username}}</strong>
+                                </a>
+                            </td>
+                            <td>{{job_status}}</td>
                         </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
 
 {{!--call the file function to generate this page template--}}
 <script src="/javascript/dashboard.js"></script>
