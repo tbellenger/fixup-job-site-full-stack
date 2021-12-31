@@ -19,5 +19,21 @@ router.post("/", async (req, res) => {
   }
 });
 
+//delete message by id
+router.delete("/:id", async (req, res) => {
+  try {
+      const deletedm = await DirectMessage.destroy({
+          where: {
+              id: req.params.id,
+          },
+      });
+      return res.status(200).json(deletedm);
+  } catch (err) {
+      console.log(err);
+      return res.status(500).json(err);
+  }
+});
+
+
 //export the dm routes
 module.exports = router;

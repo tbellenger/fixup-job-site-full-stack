@@ -4,7 +4,7 @@ async function deleteThreadHandler(event) {
     //get the thread id
     const response = await fetch(`/api/dm/${event.target.dataset.id}`, {
       method: "DELETE",
-      headers: {
+      headers: {"Content-Type": "application/json" ,
         Authorization: "bearer " + auth_token,
       },
     });
@@ -15,45 +15,14 @@ async function deleteThreadHandler(event) {
       alert(response.statusText);
     }
   }
+
   //add event listener to take the delete action
-  const delBtns = document.querySelectorAll(".delete-thread-btn");
+  const delBtns = document.querySelectorAll(".delete-message");
   delBtns.forEach((element) => {
     element.addEventListener("click", deleteThreadHandler);
   });
   
-  //function to edit the thread
-  async function editThreadHandler(event) {
-    event.preventDefault();
-  
-    const message = document
-      .querySelector(`textarea[name="thread-body-${event.target.dataset.id}"]`)
-      .value.trim();
-    const response = await fetch(`/api/dm/${event.target.dataset.id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        message,
-      }),
-  
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "bearer " + auth_token,
-      },
-    });
-    //if id is existed
-  
-    if (response.ok) {
-      location.reload();
-    } else {
-      alert(response.statusText);
-    }
-  }
-  
-  //call the add event listener to take the edit action
-  const editButtons = document.querySelectorAll(".edit-thread-btn");
-  editButtons.forEach((element) => {
-    element.addEventListener("click", editThreadHandler);
-  });
-  
+
   //function to create a a new thread
   async function newThreadHandler(event) {
     event.preventDefault();
