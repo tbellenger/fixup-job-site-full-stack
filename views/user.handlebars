@@ -54,7 +54,10 @@
   </div>
 </div>
 {{#each user.directmessages as |dm|}}
-{{dm.message}}
+Date: {{dm.createdAt}}<br>
+From: {{dm.from.username}}<br>
+To: {{dm.to.username}}<br>
+Message: {{dm.message}}<br><br>
 {{/each}}
 <script src="/javascript/ratings.js"></script>
 
