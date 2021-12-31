@@ -3,11 +3,6 @@
     <div class="column">
       {{!condition to get each userinformation when making a comments on a post}}
    <section class="dm" id="{{id}}">
-        <div>
-          {{dm.from.username}}
-          on
-          {{format_date created_at}}
-        </div>
         <div class="text">
           {{#if isEditable}}
             <textarea

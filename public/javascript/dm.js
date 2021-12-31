@@ -77,7 +77,7 @@ async function deleteThreadHandler(event) {
           body: JSON.stringify({
             message: dm,
             from_id: event.target.dataset.id,
-            to_id: event.target.dataset.id,
+             to_id: event.target.dataset.id,
           }),
         });
         //assign them a nth_token

@@ -25,7 +25,9 @@
   margin: 0 auto;
   background-color: rgb(244, 249, 250);
   padding: 15px;
-  
+  max-height: 250px;
+  overflow: auto;
+  z-index: 9999;
 }
 .job-description{
   max-height: 200px;
