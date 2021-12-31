@@ -52,15 +52,18 @@
       </div>
     </div>
   </div>
-
-<button class="button is-primary is-outlined is-rounded" onclick="document.getElementById('chatroom').style.display='block'" style="float: right;">Contact employer/employee</button>
- </div>
+{{!--button to call for the message box--}}
+{{!--<button class="button is-primary is-outlined is-rounded" {{onclick="document.getElementById('chatroom').style.display='block'" style="float: right;">Contact employer/employee</button>
+ </div>--}}
+<button id="messagebtn" class="button is-primary is-outlined is-rounded" onclick="myFunction()">Message employer/employee</button>
 {{!--initiate page template for chatroom--}}
-<article class="article" id="chatroom">
+<article class="popup" id="chatroom">
+  <span class="popuptext" id="myPopup">
        <div id="user">
-             {{user.username}}
+           <p style="color: black;" >{{user.username}}</p>
+             <button type="button" onclick="document.getElementById('chatroom').style.display='none'" class="button is-danger" style="float: right;">Close</button>
         </div>
-  
+        
        <form id="comment-box">
             <textarea
                 class="textarea message-input" id="textarea"
@@ -68,11 +71,10 @@
                 name="message-input" required></textarea><br>
                 {{!--button to submit the inputs--}}
             <div>
-                <button class="button is-success reply-msg" data-id={{user.id}}>Send</a></button>
-
-                 <button type="button" onclick="document.getElementById('chatroom').style.display='none'" class="button is-danger" >Cancel</button>
-            </div>
+                <button class="button is-success reply-msg" onclick="document.getElementById('chatroom').style.display='block'"  data-id={{user.id}}>Send</a></button>
+             </div>
         </form>
+
   <div id="dm">
   {{#each user.directmessages as |dm|}}
   <div class="message">
@@ -86,8 +88,8 @@
   </div>
   </div>
   </div>
-  
-  </article>
+  </span>
+</article>
 
 <script src="/javascript/dm.js"></script>
 <script src="/javascript/ratings.js"></script>

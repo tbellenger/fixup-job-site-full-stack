@@ -51,6 +51,7 @@ async function deleteThreadHandler(event) {
         });
         //assign them a nth_token
         if (response.ok) {
+        
             location.reload();
 
         } else {
@@ -59,9 +60,15 @@ async function deleteThreadHandler(event) {
       }
     }
   }
-  
+  function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
+
   const replyEl = document.querySelector(".reply-msg");
   if (replyEl) {
     replyEl.addEventListener("click", newThreadHandler);
-  }
+    
+}
 
+  
