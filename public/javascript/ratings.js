@@ -32,7 +32,7 @@ starRatingContainer.onclick = async (e) => {
   // change the rating if the user clicks on a different star
   // moves active class to the star that was selected.
   // then sends the update to the server
-  if (!e.target.classList.contains("active")) {
+  if (e.target.classList.contains("active")) {
     // remove active class from all the star items then
     // add it back on the selected one
     starRatingItem.forEach((item) => item.classList.remove("active"));

@@ -26,7 +26,6 @@ i {
   opacity: 1;
 }
 
-
 #useraveragedivp {
   visibility: hidden;
   display: none;
@@ -51,7 +50,7 @@ i {
 
 /* initial: make all stars full */
 .rating-item::before {
-  content: "\2605";
+  content: "\2606";
 }
 
 /* make until the clicked star (the rest) empty */
