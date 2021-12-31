@@ -15,6 +15,25 @@
 
 .job-image {
   max-width: 400px;
+  margin: 0 auto 12px;
+}
+#job{
+  margin: 0 auto;
+ }
+ article{
+  width: 50%;
+  margin: 0 auto;
+  background-color: rgb(244, 249, 250);
+  padding: 15px;
+  max-height: 250px;
+  overflow: auto;
+  z-index: 9999;
+}
+.job-description{
+  max-height: 200px;
+}
+#chatroom{
+  display: none;
 }
 
 i {
@@ -73,4 +92,24 @@ i {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1rem;
+}
+#dm{
+  background-color: skyblue;
+}
+@media screen and (max-width: 575px){
+  .navbar-form input{ 
+    width: 100%;
+    border-radius: 8px;
+    padding: 6px;
+    
+  }
+  .navbar-item{
+    display: block;
+  }
+  .navbar{
+    box-shadow: 4px 4px 4px;
+  }
+  article{
+    width: 100%;
+  }
 }
