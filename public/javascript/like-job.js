@@ -25,5 +25,3 @@ async function likeClickHandler(event) {
 document.querySelectorAll(".thumbsup").forEach((item) => {
   item.addEventListener("click", likeClickHandler);
 });
-
-// .addEventListener("click", likeClickHandler);

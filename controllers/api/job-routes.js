@@ -39,6 +39,7 @@ router.get("/", async (req, res) => {
           "likes_count",
         ],
       ],
+      order: [["created_at", "DESC"]],
       //include realted data assocaited with job model
       include: [
         {
