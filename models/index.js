@@ -9,6 +9,7 @@ const JobTag = require("./JobTag");
 const Ratings = require("./UserRatings");
 const Jobimage = require("./Jobimage");
 const sequelize = require("../config/connection");
+const DirectMessage = require("./DirectMessage");
 const JobApplicant = sequelize.define("Job_Applicant");
 
 // create associations
@@ -143,6 +144,28 @@ Jobimage.belongsTo(Job, {
   onDelete: "cascade",
 });
 
+DirectMessage.belongsTo(User, {
+  as: "from",
+  foreignKey: "from_id",
+  onDelete: "cascade",
+});
+User.hasMany(DirectMessage, {
+  as: "from",
+  foreignKey: "from_id",
+  onDelete: "cascade",
+});
+
+DirectMessage.belongsTo(User, {
+  as: "to",
+  foreignKey: "to_id",
+  onDelete: "cascade",
+});
+User.hasMany(DirectMessage, {
+  as: "to",
+  foreignKey: "to_id",
+  onDelete: "cascade",
+});
+
 //exports all the models
 module.exports = {
   User,
@@ -155,4 +178,5 @@ module.exports = {
   Ratings,
   Jobimage,
   JobApplicant,
+  DirectMessage,
 };
