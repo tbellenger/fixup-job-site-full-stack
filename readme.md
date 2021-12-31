@@ -1,6 +1,6 @@
 # FixUp <a name="fixup"></a>
 
-The Github link [tbellenger/coding-bd-project-2](https://github.com/tbellenger/coding-bc-project-2)
+The Github link [tbellenger/coding-bc-project-2](https://github.com/tbellenger/coding-bc-project-2)
 
 View the page on Heroku [FixUP.com](https://fixup-job.herokuapp.com/jobs)
 
@@ -79,7 +79,7 @@ Then I am presented with the homepage
 (screen shots/ video goes here)
 
 The project was uploaded to GitHub at the following repository:
-[tbellenger/coding-bd-project-2](https://github.com/tbellenger/coding-bc-project-2)
+[tbellenger/coding-bc-project-2](https://github.com/tbellenger/coding-bc-project-2)
 You can access the deployed application with the Heroku link:
 [FixUP.com](https://fixup-job.herokuapp.com/jobs)
 
