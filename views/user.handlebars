@@ -52,13 +52,39 @@
       </div>
     </div>
   </div>
-</div>
-{{#each user.directmessages as |dm|}}
-Date: {{dm.createdAt}}<br>
-From: {{dm.from.username}}<br>
-To: {{dm.to.username}}<br>
-Message: {{dm.message}}<br><br>
-{{/each}}
+
+<button class="button is-primary is-outlined is-rounded" onclick="document.getElementById('chatroom').style.display='block'" style="float: right;">Contact employer/employee</button>
+ </div>
+{{!--initiate page template for chatroom--}}
+<article class="article" id="chatroom">
+       <div id="user">
+             {{user.directmessages}}
+        </div>
+  
+       <form id="comment-box">
+            <textarea
+                class="textarea message-input" id="textarea"
+                placeholder="Send a message..."
+                name="message-input" required></textarea><br>
+                {{!--button to submit the inputs--}}
+            <div>
+                <button class="button is-success reply-msg" data-id={{user.id}}>Send</a></button>
+
+                 <button type="button" onclick="document.getElementById('chatroom').style.display='none'" class="button is-danger" >Cancel</button>
+            </div>
+        </form>
+  <div>
+  {{#each user.directmessages as |dm|}}
+  Date: {{dm.createdAt}}<br>
+  From: {{dm.from.username}}<br>
+  To: {{dm.to.username}}<br>
+  Message: {{dm.message}}<br><br>
+  {{/each}}
+
+  </div>
+  </article>
+
+<script src="/javascript/dm.js"></script>
 <script src="/javascript/ratings.js"></script>
 
  
