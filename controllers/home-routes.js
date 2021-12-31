@@ -3,7 +3,7 @@ const router = require("express").Router();
 //require the sequelize connection
 const sequelize = require("../config/connection");
 //require all Models that associated with each other
-const { Category, Job, User, Jobimage } = require("../models");
+const { Category, Job, User, Jobimage, Like } = require("../models");
 const { Op, literal } = require("sequelize");
 
 // get all categories for homepage
@@ -71,7 +71,14 @@ router.get("/jobs", async (req, res) => {
     attributes: {
       exclude: ["updatedAt"],
       include: [
+        // "id",
         literal("CONCAT(SUBSTRING(description,1,40),'...') as description"),
+        [
+          sequelize.literal(
+            "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
+          ),
+          "likes_count",
+        ],
       ],
     },
     include: [
@@ -80,6 +87,19 @@ router.get("/jobs", async (req, res) => {
       { model: User, as: "applicant", attribute: { exclude: ["password"] } },
       { model: Category },
       { model: Jobimage },
+      // {
+      //   model: Like,
+      //   as: "votes",
+      //   attribute: {
+      //     include: literal(
+      //       "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id) as likes_count"
+      //     ),
+      //   },
+      // },
+
+      // literal(
+      //   "(SELECT COUNT(*) FROM like WHERE job.id = like.job_id) as likes_count"
+      // ),
     ],
   };
   console.log(req.query);
@@ -101,7 +121,12 @@ router.get("/jobs", async (req, res) => {
   try {
     const allJobs = await Job.findAll(queryOptions);
     const jobs = allJobs.map((job) => job.get({ plain: true }));
-    console.log(jobs);
+    // const eachJob = jobs.forEach((job) => {
+    //   job.likes_count;
+    // });
+
+    // console.log(jobs[0].votes.length);
+    // console.log(jobs.votes.length);
     res.render("jobs", {
       jobs: jobs,
       category: category,

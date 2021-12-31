@@ -60,13 +60,11 @@ User.belongsToMany(Job, {
   through: Like,
   as: "likes_count",
   foreignKey: "user_id",
-  onDelete: "SET NULL",
 });
 Job.belongsToMany(User, {
   through: Like,
   as: "likes_count",
   foreignKey: "job_id",
-  onDelete: "SET NULL",
 });
 
 User.hasMany(Ratings, {
@@ -85,7 +83,6 @@ Ratings.belongsTo(User);
 
 Like.belongsTo(User, {
   foreignKey: "user_id",
-  onDelete: "SET NULL",
 });
 User.hasMany(Like, {
   foreignKey: "user_id",
@@ -93,7 +90,6 @@ User.hasMany(Like, {
 
 Like.belongsTo(Job, {
   foreignKey: "job_id",
-  onDelete: "SET NULL",
 });
 Job.hasMany(Like, {
   foreignKey: "job_id",

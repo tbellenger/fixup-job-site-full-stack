@@ -231,11 +231,12 @@ router.put("/like", async (req, res) => {
   // custom static method created in models/Job.js
   try {
     const job = await Job.opinion(
-      { ...req.body, user_id: req.session.user_id },
+      { ...req.body, user_id: req.user.id },
       { Like, Comment, User }
     );
     res.json(job);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
