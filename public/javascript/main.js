@@ -35,11 +35,13 @@ navLogoutBtn.addEventListener("click", () => {
 });
 
 function showModalMessage(message) {
-  document.querySelector("#modal").classList.add("is-active");
-  document.querySelector("#modal-close").addEventListener("click", () => {
-    document.querySelector("#modal").classList.remove("is-active");
-  });
   document.querySelector("#modal-content").innerHTML = message;
+  document.querySelector("#modal").classList.add("is-active");
+  document.querySelectorAll(".modal-close-btn").forEach((closeButton) => {
+    closeButton.addEventListener("click", () => {
+      document.querySelector("#modal").classList.remove("is-active");
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -61,3 +63,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+function modalTemplate(title, message) {
+  return `
+<div class="card is-3">
+  <div class="card-header">
+    <div class="card-header-title">
+      ${title}
+    </div>
+  </div>
+  <div class="card-content">
+    <div class="content">
+      ${message}
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="card-footer-item button is-primary modal-close-btn">
+      OK
+    </button>
+  </div>
+</div>`;
+}

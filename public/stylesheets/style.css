@@ -15,6 +15,25 @@
 
 .job-image {
   max-width: 400px;
+  margin: 0 auto 12px;
+}
+#job{
+  margin: 0 auto;
+ }
+ article{
+  width: 50%;
+  margin: 0 auto;
+  background-color: rgb(244, 249, 250);
+  padding: 15px;
+  max-height: 250px;
+  overflow: auto;
+  z-index: 9999;
+}
+.job-description{
+  max-height: 200px;
+}
+#chatroom{
+  display: none;
 }
 
 i {
@@ -26,8 +45,71 @@ i {
   opacity: 1;
 }
 
+
+#useraveragedivp {
+  visibility: hidden;
+  display: none;
+}
+
+.rating {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.rating li {
+  list-style-type: none;
+}
+
+.rating-item {
+  border: 1px solid #fff;
+  cursor: pointer;
+  font-size: 2em;
+  color: yellow;
+}
+
+/* initial: make all stars full */
+.rating-item::before {
+  content: "\2605";
+}
+
+/* make until the clicked star (the rest) empty */
+.rating-item.active ~ .rating-item::before {
+  content: "\2606";
+}
+
+/* on hover make all full */
+.rating:hover .rating-item::before {
+  content: "\2605";
+}
+
+/* make until the hovered (the rest) empty */
+.rating-item:hover ~ .rating-item::before {
+  content: "\2606";
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1rem;
+}
+#dm{
+  background-color: skyblue;
+}
+@media screen and (max-width: 575px){
+  .navbar-form input{ 
+    width: 100%;
+    border-radius: 8px;
+    padding: 6px;
+    
+  }
+  .navbar-item{
+    display: block;
+  }
+  .navbar{
+    box-shadow: 4px 4px 4px;
+  }
+  article{
+    width: 100%;
+  }
 }

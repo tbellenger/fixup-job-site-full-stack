@@ -7,24 +7,7 @@ const jwt = require("jsonwebtoken");
 //require the User model
 const { User, Ratings } = require("../../models");
 // no route to get all users on purpose
-router.get("/", async (req, res) => {
-  try {
-    const user = await User.findAll({
-      attributes: ["id", "username", "email"],
-      include: [
-        {
-          model: Ratings,
-          as: "user_ratings",
-          attributes: ["rating"],
-        },
-      ],
-    });
-    res.json(user);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+
 router.get(
   "/me",
   passport.authenticate("jwt", { session: false }),
@@ -86,11 +69,11 @@ router.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
-        console.log(err);
-        console.log(user);
-        console.log(info);
-        const error = new Error("An error occurred");
-        return next(error);
+        if (err) {
+          return next(err);
+        } else {
+          return res.status(401).json(info);
+        }
       }
       req.login(user, { session: false }, async (error) => {
         if (error) return next(error);
@@ -108,7 +91,7 @@ function sign(user) {
   console.log("signing token");
   const body = { id: user.id, email: user.email, username: user.username };
   const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
-    expiresIn: "2h",
+    expiresIn: "72h",
   });
   return token;
 }
