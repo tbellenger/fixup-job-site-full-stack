@@ -108,14 +108,31 @@ router.get("/", async (req, res) => {
       comletedJobs = allCompletedJobs.map((app) => app.get({ plain: true }));
     }
 
+    const dbUnreadMessages = await DirectMessage.findAndCountAll({
+      where: {
+        to_id: req.user.id,
+        is_read: false,
+      },
+      include: [{ model: User, as: "from" }],
+      group: ["from_id"],
+    });
+    let unreads = [];
+    if (dbUnreadMessages) {
+      console.log(dbUnreadMessages);
+      unreads = dbUnreadMessages.rows.map((message) =>
+        message.get({ plain: true })
+      );
+    }
+    console.log(unreads);
+
     const jobs = allJobs.map((job) => job.get({ plain: true }));
-    console.log(jobs);
     res.render("dashboard", {
       jobs: jobs,
       categories: categories, // used to render the new job form category choices
       applied: appliedJobs,
       selected: selectedJobs,
       completed: comletedJobs,
+      unreads: unreads,
     });
   } catch (err) {
     console.log(err);
