@@ -8,14 +8,13 @@ FixUp is a full stack web application where a user can created an account, post 
 
 # Table of contents 
 
-- FixUp(#fixup)
-- Table of contents
-- The project requirements(#requirements) 
-- The development process(#process)
-- User Story(#user-story)
-- Installation and Usage(#usage)
-- Credits(#credits)
-- Questions(#questions)
+- [FixUp](#fixup)
+- [The project requirements](#requirements) 
+- [The development process](#process)
+- [User Story](#user-story)
+- [Installation and Usage](#usage)
+- [Tools and Software](#tools)
+- [Questions](#questions)
 
 # The project requirements <a name="requirements"></a>
 Create a Full Stack Web Application with the following items:
@@ -97,8 +96,11 @@ Run the app with:
 
 node server.js
 
-# Credits<a name="credits"></a>
-
+# Tools and software <a name="tools"></a>
+NODE.Js
+Heroku, Github
+Express.JS, MySQL
+BULMA /CSS frameworks
 
 # Questions<a name="questions"></a>
 If you have questions or you want to share comments, we will be glad to hear from you. Please contact us at 
