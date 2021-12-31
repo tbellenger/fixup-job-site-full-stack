@@ -7,6 +7,7 @@ const categoryRoutes = require("./category-routes");
 const jobRoutes = require("./job-routes");
 const commentRoutes = require("./comment-routes");
 const ratingRoutes = require("./ratings-routes");
+const directMessageRoutes = require("./direct-message-routes");
 //render all routes
 router.use("/users", userRoutes);
 // must have an account to see job postings
@@ -26,6 +27,11 @@ router.use(
   "/ratings",
   passport.authenticate("jwt", { session: false }),
   ratingRoutes
+);
+router.use(
+  "/dm",
+  passport.authenticate("jwt", { session: false }),
+  directMessageRoutes
 );
 //export all routes
 module.exports = router;

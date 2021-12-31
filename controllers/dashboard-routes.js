@@ -1,5 +1,6 @@
 //require the express routes package
 const router = require("express").Router();
+const dmhelper = require("../utils/dm-helper");
 //require the sequelize connection
 const sequelize = require("../config/connection");
 //require all models assocaited with each other
@@ -13,6 +14,7 @@ const {
   JobApplicant,
   JobTag,
   Jobimage,
+  DirectMessage,
 } = require("../models");
 
 //get all jobs data
@@ -216,6 +218,14 @@ router.get("/job/:id", async (req, res) => {
         job.comments[i].isEditable = true;
       }
     }
+
+    for (let i = 0; i < job.applicant.length; i++) {
+      if (job.applicant[i].id == req.user.id) {
+        // this job has been applied to by this user
+        job.isUserApplicant = true;
+      }
+    }
+
     console.log(job);
 
     res.render("job", {
@@ -248,6 +258,22 @@ router.get("/user/:id", async (req, res) => {
         },
       ],
     });
+
+    const parties = dmhelper.getDmParties(req.user.id, req.params.id);
+    console.log("parties: " + parties);
+    const dbDirectMessages = await DirectMessage.findAll({
+      where: {
+        message_parties: parties,
+      },
+      include: [
+        { model: User, as: "from" },
+        { model: User, as: "to" },
+      ],
+      order: [["created_at", "DESC"]],
+    });
+    console.log(dbDirectMessages);
+    const dmArray = dbDirectMessages.map((dm) => dm.get({ plain: true }));
+
     if (!dbUser) {
       res.status(404).json({ message: "No user with that ID" });
       return;
@@ -276,7 +302,8 @@ router.get("/user/:id", async (req, res) => {
       }
       userAverage1 = roundHalf(userAverage);
       // console.log(userAverage1);
-
+      user.directmessages = dmArray;
+      console.log(user);
       return res.render("user", {
         user: user,
         sameUser: sameUser,

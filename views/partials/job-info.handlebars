@@ -50,15 +50,20 @@
         {{/each}}
       </figure>
     </div>
-  {{/if}}
-  <footer class="card-footer">
-    <button type="card-footer-item button" class="thumbsup" data-id={{id}}>
-     <p>{{likes_count}}</p> <span class="fa fa-thumbs-up"></span>
-      Like
-    </button>
-    <button
-      class="card-footer-item button is-primary apply-to-job-btn"
-      data-id={{id}}
-    >Apply!</button>
+    {{/if}}
+    <footer class="card-footer">
+      <button type="card-footer-item button" class="thumbsup" data-id={{id}}>
+       <p>{{likes_count}}</p> <span class="fa fa-thumbs-up"></span>
+        Like
+      </button>
+      <button
+        class="card-footer-item button is-primary apply-to-job-btn"
+        data-id={{id}}
+        {{#if isUserApplicant}}
+          disabled>Applied
+        {{else}}
+          >Apply!
+        {{/if}}
+      </button>
   </footer>
 </div>
