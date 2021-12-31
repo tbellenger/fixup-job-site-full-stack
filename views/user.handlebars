@@ -53,6 +53,9 @@
     </div>
   </div>
 </div>
+{{#each user.directmessages as |dm|}}
+{{dm.message}}
+{{/each}}
 <script src="/javascript/ratings.js"></script>
 
  

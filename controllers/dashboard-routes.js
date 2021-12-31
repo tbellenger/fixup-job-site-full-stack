@@ -1,5 +1,6 @@
 //require the express routes package
 const router = require("express").Router();
+const getDmParties = require("../utils/dm-helper");
 //require the sequelize connection
 const sequelize = require("../config/connection");
 //require all models assocaited with each other
@@ -13,6 +14,7 @@ const {
   JobApplicant,
   JobTag,
   Jobimage,
+  DirectMessage,
 } = require("../models");
 
 //get all jobs data
@@ -248,6 +250,17 @@ router.get("/user/:id", async (req, res) => {
         },
       ],
     });
+
+    const parties = getDmParties(req.user.id, req.params.id);
+
+    const dbDirectMessages = await DirectMessage.findAll({
+      where: {
+        parties: parties,
+      },
+    });
+
+    const dmArray = dbDirectMessages.map((dm) => dm.get({ plain: true }));
+
     if (!dbUser) {
       res.status(404).json({ message: "No user with that ID" });
       return;
@@ -276,7 +289,7 @@ router.get("/user/:id", async (req, res) => {
       }
       userAverage1 = roundHalf(userAverage);
       // console.log(userAverage1);
-
+      user.directmessages = dmArray;
       return res.render("user", {
         user: user,
         sameUser: sameUser,
