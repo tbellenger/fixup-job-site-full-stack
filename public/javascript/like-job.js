@@ -4,7 +4,7 @@ async function likeClickHandler(event) {
   console.log(job_id);
   console.log("button clicked");
 
-  const response = await fetch("/api/jobs/like", {
+  const response = await fetch(`/api/jobs/${job_id}/like`, {
     method: "PUT",
     body: JSON.stringify({
       job_id: job_id,
@@ -22,4 +22,8 @@ async function likeClickHandler(event) {
   }
 }
 
-document.querySelector(".thumbsup").addEventListener("click", likeClickHandler);
+document.querySelectorAll(".thumbsup").forEach((item) => {
+  item.addEventListener("click", likeClickHandler);
+});
+
+// .addEventListener("click", likeClickHandler);
