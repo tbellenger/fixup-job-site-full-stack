@@ -145,9 +145,9 @@ const completeJob = async (event) => {
   if (respone.ok) {
     document.querySelector(".modal").classList.add("is-active");
     document.querySelector("html").classList.add("is-clipped");
-    document.location.replace("/dashboard?auth_token=" + auth_token);
+    // document.location.replace("/dashboard?auth_token=" + auth_token);
   } else {
-    // alert(response.statusText);
+    alert(response.statusText);
   }
 };
 document.querySelector(".complete-job").addEventListener("click", completeJob);
