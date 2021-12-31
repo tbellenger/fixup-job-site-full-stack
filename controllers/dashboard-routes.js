@@ -49,6 +49,9 @@ router.get("/", async (req, res) => {
     );
 
     const allAppliedJobs = await Job.findAll({
+      where: {
+        job_status: "open",
+      },
       include: [
         { model: User, as: "owner" },
         {
@@ -66,6 +69,9 @@ router.get("/", async (req, res) => {
     }
 
     const allSelectedJobs = await Job.findAll({
+      where: {
+        job_status: "filled",
+      },
       include: [
         { model: User, as: "owner" },
         {
@@ -82,6 +88,26 @@ router.get("/", async (req, res) => {
       selectedJobs = allSelectedJobs.map((app) => app.get({ plain: true }));
     }
 
+    const allCompletedJobs = await Job.findAll({
+      where: {
+        job_status: "complete",
+      },
+      include: [
+        { model: User, as: "owner" },
+        {
+          model: User,
+          as: "employee",
+          where: {
+            id: req.user.id,
+          },
+        },
+      ],
+    });
+    let comletedJobs = [];
+    if (allCompletedJobs) {
+      comletedJobs = allCompletedJobs.map((app) => app.get({ plain: true }));
+    }
+
     const jobs = allJobs.map((job) => job.get({ plain: true }));
     console.log(jobs);
     res.render("dashboard", {
@@ -89,6 +115,7 @@ router.get("/", async (req, res) => {
       categories: categories, // used to render the new job form category choices
       applied: appliedJobs,
       selected: selectedJobs,
+      completed: comletedJobs,
     });
   } catch (err) {
     console.log(err);
@@ -272,6 +299,18 @@ router.get("/user/:id", async (req, res) => {
       order: [["created_at", "DESC"]],
     });
     console.log(dbDirectMessages);
+
+    // mark all the messages about to be displayed as read
+    await DirectMessage.update(
+      { is_read: true },
+      {
+        where: {
+          from_id: parseInt(req.params.id),
+          to_id: req.user.id,
+        },
+      }
+    );
+
     const dmArray = dbDirectMessages.map((dm) => dm.get({ plain: true }));
 
     if (!dbUser) {

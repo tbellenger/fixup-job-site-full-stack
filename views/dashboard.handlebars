@@ -231,13 +231,25 @@
                     {{!--user post information columns of data--}}
                         <tr>
                             <th class="table-title">Title</th>
+                            <th class="table-title">Owner</th>
+                            <th class="table-title">Status</th>
                         </tr>
                     </thead>
                     {{!--rows of data object key value goes here--}}
                     <tbody>
+                        {{#each completed}}
                         <tr>
-                            <td>The job name you completed</td>
+                            <td>
+                                <a href="/dashboard/job/{{id}}">{{title}}</a>
+                            </td>
+                            <td>
+                                <a href="/dashboard/user/{{owner.id}}">
+                                    <strong>{{owner.username}}</strong>
+                                </a>
+                            </td>
+                            <td>{{job_status}}</td>
                         </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
