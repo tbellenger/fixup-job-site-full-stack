@@ -145,17 +145,25 @@ Jobimage.belongsTo(Job, {
 });
 
 DirectMessage.belongsTo(User, {
+  as: "from",
   foreignKey: "from_id",
+  onDelete: "cascade",
 });
 User.hasMany(DirectMessage, {
+  as: "from",
   foreignKey: "from_id",
+  onDelete: "cascade",
 });
 
 DirectMessage.belongsTo(User, {
+  as: "to",
   foreignKey: "to_id",
+  onDelete: "cascade",
 });
 User.hasMany(DirectMessage, {
+  as: "to",
   foreignKey: "to_id",
+  onDelete: "cascade",
 });
 
 //exports all the models

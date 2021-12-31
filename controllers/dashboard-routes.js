@@ -1,6 +1,6 @@
 //require the express routes package
 const router = require("express").Router();
-const getDmParties = require("../utils/dm-helper");
+const dmhelper = require("../utils/dm-helper");
 //require the sequelize connection
 const sequelize = require("../config/connection");
 //require all models assocaited with each other
@@ -251,14 +251,18 @@ router.get("/user/:id", async (req, res) => {
       ],
     });
 
-    const parties = getDmParties(req.user.id, req.params.id);
-
+    const parties = dmhelper.getDmParties(req.user.id, req.params.id);
+    console.log("parties: " + parties);
     const dbDirectMessages = await DirectMessage.findAll({
       where: {
-        parties: parties,
+        message_parties: parties,
       },
+      include: [
+        { model: User, as: "from" },
+        { model: User, as: "to" },
+      ],
     });
-
+    console.log(dbDirectMessages);
     const dmArray = dbDirectMessages.map((dm) => dm.get({ plain: true }));
 
     if (!dbUser) {
@@ -290,6 +294,7 @@ router.get("/user/:id", async (req, res) => {
       userAverage1 = roundHalf(userAverage);
       // console.log(userAverage1);
       user.directmessages = dmArray;
+      console.log(user);
       return res.render("user", {
         user: user,
         sameUser: sameUser,
