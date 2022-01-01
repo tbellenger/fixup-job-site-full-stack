@@ -130,8 +130,8 @@
                                 <th class="employee-name">Employee</th>
                                 {{/unless}}
                                 <th class="job-status">Job Satus</th>
-                                <th class="table-edit">Edit</th>
-                                <th class="table-delete">Delete</th>
+                                <th class="table-edit">Controls</th>
+                                {{!-- <th class="table-delete">Delete</th> --}}
                             </tr>
                         </thead>
                         {{!--rows of data object key value goes here--}}
@@ -155,11 +155,10 @@
                                     {{/unless}}
                                 {{/if}}
                                 <td>{{job_status}}</td>
-                                <td><a class="button is-primary" href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
-                                <td>
-                                    <form>
-                                        <button class="delete-job button is-primary" data-id="{{this.id}}">Delete</button>
-                                    </form>
+                                <td class="is-centered">
+                                    <button class="complete-job button is-primary mb-1" data-id="{{this.id}}">Mark Complete</button>
+                                    <a class="button is-primary mb-1" href="/dashboard/job/{{this.id}}/edit">Edit</a>
+                                    <button class="delete-job button is-danger mb-1" data-id="{{this.id}}">Delete</button>
                                 </td>
                             </tr>
                         {{/each}}
