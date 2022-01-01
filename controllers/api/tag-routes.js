@@ -1,11 +1,18 @@
 //require the express routes package
 const router = require("express").Router();
-const { Tag } = require("../../models");
+const { Tag, Job, JobTag } = require("../../models");
 
 // get all tags
 router.get("/", async (req, res) => {
   try {
-    const tags = await Tag.findAll();
+    const tags = await Tag.findAll({
+      attributes: ["id", "tag_name"],
+      include:[
+        {
+          model: Job, through: JobTag, attributes:['job_id', 'tag_id']
+        }
+      ]
+    });
     res.json(tags);
   } catch (err) {
     res.status(500).json(err);
@@ -18,12 +25,17 @@ router.get("/:id", async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include:[
+        {
+          model: Job, through: JobTag, attributes:['job_id', 'tag_id']
+        }
+      ]
     });
     if (!tag) {
       res.status(404).json({ message: "No tag with that ID" });
       return;
     } else {
-      res.json(category);
+      res.json(tag);
     }
   } catch (err) {
     res.status(500).json(err);

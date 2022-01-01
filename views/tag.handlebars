@@ -1,11 +1,11 @@
-<div class="container">
-    {{#if jobTag}}
-    <div class="tags">
-        <h3>JOB TAG</h3>
-        {{#each jobTag as ||tag }}
-        <div>{{job tag_name}}</div>
-        {{/each}}
-    </div>
-    {{/if}}
+<div class="container notification">
+  <div class="grid-container">
+      {{#each tags as |tag|}}  
+      <div class="grid-item">
+         {{category tag}}
+      </div>
+      {{/each}}
+   </div> 
 </div>
-<div>{{job-info job}}</div>
+
+<script src="/javascript/tag.js"></script>
