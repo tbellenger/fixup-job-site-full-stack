@@ -116,21 +116,35 @@ document
 const deleteButtons = document.querySelectorAll(".delete-job");
 deleteButtons.forEach((el) => el.addEventListener("click", deletePostHandler));
 
+// Image file selection can lead to a pause with no indication
+// on the UI. Put this spinner in to show that something is
+// happening to the user.
 const fileBtn = document.querySelector("#file-input");
 fileBtn.addEventListener("click", () => {
   //add spinner to show waiting
   document.querySelector("#spinner").classList.remove("hide");
+  document.querySelector("#upload-file-name").classList.add("hide");
 });
 const job_image = document.querySelector('input[type="file"]');
 job_image.addEventListener("change", () => {
   // hide the spinner
   document.querySelector("#spinner").classList.add("hide");
+  document.querySelector("#upload-file-name").classList.remove("hide");
+  if (job_image.files.length === 0) {
+    document.querySelector("#upload-file-name").innerHTML = "No file selected";
+  } else {
+    document.querySelector("#upload-file-name").innerHTML =
+      job_image.files[0].name;
+  }
   if (job_image.files[0].size > 3 * 1024 * 1024) {
     alert("File is too big");
     job_image.value = "";
   }
 });
 
+// Handle Bulma notification display and dismissal
+// removes the notification from the DOM when the
+// delete button on the notification is clicked
 document.addEventListener("DOMContentLoaded", () => {
   (document.querySelectorAll(".notification .delete") || []).forEach(
     ($delete) => {
