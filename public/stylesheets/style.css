@@ -46,6 +46,10 @@ i {
   list-style-type: none;
 }
 
+.rating li + li {
+  margin-top: 0;
+}
+
 .rating-item {
   border: 1px solid #fff;
   cursor: pointer;
