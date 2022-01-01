@@ -14,6 +14,7 @@ const {
   JobApplicant,
   JobTag,
   Jobimage,
+  Like,
   DirectMessage,
 } = require("../models");
 
@@ -230,7 +231,15 @@ router.get("/job/:id", async (req, res) => {
       where: {
         id: req.params.id,
       },
-      attributes: { exclude: ["updatedAt"] },
+      attributes: {
+        exclude: ["updatedAt"],
+        // include: [
+        //   sequelize.literal(
+        //     "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
+        //   ),
+        //   "likes_count",
+        // ],
+      },
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
