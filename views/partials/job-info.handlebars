@@ -1,57 +1,69 @@
 <div class="card">
-    <div class="card-header">
-      <p class="card-header-title"><a class="is-size-4" href="/dashboard/job/{{id}}">{{title}}</a></p>
-    </div>
-    
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image">
-            <img src="/avatar/{{owner.id}}" alt="avatar image">
-          </figure>
-        </div>
-        <div class="media-content">
-          <p>
-            <a href="/dashboard/user/{{owner.id}}">
-              <strong>{{owner.username}}</strong>
-            </a>
-            <small>
-              {{owner.email}}
-            </small>
-            <br>
-            <small>{{format_date createdAt}}</small>
-          </p>
-        </div>
+  <div class="card-header">
+    <p class="card-header-title"><a
+        class="is-size-4"
+        href="/dashboard/job/{{id}}"
+      >{{title}}</a></p>
+  </div>
+
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image">
+          <img src="/avatar/{{owner.id}}" alt="avatar image" />
+        </figure>
       </div>
-      <div class="content">
+      <div class="media-content">
         <p>
-          <b>Payment offered:</b> ${{salary}}<br>
-          <b>Payment by:</b> {{payment_method}}<br>
-          <b>Job Status:</b> {{job_status}}<br>
-          <b>Zip Code:</b> {{zip_code}}<br>
-        </p>
-        <p>
-          {{description}}
+          <a href="/dashboard/user/{{owner.id}}">
+            <strong>{{owner.username}}</strong>
+          </a>
+          {{!-- <small>
+            {{owner.email}}
+          </small> --}}
+          <br />
+          <small>{{format_date createdAt}}</small>
         </p>
       </div>
     </div>
-    {{#if jobimages}}
+    <div class="content">
+      <p>
+        <b>Payment offered:</b>
+        ${{salary}}<br />
+        <b>Payment by:</b>
+        {{payment_method}}<br />
+        <b>Job Status:</b>
+        {{job_status}}<br />
+        <b>Zip Code:</b>
+        {{zip_code}}<br />
+      </p>
+      <p>
+        {{description}}
+      </p>
+    </div>
+  </div>
+  {{#if jobimages}}
     <div class="card-image">
       <figure class="image">
-      {{#each jobimages as |image|}}   
-        <img class="job-image" src="{{image.image_url}}">
-      {{/each}}
+        {{#each jobimages as |image|}}
+          <img class="job-image" src="{{image.image_url}}" />
+        {{/each}}
       </figure>
     </div>
     {{/if}}
     <footer class="card-footer">
-      <button type="card-footer-item button" id="thumbsup">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
+      <button  class="thumbsup card-footer-item button" data-id={{id}} data-job={{job.id}}>
+       <p style="padding: 8px;">{{likes_count}}</p> <span class="fa fa-thumbs-up"></span>
         Like
       </button>
       <button
         class="card-footer-item button is-primary apply-to-job-btn"
         data-id={{id}}
-      >Apply!</button>
+        {{#if isUserApplicant}}
+          disabled>Applied
+        {{else}}
+          >Apply!
+        {{/if}}
+      </button>
   </footer>
 </div>

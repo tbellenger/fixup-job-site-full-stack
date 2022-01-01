@@ -38,12 +38,16 @@ async function login() {
     }),
   });
   //save/store the user information into the local storage
-  const json = await response.json();
-  if (json) {
+  if (response.ok) {
+    const json = await response.json();
     if (json.token) {
       localStorage.setItem("token", JSON.stringify(json.token));
       location.replace(`/dashboard?auth_token=${json.token}`);
     }
+  } else {
+    // some error logging in
+    const json = await response.json();
+    showModalMessage(modalTemplate("Login Error", json.message));
   }
 }
 //function for a sign up action
@@ -85,12 +89,22 @@ async function signup() {
     });
 
     //and store/save it into the local storage
-    const json = await response.json();
-    if (json) {
+
+    if (response.ok) {
+      const json = await response.json();
       if (json.token) {
         localStorage.setItem("token", JSON.stringify(json.token));
         location.replace(`/dashboard?auth_token=${json.token}`);
       }
+    } else {
+      showModalMessage(modalTemplate("Signup Error", json.message));
     }
+  } else {
+    showModalMessage(
+      modalTemplate(
+        "Signup Error",
+        "There was an error signing up. That username/email may already be taken"
+      )
+    );
   }
 }

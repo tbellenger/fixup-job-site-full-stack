@@ -1,4 +1,8 @@
+
 {{!page template for the dashboard where user can create job posting}}
+{{!--page template for the dashboard where user can create job posting--}}
+
+
 <div class="tile is-12 notification">
   <div class="tile is-parent is-5">
     <div class="tile is-child box">
@@ -18,6 +22,7 @@
             />
           </div>
         </div>
+
         {{!label and input for category name}}
         <div class="field">
           <label class="label">Category</label>
@@ -30,6 +35,74 @@
                   >{{category.category_name}}</option>
                 {{/each}}
               </select>
+
+    </div>
+    {{!--section table to display the post history of a certain user--}}
+    <div class="tile is-7">
+        <div class="tile is-parent is-vertical is-12">
+            {{#each unreads as |unread|}}
+            <div class="notification is-warning">
+                <button class="delete"></button>
+                You have unread messages from 
+                <a href="/dashboard/user/{{unread.from_id}}">
+                    {{unread.from.username}}
+                </a>
+            </div>
+            {{/each}}
+            <div class="tile is-child box">
+                <span class="is-size-4">Your Posted Jobs</span>
+                <div class="table-container">
+                    <table
+                        class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                        {{!--user post information columns of data--}}
+                            <tr>
+                                <th class="table-title">Title</th>
+                                {{!--condition to assign or parse the user if falls as an employee--}}
+                                {{#if employee}}
+                                <th class="employee-name">Employee</th>
+                                {{/if}}
+                                {{#unless employee}}
+                                <th class="employee-name">Employee</th>
+                                {{/unless}}
+                                <th class="job-status">Job Satus</th>
+                                <th class="table-edit">Edit</th>
+                                <th class="table-delete">Delete</th>
+                            </tr>
+                        </thead>
+                        {{!--rows of data object key value goes here--}}
+                        <tbody>
+                        {{#each jobs}}
+                            <tr>
+                                <td><a href="/dashboard/job/{{this.id}}"
+                                    >{{this.title}}</a></td>
+                                {{!--condition if the owner has an employee then view the employee name--}}
+                                {{#if employee}}
+                                <td>
+                                    <a href="/dashboard/user/{{employee.id}}">
+                                        <strong>{{employee.username}}</strong>
+                                    </a>
+                                </td>
+                                {{else}}
+                                    {{#unless applicant.length}}
+                                <td>no applicants yet</td>
+                                    {{else}}
+                                <td><a href="/dashboard/job/{{this.id}}/applicants">Select applicant</a></td>
+                                    {{/unless}}
+                                {{/if}}
+                                <td>{{job_status}}</td>
+                                <td><a class="button is-primary" href="/dashboard/job/{{this.id}}/edit">Edit</a></td>
+                                <td>
+                                    <form>
+                                        <button class="delete-job button is-primary" data-id="{{this.id}}">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
           </div>
         </div>
@@ -227,6 +300,7 @@
         </table>
       </div>
 
+
       <div class="tile is-child box">
         <span class="is-size-4">Jobs You Are Selected</span>
         <table
@@ -278,9 +352,43 @@
           </tbody>
         </table>
       </div>
+
+            <div class="tile is-child box">
+                <span class="is-size-4">Jobs You Completed</span>
+                <table
+                    class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                >
+                    <thead>
+                    {{!--user post information columns of data--}}
+                        <tr>
+                            <th class="table-title">Title</th>
+                            <th class="table-title">Owner</th>
+                            <th class="table-title">Status</th>
+                        </tr>
+                    </thead>
+                    {{!--rows of data object key value goes here--}}
+                    <tbody>
+                        {{#each completed}}
+                        <tr>
+                            <td>
+                                <a href="/dashboard/job/{{id}}">{{title}}</a>
+                            </td>
+                            <td>
+                                <a href="/dashboard/user/{{owner.id}}">
+                                    <strong>{{owner.username}}</strong>
+                                </a>
+                            </td>
+                            <td>{{job_status}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
   </div>
 </div>
+
 
 <div class="modal">
   <div class="modal-background"></div>
@@ -301,3 +409,8 @@
 </div>
 {{!call the file function to generate this page template}}
 <script src="/javascript/dashboard.js"></script>
+
+
+{{!--call the file function to generate this page template--}}
+<script src="/javascript/dashboard.js"></script>
+

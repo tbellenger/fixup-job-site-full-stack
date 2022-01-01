@@ -39,6 +39,7 @@ router.get("/", async (req, res) => {
           "likes_count",
         ],
       ],
+      order: [["created_at", "DESC"]],
       //include realted data assocaited with job model
       include: [
         {
@@ -227,15 +228,16 @@ const uploadFile = (filename, data) => {
 };
 
 //capture the likes actions
-router.put("/like", async (req, res) => {
+router.put("/:id/like", async (req, res) => {
   // custom static method created in models/Job.js
   try {
     const job = await Job.opinion(
-      { ...req.body, user_id: req.session.user_id },
+      { ...req.body, id: parseInt(req.params.id), user_id: req.user.id },
       { Like, Comment, User }
     );
     res.json(job);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

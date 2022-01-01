@@ -1,3 +1,4 @@
+
 {{!Initiate the user information section}}
 <div class="hero-body">
   <div class="container">
@@ -13,11 +14,25 @@
                   src="/avatar/{{id}}"
                   alt="Placeholder image"
                 />
+
+{{!--Initiate the user information section--}}
+<div class="tile is-12 notification">
+  <div class="tile is-parent is-vertical is-4">
+    <div class="tile is-child">
+      <div class="card box mb-4">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              {{!--user avatar--}}
+              <figure class="image">
+                <img class="img" src="/avatar/{{user.id}}" alt="Placeholder image">
+
               </figure>
             </div>
 
             {{!user information}}
             <div class="media-content">
+
               <p class="title is-4">User:
                 <a href="/dashboard/user/{{user.id}}">
                   <p>{{user.username}}</p>
@@ -36,26 +51,93 @@
               <p class="subtitle is-6">
                 <a href="mailto:{{user.email}}">{{user.email}}</a>
               </p>
+
+              <a href="/dashboard/user/{{user.id}}">
+                <p>{{user.username}}</p>
+              </a>
+
             </div>
           </div>
-
           <div class="content">
-            <div id="useraverage">Rating:
+            <div id="useraverage">{{user.username}}'s Rating:
               <span id="stars"></span>
             </div>
             <div id="useraveragedivp">
               <p id="useraveragep">{{userAverage}}</p>
             </div>
+            {{!--If loggedIn user include the email and login history--}}
+            {{#if sameUser}}
+            <div>Email: {{user.email}}</div>
+            {{/if}}
+            <div>Last Login: {{user.last_login}}</div>
           </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-content">
+          <div class="content">
+            <label class="label">Your rating for {{user.username}}</label>
+            <ul class="rating" id="ratings-select" data-id="{{user.id}}">
+              <li class="rating-item" data-rate="1"></li>
+              <li class="rating-item" data-rate="2"></li>
+              <li class="rating-item" data-rate="3"></li>
+              <li class="rating-item" data-rate="4"></li>
+              <li class="rating-item active" data-rate="5"></li>
+            </ul>
+          </div>
+
           {{!If loggedIn user include the email and login history}}
           {{#if sameUser}}
             <div>Email: {{user.email}}</div>
             <div>Last Login: {{user.last_login}}</div>
           {{/if}}
+
         </div>
       </div>
     </div>
   </div>
+  <div class="tile is-8">
+    <div class="tile is-parent is-vertical is-12">
+      <div class="tile is-child box">
+        <form>
+          {{!--label an dinput for job title--}}
+          <div class="field">
+            <label class="label">Chat</label>
+            <div class="control">
+              <textarea
+                id="textarea"
+                placeholder="Message..."
+                class="input message-input"
+                name="message-input" required/></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-success reply-msg" data-id={{user.id}}>Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      {{#if user.directmessages}}
+      <div class="tile is-child box">
+        {{#each user.directmessages as |dm|}}
+        <div class="message">
+          <div class="message-body">
+          Date: {{dm.createdAt}}<br>
+          From: {{dm.from.username}}<br>
+          To: {{dm.to.username}}<br>
+          Message: {{dm.message}}<br><br>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+    </div>
 </div>
+
+
+<script src="/javascript/dm.js"></script>
+<script src="/javascript/ratings.js"></script>
+
 
 <script src="/javascript/ratings.js"></script>

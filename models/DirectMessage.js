@@ -2,18 +2,25 @@
 const { Model, DataTypes } = require("sequelize");
 //require the sequelize connection
 const sequelize = require("../config/connection");
-//declare the like model
-class Like extends Model {}
-//declare the Like table, columns and dataypes
-Like.init(
+//declare the comment model
+class DirectMessage extends Model {}
+//declare the Comment table, columns and dataypes
+DirectMessage.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false,
     },
-    user_id: {
+    message: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
+    },
+    from_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -21,7 +28,7 @@ Like.init(
         key: "id",
       },
     },
-    job_id: {
+    to_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -29,14 +36,21 @@ Like.init(
         key: "id",
       },
     },
+    message_parties: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    is_read: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
   {
     sequelize,
-    timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "vote",
+    modelName: "directmessage",
   }
 );
-//export the Like model
-module.exports = Like;
+//export the DirectMessage model
+module.exports = DirectMessage;

@@ -131,6 +131,7 @@ job_image.addEventListener("change", () => {
   }
 });
 
+
 const completeJob = async (event) => {
   event.preventDefault();
   const jobId = event.target.dataset.id;
@@ -194,3 +195,16 @@ starRatingContainer.onclick = async (e) => {
     }
   }
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  (document.querySelectorAll(".notification .delete") || []).forEach(
+    ($delete) => {
+      const $notification = $delete.parentNode;
+
+      $delete.addEventListener("click", () => {
+        $notification.parentNode.removeChild($notification);
+      });
+    }
+  );
+});
+

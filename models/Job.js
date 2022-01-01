@@ -7,11 +7,11 @@ class Job extends Model {
   static opinion(body, models) {
     return models.Like.create({
       user_id: body.user_id,
-      job_id: body.post_id,
+      job_id: body.job_id,
     }).then(() => {
       return Job.findOne({
         where: {
-          id: body.post_id,
+          id: body.job_id,
         },
         attributes: [
           "id",
@@ -21,7 +21,7 @@ class Job extends Model {
           "created_at",
           [
             sequelize.literal(
-              "(SELECT COUNT(*) FROM like WHERE job.id = like.job_id)"
+              "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
             ),
             "likes_count",
           ],
