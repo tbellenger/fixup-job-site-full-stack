@@ -156,7 +156,9 @@
                                 {{/if}}
                                 <td>{{job_status}}</td>
                                 <td class="is-centered">
-                                    <button class="complete-job button is-primary mb-1" data-id="{{this.id}}">Mark Complete</button>
+                                    {{#if employee}}
+                                    <button class="complete-job button is-primary mb-1" data-id="{{this.id}}" data-employee="{{employee.id}}">Mark Complete</button>
+                                    {{/if}}
                                     <a class="button is-primary mb-1" href="/dashboard/job/{{this.id}}/edit">Edit</a>
                                     <button class="delete-job button is-danger mb-1" data-id="{{this.id}}">Delete</button>
                                 </td>
