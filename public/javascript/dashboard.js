@@ -92,7 +92,7 @@ async function newPostHandler(event) {
 const completePostHandler = async (event) => {
   event.preventDefault();
   //declare the variables of id to be deleted
-  const completePostId = event.target.getAttribute("data-id");
+  const completePostId = event.target.dataset.id;
   console.log("called mark complete of " + completePostId);
   if (completePostId) {
     const response = await fetch("/api/jobs/" + completePostId, {
@@ -107,7 +107,8 @@ const completePostHandler = async (event) => {
     });
     //remove the token after deletion from the data
     if (response.ok) {
-      location.replace("/dashboard?auth_token=" + auth_token);
+      showModalMessage(ratingTemplate(event.target.dataset.employee));
+      ratingsJs();
     } else {
       alert(
         "Failed to update post. " + response.status + ": " + response.statusText
@@ -193,3 +194,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 });
+
+function ratingTemplate(id) {
+  return `
+  <div class="card is-3">
+    <div class="card-header">
+      <div class="card-header-title">
+        How well was the job completed?
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content">
+        <label class="label">Your rating </label>
+        <ul class="rating" id="ratings-select" data-id="${id}">
+          <li class="rating-item" data-rate="1"></li>
+          <li class="rating-item" data-rate="2"></li>
+          <li class="rating-item" data-rate="3"></li>
+          <li class="rating-item" data-rate="4"></li>
+          <li class="rating-item active" data-rate="5"></li>
+        </ul>
+      </div>
+    </div>
+</div>
+`;
+}
+
+function ratingsJs() {
+  const starRatingContainer = document.querySelector(".rating");
+  const starRatingItem = document.querySelectorAll(".rating-item");
+  starRatingContainer.onclick = async (e) => {
+    // change the rating if the user clicks on a different star
+    // moves active class to the star that was selected.
+    // then sends the update to the server
+    if (!e.target.classList.contains("active")) {
+      // remove active class from all the star items then
+      // add it back on the selected one
+      starRatingItem.forEach((item) => item.classList.remove("active"));
+      e.target.classList.add("active"); // add active class to the clicked star
+    }
+    if (!auth_token) {
+      alert("Please login or signup to create post.");
+    } else {
+      //validate their inputs
+      const response = await fetch(`/api/ratings`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "bearer " + auth_token,
+        },
+        //collect the inputs
+        body: JSON.stringify({
+          user_id: parseInt(starRatingContainer.dataset.id),
+          rating: parseInt(e.target.dataset.rate),
+        }),
+      });
+
+      if (response.ok) {
+        location.replace(`/dashboard?auth_token=` + auth_token);
+      } else {
+        alert(response.statusText);
+      }
+    }
+  };
+}
