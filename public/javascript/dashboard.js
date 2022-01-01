@@ -131,6 +131,71 @@ job_image.addEventListener("change", () => {
   }
 });
 
+
+const completeJob = async (event) => {
+  event.preventDefault();
+  const jobId = event.target.dataset.id;
+  const respone = await fetch(`/api/jobs/${jobId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "bearer " + auth_token,
+    },
+    body: JSON.stringify({ job_status: "complete" }),
+  });
+  if (respone.ok) {
+    document.querySelector(".modal").classList.add("is-active");
+    document.querySelector("html").classList.add("is-clipped");
+    // document.location.replace("/dashboard?auth_token=" + auth_token);
+  } else {
+    alert(response.statusText);
+  }
+};
+document.querySelector(".complete-job").addEventListener("click", completeJob);
+document.querySelector(".modal-close").addEventListener("click", function () {
+  document.querySelector(".modal").classList.remove("is-active");
+  document.querySelector("html").classList.remove("is-clipped");
+});
+const starRatingContainer = document.querySelector(".rating");
+const starRatingItem = document.querySelectorAll(".rating-item");
+starRatingContainer.onclick = async (e) => {
+  // change the rating if the user clicks on a different star
+  // moves active class to the star that was selected.
+  // then sends the update to the server
+  if (!e.target.classList.contains("active")) {
+    // remove active class from all the star items then
+    // add it back on the selected one
+    starRatingItem.forEach((item) => item.classList.remove("active"));
+    e.target.classList.add("active"); // add active class to the clicked star
+  }
+  if (!auth_token) {
+    alert("Please login or signup to create post.");
+  } else {
+    //validate their inputs
+    const response = await fetch(`/api/ratings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + auth_token,
+      },
+      //collect the inputs
+      body: JSON.stringify({
+        user_id: parseInt(starRatingContainer.dataset.id),
+        rating: parseInt(e.target.dataset.rate),
+      }),
+    });
+
+    if (response.ok) {
+      location.replace(
+        `/dashboard/user/${starRatingContainer.dataset.id}?auth_token=` +
+          auth_token
+      );
+    } else {
+      alert(response.statusText);
+    }
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   (document.querySelectorAll(".notification .delete") || []).forEach(
     ($delete) => {
@@ -142,3 +207,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 });
+

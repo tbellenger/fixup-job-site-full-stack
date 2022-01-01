@@ -201,7 +201,16 @@ router.get("/job/:id/applicants", async (req, res) => {
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
-        { model: User, as: "applicant", attributes: { exclude: ["password"] } },
+        {
+          model: User,
+          as: "applicant",
+          attributes: { exclude: ["password"] },
+          include: {
+            model: Ratings,
+            as: "user_ratings",
+            attributes: ["id", "user_id", "rating"],
+          },
+        },
         { model: Jobimage },
       ],
     });
@@ -214,9 +223,39 @@ router.get("/job/:id/applicants", async (req, res) => {
     }
 
     const job = dbJob.get({ plain: true });
-    console.log(job);
+    // console.log(
+    //   "3333333333333333333333333333333333333333333333333333333" +
+    //     job.applicant[0].user_ratings[0]
+    // );
+    let userAverage = 0;
+    let userAverage1 = 0;
+    const total1 = [];
+    for (let i = 0; i < job.applicant.length; i++) {
+      for (let j = 0; j < job.applicant[i].user_ratings.length; j++) {
+        total1.push(job.applicant[i].user_ratings[j].rating);
+        // console.log(total1);
+        const avg = (arr) => {
+          const sum = arr.reduce((acc, cur) => acc + cur);
+          const average = sum / arr.length;
+          // console.log(average);
+          return average;
+        };
+        userAverage = avg(total1).toFixed(1);
+        // console.log(job.applicant[i].username + userAverage);
+        function roundHalf(num) {
+          return Math.round(num * 2) / 2;
+        }
+      }
+    }
+    // console.log("this is the lenght" + user.user_ratings.length);
+    // console.log(user.user_ratings[i].rating);
+    userAverage1 = roundHalf(userAverage);
+    console.log(job.applicant.username + "" + userAverage1);
+    // console.log(userAverage1);
+    // console.log(job);
     res.render("applicants", {
       job: job,
+      userAverage: userAverage1,
     });
   } catch (err) {
     console.log(err);
@@ -344,6 +383,43 @@ router.get("/user/:id", async (req, res) => {
       return;
     } else {
       const user = dbUser.get({ plain: true });
+      const job = await Job.findAll({
+        where: {
+          owner_id: user.id,
+        },
+        include: [
+          { model: User, as: "owner", attributes: { exclude: ["password"] } },
+          {
+            model: User,
+            as: "employee",
+            attributes: { exclude: ["password"] },
+          },
+          {
+            model: User,
+            as: "applicant",
+            attributes: { exclude: ["password"] },
+          },
+        ],
+      });
+
+      for (let i = 0; i < job.length; i++) {
+        // job[i].employee.forEach((num1, index) => {
+        //   const num2 = job[i].applicant[index];
+        //   console.log(num1, num2);
+        // });
+        // for (let j = 0; j < job[i].applicant.length; j++) {
+        // for (let h = 0; h < job[i].employee.length; h++) {
+        console.log(
+          "=======================================================================" +
+            job[i].employee_id
+          // job[i].employee[h].username
+          // job[i].applicant[j].username
+        );
+        // }
+      }
+      // }
+
+      /////////////////////////////////
       let userAverage = 0;
       let userAverage1 = 0;
       const total1 = [];

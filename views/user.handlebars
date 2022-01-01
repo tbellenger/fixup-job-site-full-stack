@@ -1,3 +1,20 @@
+
+{{!Initiate the user information section}}
+<div class="hero-body">
+  <div class="container">
+    <div class="column is-4 is-offset-4">
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              {{!user avatar}}
+              <figure class="image is-128x128">
+                <img
+                  class="is-rounded"
+                  src="/avatar/{{id}}"
+                  alt="Placeholder image"
+                />
+
 {{!--Initiate the user information section--}}
 <div class="tile is-12 notification">
   <div class="tile is-parent is-vertical is-4">
@@ -9,21 +26,43 @@
               {{!--user avatar--}}
               <figure class="image">
                 <img class="img" src="/avatar/{{user.id}}" alt="Placeholder image">
+
               </figure>
             </div>
-      
-            {{!--user information--}}
+
+            {{!user information}}
             <div class="media-content">
+
+              <p class="title is-4">User:
+                <a href="/dashboard/user/{{user.id}}">
+                  <p>{{user.username}}</p>
+                </a>
+              </p>
+              <div>
+                <label class="label">Rating</label>
+                <ul class="rating" id="ratings-select" data-id="{{user.id}}">
+                  <li class="rating-item" data-rate="1"></li>
+                  <li class="rating-item" data-rate="2"></li>
+                  <li class="rating-item" data-rate="3"></li>
+                  <li class="rating-item" data-rate="4"></li>
+                  <li class="rating-item" data-rate="5"></li>
+                </ul>
+              </div>
+              <p class="subtitle is-6">
+                <a href="mailto:{{user.email}}">{{user.email}}</a>
+              </p>
+
               <a href="/dashboard/user/{{user.id}}">
                 <p>{{user.username}}</p>
               </a>
+
             </div>
           </div>
           <div class="content">
             <div id="useraverage">{{user.username}}'s Rating:
               <span id="stars"></span>
             </div>
-            <div id='useraveragedivp'> 
+            <div id="useraveragedivp">
               <p id="useraveragep">{{userAverage}}</p>
             </div>
             {{!--If loggedIn user include the email and login history--}}
@@ -46,6 +85,13 @@
               <li class="rating-item active" data-rate="5"></li>
             </ul>
           </div>
+
+          {{!If loggedIn user include the email and login history}}
+          {{#if sameUser}}
+            <div>Email: {{user.email}}</div>
+            <div>Last Login: {{user.last_login}}</div>
+          {{/if}}
+
         </div>
       </div>
     </div>
@@ -88,7 +134,10 @@
       {{/if}}
     </div>
 </div>
+
+
 <script src="/javascript/dm.js"></script>
 <script src="/javascript/ratings.js"></script>
 
- 
+
+<script src="/javascript/ratings.js"></script>
