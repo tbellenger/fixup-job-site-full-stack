@@ -56,6 +56,11 @@ async function newPostHandler(event) {
       if (response.ok) {
         json = await response.json();
         console.log(json);
+
+        // If the job was successfully posted to the DB then
+        // try to upload the image
+        // Uses form data in POST so we are doing it separately
+        // as the other POST uses JSON body
         if (job_image.files.length > 0) {
           const formData = new FormData();
           formData.append("file", job_image.files[0]);
@@ -82,6 +87,38 @@ async function newPostHandler(event) {
     }
   }
 }
+
+//delete post from client to API
+const completePostHandler = async (event) => {
+  event.preventDefault();
+  //declare the variables of id to be deleted
+  const completePostId = event.target.getAttribute("data-id");
+  console.log("called mark complete of " + completePostId);
+  if (completePostId) {
+    const response = await fetch("/api/jobs/" + completePostId, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + auth_token,
+      },
+      body: JSON.stringify({
+        job_status: "complete",
+      }),
+    });
+    //remove the token after deletion from the data
+    if (response.ok) {
+      location.replace("/dashboard?auth_token=" + auth_token);
+    } else {
+      alert(
+        "Failed to update post. " + response.status + ": " + response.statusText
+      );
+    }
+  }
+};
+const completeButtons = document.querySelectorAll(".complete-job");
+completeButtons.forEach((el) =>
+  el.addEventListener("click", completePostHandler)
+);
 
 //delete post from client to API
 const deletePostHandler = async (event) => {
