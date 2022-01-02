@@ -4,4 +4,7 @@ module.exports = {
       date
     ).getDate()}/${new Date(date).getFullYear()}`;
   },
+  format_date1: (date) => {
+    return new Date(date).toLocaleTimeString();
+  },
 };

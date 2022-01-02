@@ -1,3 +1,6 @@
+document.querySelectorAll(".thumbsup").forEach((item) => {
+  item.addEventListener("click", likeClickHandler);
+});
 async function likeClickHandler(event) {
   event.preventDefault();
   const job_id = event.target.dataset.id;
@@ -22,6 +25,6 @@ async function likeClickHandler(event) {
   }
 }
 
-document.querySelectorAll(".thumbsup").forEach((item) => {
-  item.addEventListener("click", likeClickHandler);
-});
+// document.querySelectorAll(".thumbsup").forEach((item) => {
+//   item.addEventListener("click", likeClickHandler);
+// });

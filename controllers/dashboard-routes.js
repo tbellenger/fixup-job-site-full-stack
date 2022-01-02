@@ -233,12 +233,14 @@ router.get("/job/:id", async (req, res) => {
       },
       attributes: {
         exclude: ["updatedAt"],
-        // include: [
-        //   sequelize.literal(
-        //     "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
-        //   ),
-        //   "likes_count",
-        // ],
+        include: [
+          [
+            sequelize.literal(
+              "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
+            ),
+            "likes_count",
+          ],
+        ],
       },
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
