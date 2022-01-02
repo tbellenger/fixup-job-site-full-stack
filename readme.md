@@ -75,8 +75,9 @@ Then I am presented with the homepage
 
 
 # Installation and Usage<a name="usage"></a>
+snaphot
+<img width="1748" alt="Screen Shot 2022-01-01 at 8 21 06 PM" src="https://user-images.githubusercontent.com/65073138/147866156-6bd43f7c-6c26-4d57-92d7-03eb5c469d3a.png">
 
-(screen shots/ video goes here)
 
 The project was uploaded to GitHub at the following repository:
 [tbellenger/coding-bc-project-2](https://github.com/tbellenger/coding-bc-project-2)
