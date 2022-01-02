@@ -1,14 +1,18 @@
-<div class="container">
+<div class="container px-3 py-2 has-background-light">
+    <div class="title">Applicant Lists</div>
     <div class="columns is-multiline">
         {{#each job.applicant as |applicant|}}
-        <div class="column is-4">
-            <div>Name:{{applicant.username}}</div>
+        <div class="column is-2 mx-3 has-text-centered  has-background-white applicant">
+            <div>Name:<a
+            href="/dashboard/user/{{applicant.id}}"
+          >{{applicant.username}}</a></div>
             <div>Email:{{applicant.email}}</div>
-            <div>Rating:{{applicant.rating}}</div>
+            <div>Rating:{{applicant.rating}}</div><br>
             <div><button class="select-applicant-btn button is-primary" data-job="{{applicant.Job_Applicant.jobId}}" data-applicant="{{applicant.id}}">Select Applicant</button></div>
         </div>
         {{/each}}
     </div>
 </div>
+
 
 <script src="/javascript/applicant.js"></script>
