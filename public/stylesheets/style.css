@@ -87,7 +87,7 @@ i {
   background-color: rgb(236, 236, 236);
   border-radius: 5px;
 }
-.job-comment{
+.job-comment, .applicant{
   box-shadow: 4px 4px 4px 4px rgb(228, 226, 226);
 }
 @media screen and (max-width: 575px) {
