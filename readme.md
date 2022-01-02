@@ -4,7 +4,7 @@ The Github link [tbellenger/coding-bc-project-2](https://github.com/tbellenger/c
 
 View the page on Heroku [FixUP.com](https://fixup-job.herokuapp.com/jobs)
 
-FixUp is a full stack web application where a user can created an account, post jobs, apply to jobs, and rate jobs. 
+FixUp is a full stack web application where a user can create an account, post jobs, apply to jobs, and rate jobs. 
 
 # Table of contents 
 
@@ -37,7 +37,7 @@ Create a Full Stack Web Application with the following items:
 # The development process<a name="process"></a>
 1. Brainstorm Ideas and defined our projects main purpose and user
 2. WireFrame
-3. Disscussed steps and assigned them between meetings
+3. Discussed steps and assigned them between meetings
 4. Created initial files, and working branches
 5. Created rountes, requests, and response structure
 6. Connected front and backend
@@ -53,7 +53,7 @@ can view the job posting.
 
 When I clicked the link page
 Then I am presented of the homepage with the navaigation bar, links button of all jobs and job categories.
-When i click the all jobs 
+When I click the all jobs 
 Then I am presented with all the job posting with all the information, owner, payment offer and method, location, and job description
 When I click the link to the owner
 Then I am presented with the owner email link, the owner ratings and a message box to message them.
@@ -97,9 +97,9 @@ Run the app with:
 node server.js
 
 # Tools and software <a name="tools"></a>
-NODE.Js
+NODE.Js packages
 Heroku, Github
-Express.JS, MySQL
+Express.JS, MySQL, Sequelize ORM
 BULMA /CSS frameworks
 
 # Questions<a name="questions"></a>
