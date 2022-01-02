@@ -41,6 +41,12 @@ router.get("/category/:id/jobs", async (req, res) => {
         exclude: ["updatedAt"],
         include: [
           literal("CONCAT(SUBSTRING(description,1,40),'...') as description"),
+          [
+            sequelize.literal(
+              "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
+            ),
+            "likes_count",
+          ],
         ],
       },
       order: [["created_at", "DESC"]],
