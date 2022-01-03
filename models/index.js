@@ -162,7 +162,7 @@ User.hasMany(DirectMessage, {
   onDelete: "cascade",
 });
 
-//exports all the models
+//exports all the models association
 module.exports = {
   User,
   Job,

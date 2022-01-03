@@ -4,7 +4,7 @@ const dmHelper = require("../../utils/dm-helper");
 //require the directmessage model
 const { DirectMessage } = require("../../models");
 
-// get all comments
+// get all direct messages
 router.post("/", async (req, res) => {
   try {
     const message_parties = dmHelper.getDmParties(req.user.id, req.body.to_id);

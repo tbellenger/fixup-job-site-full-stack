@@ -32,6 +32,7 @@ router.get("/category/:id/jobs", async (req, res) => {
         id: req.params.id,
       },
     });
+    //fetch api job
     const allJobs = await Job.findAll({
       where: {
         category_id: req.params.id,
@@ -91,6 +92,7 @@ router.get("/jobs", async (req, res) => {
       ],
     },
     order: [["created_at", "DESC"]],
+    //include all models that are associated with the Job model
     include: [
       {
         model: User,

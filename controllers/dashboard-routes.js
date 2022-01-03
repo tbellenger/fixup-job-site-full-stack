@@ -42,12 +42,12 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-
+//declare and fecth the all categories
     const allCategories = await Category.findAll();
     const categories = allCategories.map((category) =>
       category.get({ plain: true })
     );
-
+//declare and fecth all job post
     const allAppliedJobs = await Job.findAll({
       where: {
         job_status: "open",
@@ -67,7 +67,7 @@ router.get("/", async (req, res) => {
     if (allAppliedJobs) {
       appliedJobs = allAppliedJobs.map((app) => app.get({ plain: true }));
     }
-
+//declare and fetch all job that user select
     const allSelectedJobs = await Job.findAll({
       where: {
         job_status: "filled",
@@ -87,7 +87,7 @@ router.get("/", async (req, res) => {
     if (allSelectedJobs) {
       selectedJobs = allSelectedJobs.map((app) => app.get({ plain: true }));
     }
-
+//declare and fetch all job that a user completed
     const allCompletedJobs = await Job.findAll({
       where: {
         job_status: "complete",
@@ -103,11 +103,12 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+    //declare a array of completed jobs
     let comletedJobs = [];
     if (allCompletedJobs) {
       comletedJobs = allCompletedJobs.map((app) => app.get({ plain: true }));
     }
-
+//declare and fetch the direct messages tha a user has
     const dbUnreadMessages = await DirectMessage.findAndCountAll({
       where: {
         to_id: req.user.id,
@@ -124,7 +125,7 @@ router.get("/", async (req, res) => {
       );
     }
     console.log(unreads);
-
+//render the dashboard content
     const jobs = allJobs.map((job) => job.get({ plain: true }));
     res.render("dashboard", {
       jobs: jobs,
@@ -148,6 +149,7 @@ router.get("/job/:id/edit", async (req, res) => {
         id: req.params.id,
       },
       attributes: { exclude: ["updatedAt"] },
+      //include all associated models
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
@@ -197,6 +199,7 @@ router.get("/job/:id/applicants", async (req, res) => {
         id: req.params.id,
       },
       attributes: { exclude: ["updatedAt"] },
+      //include all associated models
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
@@ -231,6 +234,7 @@ router.get("/job/:id", async (req, res) => {
         id: req.params.id,
       },
       attributes: { exclude: ["updatedAt"] },
+      //include all models associated 
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
@@ -302,7 +306,7 @@ router.get("/user/:id", async (req, res) => {
         },
       ],
     });
-
+//declare and fetch each direct message data
     const parties = dmhelper.getDmParties(req.user.id, req.params.id);
     console.log("parties: " + parties);
     const dbDirectMessages = await DirectMessage.findAll({
