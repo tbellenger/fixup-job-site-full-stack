@@ -87,7 +87,11 @@ i {
   background-color: rgb(236, 236, 236);
   border-radius: 5px;
 }
+<<<<<<< HEAD
 .job-comment {
+=======
+.job-comment, .applicant{
+>>>>>>> bc4962f9a0e97e6c10de7704ac0f976d5d21fffb
   box-shadow: 4px 4px 4px 4px rgb(228, 226, 226);
 }
 #msg {

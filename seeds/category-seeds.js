@@ -20,6 +20,9 @@ const categorydata = [
   {
     category_name: "Plumbing",
   },
+  {
+    category_name: "Other"
+  }
 ];
 //seed all the category data
 const seedCategory = () => Category.bulkCreate(categorydata);
