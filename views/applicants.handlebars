@@ -3,7 +3,9 @@
     <div class="columns is-multiline">
         {{#each job.applicant as |applicant|}}
         <div class="column is-2 mx-3 has-text-centered  has-background-white applicant">
-            <div>Name:{{applicant.username}}</div>
+            <div>Name:<a
+            href="/dashboard/user/{{applicant.id}}"
+          >{{applicant.username}}</a></div>
             <div>Email:{{applicant.email}}</div>
             <div>Rating:{{applicant.rating}}</div><br>
             <div><button class="select-applicant-btn button is-primary" data-job="{{applicant.Job_Applicant.jobId}}" data-applicant="{{applicant.id}}">Select Applicant</button></div>

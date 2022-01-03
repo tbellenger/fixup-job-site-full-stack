@@ -21,15 +21,17 @@
                 <div class="field">
                     <label class="label">Category</label>
                     <div class="control">
-                        <div class="select">
-                            <select name="category-name" id="category-name" required>
+                     <div class="select" >
+                         <select name="category-name" id="category-name" required>
+                             <option value="">Select an Option</option>
                                 {{#each categories as |category|}}
-                                <option value="{{category.category_name}}">{{category.category_name}}</option>
+                                <option  value="{{category.category_name}}">{{category.category_name}}</option>
                                 {{/each}}
                             </select>
                         </div>
                     </div>
                 </div>
+                
                 {{!--label and input for job description--}}
                 <div class="field">
                     <label class="label">Description</label>
