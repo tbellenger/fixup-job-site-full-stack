@@ -1,86 +1,114 @@
 <div class="container is-fluid">
-<div class="tile notification is-12">
-  <div class="tile is-parent">
+  <div class="tile notification is-12">
+    <div class="tile is-parent">
       <article class="tile is-child box">
-          {{!--input form for the job post data--}}
-          <span class="is-size-4">Edit Job Posting</span>
-          <form>
-              {{!--label an dinput for job title--}}
-              <div class="field">
-                  <label class="label">Job Title</label>
-                  <div class="control">
-                      <input
-                      type="text"
-                      value="{{job.title}}"
-                      placeholder="Job title"
-                      class="input title-input"
-                      name="job-title" required/>
-                  </div>
+        {{!input form for the job post data}}
+        <span class="is-size-4">Edit Job Posting</span>
+        <form>
+          {{!label an dinput for job title}}
+          <div class="field">
+            <label class="label">Job Title</label>
+            <div class="control">
+              <input
+                type="text"
+                value="{{job.title}}"
+                placeholder="Job title"
+                class="input title-input"
+                name="job-title"
+                required
+              />
+            </div>
+          </div>
+          {{!label and input for category name}}
+          <div class="field">
+            <label class="label">Category</label>
+            <div class="control">
+              <div class="select">
+                <select name="category-name" id="category-name" required>
+                  {{! <option value="" selected disabled hidden>Select an Option</option> }}
+                  <option
+                    value="{{job.category_name}}"
+                    selected
+                  >{{job.category_name}} </option>
+                  {{#each categories as |category|}}
+                    <option
+                      value="{{category.category_name}}"
+                    >{{category.category_name}}</option>
+                  {{/each}}
+                </select>
               </div>
-              {{!--label and input for category name--}}
-              <div class="field">
-                  <label class="label">Category</label>
-                  <div class="control">
-                      <div class="select">
-                          <select name="category-name" id="category-name" required>
-                              {{#each categories as |category|}}
-                              <option value="{{category.category_name}}">{{category.category_name}}</option>
-                              {{/each}}
-                          </select>
-                      </div>
-                  </div>
-              </div>
-              {{!--label and input for job description--}}
-              <div class="field">
-                  <label class="label">Description</label>
-                  <div class="control">
-                      <textarea
-                          class="textarea description-input"
-                          placeholder="Job description"
-                          name="description-input" required
-                      >{{job.description}}</textarea>
-                  </div>
-              </div>
-              {{!--label and input for salary--}}
-              <div class="field">
-                  <label class="label">Pay</label>
-                  <div class="control">
-                      <input
-                              type="number"
-                              value="{{job.salary}}"
-                              placeholder="pay"
-                              class="input salary-input"
-                              name='salary-input' required/>
-                  </div>
-              </div>
-                  {{!--label and input for payment method--}}
-              <div class="field">
-                  <label class="label">Payment method will be </label>
-                  <div class="control">
-                      <input
-                              type="text"
-                              value="{{job.payment_method}}"
-                              placeholder="Payment method"
-                              class="input payment-input"
-                              name="payment-input" required/>
-                  </div>
-              </div>
-                  {{!--label and input for job location--}}
-              <div class="field">
-                  <label class="label">Job Location</label>
-                  <div class="control">
-                      <input
+            </div>
+          </div>
+          {{!label and input for job description}}
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea
+                class="textarea description-input"
+                placeholder="Job description"
+                name="description-input"
+                required
+              >{{job.description}}</textarea>
+            </div>
+          </div>
+          {{!label and input for salary}}
+          <div class="field">
+            <label class="label">Pay</label>
+            <div class="control">
+              <input
+                type="number"
+                value="{{job.salary}}"
+                placeholder="pay"
+                class="input salary-input"
+                name="salary-input"
+                required
+              />
+            </div>
+          </div>
+          {{!label and input for payment method}}
+          <div class="field">
+            <label class="label">Payment method will be </label>
+            <div class="control">
+              <input
+                type="text"
+                value="{{job.payment_method}}"
+                placeholder="Payment method"
+                class="input payment-input"
+                name="payment-input"
+                required
+              />
+            </div>
+          </div>
+          {{!label and input for job location}}
+          <div class="field">
+            <label class="label">Job Location</label>
+            <div class="control">
+              {{!-- <input
                               type="number"
                               value="{{job.zip_code}}"
                               placeholder="Job location"
                               class="input location-input"
-                              name="location-input" required/>
-                  </div>
-              </div>
-              <div class="field is-grouped is-grouped-right mt-3">
-                  <button class="button is-primary submit-post" data-id="{{job.id}}">Update</button>
-              </div>
-          </form>
+                              name="location-input" required/> --}}
+              <input
+                type="text"
+                onkeyup="validateInput()"
+                id="zipCode"
+                value="{{job.zip_code}}"
+                placeholder="Job location"
+                class="input location-input"
+                name="location-input"
+                required
+              />
+              <div id="msg"></div>
+            </div>
+          </div>
+          <div class="field is-grouped is-grouped-right mt-3">
+            <button
+              class="button is-primary submit-post"
+              data-id="{{job.id}}"
+            >Update</button>
+          </div>
+        </form>
       </article>
     </div>
   </div>

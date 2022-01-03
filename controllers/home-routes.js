@@ -122,6 +122,9 @@ router.get("/jobs", async (req, res) => {
         description: {
           [Op.substring]: req.query.q,
         },
+        zip_code: {
+          [Op.substring]: req.query.q,
+        },
       },
     };
   }
