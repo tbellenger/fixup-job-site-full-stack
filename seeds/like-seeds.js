@@ -19,7 +19,7 @@ const likedata = [
     job_id: 3,
   },
 ];
-
+//call the bulk of seed like
 const seedLike = () => Like.bulkCreate(likedata);
-
+//export the seed like
 module.exports = seedLike;

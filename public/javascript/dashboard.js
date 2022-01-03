@@ -52,10 +52,11 @@ async function newPostHandler(event) {
           // username,
         }),
       });
-
+//if response is ok store data into the database
       if (response.ok) {
         json = await response.json();
         console.log(json);
+        //if image/file wa uploaded append it into the job data
         if (job_image.files.length > 0) {
           const formData = new FormData();
           formData.append("file", job_image.files[0]);
@@ -130,7 +131,7 @@ job_image.addEventListener("change", () => {
     job_image.value = "";
   }
 });
-
+//function to delete each job post
 document.addEventListener("DOMContentLoaded", () => {
   (document.querySelectorAll(".notification .delete") || []).forEach(
     ($delete) => {
