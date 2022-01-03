@@ -25,6 +25,7 @@
           <div class="control">
             <div class="select">
               <select name="category-name" id="category-name" required>
+                <option value="" selected disabled hidden>Select an Option</option>
                 {{#each categories as |category|}}
                   <option
                     value="{{category.category_name}}"
