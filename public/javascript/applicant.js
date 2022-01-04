@@ -26,3 +26,41 @@ async function handleApplicantSelection() {
     alert(response.statusText);
   }
 }
+
+////
+let userAverageDiv = document.querySelector("#useraverage");
+// let userAverageEl = document.querySelectorAll(".useraveragep").innerText;
+let userAverageEl = document.querySelectorAll(".useraveragep");
+userAverageEl.forEach(function (user) {
+  console.log(user.innerText);
+  document.querySelectorAll(".stars").forEach(function (star) {
+    star.innerHTML = getStars(user.innerText);
+    // console.log(user.innerText);
+  });
+});
+// console.log(userAverageEl);
+// let userAverageDivPEl = document.querySelector("#useraveragedivp");
+
+function getStars(rating) {
+  rating = Math.round(rating * 2) / 2;
+  let output = [];
+
+  for (var i = rating; i >= 1; i--)
+    output.push(
+      '<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+    );
+
+  if (i == 0.5)
+    output.push(
+      '<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+    );
+
+  for (let i = 5 - rating; i >= 1; i--)
+    output.push(
+      '<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+    );
+
+  return output.join("");
+}
+
+// document.getElementById("stars").innerHTML = getStars(userAverageEl);

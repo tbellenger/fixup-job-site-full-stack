@@ -23,7 +23,7 @@
   <div class="columns is-multiline">
     {{#each job.applicant as |applicant|}}
       <div
-        class="column is-2 mx-3 has-text-centered has-background-white applicant"
+        class="column is-3 mx-3 has-text-centered has-background-white applicant"
       >
         <div>Name:
           <a href="/dashboard/user/{{applicant.id}}">
@@ -31,7 +31,15 @@
         <div>Email:<a
             href="mailto: {{applicant.email}}"
           >{{applicant.email}}</a></div>
-        <div>Rating:{{applicant.rating}}</div><br />
+        {{!-- <div>Rating:{{applicant.userAverage}}</div><br/> --}}
+        <div id="useraverage">Rating:
+          <span class="stars"></span>
+
+        </div>
+        <div id="useraveragedivp">
+          <p class="useraveragep">{{applicant.userAverage}}</p>
+        </div>
+
         <div><button
             class="select-applicant-btn button is-primary"
             data-job="{{applicant.Job_Applicant.jobId}}"

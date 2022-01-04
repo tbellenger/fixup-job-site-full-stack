@@ -225,14 +225,12 @@ router.get("/job/:id/applicants", async (req, res) => {
     }
 
     const job = dbJob.get({ plain: true });
-    // console.log(job);
-    ///////
-    // console.log(job.applicant[0].user_ratings[0].rating);
+    console.log(job);
+
     let userAverage = 0;
     let userAverage1 = 0;
     const total1 = [];
     for (let i = 0; i < job.applicant.length; i++) {
-      // console.log("this is the lenght" + user.user_ratings.length);
       for (let j = 0; j < job.applicant[i].user_ratings.length; j++) {
         // console.log(job.applicant[i].user_ratings[j].rating);
         total1.push(job.applicant[i].user_ratings[j].rating);
@@ -243,17 +241,16 @@ router.get("/job/:id/applicants", async (req, res) => {
           return average;
         };
         userAverage = avg(total1).toFixed(1);
+        console.log(job.applicant[i].username + userAverage);
+
+        function roundHalf(num) {
+          return Math.round(num * 2) / 2;
+        }
+        userAverage1 = roundHalf(userAverage);
+        job.applicant[i].userAverage = userAverage1;
       }
-
-      // console.log(total1);
-
-      // console.log(userAverage);
     }
-    function roundHalf(num) {
-      return Math.round(num * 2) / 2;
-    }
-    userAverage1 = roundHalf(userAverage);
-    console.log(userAverage1);
+
     res.render("applicants", {
       job: job,
       userAverage: userAverage1,
@@ -321,7 +318,7 @@ router.get("/job/:id", async (req, res) => {
       }
     }
 
-    console.log(job);
+    console.log("rendering job", job);
 
     res.render("job", {
       job: job,
