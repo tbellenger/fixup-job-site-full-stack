@@ -53,7 +53,7 @@ starRatingContainer.onclick = async (e) => {
       //collect the inputs
       body: JSON.stringify({
         user_id: parseInt(starRatingContainer.dataset.id),
-        rating: parseInt(e.target.dataset.rating),
+        rating: parseInt(e.target.dataset.rate),
       }),
     });
 

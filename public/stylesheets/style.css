@@ -52,10 +52,9 @@ i {
   margin-top: 0;
 }
 .rating-item {
-  border: 1px solid #fff;
   cursor: pointer;
   font-size: 2em;
-  color: yellow;
+  color: rgb(214, 157, 0);
 }
 
 /* initial: make all stars full */
