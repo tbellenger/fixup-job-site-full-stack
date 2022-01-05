@@ -4,13 +4,14 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 //require the hashing of sensitive information
 const bcrypt = require("bcrypt");
+const Ratings = require("./UserRatings");
 //declare the User model and condition to hash the password
 class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
   static score(body, models) {
-    return models.UserRatings.create({
+    return models.Ratings.create({
       user_id: body.user_id,
     }).then(() => {
       return User.findOne({
@@ -74,6 +75,7 @@ User.init(
       validate: {
         isEmail: true,
       },
+
     },
     // other columns will go here
     password: {
@@ -83,7 +85,6 @@ User.init(
         len: [4],
       },
     },
-
     // no need to store jobs completed or offered as that can be counted in the database
     last_login: {
       type: DataTypes.DATEONLY,

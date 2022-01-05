@@ -1,7 +1,9 @@
 //require the sequelize package to manipulate this object
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
+//declare the JobImage model
 class Jobimage extends Model {}
+//declare the model object key, values and datatypes
 Jobimage.init(
   {
     id: {

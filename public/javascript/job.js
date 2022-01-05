@@ -87,19 +87,21 @@ async function newCommentHandler(event) {
     }
   }
 }
-
+//add event listener for click button submit
 const commentEl = document.querySelector(".submit-post");
 if (commentEl) {
   commentEl.addEventListener("click", newCommentHandler);
 }
-
+//fuction to be able to apply for a job 
 async function applyToJob(event) {
   event.preventDefault();
+  //if not logged in user then bring them into login section
   if (!auth_token) {
     location.replace("/login");
     return;
   }
   try {
+    //fetch the jobs id that being apply on
     const response = await fetch(`/api/jobs/${event.target.dataset.id}/apply`, {
       method: "POST",
       headers: {
@@ -117,7 +119,7 @@ async function applyToJob(event) {
     console.log(err);
   }
 }
-
+//add event listener to click the apply button
 const applyBtn = document.querySelectorAll(".apply-to-job-btn");
 applyBtn.forEach((item) => {
   item.addEventListener("click", applyToJob);

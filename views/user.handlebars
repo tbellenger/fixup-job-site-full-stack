@@ -50,11 +50,12 @@
       </div>
     </div>
   </div>
+  {{#unless sameUser}}
   <div class="tile is-8">
     <div class="tile is-parent is-vertical is-12">
       <div class="tile is-child box">
         <form>
-          {{!--label an dinput for job title--}}
+          {{!--label and input for job title--}}
           <div class="field">
             <label class="label">Chat</label>
             <div class="control">
@@ -72,6 +73,7 @@
           </div>
         </form>
       </div>
+      {{!--direct message section--}}
       {{#if user.directmessages}}
       <div class="tile is-child box">
         {{#each user.directmessages as |dm|}}
@@ -87,7 +89,9 @@
       </div>
       {{/if}}
     </div>
+    {{/unless}}
 </div>
+{{!--call the file of function to generate this page--}}
 <script src="/javascript/dm.js"></script>
 <script src="/javascript/ratings.js"></script>
 

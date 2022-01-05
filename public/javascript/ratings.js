@@ -1,7 +1,9 @@
+//declare the variables that will hold the ratings input
 let userAverageDiv = document.querySelector("#useraverage");
 let userAverageEl = document.querySelector("#useraveragep").innerText;
-// let userAverageDivPEl = document.querySelector("#useraveragedivp");
 
+// let userAverageDivPEl = document.querySelector("#useraveragedivp");
+//function to generate the stars ratings
 function getStars(rating) {
   rating = Math.round(rating * 2) / 2;
   let output = [];
@@ -51,7 +53,7 @@ starRatingContainer.onclick = async (e) => {
       //collect the inputs
       body: JSON.stringify({
         user_id: parseInt(starRatingContainer.dataset.id),
-        rating: parseInt(e.target.dataset.rate),
+        rating: parseInt(e.target.dataset.rating),
       }),
     });
 
