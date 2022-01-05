@@ -253,7 +253,6 @@ router.get("/job/:id/applicants", async (req, res) => {
 
     res.render("applicants", {
       job: job,
-      userAverage: userAverage1,
     });
   } catch (err) {
     console.log(err);

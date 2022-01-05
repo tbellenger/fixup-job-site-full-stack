@@ -32,15 +32,11 @@
             href="mailto: {{applicant.email}}"
           >{{applicant.email}}</a></div>
         {{!-- <div>Rating:{{applicant.userAverage}}</div><br/> --}}
-        <div id="useraverage">Rating:
+        <div class="useraverage" data-useraverage="{{applicant.userAverage}}">Rating:
           <span class="stars"></span>
-
         </div>
-        <div id="useraveragedivp">
-          <p class="useraveragep">{{applicant.userAverage}}</p>
-        </div>
-
-        <div><button
+        <div>
+          <button
             class="select-applicant-btn button is-primary"
             data-job="{{applicant.Job_Applicant.jobId}}"
             data-applicant="{{applicant.id}}"

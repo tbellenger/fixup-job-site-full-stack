@@ -3,7 +3,7 @@ applicantBtns.forEach((element) => {
   element.addEventListener("click", handleApplicantSelection);
 });
 
-async function handleApplicantSelection() {
+async function handleApplicantSelection(event) {
   event.preventDefault();
 
   const jobId = event.target.dataset.job;
@@ -28,14 +28,10 @@ async function handleApplicantSelection() {
 }
 
 ////
-let userAverageDiv = document.querySelector("#useraverage");
-// let userAverageEl = document.querySelectorAll(".useraveragep").innerText;
-let userAverageEl = document.querySelectorAll(".useraveragep");
-userAverageEl.forEach(function (user) {
-  console.log(user.innerText);
-  document.querySelectorAll(".stars").forEach(function (star) {
-    star.innerHTML = getStars(user.innerText);
-    // console.log(user.innerText);
+let userAverageDiv = document.querySelectorAll(".useraverage");
+userAverageDiv.forEach(function (user) {
+  user.querySelectorAll(".stars").forEach(function (star) {
+    star.innerHTML = getStars(user.dataset.useraverage);
   });
 });
 // console.log(userAverageEl);
