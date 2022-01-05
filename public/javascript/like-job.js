@@ -1,4 +1,6 @@
+
 //function to manipulate the likes click
+
 async function likeClickHandler(event) {
   event.preventDefault();
   const job_id = event.target.dataset.id;
@@ -22,7 +24,9 @@ async function likeClickHandler(event) {
     alert(response.statusText);
   }
 }
+
 //add event listener for click function
 document.querySelectorAll(".thumbsup").forEach((item) => {
   item.addEventListener("click", likeClickHandler);
 });
+

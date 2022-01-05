@@ -78,7 +78,7 @@
         {{#each user.directmessages as |dm|}}
         <div class="message">
           <div class="message-body">
-          Date: {{dm.createdAt}}<br>
+          Date:{{format_date dm.createdAt}} at {{format_date1 dm.createdAt}}<br>
           From: {{dm.from.username}}<br>
           To: {{dm.to.username}}<br>
           Message: {{dm.message}}<br><br>

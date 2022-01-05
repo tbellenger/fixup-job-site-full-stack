@@ -45,7 +45,12 @@ i {
 .rating li {
   list-style-type: none;
 }
+
 /* style the rating-item */
+
+.rating li + li {
+  margin-top: 0;
+}
 .rating-item {
   border: 1px solid #fff;
   cursor: pointer;
@@ -79,6 +84,19 @@ i {
   gap: 1rem;
 }
 /* style the page in mobile device*/
+
+.jobs-container {
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+}
+.job-comment,
+.applicant {
+  box-shadow: 4px 4px 4px 4px rgb(228, 226, 226);
+}
+#msg {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
 @media screen and (max-width: 575px) {
   .navbar-form input {
     width: 100%;
@@ -90,8 +108,5 @@ i {
   }
   .navbar {
     box-shadow: 4px 4px 4px;
-  }
-  article {
-    width: 100%;
   }
 }

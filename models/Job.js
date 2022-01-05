@@ -101,6 +101,9 @@ Job.init(
     zip_code: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      validate: {
+        len: [5],
+      },
     },
     job_status: {
       type: DataTypes.ENUM("open", "filled", "complete"),
