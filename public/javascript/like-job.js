@@ -8,7 +8,7 @@ async function likeClickHandler(event) {
 
     method: "PUT",
     body: JSON.stringify({
-      job_id: jobId,
+      job_id: job_id,
     }),
     headers: {
       "Content-Type": "application/json",
