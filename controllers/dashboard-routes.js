@@ -43,12 +43,12 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-//declare and fecth the all categories
+    //declare and fecth the all categories
     const allCategories = await Category.findAll();
     const categories = allCategories.map((category) =>
       category.get({ plain: true })
     );
-//declare and fecth all job post
+    //declare and fecth all job post
     const allAppliedJobs = await Job.findAll({
       where: {
         job_status: "open",
@@ -68,7 +68,7 @@ router.get("/", async (req, res) => {
     if (allAppliedJobs) {
       appliedJobs = allAppliedJobs.map((app) => app.get({ plain: true }));
     }
-//declare and fetch all job that user select
+    //declare and fetch all job that user select
     const allSelectedJobs = await Job.findAll({
       where: {
         job_status: "filled",
@@ -88,7 +88,7 @@ router.get("/", async (req, res) => {
     if (allSelectedJobs) {
       selectedJobs = allSelectedJobs.map((app) => app.get({ plain: true }));
     }
-//declare and fetch all job that a user completed
+    //declare and fetch all job that a user completed
     const allCompletedJobs = await Job.findAll({
       where: {
         job_status: "complete",
@@ -109,7 +109,7 @@ router.get("/", async (req, res) => {
     if (allCompletedJobs) {
       comletedJobs = allCompletedJobs.map((app) => app.get({ plain: true }));
     }
-//declare and fetch the direct messages tha a user has
+    //declare and fetch the direct messages tha a user has
     const dbUnreadMessages = await DirectMessage.findAndCountAll({
       where: {
         to_id: req.user.id,
@@ -126,7 +126,7 @@ router.get("/", async (req, res) => {
       );
     }
     console.log(unreads);
-//render the dashboard content
+    //render the dashboard content
     const jobs = allJobs.map((job) => job.get({ plain: true }));
     res.render("dashboard", {
       jobs: jobs,
@@ -228,14 +228,12 @@ router.get("/job/:id/applicants", async (req, res) => {
     }
 
     const job = dbJob.get({ plain: true });
-    // console.log(job);
-    ///////
-    // console.log(job.applicant[0].user_ratings[0].rating);
+    console.log(job);
+
     let userAverage = 0;
     let userAverage1 = 0;
     const total1 = [];
     for (let i = 0; i < job.applicant.length; i++) {
-      // console.log("this is the lenght" + user.user_ratings.length);
       for (let j = 0; j < job.applicant[i].user_ratings.length; j++) {
         // console.log(job.applicant[i].user_ratings[j].rating);
         total1.push(job.applicant[i].user_ratings[j].rating);
@@ -246,20 +244,18 @@ router.get("/job/:id/applicants", async (req, res) => {
           return average;
         };
         userAverage = avg(total1).toFixed(1);
+        console.log(job.applicant[i].username + userAverage);
+
+        function roundHalf(num) {
+          return Math.round(num * 2) / 2;
+        }
+        userAverage1 = roundHalf(userAverage);
+        job.applicant[i].userAverage = userAverage1;
       }
-
-      // console.log(total1);
-
-      // console.log(userAverage);
     }
-    function roundHalf(num) {
-      return Math.round(num * 2) / 2;
-    }
-    userAverage1 = roundHalf(userAverage);
-    console.log(userAverage1);
+
     res.render("applicants", {
       job: job,
-      userAverage: userAverage1,
     });
   } catch (err) {
     console.log(err);
@@ -325,7 +321,7 @@ router.get("/job/:id", async (req, res) => {
       }
     }
 
-    console.log(job);
+    console.log("rendering job", job);
 
     res.render("job", {
       job: job,
@@ -342,7 +338,6 @@ router.get("/user/:id", async (req, res) => {
     exclude = ["password"];
     if (!sameUser) {
       exclude.push("email");
-      exclude.push("last_login");
     }
     const dbUser = await User.findOne({
       where: {
@@ -357,7 +352,7 @@ router.get("/user/:id", async (req, res) => {
         },
       ],
     });
-//declare and fetch each direct message data
+    //declare and fetch each direct message data
     const parties = dmhelper.getDmParties(req.user.id, req.params.id);
     console.log("parties: " + parties);
     const dbDirectMessages = await DirectMessage.findAll({
