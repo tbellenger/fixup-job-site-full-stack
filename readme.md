@@ -76,7 +76,10 @@ Then I am presented with the homepage
 
 # Installation and Usage<a name="usage"></a>
 snaphot
+
+
 <img width="1748" alt="Screen Shot 2022-01-01 at 8 21 06 PM" src="https://user-images.githubusercontent.com/65073138/147866156-6bd43f7c-6c26-4d57-92d7-03eb5c469d3a.png">
+<img width="1781" alt="Screen Shot 2022-01-02 at 2 15 03 PM" src="https://user-images.githubusercontent.com/65073138/147894025-4a2b79df-1d96-46cf-a3e1-26537c10b330.png">
 
 
 The project was uploaded to GitHub at the following repository:
