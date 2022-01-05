@@ -56,13 +56,13 @@
     {{/if}}
     {{!--button to hit likes the job posting and button to apply--}}
     <footer class="card-footer">
-      <button  class="thumbsup card-footer-item button ml-2 mr-1 my-3" data-id={{id}}>
-       <p style="padding: 8px;">{{likes_count}}</p> <span class="fa fa-thumbs-up"></span>
+      <button  class="thumbsup card-footer-item button ml-2 mr-1 my-3" data-id="{{id}}">
+       <span style="padding: 8px;">{{likes_count}}</span> <span class="fa fa-thumbs-up"></span>
         Like
       </button>
       <button
         class="card-footer-item button is-primary apply-to-job-btn mr-2 ml-1 my-3"
-        data-id={{id}}
+        data-id="{{id}}"
         {{#if isUserApplicant}}
           disabled>Applied
         {{else}}
