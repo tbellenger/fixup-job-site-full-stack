@@ -2,9 +2,9 @@
 const router = require("express").Router();
 //require the sequelize connection to manipulate all models
 const sequelize = require("../../config/connection");
+const aws = require("../../utils/aws-fileupload");
 const sharp = require("sharp");
-const AWS = require("aws-sdk");
-require("dotenv").config();
+
 //require all associated models
 const {
   Job,
@@ -15,11 +15,6 @@ const {
   Jobimage,
   JobApplicant,
 } = require("../../models");
-
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-});
 
 // get all jobs
 router.get("/", async (req, res) => {
@@ -163,7 +158,7 @@ router.post("/:id/image", async (req, res) => {
       .webp()
       .withMetadata()
       .toBuffer();
-    uploadFile(uniqueFilename + ".webp", compressed);
+    aws.uploadFile(uniqueFilename + ".webp", compressed);
     // create the DB entry associated with job id
     const jobimage = await Jobimage.create({
       job_id: req.params.id,
@@ -205,39 +200,45 @@ router.post("/:id/apply", async (req, res) => {
   }
 });
 
-const uploadFile = (filename, data) => {
-  // data received from the client
-  // Setting up S3 upload parameters
-  const params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Key: filename, // File name you want to save as in S3
-    Body: data,
-    ContentType: "image/jpeg",
-  };
-
-  // Uploading files to the bucket
-  s3.upload(params, function (err, data) {
-    if (err) {
-      throw err;
-    }
-    // you would store this location in the database so that it can be included
-    // in any requests to show the job. You would need a new table called image
-    // and it should store the image_id, job_id, image_url
-    // You would need to associate to jobs via the id
-    // Jobs can have multiple images
-    // Image can have one job
-    console.log(`File uploaded successfully. ${data.Location}`);
-  });
-};
-
 //capture the likes actions
 router.put("/:id/like", async (req, res) => {
   // custom static method created in models/Job.js
   try {
-    const job = await Job.opinion(
-      { ...req.body, id: parseInt(req.params.id), user_id: req.user.id },
-      { Like, Comment, User }
-    );
+    const like = await Like.findOrCreate({
+      where: {
+        job_id: parseInt(req.params.id),
+        user_id: req.user.id,
+      },
+    });
+    const job = await Job.findOne({
+      where: {
+        id: parseInt(req.params.id),
+      },
+      attributes: [
+        "id",
+        "title",
+        "description",
+        "salary",
+        "created_at",
+        [
+          sequelize.literal(
+            "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
+          ),
+          "likes_count",
+        ],
+      ],
+      //include all related data into job model
+      include: [
+        {
+          model: Comment,
+          attributes: ["id", "comment_text", "job_id", "user_id", "created_at"],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
+      ],
+    });
     res.json(job);
   } catch (err) {
     console.log(err);

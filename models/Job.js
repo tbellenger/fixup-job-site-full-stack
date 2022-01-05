@@ -3,50 +3,7 @@ const { Model, DataTypes } = require("sequelize");
 //require the sequelize connection
 const sequelize = require("../config/connection");
 // create our Post model
-class Job extends Model {
-  static opinion(body, models) {
-    return models.Like.create({
-      user_id: body.user_id,
-      job_id: body.job_id,
-    }).then(() => {
-      return Job.findOne({
-        where: {
-          id: body.job_id,
-        },
-        attributes: [
-          "id",
-          "title",
-          "description",
-          "salary",
-          "created_at",
-          [
-            sequelize.literal(
-              "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
-            ),
-            "likes_count",
-          ],
-        ],
-        //include all related data into job model
-        include: [
-          {
-            model: models.Comment,
-            attributes: [
-              "id",
-              "comment_text",
-              "job_id",
-              "user_id",
-              "created_at",
-            ],
-            include: {
-              model: models.User,
-              attributes: ["username"],
-            },
-          },
-        ],
-      });
-    });
-  }
-}
+class Job extends Model {}
 
 // create fields/columns for Post model
 Job.init(
