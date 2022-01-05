@@ -195,17 +195,17 @@
                   <td class="is-centered">
                     {{#if employee}}
                       <button
-                        class="complete-job button is-primary mb-1"
+                        class="complete-job button is-primary is-small mb-1"
                         data-id="{{this.id}}"
                         data-employee="{{employee.id}}"
-                      >Mark Complete</button>
+                      >Complete</button>
                     {{/if}}
                     <a
-                      class="button is-primary mb-1"
+                      class="button is-primary is-small mb-1"
                       href="/dashboard/job/{{this.id}}/edit"
                     >Edit</a>
                     <button
-                      class="delete-job button is-danger mb-1"
+                      class="delete-job button is-danger is-small mb-1"
                       data-id="{{this.id}}"
                     >Delete</button>
                   </td>
