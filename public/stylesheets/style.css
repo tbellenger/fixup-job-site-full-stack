@@ -54,7 +54,7 @@ i {
 .rating-item {
   cursor: pointer;
   font-size: 2em;
-  color: rgb(214, 157, 0);
+  color: gold;
 }
 
 /* initial: make all stars full */
