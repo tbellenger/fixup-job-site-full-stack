@@ -6,18 +6,18 @@
 .navbar-form {
   margin: 0;
 }
-
+/* style the body background */
 .hero-body {
   background-image: url(../images/drill1.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+/* style the job image */
 .job-image {
   max-width: 400px;
   margin: 0 auto 12px;
 }
-
+/* set the job description box height */
 .job-description {
   max-height: 200px;
 }
@@ -30,12 +30,12 @@ i {
   color: #000;
   opacity: 1;
 }
-
+/* style the number count */
 #useraveragedivp {
   visibility: hidden;
   display: none;
 }
-
+/* set rating section into flex */
 .rating {
   display: flex;
   padding: 0;
@@ -46,10 +46,11 @@ i {
   list-style-type: none;
 }
 
+/* style the rating-item */
+
 .rating li + li {
   margin-top: 0;
 }
-
 .rating-item {
   border: 1px solid #fff;
   cursor: pointer;
@@ -76,19 +77,25 @@ i {
 .rating-item:hover ~ .rating-item::before {
   content: "\2606";
 }
-
+/*style the grid-container */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1rem;
 }
+/* style the page in mobile device*/
 
 .jobs-container {
   background-color: rgb(236, 236, 236);
   border-radius: 5px;
 }
-.job-comment{
+.job-comment,
+.applicant {
   box-shadow: 4px 4px 4px 4px rgb(228, 226, 226);
+}
+#msg {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
 }
 @media screen and (max-width: 575px) {
   .navbar-form input {

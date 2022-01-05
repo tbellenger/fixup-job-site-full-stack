@@ -52,7 +52,7 @@ async function newPostHandler(event) {
           // username,
         }),
       });
-
+//if response is ok store data into the database
       if (response.ok) {
         json = await response.json();
         console.log(json);
@@ -179,7 +179,6 @@ job_image.addEventListener("change", () => {
     job_image.value = "";
   }
 });
-
 // Handle Bulma notification display and dismissal
 // removes the notification from the DOM when the
 // delete button on the notification is clicked
@@ -256,4 +255,20 @@ function ratingsJs() {
       }
     }
   };
+}
+
+function isUSAZipCode(str) {
+  return /^\d{5}$/.test(str);
+}
+
+function validateInput() {
+  console.log("validateInput");
+  let zipCode = document.getElementById("zipCode").value;
+  let message = "";
+  if (isUSAZipCode(zipCode)) {
+    message = "Valid Zip Code";
+  } else {
+    message = "Invalid Zip Code";
+  }
+  document.getElementById("msg").innerHTML = message;
 }

@@ -42,20 +42,6 @@ User.belongsToMany(Job, {
   through: JobApplicant,
 });
 
-Job.belongsToMany(User, {
-  through: "Jobs_Completed",
-});
-User.belongsToMany(Job, {
-  through: "Jobs_Completed",
-});
-
-Job.belongsToMany(User, {
-  through: "Jobs_Offered",
-});
-User.belongsToMany(Job, {
-  through: "Jobs_Offered",
-});
-
 User.belongsToMany(Job, {
   through: Like,
   as: "likes_count",
@@ -162,7 +148,7 @@ User.hasMany(DirectMessage, {
   onDelete: "cascade",
 });
 
-//exports all the models
+//exports all the models association
 module.exports = {
   User,
   Job,

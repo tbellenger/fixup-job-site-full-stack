@@ -1,9 +1,8 @@
+//function to manipulate the likes click
 async function likeClickHandler(event) {
   event.preventDefault();
-  const job_id = event.target.dataset.id;
-  console.log(job_id);
-  console.log("button clicked");
-
+  const job_id = event.currentTarget.dataset.id;
+  //fetch the api jobs and add like to each job id being likes.
   const response = await fetch(`/api/jobs/${job_id}/like`, {
     method: "PUT",
     body: JSON.stringify({
@@ -22,6 +21,7 @@ async function likeClickHandler(event) {
   }
 }
 
+//add event listener for click function
 document.querySelectorAll(".thumbsup").forEach((item) => {
   item.addEventListener("click", likeClickHandler);
 });

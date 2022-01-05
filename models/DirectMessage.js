@@ -2,9 +2,9 @@
 const { Model, DataTypes } = require("sequelize");
 //require the sequelize connection
 const sequelize = require("../config/connection");
-//declare the comment model
+//declare the DirectMessage model
 class DirectMessage extends Model {}
-//declare the Comment table, columns and dataypes
+//declare the directMessage table, columns and dataypes
 DirectMessage.init(
   {
     id: {

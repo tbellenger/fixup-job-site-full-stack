@@ -14,6 +14,7 @@ const {
   JobApplicant,
   JobTag,
   Jobimage,
+  Like,
   DirectMessage,
 } = require("../models");
 
@@ -42,12 +43,12 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-
+//declare and fecth the all categories
     const allCategories = await Category.findAll();
     const categories = allCategories.map((category) =>
       category.get({ plain: true })
     );
-
+//declare and fecth all job post
     const allAppliedJobs = await Job.findAll({
       where: {
         job_status: "open",
@@ -67,7 +68,7 @@ router.get("/", async (req, res) => {
     if (allAppliedJobs) {
       appliedJobs = allAppliedJobs.map((app) => app.get({ plain: true }));
     }
-
+//declare and fetch all job that user select
     const allSelectedJobs = await Job.findAll({
       where: {
         job_status: "filled",
@@ -87,7 +88,7 @@ router.get("/", async (req, res) => {
     if (allSelectedJobs) {
       selectedJobs = allSelectedJobs.map((app) => app.get({ plain: true }));
     }
-
+//declare and fetch all job that a user completed
     const allCompletedJobs = await Job.findAll({
       where: {
         job_status: "complete",
@@ -103,11 +104,12 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+    //declare a array of completed jobs
     let comletedJobs = [];
     if (allCompletedJobs) {
       comletedJobs = allCompletedJobs.map((app) => app.get({ plain: true }));
     }
-
+//declare and fetch the direct messages tha a user has
     const dbUnreadMessages = await DirectMessage.findAndCountAll({
       where: {
         to_id: req.user.id,
@@ -124,7 +126,7 @@ router.get("/", async (req, res) => {
       );
     }
     console.log(unreads);
-
+//render the dashboard content
     const jobs = allJobs.map((job) => job.get({ plain: true }));
     res.render("dashboard", {
       jobs: jobs,
@@ -148,6 +150,7 @@ router.get("/job/:id/edit", async (req, res) => {
         id: req.params.id,
       },
       attributes: { exclude: ["updatedAt"] },
+      //include all associated models
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
@@ -197,10 +200,22 @@ router.get("/job/:id/applicants", async (req, res) => {
         id: req.params.id,
       },
       attributes: { exclude: ["updatedAt"] },
+      //include all associated models
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
-        { model: User, as: "applicant", attributes: { exclude: ["password"] } },
+        {
+          model: User,
+          as: "applicant",
+          attributes: {
+            exclude: ["password"],
+          },
+          include: {
+            model: Ratings,
+            as: "user_ratings",
+            attributes: ["id", "user_id", "rating"],
+          },
+        },
         { model: Jobimage },
       ],
     });
@@ -213,9 +228,38 @@ router.get("/job/:id/applicants", async (req, res) => {
     }
 
     const job = dbJob.get({ plain: true });
-    console.log(job);
+    // console.log(job);
+    ///////
+    // console.log(job.applicant[0].user_ratings[0].rating);
+    let userAverage = 0;
+    let userAverage1 = 0;
+    const total1 = [];
+    for (let i = 0; i < job.applicant.length; i++) {
+      // console.log("this is the lenght" + user.user_ratings.length);
+      for (let j = 0; j < job.applicant[i].user_ratings.length; j++) {
+        // console.log(job.applicant[i].user_ratings[j].rating);
+        total1.push(job.applicant[i].user_ratings[j].rating);
+        const avg = (arr) => {
+          const sum = arr.reduce((acc, cur) => acc + cur);
+          const average = sum / arr.length;
+          // console.log(average);
+          return average;
+        };
+        userAverage = avg(total1).toFixed(1);
+      }
+
+      // console.log(total1);
+
+      // console.log(userAverage);
+    }
+    function roundHalf(num) {
+      return Math.round(num * 2) / 2;
+    }
+    userAverage1 = roundHalf(userAverage);
+    console.log(userAverage1);
     res.render("applicants", {
       job: job,
+      userAverage: userAverage1,
     });
   } catch (err) {
     console.log(err);
@@ -230,7 +274,18 @@ router.get("/job/:id", async (req, res) => {
       where: {
         id: req.params.id,
       },
-      attributes: { exclude: ["updatedAt"] },
+
+      attributes: {
+        exclude: ["updatedAt"],
+        include: [
+          [
+            sequelize.literal(
+              "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
+            ),
+            "likes_count",
+          ],
+        ],
+      },
       include: [
         { model: User, as: "owner", attributes: { exclude: ["password"] } },
         { model: User, as: "employee", attributes: { exclude: ["password"] } },
@@ -302,7 +357,7 @@ router.get("/user/:id", async (req, res) => {
         },
       ],
     });
-
+//declare and fetch each direct message data
     const parties = dmhelper.getDmParties(req.user.id, req.params.id);
     console.log("parties: " + parties);
     const dbDirectMessages = await DirectMessage.findAll({

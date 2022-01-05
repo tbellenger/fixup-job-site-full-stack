@@ -32,6 +32,7 @@ router.get("/category/:id/jobs", async (req, res) => {
         id: req.params.id,
       },
     });
+    //fetch api job
     const allJobs = await Job.findAll({
       where: {
         category_id: req.params.id,
@@ -41,6 +42,12 @@ router.get("/category/:id/jobs", async (req, res) => {
         exclude: ["updatedAt"],
         include: [
           literal("CONCAT(SUBSTRING(description,1,40),'...') as description"),
+          [
+            sequelize.literal(
+              "(SELECT COUNT(*) FROM vote WHERE job.id = vote.job_id)"
+            ),
+            "likes_count",
+          ],
         ],
       },
       order: [["created_at", "DESC"]],
@@ -91,6 +98,7 @@ router.get("/jobs", async (req, res) => {
       ],
     },
     order: [["created_at", "DESC"]],
+    //include all models that are associated with the Job model
     include: [
       {
         model: User,
@@ -114,6 +122,9 @@ router.get("/jobs", async (req, res) => {
           [Op.substring]: req.query.q,
         },
         description: {
+          [Op.substring]: req.query.q,
+        },
+        zip_code: {
           [Op.substring]: req.query.q,
         },
       },

@@ -1,6 +1,6 @@
-//require the comment models
+//require the direct message models
 const { DirectMessage } = require("../models");
-//declare the comment keys and values
+//declare the direct message keys and values
 const dmdata = [
   {
     message: "DM1",
@@ -33,7 +33,7 @@ const dmdata = [
     message_parties: "1-2",
   },
 ];
-//seed all the comments
+//seed all the direct messages
 const seedDirectMessages = () => DirectMessage.bulkCreate(dmdata);
-//then export the seeded comments data
+//then export the seeded direct messages data
 module.exports = seedDirectMessages;
