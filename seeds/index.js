@@ -43,5 +43,5 @@ const seedAll = async () => {
 
   process.exit(0);
 };
-//call back function
+//call back function to seed all models seed
 seedAll();

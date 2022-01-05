@@ -1,3 +1,4 @@
+{{!--initiate page template for job--}}
 <div class="card">
   <div class="card-header">
     <p class="card-header-title"><a
@@ -5,7 +6,7 @@
         href="/dashboard/job/{{id}}"
       >{{title}}</a></p>
   </div>
-
+{{!--owner information section--}}
   <div class="card-content">
     <div class="media">
       <div class="media-left">
@@ -26,6 +27,7 @@
         </p>
       </div>
     </div>
+    {{!--job content goes here--}}
     <div class="content">
       <p>
         <b>Payment offered:</b>
@@ -42,6 +44,7 @@
       </p>
     </div>
   </div>
+  {{!--jobsite image goes here--}}
   {{#if jobimages}}
     <div class="card-image">
       <figure class="image">
@@ -51,6 +54,7 @@
       </figure>
     </div>
     {{/if}}
+    {{!--button to hit likes the job posting and button to apply--}}
     <footer class="card-footer">
       <button  class="thumbsup card-footer-item button ml-2 mr-1 my-3" data-id={{id}} data-job={{job.id}}>
        <p style="padding: 8px;">{{likes_count}}</p> <span class="fa fa-thumbs-up"></span>

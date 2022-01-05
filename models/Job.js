@@ -120,5 +120,5 @@ Job.init(
     modelName: "job",
   }
 );
-//export the Jonb model
+//export the Job model
 module.exports = Job;

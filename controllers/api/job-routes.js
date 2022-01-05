@@ -5,7 +5,7 @@ const sequelize = require("../../config/connection");
 const sharp = require("sharp");
 const AWS = require("aws-sdk");
 require("dotenv").config();
-
+//require all associated models
 const {
   Job,
   User,
@@ -70,9 +70,11 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const job = await Job.findOne({
+      //find job post by id from database
       where: {
         id: req.params.id,
       },
+      //se the job attributes
       attributes: [
         "id",
         "title",
@@ -87,6 +89,7 @@ router.get("/:id", async (req, res) => {
           "likes_count",
         ],
       ],
+      //include all associated models
       include: [
         {
           model: Comment,
@@ -148,7 +151,7 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//get image and set id for each post
 router.post("/:id/image", async (req, res) => {
   try {
     const uniqueFilename =

@@ -33,7 +33,7 @@ navLogoutBtn.addEventListener("click", () => {
   localStorage.removeItem("token");
   location.replace("/");
 });
-
+//function to show modal error message
 function showModalMessage(message) {
   document.querySelector("#modal-content").innerHTML = message;
   document.querySelector("#modal").classList.add("is-active");
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
+//function to generate dynamic page for modal content
 function modalTemplate(title, message) {
   return `
 <div class="card is-3">
