@@ -228,11 +228,7 @@ router.get("/job/:id/applicants", async (req, res) => {
     }
 
     const job = dbJob.get({ plain: true });
-    console.log(job);
 
-    let userAverage = 0;
-    let userAverage1 = 0;
-    const total1 = [];
     for (let i = 0; i < job.applicant.length; i++) {
       let total = 0;
       for (let j = 0; j < job.applicant[i].user_ratings.length; j++) {
