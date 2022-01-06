@@ -29,7 +29,7 @@ if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
 //call back function to garner datas
 app.use(
   fileUpload({
-    limits: { fileSize: 3 * 1024 * 1024 }, // 3MB file size limit
+    limits: { fileSize: 10 * 1024 * 1024 }, // 3MB file size limit
     abortOnLimit: true,
     safeFileNames: true,
     preserveExtension: true,

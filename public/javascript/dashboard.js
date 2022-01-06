@@ -52,7 +52,7 @@ async function newPostHandler(event) {
           // username,
         }),
       });
-//if response is ok store data into the database
+      //if response is ok store data into the database
       if (response.ok) {
         json = await response.json();
         console.log(json);
@@ -174,7 +174,7 @@ job_image.addEventListener("change", () => {
     document.querySelector("#upload-file-name").innerHTML =
       job_image.files[0].name;
   }
-  if (job_image.files[0].size > 3 * 1024 * 1024) {
+  if (job_image.files[0].size > 10 * 1024 * 1024) {
     alert("File is too big");
     job_image.value = "";
   }
