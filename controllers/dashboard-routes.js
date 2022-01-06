@@ -234,24 +234,13 @@ router.get("/job/:id/applicants", async (req, res) => {
     let userAverage1 = 0;
     const total1 = [];
     for (let i = 0; i < job.applicant.length; i++) {
+      let total = 0;
       for (let j = 0; j < job.applicant[i].user_ratings.length; j++) {
-        // console.log(job.applicant[i].user_ratings[j].rating);
-        total1.push(job.applicant[i].user_ratings[j].rating);
-        const avg = (arr) => {
-          const sum = arr.reduce((acc, cur) => acc + cur);
-          const average = sum / arr.length;
-          // console.log(average);
-          return average;
-        };
-        userAverage = avg(total1).toFixed(1);
-        console.log(job.applicant[i].username + userAverage);
-
-        function roundHalf(num) {
-          return Math.round(num * 2) / 2;
-        }
-        userAverage1 = roundHalf(userAverage);
-        job.applicant[i].userAverage = userAverage1;
+        total += parseFloat(job.applicant[i].user_ratings[j].rating);
       }
+      let userAverage =
+        Math.round(2 * (total / job.applicant[i].user_ratings.length)) / 2;
+      job.applicant[i].userAverage = userAverage;
     }
 
     res.render("applicants", {
@@ -354,7 +343,6 @@ router.get("/user/:id", async (req, res) => {
     });
     //declare and fetch each direct message data
     const parties = dmhelper.getDmParties(req.user.id, req.params.id);
-    console.log("parties: " + parties);
     const dbDirectMessages = await DirectMessage.findAll({
       where: {
         message_parties: parties,
@@ -365,7 +353,6 @@ router.get("/user/:id", async (req, res) => {
       ],
       order: [["created_at", "DESC"]],
     });
-    console.log(dbDirectMessages);
 
     // mark all the messages about to be displayed as read
     await DirectMessage.update(
@@ -385,35 +372,19 @@ router.get("/user/:id", async (req, res) => {
       return;
     } else {
       const user = dbUser.get({ plain: true });
-      let userAverage = 0;
-      let userAverage1 = 0;
-      const total1 = [];
-      for (let i = 0; i < user.user_ratings.length; i++) {
-        // console.log("this is the lenght" + user.user_ratings.length);
-        // console.log(user.user_ratings[i].rating);
 
-        total1.push(user.user_ratings[i].rating);
-        // console.log(total1);
-        const avg = (arr) => {
-          const sum = arr.reduce((acc, cur) => acc + cur);
-          const average = sum / arr.length;
-          // console.log(average);
-          return average;
-        };
-        userAverage = avg(total1).toFixed(1);
-        // console.log(userAverage);
+      let total = 0;
+      for (let i = 0; i < user.user_ratings.length; i++) {
+        total += parseFloat(user.user_ratings[i].rating);
       }
-      function roundHalf(num) {
-        return Math.round(num * 2) / 2;
-      }
-      userAverage1 = roundHalf(userAverage);
-      // console.log(userAverage1);
+      const userAverage =
+        Math.round(2 * (total / user.user_ratings.length)) / 2;
+
       user.directmessages = dmArray;
-      console.log(user);
       return res.render("user", {
         user: user,
         sameUser: sameUser,
-        userAverage: userAverage1,
+        userAverage: userAverage,
       });
     }
   } catch (err) {
