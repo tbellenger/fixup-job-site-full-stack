@@ -14,6 +14,7 @@ const {
   Category,
   Jobimage,
   JobApplicant,
+
 } = require("../../models");
 
 // get all jobs
