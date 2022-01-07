@@ -28,9 +28,9 @@
                 <select name="category-name" id="category-name" required>
                   {{! <option value="" selected disabled hidden>Select an Option</option> }}
                   <option
-                    value="{{job.category_name}}"
+                    value="{{job.category.category_name}}"
                     selected
-                  >{{job.category_name}} </option>
+                  >{{job.category.category_name}} </option>
                   {{#each categories as |category|}}
                     <option
                       value="{{category.category_name}}"
