@@ -1,8 +1,8 @@
 {{!--initiate page template for job to be commented by any user--}}
 <div class="dark-panel">
-    <div class="container px-4 py-4 job-comment">
+    <div class="container px-4 py-4">
         <div class="columns">
-            <div class="column is-8 ">
+            <div class="column is-8">
                 {{>job-info job}}
                 {{!--call the job data from the local storage--}}
                 <form id="box">
@@ -13,7 +13,7 @@
                             class="textarea comment-input" id="textarea"
                             placeholder="Comment"
                             name="comment-input" required
-                        ></textarea >
+                            ></textarea >
                         </div>
                     </div>
                     <div class="field">
@@ -22,13 +22,12 @@
                         </div>
                     </div>
                 </form>
-                </div>
-                {{!--call the comments section to be parse into job--}}
-                <div class="column is-4"> 
-                {{#each job.comments as |comment|}}
-                    {{>comments comment}}
-                {{/each}}
-                </div>
+            </div>
+            {{!--call the comments section to be parse into job--}}
+            <div class="column is-4"> 
+            {{#each job.comments as |comment|}}
+                {{>comments comment}}
+            {{/each}}
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 {{!--Initiate the user information section--}}
-<div class="tile is-12 dark-panel">
+<div class="tile is-12 container is-fluid px-4 py-4 dark-panel">
   <div class="tile is-parent is-vertical is-4">
     <div class="tile is-child">
       <div class="card box mb-4 card-border">
@@ -37,7 +37,7 @@
       <div class="card mb-4 card-border">
         <div class="card-content">
           <div class="content">
-            <label class="label">Your rating for {{user.username}}</label>
+            <label class="label">Rate {{user.username}}</label>
             <ul class="rating" id="ratings-select" data-id="{{user.id}}">
               <li class="rating-item" data-rate="1"></li>
               <li class="rating-item" data-rate="2"></li>
@@ -51,7 +51,7 @@
     </div>
   </div>
   {{#unless sameUser}}
-  <div class="tile is-6">
+  <div class="tile is-8">
     <div class="tile is-parent is-vertical is-12">
       <div class="tile is-child box">
         <form>
