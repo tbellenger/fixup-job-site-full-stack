@@ -1,5 +1,5 @@
 {{!--initiate page template for job--}}
-<div class="card">
+<div class="card card-border">
   <div class="card-header">
     <p class="card-header-title"><a
         class="is-size-4 has-text-info"
@@ -19,9 +19,6 @@
           <a href="/dashboard/user/{{owner.id}}" class="has-text-info">
             <strong>{{owner.username}}</strong>
           </a>
-          {{!-- <small>
-            {{owner.email}}
-          </small> --}}
           <br />
           <small>{{format_date createdAt}}</small>
         </p>
@@ -45,7 +42,7 @@
     </div>
   </div>
   {{!--jobsite image goes here--}}
-  {{#if jobimages}}
+    {{#if jobimages}}
     <div class="card-image">
       <figure class="image">
         {{#each jobimages as |image|}}

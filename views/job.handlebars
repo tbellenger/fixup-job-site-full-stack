@@ -1,37 +1,37 @@
 {{!--initiate page template for job to be commented by any user--}}
-   <div class="notification">
+<div class="dark-panel">
     <div class="container px-4 py-4 job-comment">
-    <div class="columns">
-        <div class="column is-5 ">
-            {{>job-info job}}
-            {{!--call the job data from the local storage--}}
-            <form id="box">
-                <span class="is-size-4">Add a comment</span>
-                <div class="field">
-                    <div class="control">
-                        <textarea
-                        class="textarea comment-input" id="textarea"
-                        placeholder="Comment"
-                        name="comment-input" required
-                    ></textarea >
+        <div class="columns">
+            <div class="column is-8 ">
+                {{>job-info job}}
+                {{!--call the job data from the local storage--}}
+                <form id="box">
+                    <span class="is-size-4">Add a comment</span>
+                    <div class="field">
+                        <div class="control">
+                            <textarea
+                            class="textarea comment-input" id="textarea"
+                            placeholder="Comment"
+                            name="comment-input" required
+                        ></textarea >
+                        </div>
                     </div>
-                </div>
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-primary submit-post" data-id={{job.id}}>Submit</a></button>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary submit-post" data-id={{job.id}}>Submit</a></button>
+                        </div>
                     </div>
+                </form>
                 </div>
-            </form>
-            </div>
-            {{!--call the comments section to be parse into job--}}
-            <div class="column is-7"> 
-            {{#each job.comments as |comment|}}
-                {{>comments comment}}
-            {{/each}}
+                {{!--call the comments section to be parse into job--}}
+                <div class="column is-4"> 
+                {{#each job.comments as |comment|}}
+                    {{>comments comment}}
+                {{/each}}
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <script src="/javascript/job.js" defer></script>
 <script src="/javascript/like-job.js" defer></script>
