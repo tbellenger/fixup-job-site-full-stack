@@ -1,34 +1,35 @@
-<div class="container px-3 py-2 has-background-light">
-  <div class="title">
-    {{job.title}} applicants
-  </div>
-  <div class="columns is-multiline">
-    {{#each job.applicant as |applicant|}}
-    <div class="column is-3 mx-3 has-text-centered applicant">
-      <div>Name:
-        <a href="/dashboard/user/{{applicant.id}}">
-          {{applicant.username}}</a>
+<div class="dark-panel">
+  <div class="container px-4 py-4">
+    <span class="is-size-3 has-text-weight-bold">
+      {{job.title}} applicants
+    </span>
+    <div class="columns is-multiline px-4 py-4">
+      {{#each job.applicant as |applicant|}}
+      <div class="column is-3 mx-3 applicant contrast-panel">
+        <div>
+          Name:&nbsp;<a class="has-text-light" href="/dashboard/user/{{applicant.id}}">
+            {{applicant.username}}
+          </a>
+        </div>
+        <div>
+          Email:&nbsp;<a class="has-text-light" href="mailto: {{applicant.email}}">{{applicant.email}}</a>
+        </div>
+        {{!-- <div>Rating:{{applicant.userAverage}}</div><br/> --}}
+        <div class="useraverage" data-useraverage="{{applicant.userAverage}}">Rating:
+          <span class="stars"></span>
+        </div>
+        <div>
+          <button
+            class="mt-1 select-applicant-btn button has-text-centered is-primary is-fullwidth is-small"
+            data-job="{{applicant.Job_Applicant.jobId}}"
+            data-applicant="{{applicant.id}}"
+          >Select Applicant</button>
+        </div>
       </div>
-      <div>Email:<a
-          href="mailto: {{applicant.email}}"
-        >{{applicant.email}}</a>
-      </div>
-      {{!-- <div>Rating:{{applicant.userAverage}}</div><br/> --}}
-      <div class="useraverage" data-useraverage="{{applicant.userAverage}}">Rating:
-        <span class="stars"></span>
-      </div>
-      <div>
-        <button
-          class="select-applicant-btn button is-primary"
-          data-job="{{applicant.Job_Applicant.jobId}}"
-          data-applicant="{{applicant.id}}"
-        >Select Applicant</button>
-      </div>
+      {{/each}}
     </div>
-    {{/each}}
   </div>
 </div>
-
 
 {{!--file path of function to generate this page--}}
 <script src="/javascript/applicant.js"></script>
