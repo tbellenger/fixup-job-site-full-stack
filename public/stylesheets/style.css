@@ -24,10 +24,7 @@
 }
 /* style the body background */
 .hero-body {
-  background-image: image-set(
-    url(../images/drill1.webp) type("image/webp"),
-    url(../images/drill1.webp) type("image/jpeg")
-  );
+  background-image: url(../images/drill1.webp);
   background-repeat: no-repeat;
   background-size: cover;
 }
