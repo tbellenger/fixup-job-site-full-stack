@@ -1,13 +1,13 @@
 {{!--all jobs section--}}
 <div class="columns">
-  <div class="column is-12">
-    <div class="container is-fluid">
-      <a class="button is-rounded" href="/jobs">All Jobs</a>   
+  <div class="column is-12 categories">
+    {{!-- <div class="container"> --}}
+      <a class="button is-rounded mb-1" href="/jobs">All Jobs</a>   
       {{!--categories of job section--}}
       {{#each categories}}
-      <a class="button is-rounded"  href="/category/{{id}}/jobs">{{category_name}}</a>
+      <a class="button is-rounded mb-1"  href="/category/{{id}}/jobs">{{category_name}}</a>
       {{/each}}
-    </div>
+    {{!-- </div> --}}
   </div>
 </div>
 

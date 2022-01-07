@@ -3,12 +3,24 @@
   display: none;
 }
 
+.navbar {
+  box-shadow: 0px 0px 3px;
+  margin-bottom: 8px;
+}
+
 .navbar-form {
   margin: 0;
 }
 .navbar-form input {
   padding: 4px;
   border-radius: 10px;
+}
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 5px;
 }
 /* style the body background */
 .hero-body {
@@ -102,10 +114,7 @@
     border-radius: 8px;
     padding: 6px;
   }
-  .navbar {
-    box-shadow: 2px 2px 2px;
-    margin-bottom: 8px;
-  }
+
   .navbar-item.button {
     width: 100%;
   }
