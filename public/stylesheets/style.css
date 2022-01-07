@@ -95,24 +95,17 @@
   border-radius: 5px;
   color: aliceblue;
 }
-.tile {
-  margin: 0 auto;
-}
-#msg {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-}
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1024px) {
   .navbar-form input {
     width: 100%;
     border-radius: 8px;
     padding: 6px;
   }
-  .navbar-item {
-    display: block;
-  }
   .navbar {
     box-shadow: 4px 4px 4px;
+  }
+  .navbar-item.button {
+    width: 100%;
   }
 }

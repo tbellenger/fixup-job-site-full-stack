@@ -1,138 +1,140 @@
 {{!page template for the dashboard where user can create job posting}}
 
 <div class="tile is-12 dark-panel">
-  <div class="tile is-parent is-5">
-    <div class="tile is-child box">
+  <div class="tile is-5">
+    <div class="tile is-parent is-vertical is-12">
       {{!input form for the job post data}}
-      <span class="is-size-4">Post a New Job</span>
-      <form>
-        {{!label an dinput for job title}}
-        <div class="field">
-          <label class="label">Job Title</label>
-          <div class="control">
-            <input
-              type="text"
-              placeholder="Job title"
-              class="input title-input"
-              name="job-title"
-              required
-            />
-          </div>
-        </div>
-        {{!label and input for category name}}
-        <div class="field">
-          <label class="label">Category</label>
-          <div class="control">
-            <div class="select">
-              <select name="category-name" id="category-name" required>
-                <option value="" selected disabled hidden>Select an Option</option>
-                {{#each categories as |category|}}
-                  <option
-                    value="{{category.category_name}}"
-                  >{{category.category_name}}</option>
-                {{/each}}
-              </select>
+      <div class="tile is-child box">
+        <span class="is-size-4">Post a New Job</span>
+        <form>
+          {{!label an dinput for job title}}
+          <div class="field">
+            <label class="label">Job Title</label>
+            <div class="control">
+              <input
+                type="text"
+                placeholder="Job title"
+                class="input title-input"
+                name="job-title"
+                required
+              />
             </div>
           </div>
-        </div>
-        {{!label and input for job description}}
-        <div class="field">
-          <label class="label">Description</label>
-          <div class="control">
-            <textarea
-              class="textarea description-input"
-              placeholder="Job description"
-              name="description-input"
-              required
-            ></textarea>
+          {{!label and input for category name}}
+          <div class="field">
+            <label class="label">Category</label>
+            <div class="control">
+              <div class="select">
+                <select name="category-name" id="category-name" required>
+                  <option value="" selected disabled hidden>Select an Option</option>
+                  {{#each categories as |category|}}
+                    <option
+                      value="{{category.category_name}}"
+                    >{{category.category_name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
-        {{!label and input for salary}}
-        <div class="field">
-          <label class="label">Pay</label>
-          <div class="control">
-            <input
-              type="number"
-              placeholder="pay"
-              class="input salary-input"
-              name="salary-input"
-              required
-            />
+          {{!label and input for job description}}
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea
+                class="textarea description-input"
+                placeholder="Job description"
+                name="description-input"
+                required
+              ></textarea>
+            </div>
           </div>
-        </div>
-        {{!label and input for payment method}}
-        <div class="field">
-          <label class="label">Payment method will be </label>
-          <div class="control">
-            <input
-              type="text"
-              placeholder="Payment method"
-              class="input payment-input"
-              name="payment-input"
-              required
-            />
+          {{!label and input for salary}}
+          <div class="field">
+            <label class="label">Pay</label>
+            <div class="control">
+              <input
+                type="number"
+                placeholder="pay"
+                class="input salary-input"
+                name="salary-input"
+                required
+              />
+            </div>
           </div>
-        </div>
-        {{!label and input for job location}}
-        <div class="field">
-          <label class="label">Job Location</label>
-          <div class="control">
-            <input
-              type="text"
-              onkeyup="validateInput()"
-              id="zipCode"
-              placeholder="Job location"
-              class="input location-input"
-              name="location-input"
-              required
-            />
-            <div id="msg"></div>
-            {{! <input
-              type="number"
-              placeholder="Job location"
-              class="input location-input"
-              name="location-input"
-              required
-            /> }}
+          {{!label and input for payment method}}
+          <div class="field">
+            <label class="label">Payment method will be </label>
+            <div class="control">
+              <input
+                type="text"
+                placeholder="Payment method"
+                class="input payment-input"
+                name="payment-input"
+                required
+              />
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label class="label">Image</label>
-          <div class="control">
-            <div class="file has-name">
-              <label class="file-label">
-                <input
-                  id="file-input"
-                  class="file-input"
-                  type="file"
-                  name="file"
-                  type="image/png, image/jpeg"
-                />
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="fa fa-upload"></i>
-                  </span>
-                  <span class="file-label">
-                    Choose a file…
-                  </span>
-                </span>
-                <span class="file-name">
-                  <span id="upload-file-name">Photo of the job site</span><img
-                    id="spinner"
-                    class="hide"
-                    src="/images/spinner.gif"
-                    width="30px"
-                    height="30px"
+          {{!label and input for job location}}
+          <div class="field">
+            <label class="label">Job Location</label>
+            <div class="control">
+              <input
+                type="text"
+                onkeyup="validateInput()"
+                id="zipCode"
+                placeholder="Job location"
+                class="input location-input"
+                name="location-input"
+                required
+              />
+              <div id="msg"></div>
+              {{! <input
+                type="number"
+                placeholder="Job location"
+                class="input location-input"
+                name="location-input"
+                required
+              /> }}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Image</label>
+            <div class="control">
+              <div class="file has-name">
+                <label class="file-label">
+                  <input
+                    id="file-input"
+                    class="file-input"
+                    type="file"
+                    name="file"
+                    type="image/png, image/jpeg"
                   />
-                </span>
-              </label>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fa fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Choose a file…
+                    </span>
+                  </span>
+                  <span class="file-name">
+                    <span id="upload-file-name">Photo of the job site</span><img
+                      id="spinner"
+                      class="hide"
+                      src="/images/spinner.gif"
+                      width="30px"
+                      height="30px"
+                    />
+                  </span>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="field is-grouped is-grouped-right mt-3">
-          <button class="button is-primary submit-post">Submit</button>
-        </div>
-      </form>
+          <div class="field is-grouped is-grouped-right mt-3">
+            <button class="button is-primary submit-post">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   {{!section table to display the post history of a certain user}}
