@@ -32,7 +32,7 @@ DirectMessage.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "job",
+        model: "user",
         key: "id",
       },
     },
