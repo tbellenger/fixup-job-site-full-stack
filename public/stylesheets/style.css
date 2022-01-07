@@ -6,6 +6,10 @@
 .navbar-form {
   margin: 0;
 }
+.navbar-form input{
+  padding: 4px;
+  border-radius: 10px;
+}
 /* style the body background */
 .hero-body {
   background-image: url(../images/drill1.jpeg);
@@ -25,10 +29,13 @@
   color: azure;
   font-size: 20px;
 }
-i {
+#fonts {
   color: #000;
 }
-
+.card{
+  border-radius: 20px;
+ border: 5px solid rgb(31, 199, 191);
+}
 ::placeholder {
   color: #000;
   opacity: 1;
@@ -87,18 +94,26 @@ i {
 }
 /* style the page in mobile device*/
 
-.jobs-container {
-  background-color: rgb(236, 236, 236);
+.jobs-container, .notification {
+  background-color: rgb(36, 69, 95);
   border-radius: 5px;
+  color: aliceblue;
 }
 .job-comment,
 .applicant {
   box-shadow: 4px 4px 4px 4px rgb(228, 226, 226);
+  background-color: rgb(20, 96, 158);
+  color: aliceblue;
+}
+.tile{
+  margin: 0 auto;
 }
 #msg {
   margin-top: 0.5rem;
   font-size: 0.8rem;
+  
 }
+
 @media screen and (max-width: 575px) {
   .navbar-form input {
     width: 100%;
