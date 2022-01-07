@@ -2,7 +2,7 @@
 
 <div class="columns">
   <div class="column">
-    <section class="comment notification" id="{{id}}">
+    <section class="contrast-panel px-2 py-2" id="{{id}}">
       <div class="media">
         <div class="media-left">
           <figure class="image">
@@ -12,11 +12,8 @@
         <div class="media-content">
           <p>
             <a href="/dashboard/user/{{user.id}}">
-              <strong>{{user.username}}</strong>
+              <strong class="has-text-white">{{user.username}}</strong>
             </a>
-            <small>
-              {{user.email}}
-            </small>
             <br>
             <small>{{format_date created_at}}</small>
           </p>
@@ -35,8 +32,8 @@
         <div>
           <div class="field">
             <div class="control">
-              <button class="button is-primary edit-comment-btn" data-id="{{id}}">Update</button>
-              <button class="button is-primary delete-comment-btn" data-id="{{id}}">Delete</button>
+              <button class="button is-small is-primary edit-comment-btn" data-id="{{id}}">Update</button>
+              <button class="button is-small is-primary delete-comment-btn" data-id="{{id}}">Delete</button>
             </div>
           </div>
         </div>
