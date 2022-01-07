@@ -1,12 +1,14 @@
-<div class="container px-4 py-4 jobs-container">
-   <span class="is-size-3 has-text-weight-bold">{{category}}</span>
-   <div class="grid-container">
-      {{#each jobs as |job|}}  
-      <div class="grid-item">
-         {{>job-info job}}
-      </div>
-      {{/each}}
-   </div> 
+<div class="dark-panel">
+   <div class="container px-4 py-4 jobs-container">
+      <span class="is-size-3 has-text-weight-bold">{{category}}</span>
+      <div class="grid-container">
+         {{#each jobs as |job|}}  
+         <div class="grid-item">
+            {{>job-info job}}
+         </div>
+         {{/each}}
+      </div> 
+   </div>
 </div>
 {{!-call the file of function to generate this page--}}
 <script src="/javascript/job.js"></script>

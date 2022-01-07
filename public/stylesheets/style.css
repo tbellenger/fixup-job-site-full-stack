@@ -6,6 +6,10 @@
 .navbar-form {
   margin: 0;
 }
+.navbar-form input {
+  padding: 4px;
+  border-radius: 10px;
+}
 /* style the body background */
 .hero-body {
   background-image: url(../images/drill1.jpeg);
@@ -25,10 +29,6 @@
   color: azure;
   font-size: 20px;
 }
-i {
-  color: #000;
-}
-
 ::placeholder {
   color: #000;
   opacity: 1;
@@ -44,13 +44,10 @@ i {
   padding: 0;
   margin: 0;
 }
-
 .rating li {
   list-style-type: none;
 }
-
 /* style the rating-item */
-
 .rating li + li {
   margin-top: 0;
 }
@@ -59,56 +56,56 @@ i {
   font-size: 2em;
   color: gold;
 }
-
 /* initial: make all stars full */
 .rating-item::before {
   content: "\2605";
 }
-
 /* make until the clicked star (the rest) empty */
 .rating-item.active ~ .rating-item::before {
   content: "\2606";
 }
-
 /* on hover make all full */
 .rating:hover .rating-item::before {
   content: "\2605";
 }
-
 /* make until the hovered (the rest) empty */
 .rating-item:hover ~ .rating-item::before {
   content: "\2606";
 }
+
 /*style the grid-container */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1rem;
 }
-/* style the page in mobile device*/
 
-.jobs-container {
-  background-color: rgb(236, 236, 236);
+.card-border {
   border-radius: 5px;
+  border: 5px solid rgb(31, 199, 191);
 }
-.job-comment,
-.applicant {
-  box-shadow: 4px 4px 4px 4px rgb(228, 226, 226);
+/* style the page in mobile device*/
+.dark-panel {
+  background-color: rgb(36, 69, 95);
+  border-radius: 5px;
+  color: aliceblue;
 }
-#msg {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
+.contrast-panel {
+  background-color: rgb(70, 99, 121);
+  border-radius: 5px;
+  color: aliceblue;
 }
-@media screen and (max-width: 575px) {
+
+@media screen and (max-width: 1024px) {
   .navbar-form input {
     width: 100%;
     border-radius: 8px;
     padding: 6px;
   }
-  .navbar-item {
-    display: block;
-  }
   .navbar {
     box-shadow: 4px 4px 4px;
+  }
+  .navbar-item.button {
+    width: 100%;
   }
 }
