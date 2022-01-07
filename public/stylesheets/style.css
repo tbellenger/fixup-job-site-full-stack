@@ -103,9 +103,15 @@
     padding: 6px;
   }
   .navbar {
-    box-shadow: 4px 4px 4px;
+    box-shadow: 2px 2px 2px;
+    margin-bottom: 8px;
   }
   .navbar-item.button {
     width: 100%;
+  }
+
+  .logo {
+    font-size: 30px !important;
+    padding-bottom: 0;
   }
 }
