@@ -233,9 +233,11 @@ router.get("/job/:id/applicants", async (req, res) => {
       let total = 0;
       for (let j = 0; j < job.applicant[i].user_ratings.length; j++) {
         total += parseFloat(job.applicant[i].user_ratings[j].rating);
+        console.log(total);
       }
       let userAverage =
         Math.round(2 * (total / job.applicant[i].user_ratings.length)) / 2;
+      console.log(userAverage);
       job.applicant[i].userAverage = userAverage;
     }
 
