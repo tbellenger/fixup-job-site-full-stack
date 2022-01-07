@@ -21,6 +21,7 @@ const {
 //get all jobs data
 router.get("/", async (req, res) => {
   try {
+    console.log(req.user.id);
     const allJobs = await Job.findAll({
       where: {
         owner_id: req.user.id,

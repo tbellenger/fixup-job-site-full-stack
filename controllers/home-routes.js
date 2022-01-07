@@ -10,6 +10,10 @@ const { Op, literal } = require("sequelize");
 
 router.get("/", async (req, res) => {
   try {
+    // console.log(
+    //   "==============================================================================",
+    //   req.user.id
+    // );
     const allCategories = await Category.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
@@ -60,16 +64,28 @@ router.get("/category/:id/jobs", async (req, res) => {
           attribute: { exclude: ["password", "email"] },
         },
         { model: User, as: "employee", attribute: { exclude: ["password"] } },
+        { model: User, as: "applicant", attributes: { exclude: ["password"] } },
         { model: Jobimage },
         { model: Category },
       ],
     });
     //get the categories data and view it on the page
     const jobs = allJobs.map((job) => job.get({ plain: true }));
-    console.log(jobs);
+
+    // console.log(jobs);
+    for (let i = 0; i < jobs.length; i++) {
+      for (let j = 0; j < jobs[i].applicant.length; j++) {
+        console.log(jobs[i].applicant[j].id);
+        // if (jobs[i].applicant[j].id === req.user.id) {
+        //   // this job has been applied to by this user
+        //   jobs[i].isUserApplicant = true;
+        // }
+      }
+    }
     res.render("jobs", {
       jobs: jobs,
       category: category.category_name + " Jobs",
+      // logged,
     });
   } catch (err) {
     console.log(err);

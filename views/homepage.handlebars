@@ -1,17 +1,20 @@
-{{!--all jobs section--}}
+{{!all jobs section}}
 <div class="columns">
   <div class="column is-12 categories">
-    {{!-- <div class="container"> --}}
-      <a class="button is-rounded mb-1" href="/jobs">All Jobs</a>   
-      {{!--categories of job section--}}
-      {{#each categories}}
-      <a class="button is-rounded mb-1"  href="/category/{{id}}/jobs">{{category_name}}</a>
-      {{/each}}
-    {{!-- </div> --}}
+    {{! <div class="container"> }}
+    <a class="button is-rounded mb-1" href="/jobs">All Jobs</a>
+    {{!categories of job section}}
+    {{#each categories}}
+      <a
+        class="button is-rounded mb-1"
+        href="/category/{{id}}/jobs"
+      >{{category_name}}</a>
+    {{/each}}
+    {{! </div> }}
   </div>
 </div>
 
-{{!--hero section--}}
+{{!hero section}}
 <div class="hero is-large is-primary">
   <div class="hero-body">
     <p class="title">"Helping hands from local hands"</p>
