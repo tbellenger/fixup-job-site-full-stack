@@ -16,7 +16,11 @@ if (auth_token) {
   // we are logged in with a token
   // update all dashboard links with the auth_token added in URL
   for (let i = 0; i < arrayLinkEls.length; i++) {
-    if (arrayLinkEls[i].href.includes("dashboard" || "jobs" || "category")) {
+    if (
+      arrayLinkEls[i].href.includes("dashboard") ||
+      arrayLinkEls[i].href.includes("jobs") ||
+      arrayLinkEls[i].href.includes(" category")
+    ) {
       arrayLinkEls[i].href = arrayLinkEls[i].href + "?auth_token=" + auth_token;
     }
   }

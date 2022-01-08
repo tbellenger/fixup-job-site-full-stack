@@ -76,6 +76,7 @@ router.get("/category/:id/jobs", async (req, res) => {
     for (let i = 0; i < jobs.length; i++) {
       for (let j = 0; j < jobs[i].applicant.length; j++) {
         console.log(jobs[i].applicant[j].id);
+        // console.log(req.user.id);
         // if (jobs[i].applicant[j].id === req.user.id) {
         //   // this job has been applied to by this user
         //   jobs[i].isUserApplicant = true;

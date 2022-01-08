@@ -7,7 +7,13 @@ const homeRoutes = require("./home-routes");
 const dashboardRoutes = require("./dashboard-routes");
 const avatarRoutes = require("./avatar-routes");
 //render all api routes
-router.use("/", homeRoutes);
+router.use(
+  "/",
+  passport.authorize("jwt", {
+    failureRedirect: "/login?msg=unauthorized",
+  }),
+  homeRoutes
+);
 router.use(
   "/dashboard",
   passport.authenticate("jwt", {
