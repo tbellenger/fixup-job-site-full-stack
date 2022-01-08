@@ -115,6 +115,19 @@ git clone git@github.com:tbellenger/fixup-job-site-full-stack.git
 From the root folder, install the dependencies with:
 npm install
 
+Set up the .env file with variables below (replace 'xxxx' with appropriate values)
+DB_NAME=xxxx
+DB_USER=xxxx
+DB_PW=xxxx
+JWT_SECRET=xxxx
+AWS_ACCESS_KEY_ID=xxxx
+AWS_SECRET_ACCESS_KEY=xxxx
+AWS_BUCKET_NAME=xxxx
+EMAIL_PASSWORD=xxxx
+
+(Optional) Run seed
+npm run seed
+
 Run the app with:
 node server.js
 
